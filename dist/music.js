@@ -6,7 +6,7 @@ var aplayers = [],
 				audio: b,
 				mini: null,
 				fixed: null,
-				autoplay: !1, //�����Զ�����
+				autoplay: 1, //�����Զ�����
 				mutex: !0,
 				lrcType: 3,
 				listFolded: !1,
