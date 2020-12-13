@@ -5,9 +5,9 @@ var aplayers = [],
 				container: a,
 				audio: b,
 				mini: null,
-				fixed: null,
-				autoplay: 1, //�����Զ�����
-				mutex: 0,
+				fixed: true,
+				autoplay: true, //�����Զ�����
+				mutex: false,
 				lrcType: 3,
 				listFolded: !1,
 				preload: 'auto',
