@@ -7,7 +7,7 @@ var aplayers = [],
 				mini: null,
 				fixed: null,
 				autoplay: 1, //�����Զ�����
-				mutex: !0,
+				mutex: 0,
 				lrcType: 3,
 				listFolded: !1,
 				preload: 'auto',
