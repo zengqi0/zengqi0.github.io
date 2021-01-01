@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>linux基础 | answer77</title><meta name="keywords" content="linux命令,vim编辑器"><meta name="author" content="answer77"><meta name="copyright" content="answer77"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Linux常用命令新建文件夹命令：mkdir是make directories的缩写，用户创建新目录，此命令所有用户都可使用。基本格式如下：[root@localhost ~]# mkdir [选项] 目录名具体选项有：-p：递归创建所有目录 -m：选项自定义目录权限 删除文件夹命令：rmdir是remove empty directories的缩写，命令用于删除空目录，此命令所有用户都可使用。基">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux基础">
+<meta property="og:url" content="http://answer77.top/2020/12/31/linux%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="answer77">
+<meta property="og:description" content="Linux常用命令新建文件夹命令：mkdir是make directories的缩写，用户创建新目录，此命令所有用户都可使用。基本格式如下：[root@localhost ~]# mkdir [选项] 目录名具体选项有：-p：递归创建所有目录 -m：选项自定义目录权限 删除文件夹命令：rmdir是remove empty directories的缩写，命令用于删除空目录，此命令所有用户都可使用。基">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2020-12-31T08:03:56.000Z">
+<meta property="article:modified_time" content="2021-01-01T09:10:02.198Z">
+<meta property="article:author" content="answer77">
+<meta property="article:tag" content="linux命令">
+<meta property="article:tag" content="vim编辑器">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://answer77.top/2020/12/31/linux%E5%9F%BA%E7%A1%80/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-01-01 17:10:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://s3.ax1x.com/2020/12/12/rVz6Ld.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 总览</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">answer77</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 总览</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">linux基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-31T08:03:56.000Z" title="发表于 2020-12-31 16:03:56">2020-12-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-01T09:10:02.198Z" title="更新于 2021-01-01 17:10:02">2021-01-01</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><h2 id="新建文件夹命令："><a href="#新建文件夹命令：" class="headerlink" title="新建文件夹命令："></a>新建文件夹命令：</h2><p>mkdir是make directories的缩写，用户创建新目录，此命令所有用户都可使用。<br>基本格式如下：<br>[root@localhost ~]# mkdir [选项] 目录名<br>具体选项有：<br>-p：递归创建所有目录</p>
+<p>-m：选项自定义目录权限</p>
+<h2 id="删除文件夹命令："><a href="#删除文件夹命令：" class="headerlink" title="删除文件夹命令："></a>删除文件夹命令：</h2><p>rmdir是remove empty directories的缩写，命令用于删除空目录，此命令所有用户都可使用。<br>基本格式如下：<br>[root@localhost ~]# rmdir [选项] 目录名<br>p：递归删除所有空目录。<br>rmdir只能删除空目录</p>
+<h2 id="删除命令"><a href="#删除命令" class="headerlink" title="删除命令"></a>删除命令</h2><p>删除命令：rm命令是remove的缩写，用于用户永久性的删除文件或者目录，在使用rm命令删除文件或目录时，系统不会产生任何提示信息。<br>基本格式如下：<br>[root@localhost ~]# rm [选项] 文件或目录</p>
+<p>具体选项有：<br>-f：强制删除，和-i选项相反，使用-f系统不在询问，直接删除目标</p>
+<p>-i：在删除文件或者目录前，系统会给出提示信息，防止用户误删</p>
+<p>-r：递归删除,主要用户删除目录，可删除指定目录及包含所有内容，包括子目录和文件注意：rm命令是一个具有破坏性的命令，因为rm命令会永久性地删除文件或目录</p>
+<h2 id="新建文件命令："><a href="#新建文件命令：" class="headerlink" title="新建文件命令："></a>新建文件命令：</h2><p>touch命令是用于用户创建新文件，并且此命令可以修改文件的时间参数（当文件存在时）。</p>
+<p>基本格式如下：<br>[root@localhost ~]# touch [选项] 文件名</p>
+<p><em>具体选项自行百度</em></p>
+<p>echo abc 是输出abc</p>
+<p>echo helloworld &gt; [文件名] 这里是创建文件然后写入helloworld</p>
+<p>echo 111 &gt;&gt; [文件名] 这里如果是一个&gt; 那就会覆盖我们之前的helloworld 我们两个&gt;是把111加在helloworld后面</p>
+<h2 id="复制命令"><a href="#复制命令" class="headerlink" title="复制命令"></a>复制命令</h2><p>cp命令是copy的缩写，用于文件或目录的拷贝。<br>基本格式如下：<br>[root@localhost~]# cp [选项] 源文件目标文件</p>
+<p>cp 1.txt 2.txt 把1复制到2</p>
+<p>cp 1,txt ../2.txt 把1复制到上级目录的2中</p>
+<p>-r：递归复制，用于复制目录；</p>
+<p>cp -r 1/ 2/</p>
+<p>把1文件夹下的文件移动到2文件夹下</p>
+<p><em>其他选项自行百度</em></p>
+<h2 id="移动文件"><a href="#移动文件" class="headerlink" title="移动文件"></a>移动文件</h2><p>移动命令：mv命令是move的缩写，用于文件或目录的移动，在移动中可以对文件或者目录进行重命名。<br>基本格式如下：<br>[root@localhost ~]# mv [选项]源文件 目标文件</p>
+<p><em>具体选项有</em><br>注意：同rm命令类似，mv命令也是一个具有破坏性的命令，如果使用不当，很可能给系统带来灾难性的后果。</p>
+<h2 id="显示文件内容命令"><a href="#显示文件内容命令" class="headerlink" title="显示文件内容命令"></a>显示文件内容命令</h2><p>cat命令是concatenate（链接、连续）的简写，用来显示文本文件的内容（类似于DOS下的type命令,也可以把几个文件内容附加到另一个文件中，即连接合并文件。<br>基本格式如下：<br>[root@localhost<del>]# cat [选项] 文件名<br>[root@localhost</del>]# cat 文件1 文件2&gt;文件3   这是把文件1 文件2重定向到文件3 合并到文件三<br>注意：cat命令适合查看不太大的文件。当然，在Linux中是可以使用其他的命令或方法来查看大文件的，我们以后再来学习。</p>
+<p>more命令是可以分页显示比较大的文件</p>
+<p>基本格式如下：<br>[root@localhost~]# more [选项]文件名 </p>
+<p>空格是翻页 回车是换行</p>
+<p>head命令是显示指定文件前若干行的文件内容。<br>基本格式如下：<br>[root@localhost~]# head [选项] 文件名</p>
+<p>我只想查看前2行 </p>
+<p>那就 head -n 2 文件名</p>
+<p>tail命令是显示文件倒数几行和head正好相反</p>
+<h2 id="内容查找命令"><a href="#内容查找命令" class="headerlink" title="内容查找命令"></a>内容查找命令</h2><p>grep命令是global regular expressions print缩写，grep命令是用来在每一个文件或中（或特定输出上）搜索特定的模式，当使用grep时，包含指定字符模式的每一行内容，都会被打印（显示）到屏幕上，但是使用grep命令并不改变文件中的内容。<br>基本格式如下：<br>[root@localhost~]# grep [选项] 模式文件名</p>
+<p>注意基本格式中的模式要么是字符（串），要么是正则表达式。<br>选项含义<br>-c 仅列出文件中包含模式的行数。<br>-i 忽略模式中的字母大小写。列出带有匹配行的文件名。<br>-n 在每一行的最前面列出行号。<br>-l 列出没有匹配模式的行。<br>w把表达式当做一个完整的单字符来搜寻，忽略那些部分匹配的行。<br>注意：如果是搜索多个文件，grep命令的搜索结果只显示文件中发现匹配模式的文件名；而如果搜索单个文件，grep命令的结果将显示每一个包含匹配模式的行。</p>
+<p>cat 文件 | grep ‘我们要搜索的字符串’</p>
+<p>我们就可以找到这个文件当中的 我们要搜索的字符串找出来了</p>
+<h2 id="打包-解打包命令"><a href="#打包-解打包命令" class="headerlink" title="打包/解打包命令"></a>打包/解打包命令</h2><p>tar命令是常用的归档（打包）命令，该命令可以将许多文件一起保存到一个单独的归档文件。不仅如此，该命令还可以从归档文件中还原所需文件，也就是打包的反过程，称为解打包。使用tar命令归档的包通常称为tar包，tar包文件都是以“.tar”结尾。<br>基本格式如下：<br>[root@localhost ~]# tar [选项] 源文件或目录（打包）/压缩包（解打包）<br>-c将多个文件或目录进行打包。</p>
+<p>-A追加tar文件到归档文件。<br>-f指定包的文件名或者指定解压的tar包的包名。包的扩展名是用来给管理员识别格式的，所以一定要正确指定扩展名。<br>-v 显示打包或解打包的具体过程；</p>
+<p>-x 对tar包做解打包操作<br>-t 只查看tar包中有哪些文件或目录，不对tar包做解打包操作。<br>-C目录指定解打包位置</p>
+<p>zip 也可以打包</p>
+<p>unzip是解包</p>
+<h2 id="linux命令行辅助操作"><a href="#linux命令行辅助操作" class="headerlink" title="linux命令行辅助操作"></a>linux命令行辅助操作</h2><p>tab 键是补全命令 假如我们输入的是ifco</p>
+<p>那么我们按下tab 就会帮我们补全ifconfig命令</p>
+<p>如果输入if 出不来 就按两下就可以查看if开头的所i有指令</p>
+<p>ctrl + L 是清屏 输入clear命令也可以清屏</p>
+<p>ctrl + c 中断命令</p>
+<p>ctrl + d 退出shell</p>
+<p>ctrl +z 后台挂起</p>
+<h1 id="vim编辑器"><a href="#vim编辑器" class="headerlink" title="vim编辑器"></a>vim编辑器</h1><p>终端输入vim 这个时候不能输入内容 属于命令模式 </p>
+<p>在命令模式连按两下d  就删除了那一行</p>
+<p>我们按下i键变化为输入模式 就可以输入了</p>
+<p>shift+；出现光标这是底线命令模式</p>
+<p>在底线命令模式下wq保存退出 w代表保存 </p>
+<p>输入数字就代表跳到第几行</p>
+<p>输入/字符串 搜索这个字符串</p>
+<p>q！强制退出</p>
+<p>set nu 会让vim编辑器出现行数</p>
+<p>Esc 退出底线命令模式</p>
+<p>目前了解到这里，以后我再加一些</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">answer77</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://answer77.top/2020/12/31/linux%E5%9F%BA%E7%A1%80/">http://answer77.top/2020/12/31/linux%E5%9F%BA%E7%A1%80/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://answer77.top" target="_blank">answer77</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/linux%E5%91%BD%E4%BB%A4/">linux命令</a><a class="post-meta__tags" href="/tags/vim%E7%BC%96%E8%BE%91%E5%99%A8/">vim编辑器</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://s3.ax1x.com/2020/12/15/ruoc4S.png" target="_blank"><img class="post-qr-code-img" src="https://s3.ax1x.com/2020/12/15/ruoc4S.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://s3.ax1x.com/2020/12/15/ruo29g.jpg" target="_blank"><img class="post-qr-code-img" src="https://s3.ax1x.com/2020/12/15/ruo29g.jpg" alt="支付寶"/></a><div class="post-qr-code-desc">支付寶</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/12/22/malloc%20%20relloc%20calloc/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">calloc malloc 和 relloc的区别</div></div></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://s3.ax1x.com/2020/12/12/rVz6Ld.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">answer77</div><div class="author-info__description">大二pwn菜鸡一个</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">Linux常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">新建文件夹命令：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%A4%B9%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">删除文件夹命令：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">删除命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-number">1.4.</span> <span class="toc-text">新建文件命令：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E5%91%BD%E4%BB%A4"><span class="toc-number">1.5.</span> <span class="toc-text">复制命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E6%96%87%E4%BB%B6"><span class="toc-number">1.6.</span> <span class="toc-text">移动文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E5%91%BD%E4%BB%A4"><span class="toc-number">1.7.</span> <span class="toc-text">显示文件内容命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4"><span class="toc-number">1.8.</span> <span class="toc-text">内容查找命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%8C%85-%E8%A7%A3%E6%89%93%E5%8C%85%E5%91%BD%E4%BB%A4"><span class="toc-number">1.9.</span> <span class="toc-text">打包&#x2F;解打包命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%BE%85%E5%8A%A9%E6%93%8D%E4%BD%9C"><span class="toc-number">1.10.</span> <span class="toc-text">linux命令行辅助操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#vim%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">vim编辑器</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/12/31/linux%E5%9F%BA%E7%A1%80/" title="linux基础"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="linux基础"/></a><div class="content"><a class="title" href="/2020/12/31/linux%E5%9F%BA%E7%A1%80/" title="linux基础">linux基础</a><time datetime="2020-12-31T08:03:56.000Z" title="发表于 2020-12-31 16:03:56">2020-12-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/22/malloc%20%20relloc%20calloc/" title="calloc malloc 和 relloc的区别"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="calloc malloc 和 relloc的区别"/></a><div class="content"><a class="title" href="/2020/12/22/malloc%20%20relloc%20calloc/" title="calloc malloc 和 relloc的区别">calloc malloc 和 relloc的区别</a><time datetime="2020-12-22T08:56:28.000Z" title="发表于 2020-12-22 16:56:28">2020-12-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/22/Tcache/" title="Tcache"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Tcache"/></a><div class="content"><a class="title" href="/2020/12/22/Tcache/" title="Tcache">Tcache</a><time datetime="2020-12-22T08:03:06.000Z" title="发表于 2020-12-22 16:03:06">2020-12-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/17/BUU%E5%A0%86%E9%A2%98%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="基础fastbinattack题目实战"><img src="https://s3.ax1x.com/2020/12/19/rtz09P.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基础fastbinattack题目实战"/></a><div class="content"><a class="title" href="/2020/12/17/BUU%E5%A0%86%E9%A2%98%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="基础fastbinattack题目实战">基础fastbinattack题目实战</a><time datetime="2020-12-17T07:10:57.000Z" title="发表于 2020-12-17 15:10:57">2020-12-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/15/%E6%A0%88%E8%BF%81%E7%A7%BB/" title="栈溢出漏洞技巧之栈迁移"><img src="https://s3.ax1x.com/2020/12/15/rQ3iWj.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="栈溢出漏洞技巧之栈迁移"/></a><div class="content"><a class="title" href="/2020/12/15/%E6%A0%88%E8%BF%81%E7%A7%BB/" title="栈溢出漏洞技巧之栈迁移">栈溢出漏洞技巧之栈迁移</a><time datetime="2020-12-15T15:37:33.000Z" title="发表于 2020-12-15 23:37:33">2020-12-15</time></div></div></div></div></div></div></div></main><footer id="footer" style="background: rgba(0,0,0,0)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By answer77</div><div class="footer_custom_text">qq:1204342476</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=5379200926&auto=1&height=430"></iframe><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="ture"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+})</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":200,"height":600},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
