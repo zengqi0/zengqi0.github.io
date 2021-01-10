@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tcache | answer77</title><meta name="author" content="answer77"><meta name="copyright" content="answer77"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="[TOC] 本文侧重讲tcache 2.27  Tcachetcache：Thread Local Caching，线程本地缓存 故名思意，是个缓存，与其线程对应；它也是个堆表，而且是单链表，其特点和fastbin基本相同，只是更弱，弱爆了，没有首块double free检查也没有size校验， tcache特殊的一点是，它的fd指针是指向用户区的，而不是块首，fd指向的并不是堆头，而是堆内容这是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tcache">
+<meta property="og:url" content="http://answer77.top/2020/12/22/Tcache/index.html">
+<meta property="og:site_name" content="answer77">
+<meta property="og:description" content="[TOC] 本文侧重讲tcache 2.27  Tcachetcache：Thread Local Caching，线程本地缓存 故名思意，是个缓存，与其线程对应；它也是个堆表，而且是单链表，其特点和fastbin基本相同，只是更弱，弱爆了，没有首块double free检查也没有size校验， tcache特殊的一点是，它的fd指针是指向用户区的，而不是块首，fd指向的并不是堆头，而是堆内容这是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2020-12-22T08:03:06.000Z">
+<meta property="article:modified_time" content="2020-12-22T09:51:14.526Z">
+<meta property="article:author" content="answer77">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://answer77.top/2020/12/22/Tcache/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-12-22 17:51:14'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://s3.ax1x.com/2020/12/12/rVz6Ld.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 总览</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">answer77</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 总览</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">Tcache</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-22T08:03:06.000Z" title="发表于 2020-12-22 16:03:06">2020-12-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-12-22T09:51:14.526Z" title="更新于 2020-12-22 17:51:14">2020-12-22</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>[TOC]</p>
+<p>本文侧重讲tcache 2.27 </p>
+<h1 id="Tcache"><a href="#Tcache" class="headerlink" title="Tcache"></a>Tcache</h1><p>tcache：Thread Local Caching，线程本地缓存</p>
+<p>故名思意，是个缓存，与其线程对应；它也是个堆表，而且是单链表，其特点和fastbin基本相同，只是更弱，弱爆了，没有首块double free检查也没有size校验，</p>
+<p>tcache特殊的一点是，它的fd指针是指向用户区的，而不是块首，<strong>fd指向的并不是堆头，而是堆内容</strong>这是和其他bin的一个重要区别</p>
+<p>此外这个东西有一个奇葩的地方，人家别的堆表都待在arena里，但是tcache却存储在堆区；tcache的位置位于堆区的起始处，一共有64个链表，这64个链表的索引结点（也就是链首结点用于存放链表中第一个堆块地址的结点）依次存放在堆区起始处；每个链表最多维护7个堆块</p>
+<p>Tcache的管理结构在堆上，比main_arena好搞一点，毕竟Libc地址一般比堆地址难搞到，Tcache有时候使得泄露Libc地址变得困难</p>
+<p>这里我说下Tcache的机制，tcache就是一个为了内存分配速度而存在的机制，当size不大堆块free后，不会直接进入各种bin，而是进入tcache，如果下次需要该大小内存，直接讲tcache分配出去，其size的范围比fastbin大多了，他有64个bin链数组，也就是(64+1)<em>size_sz</em>2，在64位系统中就是0x410大小，也就是说，在64位情况下，tcache可以接受0x20~0x410大小的堆块。</p>
+<h3 id="Tcache-poisoning"><a href="#Tcache-poisoning" class="headerlink" title="Tcache poisoning"></a>Tcache poisoning</h3><p>那么Tcache对漏洞利用来说，不像fastbin attack一样，需要寻找合适的size了，<strong>在2.27的环境下是可以直接做到任意地址写的</strong>，这一点非常nice, 这种利用方法，在也被叫做<strong>tcache poisoning</strong>。同时，在double free领域，Tcache可以直接double free，而不需要像fastbin那样，需要和链上上一个堆块不一样,也就是下面这个样子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;* heap0 ----&gt; heap1 ----&gt; heap0 (fastbin YES) </span><br><span class="line"></span><br><span class="line">heap0 ----&gt; heap0 (fastbin NO) </span><br><span class="line"></span><br><span class="line">heap0 ----&gt; heap0 (Tcahce YES) *&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>，这一点也是需要我们注意的。</p>
+<p>libc2.27，引入了tcache新特性</p>
+<p>在 tcache 中新增了两个结构体，分别是 tcache_entry 和 tcache_pertheread_struct</p>
+<p>可以看到，链表结点结构体很简单，就是一个next指针指向链表中下一个堆块（的用户数据区）；然后定义了一个线程的完整tcache结构体，由两部分组成，第一部分是计数表，记录了64个tcache链表中每个链表内已有的堆块个数（0-7），第二部分是入口表，用来记录64个tcache链表中每条链表的入口地址（即链表中第一个堆块的用户区地址）；最后一行则是初始化了一个线程的tcache，存储在堆空间起始处的tcache在这一步后就完成了分配，由于tcache本身也在堆区故也是一个大chunk，因此其大小是size_chunkhead + size_counts + size_entries = 16 + 64 + 64*8 = 592 = 0x250</p>
+<p>因此在libc2.26及以后的版本中，堆空间起始部分都会有一块先于用户申请分配的堆空间，大小为0x250，这就是tcache（0x000-0x24F），也就是说用户申请第一块堆内存的起始地址的最低位字节是0x50</p>
+<p>其中有两个重要的函数， tcache_get() 和 tcache_put():</p>
+<p>这两个函数的会在函数 <a target="_blank" rel="noopener" href="https://sourceware.org/git/gitweb.cgi?p=glibc.git;a=blob;f=malloc/malloc.c;h=2527e2504761744df2bdb1abdc02d936ff907ad2;hb=d5c3fafc4307c9b7a4c7d5cb381fcdbfad340bcc#l4173">_int_free</a> 和 <a target="_blank" rel="noopener" href="https://sourceware.org/git/gitweb.cgi?p=glibc.git;a=blob;f=malloc/malloc.c;h=2527e2504761744df2bdb1abdc02d936ff907ad2;hb=d5c3fafc4307c9b7a4c7d5cb381fcdbfad340bcc#l3051">__libc_malloc</a> 的开头被调用，其中 tcache_put 当所请求的分配大小不大于0x408并且当给定大小的 tcache bin 未满时调用。一个 tcache bin 中的最大块数mp_.tcache_count是7。free进去和分配出来就是用的put和get，可以看到并没有什么安全检查</p>
+<p>小结：单链表LIFO头插、tcache存储在堆区、64个bins、每个bins最多放7个chunk、tcache的next指针指向chunk的用户数据区而不是chunk_head </p>
+<p><strong><em>如何泄露libc</em></strong></p>
+<p>tcache在堆区，其中的数据都对泄露libc没啥帮助，只能泄露堆区地址，我们应该想办法能构造出unsorted bin chunk才能进一步尝试泄露libc地址。怎么进unsorted bin chunk呢？在引入tcache机制后，在申请的大小符合规定时，只要tcache里面还有符合要求的，就先从tcache里面出，在free掉一个堆块后，只要与其大小对应的tcache链表还没满（不足7个），就一定先进tcache ；因此想要free一个chunk进unsorted bin，必须先free掉7个相同大小的chunk把tcache填满，才能把它弄进unsorted bin，同样，你要把它再拿出来，也要先malloc 7次把tcache清空了才能拿到unsorted bin里的。</p>
+<p>此外，我们需要了解tcache转移机制：当用户申请一个堆块的时候，如果tcache已经为空，而fastbin/smallbin/unsorted bin中有size符合的chunk时，会先把fastbin/smallbin/unsorted bin中的chunk全部转移到tcache中直到填满，然后再从tcache中拿（这就很符合缓存的特性）；转移的过程其实就是前者的常规拆卸操作和后者的常规链入操作</p>
+<p>注意：经调试证实，unsorted bin合并时，合并后的堆块不会进tcache，在从一个大的unsorted bin chunk分割出chunk的情形下，分出来的和剩下的都不会进tcache！</p>
+<p>参考资料：</p>
+<p>​               1.<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/219292#h3-3">https://www.anquanke.com/post/id/219292#h3-3</a></p>
+<p>​               2.<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/170852">https://www.anquanke.com/post/id/170852</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">answer77</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://answer77.top/2020/12/22/Tcache/">http://answer77.top/2020/12/22/Tcache/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://answer77.top" target="_blank">answer77</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://s3.ax1x.com/2020/12/15/ruoc4S.png" target="_blank"><img class="post-qr-code-img" src="https://s3.ax1x.com/2020/12/15/ruoc4S.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://s3.ax1x.com/2020/12/15/ruo29g.jpg" target="_blank"><img class="post-qr-code-img" src="https://s3.ax1x.com/2020/12/15/ruo29g.jpg" alt="支付寶"/></a><div class="post-qr-code-desc">支付寶</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/12/31/linux%E5%9F%BA%E7%A1%80/"><img class="prev-cover" src="https://upimage.alexhchu.com/2021/01/01/dd6730ff5a504.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">linux基础</div></div></a></div><div class="next-post pull-right"><a href="/2020/12/17/BUU%E5%A0%86%E9%A2%98%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/"><img class="next-cover" src="https://s3.ax1x.com/2020/12/19/rtz09P.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">基础fastbinattack题目实战</div></div></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://s3.ax1x.com/2020/12/12/rVz6Ld.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">answer77</div><div class="author-info__description">大二pwn菜鸡一个</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Tcache"><span class="toc-number">1.</span> <span class="toc-text">Tcache</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tcache-poisoning"><span class="toc-number">1.0.1.</span> <span class="toc-text">Tcache poisoning</span></a></li></ol></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/01/09/stl/" title="stl"><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-imgbed/2951d081-02a1-4df1-9ddf-18048727ef1b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="stl"/></a><div class="content"><a class="title" href="/2021/01/09/stl/" title="stl">stl</a><time datetime="2021-01-09T10:15:01.000Z" title="发表于 2021-01-09 18:15:01">2021-01-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/31/linux%E5%9F%BA%E7%A1%80/" title="linux基础"><img src="https://upimage.alexhchu.com/2021/01/01/dd6730ff5a504.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="linux基础"/></a><div class="content"><a class="title" href="/2020/12/31/linux%E5%9F%BA%E7%A1%80/" title="linux基础">linux基础</a><time datetime="2020-12-31T08:03:56.000Z" title="发表于 2020-12-31 16:03:56">2020-12-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/22/Tcache/" title="Tcache"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Tcache"/></a><div class="content"><a class="title" href="/2020/12/22/Tcache/" title="Tcache">Tcache</a><time datetime="2020-12-22T08:03:06.000Z" title="发表于 2020-12-22 16:03:06">2020-12-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/17/BUU%E5%A0%86%E9%A2%98%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="基础fastbinattack题目实战"><img src="https://s3.ax1x.com/2020/12/19/rtz09P.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基础fastbinattack题目实战"/></a><div class="content"><a class="title" href="/2020/12/17/BUU%E5%A0%86%E9%A2%98%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="基础fastbinattack题目实战">基础fastbinattack题目实战</a><time datetime="2020-12-17T07:10:57.000Z" title="发表于 2020-12-17 15:10:57">2020-12-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/15/%E6%A0%88%E8%BF%81%E7%A7%BB/" title="栈溢出漏洞技巧之栈迁移"><img src="https://s3.ax1x.com/2020/12/15/rQ3iWj.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="栈溢出漏洞技巧之栈迁移"/></a><div class="content"><a class="title" href="/2020/12/15/%E6%A0%88%E8%BF%81%E7%A7%BB/" title="栈溢出漏洞技巧之栈迁移">栈溢出漏洞技巧之栈迁移</a><time datetime="2020-12-15T15:37:33.000Z" title="发表于 2020-12-15 23:37:33">2020-12-15</time></div></div></div></div></div></div></div></main><footer id="footer" style="background: rgba(0,0,0,0)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By answer77</div><div class="footer_custom_text">qq:1204342476</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=5379200926&auto=1&height=430"></iframe><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="ture"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+})</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":200,"height":600},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

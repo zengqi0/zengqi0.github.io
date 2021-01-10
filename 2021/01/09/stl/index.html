@@ -1,0 +1,405 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>stl | answer77</title><meta name="keywords" content="c++"><meta name="author" content="answer77"><meta name="copyright" content="answer77"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="[TOC] stl标准模板库stl标准模板库就是类与函数模板的大集合。 STL包括：容器，迭代器，算法 先说一下容器 容器容器是用来存储和组织其他对象的对象。STL容器类的模板在标准头文件中定义 容器指包含数据的数据结构，链表，平衡二叉树等都被成为容器，容器中包含的对象是元素； 容器分为：顺序容器、关联容器、容器适配器 1 顺序容器基本的顺序容器如下    模板 头文件 说明    vctor v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="stl">
+<meta property="og:url" content="http://answer77.top/2021/01/09/stl/index.html">
+<meta property="og:site_name" content="answer77">
+<meta property="og:description" content="[TOC] stl标准模板库stl标准模板库就是类与函数模板的大集合。 STL包括：容器，迭代器，算法 先说一下容器 容器容器是用来存储和组织其他对象的对象。STL容器类的模板在标准头文件中定义 容器指包含数据的数据结构，链表，平衡二叉树等都被成为容器，容器中包含的对象是元素； 容器分为：顺序容器、关联容器、容器适配器 1 顺序容器基本的顺序容器如下    模板 头文件 说明    vctor v">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-imgbed/2951d081-02a1-4df1-9ddf-18048727ef1b.png">
+<meta property="article:published_time" content="2021-01-09T10:15:01.000Z">
+<meta property="article:modified_time" content="2021-01-10T02:44:46.597Z">
+<meta property="article:author" content="answer77">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-imgbed/2951d081-02a1-4df1-9ddf-18048727ef1b.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://answer77.top/2021/01/09/stl/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-01-10 10:44:46'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://s3.ax1x.com/2020/12/12/rVz6Ld.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 总览</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://vkceyugu.cdn.bspapp.com/VKCEYUGU-imgbed/2951d081-02a1-4df1-9ddf-18048727ef1b.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">answer77</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 总览</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">stl</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-09T10:15:01.000Z" title="发表于 2021-01-09 18:15:01">2021-01-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-10T02:44:46.597Z" title="更新于 2021-01-10 10:44:46">2021-01-10</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>[TOC]</p>
+<h1 id="stl标准模板库"><a href="#stl标准模板库" class="headerlink" title="stl标准模板库"></a>stl标准模板库</h1><p>stl标准模板库就是类与函数模板的大集合。</p>
+<p>STL包括：容器，迭代器，算法</p>
+<p>先说一下容器</p>
+<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><p>容器是用来存储和组织其他对象的对象。STL容器类的模板在标准头文件中定义</p>
+<p>容器指包含数据的数据结构，链表，平衡二叉树等都被成为容器，容器中包含的对象是元素；</p>
+<p>容器分为：顺序容器、关联容器、容器适配器</p>
+<h3 id="1-顺序容器"><a href="#1-顺序容器" class="headerlink" title="1 顺序容器"></a>1 顺序容器</h3><p>基本的顺序容器如下</p>
+<table>
+<thead>
+<tr>
+<th>模板</th>
+<th>头文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vctor<T></td>
+<td>vctor</td>
+<td>创建一个表示存储T类型对象的动态数组的类，在尾端插入删除支持随机访问</td>
+</tr>
+<tr>
+<td>list<T></td>
+<td>list</td>
+<td>创建一个表示存储T类型对象的链表的类，双链表，可在任意位置快速插入和删除</td>
+</tr>
+<tr>
+<td>deque<T></td>
+<td>deque</td>
+<td>创建一个表示存储T类型对象的双端队列的类，在头端和尾端快速插入和删除支持随机访问</td>
+</tr>
+</tbody></table>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; iv;		<span class="comment">// 定义vector对象iv，用以存放int型元素</span></span><br><span class="line"><span class="built_in">list</span>&lt;<span class="keyword">double</span>&gt; dl;</span><br><span class="line"><span class="built_in">deque</span>&lt;<span class="built_in">string</span>&gt; sd;</span><br></pre></td></tr></table></figure>
+
+<p> 它们之所以被称为顺序容器，是因为元素在容器中的位置同元素的值无关，即容器不是排序的。将元素插入容器时，指定在什么位置（尾部、头部或中间某处）插入，元素就会位于什么位置。</p>
+<p>这三种非常相似我们来此说一下他们的优缺点</p>
+<h4 id="vector矢量容器"><a href="#vector矢量容器" class="headerlink" title="vector矢量容器"></a>vector<T>矢量容器</h4><p>可以随机访问容器的内容，在序列末尾添加或删除对象，但是因为是从尾部删除，过程非常慢，因为必须移动插入或删除点后面的所有对象。</p>
+<h4 id="deque矢量容器"><a href="#deque矢量容器" class="headerlink" title="deque矢量容器"></a>deque<T>矢量容器</h4><p>双端队列容器与矢量容器基本类似，具有相同的函数成员，但是有点不同的是它支持从两端插入和删除数据，所以就有了两个函数：push_front和pop_front。并且有两个迭代器变量</p>
+<h4 id="list容器"><a href="#list容器" class="headerlink" title="list容器"></a>list<T>容器</h4><p>list容器是双向链表，因此可以有效的在任何位置添加和删除。列表的缺点是不能随机访问内容，要想访问内容必须在列表的内部从头开始便利内容，或者从尾部开始。</p>
+<p>*小结：vector容器适用于大量读写，而插入、删除比较少的操作。list容器适用于少量读写，大量插入，删除的情况 ，deque容器随机存取又关心数据的插入和删除，</p>
+<h3 id="2-关联容器"><a href="#2-关联容器" class="headerlink" title="2 关联容器"></a>2 关联容器</h3><p><strong>关联容器</strong>不是通过位置顺序存储和访问元素，而是通过键key对元素进行存储和访问；</p>
+<p>关联容器有以下四种</p>
+<table>
+<thead>
+<tr>
+<th>类名</th>
+<th>说明</th>
+<th>所在头文件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>map</td>
+<td>通过键进行元素存取的关联数组</td>
+<td><map></td>
+</tr>
+<tr>
+<td>multimap</td>
+<td>支持重复键的关联数组</td>
+<td><map></td>
+</tr>
+<tr>
+<td>set</td>
+<td>键的集合</td>
+<td><set></td>
+</tr>
+<tr>
+<td>multiset</td>
+<td>支持重复键的集合</td>
+<td><set></td>
+</tr>
+</tbody></table>
+<h4 id="pair类型"><a href="#pair类型" class="headerlink" title="pair类型"></a>pair类型</h4><p>使用关联容器，绕不开pair类型</p>
+<p>map和 multimap容器类中，使用pair类型作为元素类型，是一个模板类，在头文件utility中定义</p>
+<p>一个pair对象包含两个数据成员：first和second，这两个都是公有成员，因此可直接通过pair对象访问</p>
+<h4 id="map容器"><a href="#map容器" class="headerlink" title="map容器"></a>map容器</h4><p>map容器是键值对的集合，通常称为关联数组，所谓关联数组是指元素的值与键之间的关联通过键来访问值</p>
+<h4 id="multimap容器"><a href="#multimap容器" class="headerlink" title="multimap容器"></a>multimap容器</h4><p>multimap容器和map容器类似，唯一的区别就是multimap容器的键可以重复，既可以有多个元素中包含相同的键</p>
+<h4 id="set容器"><a href="#set容器" class="headerlink" title="set容器"></a>set容器</h4><p>set容器用于集合，该集合中的元素不能重复；set容器的元素就是键本身，即只存储键</p>
+<h3 id="容器适配器"><a href="#容器适配器" class="headerlink" title="容器适配器"></a>容器适配器</h3><p><a target="_blank" rel="noopener" href="http://c.biancheng.net/stl/">STL</a> 中的容器适配器有 stack、queue、priority_queue 三种。它们都是在顺序容器的基础上实现的，屏蔽了顺序容器的一部分功能，突出或增加了另外一些功能。</p>
+<table>
+<thead>
+<tr>
+<th>类名</th>
+<th>说明</th>
+<th>所在头文件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>stack</td>
+<td>栈。元素的插入和删除只在栈顶进行，支持后进先出的元素访问</td>
+<td><stack></td>
+</tr>
+<tr>
+<td>queue</td>
+<td>队列，在尾端插入元素，在头端删除元素，支持先进先出的元素访问</td>
+<td><queue></td>
+</tr>
+<tr>
+<td>priority_deque</td>
+<td>带优先级管理的队列，元素按优先级从高到低排列</td>
+<td><queue></td>
+</tr>
+</tbody></table>
+<p> 容器适配器都有以下三个成员函数：</p>
+<ul>
+<li><p>​        push：添加一个元素。</p>
+</li>
+<li><p>​        top：返回顶部（对 stack 而言）或队头（对 queue、priority_queue 而言）的元素的引用。</p>
+</li>
+<li><p>​        pop：删除一个元素。</p>
+<p>容器适配器是没有迭代器的，因此 STL 中的各种排序、查找、变序等算法都不适用于容器适配器。</p>
+</li>
+</ul>
+<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><h3 id="迭代器的定义"><a href="#迭代器的定义" class="headerlink" title="迭代器的定义"></a>迭代器的定义</h3><p>要访问顺序容器和关联容器中的元素，需要通过“迭代器（iterator）”进行。迭代器是一个变量，相当于容器和操纵容器的算法之间的中介。迭代器可以指向容器中的某个元素，通过迭代器就可以读写它指向的元素。从这一点上看，迭代器和指针类似。</p>
+<p>迭代器按照定义方式分成以下四种。</p>
+<p>（1） 正向迭代器，定义方法如下：</p>
+<p>​    容器类名::iterator 迭代器名;</p>
+<p>（2） 常量正向迭代器，定义方法如下：</p>
+<p>​    容器类名::const_iterator 迭代器名;</p>
+<ol start="3">
+<li>反向迭代器，定义方法如下：</li>
+</ol>
+<p>​    容器类名::reverse_iterator 迭代器名;</p>
+<ol start="4">
+<li>常量反向迭代器，定义方法如下：</li>
+</ol>
+<p>​    容器类名::const_reverse_iterator 迭代器名;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;    </span><br><span class="line">     vector&lt;int&gt; v; </span><br><span class="line">     &#x2F;&#x2F;v是存放int类型变量的可变长数组，开始时没有元素容器是空的 </span><br><span class="line">     for (int n &#x3D; 0; n&lt;5; ++n)        </span><br><span class="line">     v.push_back(n);  </span><br><span class="line">     &#x2F;&#x2F;push_back成员函数在vector容器尾部添加一个元素       </span><br><span class="line">     vector&lt;int&gt;::iterator i;  &#x2F;&#x2F;定义正向迭代器    </span><br><span class="line">     for (i &#x3D; v.begin(); i !&#x3D; v.end(); ++i)</span><br><span class="line">     &#123;  &#x2F;&#x2F;用迭代器遍历容器        </span><br><span class="line">     cout &lt;&lt; *i &lt;&lt; &quot; &quot;;  </span><br><span class="line">     &#x2F;&#x2F;*i 就是迭代器i指向的元素        </span><br><span class="line">     *i *&#x3D; 2;  &#x2F;&#x2F;每个元素变为原来的2倍   </span><br><span class="line">     &#125;    </span><br><span class="line">     cout &lt;&lt; endl;    &#x2F;&#x2F;用反向迭代器遍历容器   </span><br><span class="line">     for (vector&lt;int&gt;::reverse_iterator j &#x3D; v.rbegin(); j !&#x3D; v.rend(); ++j)        </span><br><span class="line">     cout &lt;&lt; *j &lt;&lt; &quot; &quot;;   </span><br><span class="line">     return 0;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="迭代器的功能分类"><a href="#迭代器的功能分类" class="headerlink" title="迭代器的功能分类"></a>迭代器的功能分类</h3><p>不同容器的迭代器，其功能强弱有所不同。容器的迭代器的功能强弱，决定了该容器是否支持 STL 中的某种算法。例如，排序算法需要通过随机访问迭代器来访问容器中的元素，因此有的容器就不支持排序算法。</p>
+<p> 常用的迭代器按功能强弱分为输入、输出、正向、双向、随机访问五种，这里只介绍常用的三种。</p>
+<ol>
+<li><p>正向迭代器。假设 p 是一个正向迭代器，则 p 支持以下操作：++p，p++，*p。此外，两个正向迭代器可以互相赋值，还可以用<code>==</code>和<code>!=</code>运算符进行比较。</p>
+</li>
+<li><p>双向迭代器。双向迭代器具有正向迭代器的全部功能。除此之外，若 p 是一个双向迭代器，则<code>--p</code>和<code>p--</code>都是有定义的。<code>--p</code>使得 p 朝和<code>++p</code>相反的方向移动。</p>
+</li>
+<li><p>随机访问迭代器。随机访问迭代器具有双向迭代器的全部功能。若 p 是一个随机访问迭代器，i 是一个整型变量或常量，则 p 还支持以下操作：</p>
+</li>
+</ol>
+<ul>
+<li>​        p+=i：使得 p 往后移动 i 个元素。</li>
+<li>​        p-=i：使得 p 往前移动 i 个元素。</li>
+<li>​        p+i：返回 p 后面第 i 个元素的迭代器。</li>
+<li>​        p-i：返回 p 前面第 i 个元素的迭代器。</li>
+<li>​        p[i]：返回 p 后面第 i 个元素的引用。</li>
+</ul>
+<h2 id="泛型算法"><a href="#泛型算法" class="headerlink" title="泛型算法"></a>泛型算法</h2><p>虽然容器提供了众多操作，但有些常见的操作，比如查找特定的元素，替换或者删除某个特定值，重新排序等，这些由一组*<strong>泛型算法(generic algorithm)*</strong>来实现。</p>
+<p>大多数的算法都定义在头文件algorithm中，有些关于数值的泛型算法定义在numeric这个头文件中。</p>
+<p>标准库提供了上百个算法，但是它们的算法结构基本上是一致的。</p>
+<p>算法通过迭代器来操纵容器中的元素。</p>
+<p> 许多算法操作的是容器上的一个区间（也可以是整个容器），因此需要两个参数，一个是区间起点元素的迭代器，另一个是区间终点元素的后面一个元素的迭代器。例如，排序和查找算法都需要这两个参数来指明待排序或待查找的区间。</p>
+<p>有的算法返回一个迭代器。例如，find 算法在容器中查找一个元素，并返回一个指向该元素的迭代器。</p>
+<h3 id="算法的形参模式"><a href="#算法的形参模式" class="headerlink" title="算法的形参模式"></a>算法的形参模式</h3><p>大多数的算法具有如下4种形式之一：</p>
+<ul>
+<li><strong>alg(beg, end, other args);</strong></li>
+<li><strong>alg(beg, end, dest, other args);</strong></li>
+<li><strong>alg(beg, end, beg2, other args);</strong></li>
+<li><strong>alg(beg, end, beg2, end2, other args);</strong></li>
+</ul>
+<p>我们以find为例 来加深对泛型算法的理解</p>
+<p>find 模板的原型如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">template &lt;class InIt, class T&gt;</span><br><span class="line"> InIt find(InIt first, InIt last, const T&amp; val);</span><br></pre></td></tr></table></figure>
+
+<p>其功能可以是在迭代器 first、last 指定的容器的一个区间 [first, last) 中，按顺序查找和 val 相等的元素。如果找到，就返回该元素的迭代器；如果找不到，就返回 last。</p>
+<blockquote>
+<p>​    [first, last) 这个区间是一个左闭右开的区间，即 last 指向的元素其实不在此区间内。</p>
+<p>find 模板使用<code>==</code>运算符判断元素是否相等。因此，如果 [first, last) 区间中存放的是对象，则<code>==</code>运算符应该被适当重载，使得两个对象可以用<code>==</code>运算符比较。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()  &#123;</span><br><span class="line">    int a[10] &#x3D; &#123;10,20,30,40&#125;;</span><br><span class="line">    vector&lt;int&gt; v;</span><br><span class="line">    v.push_back(1);    v.push_back(2);</span><br><span class="line">    v.push_back(3);    v.push_back(4); &#x2F;&#x2F;此后v里放着4个元素：1,2,3,4</span><br><span class="line">    vector&lt;int&gt;::iterator p;</span><br><span class="line">    p &#x3D; find(v.begin(),v.end(),3); &#x2F;&#x2F;在v中查找3</span><br><span class="line">    if(p !&#x3D; v.end()) &#x2F;&#x2F;若找不到,find返回 v.end()</span><br><span class="line">        cout &lt;&lt; &quot;1) &quot; &lt;&lt;  * p &lt;&lt; endl; &#x2F;&#x2F;找到了</span><br><span class="line">    p &#x3D; find(v.begin(),v.end(),9);</span><br><span class="line">    if(p &#x3D;&#x3D; v.end())</span><br><span class="line">        cout &lt;&lt; &quot;not found &quot; &lt;&lt; endl; &#x2F;&#x2F;没找到</span><br><span class="line">    p &#x3D; find(v.begin()+1,v.end()-1,4); &#x2F;&#x2F;在,3 这两个元素中查找4</span><br><span class="line">    cout &lt;&lt; &quot;2) &quot; &lt;&lt; * p &lt;&lt; endl;</span><br><span class="line">    int * pp &#x3D; find(a,a+4,20);</span><br><span class="line">    if(pp &#x3D;&#x3D; a + 4)</span><br><span class="line">        cout &lt;&lt; &quot;not found&quot; &lt;&lt; endl;</span><br><span class="line">    else</span><br><span class="line">        cout &lt;&lt; &quot;3) &quot; &lt;&lt;* pp &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序的输出结果是：</p>
+<ol>
+<li>3<br>not found</li>
+<li>4</li>
+<li>20</li>
+</ol>
+<p>简述一下find的执行步骤</p>
+<ol>
+<li>访问序列中的元素</li>
+<li>比较此元素与我们要查找的值</li>
+<li>如果此元素与我们要查找的值匹配，find返回标示此元素的值。</li>
+<li>否则,find前进到下一个元素，重复执行步骤2和3。</li>
+<li>如果到达序列尾,find停止。</li>
+<li>如果find到达序列末尾，它应该返回一个指出元素未找到的值。此值和步骤3中返回的值必须具有相同的类型。</li>
+</ol>
+<p>参考资料 </p>
+<p>1 <a target="_blank" rel="noopener" href="https://blog.csdn.net/timebomb/article/details/6716064">https://blog.csdn.net/timebomb/article/details/6716064</a></p>
+<p>2 <a target="_blank" rel="noopener" href="https://blog.csdn.net/yuhan61659/article/details/81353428">https://blog.csdn.net/yuhan61659/article/details/81353428</a></p>
+<p>3 <a target="_blank" rel="noopener" href="http://c.biancheng.net/view/331.html">http://c.biancheng.net/view/331.html</a></p>
+<p>4 <a target="_blank" rel="noopener" href="https://blog.csdn.net/twc829/article/details/51433591">https://blog.csdn.net/twc829/article/details/51433591</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">answer77</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://answer77.top/2021/01/09/stl/">http://answer77.top/2021/01/09/stl/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://answer77.top" target="_blank">answer77</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/c/">c++</a></div><div class="post_share"><div class="social-share" data-image="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-imgbed/2951d081-02a1-4df1-9ddf-18048727ef1b.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://s3.ax1x.com/2020/12/15/ruoc4S.png" target="_blank"><img class="post-qr-code-img" src="https://s3.ax1x.com/2020/12/15/ruoc4S.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://s3.ax1x.com/2020/12/15/ruo29g.jpg" target="_blank"><img class="post-qr-code-img" src="https://s3.ax1x.com/2020/12/15/ruo29g.jpg" alt="支付寶"/></a><div class="post-qr-code-desc">支付寶</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/12/31/linux%E5%9F%BA%E7%A1%80/"><img class="next-cover" src="https://upimage.alexhchu.com/2021/01/01/dd6730ff5a504.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">linux基础</div></div></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://s3.ax1x.com/2020/12/12/rVz6Ld.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">answer77</div><div class="author-info__description">大二pwn菜鸡一个</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#stl%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text">stl标准模板库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8"><span class="toc-number">1.1.</span> <span class="toc-text">容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8"><span class="toc-number">1.1.1.</span> <span class="toc-text">1 顺序容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#vector%E7%9F%A2%E9%87%8F%E5%AE%B9%E5%99%A8"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">vector矢量容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#deque%E7%9F%A2%E9%87%8F%E5%AE%B9%E5%99%A8"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">deque矢量容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#list%E5%AE%B9%E5%99%A8"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">list容器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text">2 关联容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pair%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">pair类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#map%E5%AE%B9%E5%99%A8"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">map容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#multimap%E5%AE%B9%E5%99%A8"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">multimap容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#set%E5%AE%B9%E5%99%A8"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">set容器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E9%80%82%E9%85%8D%E5%99%A8"><span class="toc-number">1.1.3.</span> <span class="toc-text">容器适配器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">迭代器的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.2.</span> <span class="toc-text">迭代器的功能分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">泛型算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E7%9A%84%E5%BD%A2%E5%8F%82%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.3.1.</span> <span class="toc-text">算法的形参模式</span></a></li></ol></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/01/09/stl/" title="stl"><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-imgbed/2951d081-02a1-4df1-9ddf-18048727ef1b.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="stl"/></a><div class="content"><a class="title" href="/2021/01/09/stl/" title="stl">stl</a><time datetime="2021-01-09T10:15:01.000Z" title="发表于 2021-01-09 18:15:01">2021-01-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/31/linux%E5%9F%BA%E7%A1%80/" title="linux基础"><img src="https://upimage.alexhchu.com/2021/01/01/dd6730ff5a504.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="linux基础"/></a><div class="content"><a class="title" href="/2020/12/31/linux%E5%9F%BA%E7%A1%80/" title="linux基础">linux基础</a><time datetime="2020-12-31T08:03:56.000Z" title="发表于 2020-12-31 16:03:56">2020-12-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/22/Tcache/" title="Tcache"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Tcache"/></a><div class="content"><a class="title" href="/2020/12/22/Tcache/" title="Tcache">Tcache</a><time datetime="2020-12-22T08:03:06.000Z" title="发表于 2020-12-22 16:03:06">2020-12-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/17/BUU%E5%A0%86%E9%A2%98%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="基础fastbinattack题目实战"><img src="https://s3.ax1x.com/2020/12/19/rtz09P.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基础fastbinattack题目实战"/></a><div class="content"><a class="title" href="/2020/12/17/BUU%E5%A0%86%E9%A2%98%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="基础fastbinattack题目实战">基础fastbinattack题目实战</a><time datetime="2020-12-17T07:10:57.000Z" title="发表于 2020-12-17 15:10:57">2020-12-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/15/%E6%A0%88%E8%BF%81%E7%A7%BB/" title="栈溢出漏洞技巧之栈迁移"><img src="https://s3.ax1x.com/2020/12/15/rQ3iWj.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="栈溢出漏洞技巧之栈迁移"/></a><div class="content"><a class="title" href="/2020/12/15/%E6%A0%88%E8%BF%81%E7%A7%BB/" title="栈溢出漏洞技巧之栈迁移">栈溢出漏洞技巧之栈迁移</a><time datetime="2020-12-15T15:37:33.000Z" title="发表于 2020-12-15 23:37:33">2020-12-15</time></div></div></div></div></div></div></div></main><footer id="footer" style="background: rgba(0,0,0,0)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By answer77</div><div class="footer_custom_text">qq:1204342476</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=5379200926&auto=1&height=430"></iframe><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="ture"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+})</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":200,"height":600},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
