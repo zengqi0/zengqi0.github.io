@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CSAPP LAB之Bomb Lab | answer77</title><meta name="keywords" content="csapp"><meta name="author" content="answer77"><meta name="copyright" content="answer77"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="运行程序我们发现这是一个有6个验证函数的程序，我们需要输入符合6个对应的字符串来通过程序 F12找到主函数之后 进入第一关 第一个验证phase_1 通过 strings_not_equal返回到result result为0即可绕过 所以我们在strings_not_equal函数里需要做的就是让返回值eax为0。 我们查看strings_not_equal 的反汇编代码 rdi是输入的值，r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSAPP LAB之Bomb Lab">
+<meta property="og:url" content="http://answer77.top/2021/02/01/csapp%20lab2%20boom%20lab/index.html">
+<meta property="og:site_name" content="answer77">
+<meta property="og:description" content="运行程序我们发现这是一个有6个验证函数的程序，我们需要输入符合6个对应的字符串来通过程序 F12找到主函数之后 进入第一关 第一个验证phase_1 通过 strings_not_equal返回到result result为0即可绕过 所以我们在strings_not_equal函数里需要做的就是让返回值eax为0。 我们查看strings_not_equal 的反汇编代码 rdi是输入的值，r">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-02-01T07:10:28.000Z">
+<meta property="article:modified_time" content="2021-02-07T02:22:54.906Z">
+<meta property="article:author" content="answer77">
+<meta property="article:tag" content="csapp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://answer77.top/2021/02/01/csapp%20lab2%20boom%20lab/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-02-07 10:22:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://s3.ax1x.com/2020/12/12/rVz6Ld.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 总览</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">answer77</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 总览</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">CSAPP LAB之Bomb Lab</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-01T07:10:28.000Z" title="发表于 2021-02-01 15:10:28">2021-02-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-07T02:22:54.906Z" title="更新于 2021-02-07 10:22:54">2021-02-07</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p> 运行程序我们发现这是一个有6个验证函数的程序，我们需要输入符合6个对应的字符串来通过程序</p>
+<p>F12找到主函数之后 进入第一关</p>
+<h1 id="第一个验证"><a href="#第一个验证" class="headerlink" title="第一个验证"></a>第一个验证</h1><p><strong>phase_1</strong></p>
+<p>通过 strings_not_equal返回到result result为0即可绕过</p>
+<p>所以我们在strings_not_equal函数里需要做的就是让返回值eax为0。</p>
+<p>我们查看strings_not_equal 的反汇编代码</p>
+<p>rdi是输入的值，rsi是比较的字符串</p>
+<p>寄存器rbx存了rdi的值，rbp存了rsi的值，然后调用string_length函数，这个函数就是求字符串的长度。</p>
+<p>地址40135a处，如果我们的input长度不等于52，那么就会跳到40139b，eax就会为1。所以input长度必须为52。</p>
+<p>然后往下看，对rbx内存的值付给eax，然后执行test指令，如果为0，就跳转，这个跳转很美好，但是想了下是做不到的，所以只能放弃。</p>
+<p>然后是对rbp取值，和al做比较，此时al存的是input的第一个字符，rbp存的是内存地址为0x402400处的值，作比较，如果相同就跳转，不同就eax为1，所以必须相同。</p>
+<p>发现跳转到401372处，eax取input的下一个值，rbp也去内存地址的下一个值，然后看al的值是否位0，如果不等于0，就跳转上去，对al和rbp里的值做比较，如果不同，就会跳转到eax为1的地方，所以必须相同。</p>
+<p>所以 输入Border relations with Canada have never been better. </p>
+<h1 id="第二个验证"><a href="#第二个验证" class="headerlink" title="第二个验证"></a>第二个验证</h1><p>两个地方要跳过对explode_bomb函数的调用。 </p>
+<p> 在read_six_numbers中调用了__isoc99_sscanf读6个数字</p>
+<p>从栈顶，每隔4字节，把地址放在寄存器中，共放了4个，还有两个把内存地址存在栈中，</p>
+<p>为什么呢，因为sscanf这个函数，有8个参数，第一个是input，第二个是输入的模式串，之后6个是读取6个的值存的地址，因为最多只能传6个寄存器参数，所以最后两个把内存地址存在栈中 。六个地址分别存在rdx, rcx,  r8,  r9, rsp, 8(%rsp)处，同时也在0x0(rsi),  0x4(rsi), 0x8(rsi), 0xc(rsi), 0x10(rsi), 0x14(rsi)处。</p>
+<p>这里需要%rax和5比较，大于的时候可以跳过explode_bomb，sscanf的返回值是正确输入了几个scanf的返回值是正确输入了几个值就是几，这边要输入6个数字，所以就是6</p>
+<p>read_six_numbers可以得知我们需要输入6个数字，中间空格隔开。回到phase_2中，(%rsp)中的值和1比较，</p>
+<p>gdb调到这里可以看一下此时的%rsp就是上面的%rsi，所以取得就是6个值里的第一个，如果不相等，就会explode_bomb，所以第一个必须为1，然后继续往下调，发现%rbx为下一个值</p>
+<p>eax+eax 的一个循环</p>
+<p>所以答案就是1 2 4 8 16 32</p>
+<h1 id="第三个验证"><a href="#第三个验证" class="headerlink" title="第三个验证"></a>第三个验证</h1><p>第三个比较简单</p>
+<p>直接调phase_3</p>
+<p>上个验证里面说了sscnaf输入参数会返回，那这里是输入比1多的参数，我们输入两个开始测试，然后  进入phase_3</p>
+<p>这里要求输入的第一个数字小于等于7，且跳转到 *(0x401b60 + 8 * args[1] ) 处。</p>
+<p>switch结构，分别对eax赋值，然后与我们输入的第二个数字比较</p>
+<p>我输入的是1 311</p>
+<h1 id="第四个验证"><a href="#第四个验证" class="headerlink" title="第四个验证"></a>第四个验证</h1><p>首先看 phase_4</p>
+<p>又出现了__isoc99_sscanf，输入的是两个参数</p>
+<p>输入的第一个参数是小于0xE，第二个参数要等于0</p>
+<p>然后有个调用func4函数，传入三个值，分别是input0， 0， 14，需要返回值为0才能避免explode。</p>
+<p>func4函数里 第一个值为7可 return 0‘</p>
+<p>所以 7 0</p>
+<h1 id="第五个验证"><a href="#第五个验证" class="headerlink" title="第五个验证"></a>第五个验证</h1><p>进入phase_5 按要求是输入 6个字符长度</p>
+<p>然后把input的每一个值，取出来，和0xf做&amp;运算，</p>
+<p>flyers转化为数组下表为9，15，14，5，6，7</p>
+<p>&amp;之后得到是上面6个值 </p>
+<p>所以在每个i在input[i]中任取1即可。</p>
+<h1 id="第六个验证"><a href="#第六个验证" class="headerlink" title="第六个验证"></a>第六个验证</h1><p>我们进入到  phase_6发现输入6个数字</p>
+<p>分析完汇编程序写成c代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">6</span>; i++)&#123;	</span><br><span class="line">	<span class="keyword">if</span> (a[i]<span class="number">-1</span>&gt;<span class="number">5</span> || a[i]<span class="number">-1</span>&lt;<span class="number">0</span>)	bomb();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;=<span class="number">5</span>;j++)&#123;</span><br><span class="line">		<span class="keyword">if</span> (a[j] == a[i])	bomb(); </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">6</span>;i++)</span><br><span class="line">	a[i] = <span class="number">7</span>-a[i];</span><br></pre></td></tr></table></figure>
+
+<p>到 node1这个位置不知道什么意思，我们gdb看一看数据</p>
+<p>发现是一个结构体，</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line"><span class="keyword">int</span> val;<span class="comment">//这个暂不知道是什么数据 </span></span><br><span class="line"><span class="keyword">int</span> id;<span class="comment">//id是编号 </span></span><br><span class="line">node *next;	<span class="comment">//next是指向的node的地址</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这部分转化为c得</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">node *n[<span class="number">6</span>];	<span class="comment">//n = sp+0x20</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">6</span>;i++)</span><br><span class="line">&#123;	</span><br><span class="line">	addr = <span class="number">0x6032d0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;val[i];j++)</span><br><span class="line">		addr = *(addr+<span class="number">0x8</span>);</span><br><span class="line">	n[i]=addr;</span><br><span class="line">&#125;</span><br><span class="line">bx=n[<span class="number">0</span>]</span><br><span class="line">ax=&amp;n[<span class="number">1</span>]</span><br><span class="line">si=&amp;n[<span class="number">6</span>]</span><br><span class="line">cx=bx</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;	</span><br><span class="line">   dx = *ax</span><br><span class="line">   cx-&gt;next = dx</span><br><span class="line">   ax+=<span class="number">0x8</span></span><br><span class="line">   <span class="keyword">if</span>(ax==si) &#123;</span><br><span class="line"><span class="comment">// n[0]~n[4] 都已经分配了next，再给n[5]分配0地址为next</span></span><br><span class="line">   		dx-&gt;next=<span class="number">0</span>;</span><br><span class="line">   		<span class="keyword">break</span>;</span><br><span class="line">   &#125;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 最后一段逻辑很清晰，即要求排序按val递减，否则爆炸。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val:</span><br><span class="line">node1&#x3D;14c	node2&#x3D;0a8	node3&#x3D;39c</span><br><span class="line">node4&#x3D;2b3	node5&#x3D;1dd   node6&#x3D;1bb</span><br></pre></td></tr></table></figure>
+
+<p>根据val从大到小排序分别为 3 4 5 6 1 2</p>
+<p>但由于之前进行了一次a[i]=7-[i]的线性变换</p>
+<p>所以变为4 3 2 1 6 5</p>
+<p>参考文献</p>
+<p>1 <a target="_blank" rel="noopener" href="https://blog.csdn.net/eternitykc/article/details/110427039">https://blog.csdn.net/eternitykc/article/details/110427039</a></p>
+<p>2 <a target="_blank" rel="noopener" href="https://blog.csdn.net/cena1001/article/details/109570188?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6.control">https://blog.csdn.net/cena1001/article/details/109570188?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6.control</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">answer77</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://answer77.top/2021/02/01/csapp%20lab2%20boom%20lab/">http://answer77.top/2021/02/01/csapp%20lab2%20boom%20lab/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://answer77.top" target="_blank">answer77</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/csapp/">csapp</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://s3.ax1x.com/2020/12/15/ruoc4S.png" target="_blank"><img class="post-qr-code-img" src="https://s3.ax1x.com/2020/12/15/ruoc4S.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://s3.ax1x.com/2020/12/15/ruo29g.jpg" target="_blank"><img class="post-qr-code-img" src="https://s3.ax1x.com/2020/12/15/ruo29g.jpg" alt="支付寶"/></a><div class="post-qr-code-desc">支付寶</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/03/csapp%20lab%203%20attack%20lab-/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">csapp lab 3 attack lab-</div></div></a></div><div class="next-post pull-right"><a href="/2021/02/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info"></div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/02/03/csapp lab 3 attack lab-/" title="csapp lab 3 attack lab-"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-03</div><div class="title">csapp lab 3 attack lab-</div></div></a></div><div><a href="/2021/02/04/csapp lab1 data Lab/" title="csapp lab1 data Lab"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-04</div><div class="title">csapp lab1 data Lab</div></div></a></div><div><a href="/2021/02/05/csapp lab4 arch Lab/" title="csapp lab4 arch Lab"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-05</div><div class="title">csapp lab4 arch Lab</div></div></a></div><div><a href="/2021/02/01/csapp笔记/" title="CSAPP 学习笔记"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-01</div><div class="title">CSAPP 学习笔记</div></div></a></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://s3.ax1x.com/2020/12/12/rVz6Ld.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">answer77</div><div class="author-info__description">大二pwn菜鸡一个</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%AA%8C%E8%AF%81"><span class="toc-number">1.</span> <span class="toc-text">第一个验证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E9%AA%8C%E8%AF%81"><span class="toc-number">2.</span> <span class="toc-text">第二个验证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E4%B8%AA%E9%AA%8C%E8%AF%81"><span class="toc-number">3.</span> <span class="toc-text">第三个验证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E4%B8%AA%E9%AA%8C%E8%AF%81"><span class="toc-number">4.</span> <span class="toc-text">第四个验证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E4%B8%AA%E9%AA%8C%E8%AF%81"><span class="toc-number">5.</span> <span class="toc-text">第五个验证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E4%B8%AA%E9%AA%8C%E8%AF%81"><span class="toc-number">6.</span> <span class="toc-text">第六个验证</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/02/05/csapp%20lab4%20arch%20Lab/" title="csapp lab4 arch Lab"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csapp lab4 arch Lab"/></a><div class="content"><a class="title" href="/2021/02/05/csapp%20lab4%20arch%20Lab/" title="csapp lab4 arch Lab">csapp lab4 arch Lab</a><time datetime="2021-02-05T07:10:28.000Z" title="发表于 2021-02-05 15:10:28">2021-02-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/04/csapp%20lab1%20data%20Lab/" title="csapp lab1 data Lab"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csapp lab1 data Lab"/></a><div class="content"><a class="title" href="/2021/02/04/csapp%20lab1%20data%20Lab/" title="csapp lab1 data Lab">csapp lab1 data Lab</a><time datetime="2021-02-04T07:10:28.000Z" title="发表于 2021-02-04 15:10:28">2021-02-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/03/csapp%20lab%203%20attack%20lab-/" title="csapp lab 3 attack lab-"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csapp lab 3 attack lab-"/></a><div class="content"><a class="title" href="/2021/02/03/csapp%20lab%203%20attack%20lab-/" title="csapp lab 3 attack lab-">csapp lab 3 attack lab-</a><time datetime="2021-02-02T16:00:00.000Z" title="发表于 2021-02-03 00:00:00">2021-02-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/01/csapp%20lab2%20boom%20lab/" title="CSAPP LAB之Bomb Lab"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSAPP LAB之Bomb Lab"/></a><div class="content"><a class="title" href="/2021/02/01/csapp%20lab2%20boom%20lab/" title="CSAPP LAB之Bomb Lab">CSAPP LAB之Bomb Lab</a><time datetime="2021-02-01T07:10:28.000Z" title="发表于 2021-02-01 15:10:28">2021-02-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/" title="无题"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/02/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/" title="无题">无题</a><time datetime="2021-02-01T02:46:48.939Z" title="发表于 2021-02-01 10:46:48">2021-02-01</time></div></div></div></div></div></div></div></main><footer id="footer" style="background: rgba(0,0,0,0)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By answer77</div><div class="footer_custom_text">qq:1204342476</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=5379200926&auto=1&height=430"></iframe><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="ture"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+})</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":200,"height":600},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
