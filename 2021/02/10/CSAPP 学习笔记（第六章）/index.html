@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CSAPP 学习笔记（第六章） | answer77</title><meta name="keywords" content="csapp,pwn基础"><meta name="author" content="answer77"><meta name="copyright" content="answer77"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="[TOC] 第六章 存储器层次结构第一部分 存储技术第二部分 局部性局部性通常有两种不同的形式：时间局部性和空间局部性，在一个具有良好的时间局部性的程序中，被引用过一次的程序会在不远的将来再被多次引用，一个具有良好的空间局部性的程序中，如果一个内存位置被引用了一次，那么程序会在不远的将来引用附近的一个内存位置 第一节 对程序数据引用的局部性我们先看一个程序 1234567int sumvec(in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSAPP 学习笔记（第六章）">
+<meta property="og:url" content="http://answer77.top/2021/02/10/CSAPP%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%89/index.html">
+<meta property="og:site_name" content="answer77">
+<meta property="og:description" content="[TOC] 第六章 存储器层次结构第一部分 存储技术第二部分 局部性局部性通常有两种不同的形式：时间局部性和空间局部性，在一个具有良好的时间局部性的程序中，被引用过一次的程序会在不远的将来再被多次引用，一个具有良好的空间局部性的程序中，如果一个内存位置被引用了一次，那么程序会在不远的将来引用附近的一个内存位置 第一节 对程序数据引用的局部性我们先看一个程序 1234567int sumvec(in">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-02-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-02-14T02:31:23.226Z">
+<meta property="article:author" content="answer77">
+<meta property="article:tag" content="csapp">
+<meta property="article:tag" content="pwn基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://answer77.top/2021/02/10/CSAPP%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%89/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-02-14 10:31:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://s3.ax1x.com/2020/12/12/rVz6Ld.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 总览</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">answer77</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 总览</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">CSAPP 学习笔记（第六章）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-09T16:00:00.000Z" title="发表于 2021-02-10 00:00:00">2021-02-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-14T02:31:23.226Z" title="更新于 2021-02-14 10:31:23">2021-02-14</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>[TOC]</p>
+<h1 id="第六章-存储器层次结构"><a href="#第六章-存储器层次结构" class="headerlink" title="第六章 存储器层次结构"></a>第六章 存储器层次结构</h1><h2 id="第一部分-存储技术"><a href="#第一部分-存储技术" class="headerlink" title="第一部分 存储技术"></a>第一部分 存储技术</h2><h2 id="第二部分-局部性"><a href="#第二部分-局部性" class="headerlink" title="第二部分 局部性"></a>第二部分 局部性</h2><p>局部性通常有两种不同的形式：时间局部性和空间局部性，在一个具有良好的时间局部性的程序中，被引用过一次的程序会在不远的将来再被多次引用，一个具有良好的空间局部性的程序中，如果一个内存位置被引用了一次，那么程序会在不远的将来引用附近的一个内存位置</p>
+<h3 id="第一节-对程序数据引用的局部性"><a href="#第一节-对程序数据引用的局部性" class="headerlink" title="第一节 对程序数据引用的局部性"></a>第一节 对程序数据引用的局部性</h3><p>我们先看一个程序</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sumvec</span><span class="params">(<span class="keyword">int</span> v[N])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;N;i++)</span><br><span class="line">    sum+=v[i];</span><br><span class="line">   <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个程序有良好的局部性吗？</p>
+<p>变量sum 在每次循环迭代中被引用一次，因此对于 sum 来说，有好的时间局部性。另一方面，因为 sum 是标量，对于 sum 来说，没有空间局部性。</p>
+<p>变量v呢，它的元素是被顺序读取的，一个接一个所以它具有良好的空间局部性，但是时间局部性很差，因为每个向量元索只被访问一次。因为 对于循环体中的每个变量，这个函数要么有好的空间局部性，要么有好的时间局部性，所 以我们可以断定 sumvec 函数有良好的局部性</p>
+<p><em>一个空间局部性很差的程序</em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sumarraycols</span><span class="params">(<span class="keyword">int</span> a[M] [NJ)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> i, j , sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; N; j ++)</span><br><span class="line"> <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; M; i ++)</span><br><span class="line">   sum += a[i] [j];</span><br><span class="line"><span class="keyword">return</span> sum; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>因为它是按照列来排序的</p>
+<h3 id="取指令的局部性"><a href="#取指令的局部性" class="headerlink" title="取指令的局部性"></a>取指令的局部性</h3><p>因为程序指令是存放在内存中的，CPU必须取出（读出）这些指令，所以我们也能够评价一个程序关千取指令的局部性。</p>
+<p>对千取指令来说，循环有好的时间和空间局部性。循环体越小，循环迭代次数越多，局部性越好</p>
+<h2 id="第三部分-存储器层次结构"><a href="#第三部分-存储器层次结构" class="headerlink" title="第三部分 存储器层次结构"></a>第三部分 存储器层次结构</h2><p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/5910028c-b692-4698-b802-cc35bc9d89f8.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/5910028c-b692-4698-b802-cc35bc9d89f8.png"></p>
+<p>一般而言，从高层往底层走，存储设备变得更慢、更便宜和更大。</p>
+<h3 id="第一节-存储器层次结构中的缓存"><a href="#第一节-存储器层次结构中的缓存" class="headerlink" title="第一节 存储器层次结构中的缓存"></a>第一节 存储器层次结构中的缓存</h3><p><em>高速缓存</em>(cache,读作”cash”)是一个小而快速的存储设备，它作为存储在更大、也更慢的设备中的数据对象的缓冲区域。使用高速缓存的过程称为缓存(caching,读作”cashing”)</p>
+<p><em>存储器层次结构的中心思想</em>是层次结构中的每一层都缓存来自较低一层的数据对象</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/3087c521-f942-4324-a02f-3d7022e54739.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/3087c521-f942-4324-a02f-3d7022e54739.png"></p>
+<p>第k+1层的存储器被划分成连续的数据对象组块称为块，每个块都有唯一的地址和名字，使之区别于其他的块，数据总是以块大小为传送单元，在第k层和k+1层直接来回复制，虽然在层次结构中任何一对相邻的层次之间块大小是固定的，但是其他层次之间有不同大小的块</p>
+<h4 id="缓存命中"><a href="#缓存命中" class="headerlink" title="缓存命中"></a>缓存命中</h4><p>当程序需要第k+I层的某个数据对象d时，它首先在当前存储在第K层的一个块中查找d。如果d刚好缓存在第k层中，那么就是我们所说的缓存命中(cachehit)。该程序直接从第k层读取d,根据存储器层次结构的性质，这要比从第k+l层读取d更快。</p>
+<h4 id="缓存不命中另"><a href="#缓存不命中另" class="headerlink" title="缓存不命中另"></a>缓存不命中另</h4><p>一方面，如果第K层中没有缓存数据对象d,那么就是我们所说的缓存不命中(cache miss)。当发生缓存不命中时，第K层的缓存从第k+l层缓存中取出包含d的那个块，如果第k层的缓存已经满了，可能就会覆盖现存的一个块。覆盖一个现存的块的过程称为替换(replacing)或驱逐(evicting)这个块。被驱逐的这个块有时也称为牺牲块(victimblock)。决定该替换哪个块是由缓存的替换策略(replace­ment policy)来控制的。</p>
+<p>例如，一个具有随机替换策略的缓存会随机选择一个牺牲块。一个具有最近最少被使用CLRU)替换策略的缓存会选择那个最后被访问的时间距现在最远的块。</p>
+<p>在第k层缓存从第k+l层取出那个块之后，程序就能像前面一样从第k层读出d了。</p>
+<p>例如，在第K层中读块12中的一个数据对象，会导致一个缓存不命中，因为块12当前不在第k层缓存中。</p>
+<p>一旦把块12从第k+l层复制到第k层之后，它就会保持在那里，等待稍后的访问。</p>
+<h4 id="缓存不命中的种类"><a href="#缓存不命中的种类" class="headerlink" title="缓存不命中的种类"></a>缓存不命中的种类</h4><p>如果第K层的缓存是空的，那么对任何数据对象的访问都会不命中。一个空的缓存有时被称为冷缓存(coldcache) , 此类不命中称为强制性不命中(compulsorymiss)或冷不命中(coldmiss)。冷不命中很重要，因为它们通常是短暂的事件，不会在反复访问存储器使得缓存暖身(warmedup)之后的稳定状态中出现。只要发生了不命中，第K层的缓存就必须执行某个放置策略(placementpolicy), 确定把它从第k+I层中取出的块放在哪里。最灵活的替换策略是允许来自第k+l层的任何块放在第k层的任何块中。对于存储器层次结构中高层的缓存（靠近CPU),它们是用硬件来实现的，而且速度是最优的，这个策略实现起来通常很昂贵，因为随机地放置块，定位起来代价很高。</p>
+<p>因此，硬件缓存通常使用的是更严格的放置策略，这个策略将第k+l层的某个块限制放置在第k层块的一个小的子集中（有时只是一个块）。例如，在图6-22中，我们可以确定第k+l层的块t必须放置在第k层的块(imod 4)中。例如，第k+l层的块0、4、8和12会映射到第k层的块0;块l、5、9和13会映射到块1;依此类推。注意，图6-22中的示例缓存使用的就是这个策略。这种限制性的放置策略会引起一种不命中，称为冲突不命中(conflictmiss), 在这种情况中，缓存足够大，能够保存被引用的数据对象，但是因为这些对象会映射到同一个缓存块，缓存会一直不命中。例如，在图6-22中，如果程序请求块o,然后块8’然后块o,然后块8,依此类推，在第k层的缓存中，对这两个块的每次引用都会不命中，即使这个缓存总共可以容纳4个块。程序通常是按照一系列阶段（如循环）来运行的，每个阶段访问缓存块的某个相对稳定不变的集合。例如，一个嵌套的循环可能会反复地访问同一个数组的元素。这个块的集合称为这个阶段的工作集(workingset)。当工作集的大小超过缓存的大小时，缓存会经历容量不命中(capacitymiss)。换句话说就是，缓存太小了，不能处理这个工作集。4缓存管理正如我们提到过的，存储器层次结构的本质是，每一层存储设备都是较低一层的缓存。在每一层上，某种形式的逻辑必须管理缓存。这里，我们的意思是指某个东西要将缓存划分成块，在不同的层之间传送块，判定是命中还是不命中，并处理它们。管理缓存的逻辑可以是硬件、软件，或是两者的结合。例如，编译器管理寄存器文件，缓存层次结构的最高层。它决定当发生不命中时何时发射加载，以及确定哪个寄存器来存放数据。Ll、L2和L3层的缓存完全是由内置在缓存中的硬件逻辑来管理的。在一个有虚拟内存的系统中，DRAM主存作为存储在磁盘上的数据块的缓存，是由操作系统软件和CPU上的地址翻译硬件共同管理的。对千一个具有像AFS这样的分布式文件系统的机器来说，本地磁盘作为缓存，它是由运行在本地机器上的AFS客户端进程管理的。在大多数时候，缓存都是自动运行的，不需要程序采取特殊的或显式的行动</p>
+<h2 id="第四部分-高速缓存存储器"><a href="#第四部分-高速缓存存储器" class="headerlink" title="第四部分 高速缓存存储器"></a>第四部分 高速缓存存储器</h2><p>早期计算机系统的存储器层次结构只有三层：CPU寄存器、DRAM主存储器和磁盘存储。不过，由千CPU和主存之间逐渐增大的差距，系统设计者被迫在CPU寄存器文件和主存之间插入了一个小的SRAM高速缓存存储器，称为L1高速缓存（一级缓存）L1高速缓存的访问速度几乎和寄存器一样快，典型地是大约4个时钟周期。    </p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/02fe244e-377d-4abd-875f-e18457c2c8c9.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/02fe244e-377d-4abd-875f-e18457c2c8c9.png"></p>
+<p>随着CPU和主存之间的性能差距不断增大，系统设计者在Ll高速缓存和主存之间又插入了一个更大的高速缓存，称为L2高速缓存，可以在大约10个时钟周期内访问到它。有些现代系统还包括有一个更大的高速缓存，称为L3高速缓存，在存储器层次结构中，它位于L2高速缓存和主存之间，可以在大约50个周期内访问到它。虽然安排上有相当多的变化，但是通用原则是一样的。对于下一节中的讨论，我们会假设一个简单的存储器层次结构，CPU和主存之间只有一个Ll高速缓存。</p>
+<h3 id="第一节-通用的高速缓存存储器组织结构"><a href="#第一节-通用的高速缓存存储器组织结构" class="headerlink" title="第一节 通用的高速缓存存储器组织结构"></a>第一节 通用的高速缓存存储器组织结构</h3><p>考虑一个计算机系统，其中每个存储器地址有m位，形成M=沪个不同的地址。</p>
+<p>如图6-25a所示，这样一个机器的高速缓存被组织成一个有5=2’个高速缓存组(cacheset)的数组。每个组包含E个高速缓存行(cacheline)。每个行是由一个B=护字节的数据块(block)组成的，一个有效位Cvalid bit)指明这个行是否包含有意义的信息，还有t=m—(h+s)个标记位Ctag bit)(是当前块的内存地址的位的一个子集），它们唯一地标识存储在这个高速缓存行中的块</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c72abee9-e36f-4708-bcf7-3e071673c6fc.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c72abee9-e36f-4708-bcf7-3e071673c6fc.png"></p>
+<p>一般而言，高速缓存的结构可以用元组CS,E, B, m)来描述。高速缓存的大小（或容量）C指的是所有块的大小的和。标记位和有效位不包括在内。因此，C=SXEXB。当一条加载指令指示CPU从主存地址A中读一个字时，它将地址A发送到高速缓存。如果高速缓存正保存着地址A处那个字的副本，它就立即将那个字发回给CPU。那么高速缓存如何知道它是否包含地址A处那个字的副本的呢？高速缓存的结构使得它能通过简单地检查地址位，找到所请求的字，类似千使用极其简单的哈希函数的哈希表。下面介绍它是如何工作的：参数S和B将m个地址位分为了三个字段，如图6-25b所示。A中s个组索引位是一个到S个组的数组的索引。第一个组是组o,第二个组是组1,依此类推。组索引位被解释为一个无符号整数，它告诉我们这个字必须存储在哪个组中。一旦我们知道了这个字必须放在哪个组中，A中的t个标记位就告诉我们这个组中的哪一行包含这个字（如果有的话）。当且仅当设置了有效位并且该行的标记位与地址A中的标记位相匹配时，组中的这一行才包含这个字。一旦我们在由组索引标识的组中定位了由标号所标识的行，那么b个块偏移位给出了在B个字节的数据块中的字偏移。你可能已经注意到了，对高速缓存的描述使用了很多符号。图6-26对这些符号做了个小结，供你参考。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/1b9ec570-db07-4bae-97ea-11b907f751c4.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/1b9ec570-db07-4bae-97ea-11b907f751c4.png"></p>
+<h3 id="第二节-直接映射高速缓存"><a href="#第二节-直接映射高速缓存" class="headerlink" title="第二节 直接映射高速缓存"></a>第二节 直接映射高速缓存</h3><p>根据每个组的高速缓存行数E,高速缓存被分为不同的类。每个组只有一行(E=l)的高速缓存称为直接映射高速缓存(direct-mappedcache)</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/2d707052-f62f-4dee-ba8b-abec03db1079.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/2d707052-f62f-4dee-ba8b-abec03db1079.png"></p>
+<p>假设我们有这样一个系统，它有一个CPU、一个寄存器文件、一个Ll高速缓存和一个主存。当CPU执行一条读内存字w的指令，它向Ll高速缓存请求这个字。如果Ll高速缓存有w的一个缓存的副本，那么就得到L1高速缓存命中，高速缓存会很快抽取出w, 并将它返回给CPU。否则就是缓存不命中，当Ll高速缓存向主存请求包含w的块的一个副本时，CPU必须等待。当被请求的块最终从内存到达时，L1高速缓存将这个块存Ii,_ 心放在它的一个高速缓存行里，从被存储的块中抽取出字W,然后将它返回给CPU。高速缓存确定一个请求是否命中，然后抽取出被请求的字的过程．分为三步：1)组选择；2) 行匹配；3)宇抽取。</p>
+<ol>
+<li><em>直接映射高速缓存中的组选择</em></li>
+</ol>
+<p>在这一步中，高速缓存从w的地址中间抽取出s个组索引位。这些位被解释成一个对应千一个组号的无符号整数。换句话来说，如果我们把高速缓存看成是一个关于组的一维数组，那么这些组索引位就是一个到这个数组的索引。图6-28展示了直接映射高速缓存的组选择是如何工作的。在这个例子中，组索引位000012被解释为一个选择组1的整数索引。</p>
+<ol start="2">
+<li><em>直接映射高速缓存中的行匹配</em></li>
+</ol>
+<p>在上一步中我们已经选择了某个组i’接下来的一步就要确定是否有字w的一个副本存储在组1包含的一个高速缓存行中。在直接映射高速缓存中这很容易，而且很快，这是因为每个组只有一行。当且仅当设置了有效位，而且高速缓存行中的标记与w的地址中的标记相匹配时，这一行中包含w的一个副本。图6-29展示了直接映射高速缓存中行匹配是如何工作的。在这个例子中，选中的组中只有一个高速缓存行。这个行的有效位设置了，所以我们知道标记和块中的位是有意义的。因为这个高速缓存行中的标记位与地址中的标记位相匹配，所以我们知道我们想要的那个字的一个副本确实存储在这个行中。换句话说，我们得到一个缓存命中。另一方面，如果有效位没有设詈，或者标记不相匹配，那么我们就得到一个缓存不命中。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c8c4b848-17d9-4461-999e-d0a598f20cec.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c8c4b848-17d9-4461-999e-d0a598f20cec.png"></p>
+<ol start="3">
+<li>直接映射高速缓存中的字选择</li>
+</ol>
+<p>一旦命中，我们知道w就在这个块中的某个地方。最后一步确定所需要的字在块中是从哪里开始的。如图6-29所示，块偏移位提供了所需要的字的第一个字节的偏移。就像我们把高速缓存看成一个行的数组一样，我们把块看成一个字节的数组，而字节偏移是到这个数组的一个索引。在这个示例中，块偏移位是1002’它表明w的副本是从块中的字节4开始的（我们假设字长为4字节）</p>
+<ol start="4">
+<li>直接映射高速缓存中不命中时的行替换</li>
+</ol>
+<p>如果缓存不命中，那么它需要从存储器层次结构中的下一层取出被请求的块，然后将新的块存储在组索引位指示的组中的一个高速缓存行中。一般而言，如果组中都是有效高速缓存行了，那么必须要驱逐出一个现存的行。对千直接映射高速缓存来说，每个组只包含有一行，替换策略非常简单：用新取出的行替换当前的行</p>
+<ol start="5">
+<li>综合：运行中的直接映射高速缓存</li>
+</ol>
+<p>高速缓存用来选择组和标识行的机制极其简单，因为硬件必须在几个纳秒的时间内完成这些工作。不过，用这种方式来处理位是很令人困惑的。一个具体的例子能帮助解释清楚这个过程。假设我们有一个直接映射高速缓存，描述如下(S,E,B,m) = (4,1,2,4) 换旬话说，高速缓存有4个组，每个组一行，每个块2个字节，而地址是4位的。我们还假设每个字都是单字节的。当然，这样一些假设完全是不现实的，但是它们能使示例保持简单。当你初学高速缓存时，列举出整个地址空间并划分好位是很有帮助的，就像我们在图6-30对4位的示例所做的那样。关于这个列举出的空间，有一些有趣的事情值得注意：</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/dba1c66b-e44b-4bd1-a28b-5e864bc8e31f.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/dba1c66b-e44b-4bd1-a28b-5e864bc8e31f.png"></p>
+<p><em>标记位和索引位连起来唯一地标识了内存中的每个块。例如，块0是由地址0和1组成的，块l是由地址2和3组成的，块2是由地址4和5组成的，依此类推</em>/</p>
+<p><em>因为有8个内存块，但是只有4个高速缓存组，所以多个块会映射到同一个高速缓存组（即它们有相同的组索引）。例如，块0和4都映射到组o,块l和5都映射到组1,等等。</em></p>
+<p><em>映射到同一个高速缓存组的块由标记位唯一地标识。例如，块0的标记位为o,而块4的标记位为1,块1的标记位为0,而块5的标记位为1,以此类推。让我们来模拟一下当CPU执行一系列读的时候，高速缓存的执行情况。记住对于这个示例，我们假设CPU读1字节的字。虽然这种手工的模拟很乏味，你可能想要跳过它，但是根据我们的经验，在学生们做过几个这样的练习之前，他们是不能真正理解高速缓存是如何工作的。初始时，高速缓存是空的（即每个有效位都是0):</em></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/7de94f21-6fd6-4261-b516-ac19b746b9e3.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/7de94f21-6fd6-4261-b516-ac19b746b9e3.png"></p>
+<p>表中的每一行都代表一个高速缓存行。第一列表明该行所属的组，但是请记住提供这个位只是为了方便，实际上它并不真是高速缓存的一部分。后面四列代表每个高速缓存行的实际的位。现在，让我们来看看当CPU执行一系列读时，都发生了什么：</p>
+<p>（1）读地址0的字。因为组0的有效位是o,是缓存不命中。高速缓存从内存（或低一层的高速缓存）取出块o,并把这个块存储在组0中。然后，高速缓存返回新取出的高速缓存行的块[OJ的m[O](内存位置0的内容）。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/cfdb2938-ad81-44d6-a79f-269633b39f88.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/cfdb2938-ad81-44d6-a79f-269633b39f88.png"></p>
+<p>（2）读地址1的字。这次会是高速缓存命中。高速缓存立即从高速缓存行的块[1]中返回m[l]。高速缓存的状态没有变化</p>
+<p>（3）读地址13的字。由于组2中的高速缓存行不是有效的，所以有缓存不命中。高速缓存把块6加载到组2中，然后从新的高速缓存行的块[1]中返回m[13]。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/62e934bb-ef42-4531-9da1-72a6696e5b78.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/62e934bb-ef42-4531-9da1-72a6696e5b78.png"></p>
+<p>（4）读地址8的字。这会发生缓存不命中。组0中的高速缓存行确实是有效的，但是标1记不匹配。高速缓存将块4加载到组0中（替换读地址0时读入的那一行），然后从新的高速缓存行的块[OJ中返回m[8]。</p>
+<p>（5）读地址0的字。又会发生缓存不命中，因为在前面引用地址8时，我们刚好替换了块0。这就是冲突不命中的一个例子，也就是我们有足够的高速缓存空间，但是却交替地引用映射到同一个组的块。</p>
+<ol start="6">
+<li>直接映射高速缓存中的冲突不命中</li>
+</ol>
+<p>冲突不命中在真实的程序中很常见，会导致令人困惑的性能问题。当程序访问大小为2的幕的数组时，直接映射高速缓存中通常会发生冲突不命中。例如，考虑一个计算两个向量点积的函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">dotprod</span> <span class="params">(<span class="keyword">float</span> x [<span class="number">8</span>] , <span class="keyword">float</span> y [<span class="number">8</span>])</span> </span></span><br><span class="line"><span class="function"></span>&#123; <span class="keyword">float</span> sum= <span class="number">0.0</span>; </span><br><span class="line"> <span class="keyword">int</span> i;</span><br><span class="line">  <span class="keyword">for</span> (i = O; i &lt; <span class="number">8</span>; i++) </span><br><span class="line">      sum += x [i] * y [i] ; </span><br><span class="line"> <span class="keyword">return</span> sum; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对千x和y来说，这个函数有良好的空间局部性，因此我们期望它的命中率会比较高。不幸的是，并不总是如此。假设浮点数是4个字节，x被加载到从地址0开始的32字节连续内存中，而y紧跟在x之后，从地址32开始。为了简便，假设一个块是16个字节（足够容纳4个浮点数），高速缓存由两个组组成，高速缓存的整个大小为32字节。我们会假设变量sum实际上存放在一个CPU寄存卷中，因此不需要内存引用。根据这些假设每个x[i)和y[i)会映射到相同的高速缓存组</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/14c91e27-2d03-476e-aa1c-b4396390db2c.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/14c91e27-2d03-476e-aa1c-b4396390db2c.png"></p>
+<p>在运行时，循环的第一次迭代引用x[OJ,缓存不命中会导致包含x[OJ <del>x [3]的块被加载到组0。接下来是对y[OJ的引用，又一次缓存不命中，导致包含y[OJ ~y [3]的块被复制到组o,覆盖前一次引用复制进来的x的值。在下一次迭代中，对X[1]的引用不命中，导致x[OJ ~x [3]的块被加载回组o,覆盖掉y[OJ</del>y[3]的块。因而现在我们就有了一个冲突不命中，而且实际上后面每次对x和y的引用都会导致冲突不命中，因为我们在x和y的块之间抖动(thrash)。术语“抖动”描述的是这样一种情况，即高速缓存反复地加载和驱逐相同的高速缓存块的组。简要来说就是，即使程序有良好的空间局部性，而且我们的高速缓存中也有足够的空间来存放x[i]和y[i]的块，每次引用还是会导致冲突不命中，这是因为这些块被映射到了同一个高速缓存组。这种抖动导致速度下降2或3倍并不稀奇。另外，还要注意虽然我们的示例极其简单，但是对千更大、更现实的直接映射高速缓存来说，这个问题也是很真实的。幸运的是，一旦程序员意识到了正在发生什么，就很容易修正抖动问题。一个很简单的方法是在每个数组的结尾放B字节的填充。例如，不是将x定义为floatx[B], 而是定义成float x[12)。假设在内存中y紧跟在x后面，我们有下面这样的从数组元素到组的映射</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/1f301fc7-59de-4ed4-beef-b6f8fd8477e2.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/1f301fc7-59de-4ed4-beef-b6f8fd8477e2.png"></p>
+<p>在x结尾加了填充，x[i]和y[i)现在就映射到了不同的组，消除了抖动冲突不命中</p>
+<h3 id="第三节-组相联高速缓存"><a href="#第三节-组相联高速缓存" class="headerlink" title="第三节 组相联高速缓存"></a>第三节 组相联高速缓存</h3><p>直接映射高速缓存中冲突不命中造成的问题源千每个组只有一行（或者，按照我们的术语来描述就是E=l)这个限制。组相联高速缓存(setassociative cache)放松了这条限制，所以每个组都保存有多千一个的高速缓存行。一个l&lt;E&lt;C/B的高速缓存通常称为E路组相联高速缓存。在下一节中，我们会讨论E=C/B这种特殊情况。图6-32展示了一个2路组相联高速缓存的结构。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/6428533b-3e98-4a70-8d74-b7819e532811.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/6428533b-3e98-4a70-8d74-b7819e532811.png"></p>
+<ol>
+<li>组相联高速缓存中的组选择它的组选择与直接映射高速缓存的组选择一样，组索引位标识组。图6-33总结了这个原理。</li>
+<li> 组相联高速缓存中的行匹配和字选择组相联高速缓存中的行匹配比直接映射高速缓存中的更复杂，因为它必须检查多个行的标记位和有效位，以确定所请求的字是否在集合中。传统的内存是一个值的数组，以地址作为输入，并返回存储在那个地址的值。另一方面，相联存储器是一个(key,value)对的数组，以key为输入，返回与输入的key相匹配的(key,value)对中的value值。因此，我们可以把组相联高速缓存中的每个组都看成一个小的相联存储器，key是标记和有效位，而value就是块的内容。</li>
+</ol>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c70eed1f-7d20-45da-bf0f-53323317c8b9.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c70eed1f-7d20-45da-bf0f-53323317c8b9.png"></p>
+<p>图6-34展示了相联高速缓存中行匹配的基本思想。这里的一个重要思想就是组中的任何一行都可以包含任何映射到这个组的内存块。所以高速缓存必须搜索组中的每一行，寻找一个有效的行，其标记与地址中的标记相匹配。如果高速缓存找到了这样一行，那么我们就命中，块偏移从这个块中选择一个字，和前面一样</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/56845b21-a0af-449d-80b5-44136e57635f.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/56845b21-a0af-449d-80b5-44136e57635f.png"></p>
+<ol start="3">
+<li>组相联高速缓存中不命中时的行替换</li>
+</ol>
+<p>如果CPU请求的字不在组的任何一行中，那么就是缓存不命中，高速缓存必须从内存中取出包含这个字的块。不过，一旦高速缓存取出了这个块，该替换哪个行呢？当然，如果有一个空行，那它就是个很好的候选。但是如果该组中没有空行，那么我们必须从中选择一个非空的行，希望CPU不会很快引用这个被替换的行。程序员很难在代码中利用高速缓存替换策略，所以在此我们不会过多地讲述其细节。最简单的替换策略是随机选择要替换的行。其他更复杂的策略利用了局部性原理，以使在比较近的将来引用被替换的行的概率最小。例如，最不常使用(Least-Frequently-Used,LFU)策略会替换在过去某个时间窗口内引用次数最少的那一行。最近最少使用(Least­Recently-Used, LRU)策略会替换最后一次访问时间最久远的那一行。所有这些策略都需要额外的时间和硬件。但是，越往存储器层次结构下面走，远离CPU,一次不命中的开销就会更加昂贵，用更好的替换策略使得不命中最少也变得更加值得了。</p>
+<h3 id="第四节-全相联高速缓存"><a href="#第四节-全相联高速缓存" class="headerlink" title="第四节 全相联高速缓存"></a>第四节 全相联高速缓存</h3><p>全相联高速缓存(fullyassociative cache)是由一个包含所有高速缓存行的组（即E=C/B)组成的。图6-35给出了基本结构</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/948440fd-6816-4940-b800-fc5b9d99ff6b.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/948440fd-6816-4940-b800-fc5b9d99ff6b.png"></p>
+<ol>
+<li><p>全相联高速缓存中的组选择</p>
+<p>全相联高速缓存中的组选择非常简单，因为只有一个组，图6-36做了个小结。注意地址中没有组索引位，地址只被划分成了一个标记和一个块偏移。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/0964acc2-04c8-4a50-902d-a597854c30da.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/0964acc2-04c8-4a50-902d-a597854c30da.png"></p>
+</li>
+<li><p>全相联高速缓存中的行匹配和字选择</p>
+<p>全相联高速缓存中的行匹配和字选择与组相联高速缓存中的是一样的，如图6-37所示。它们之间的区别主要是规模大小的问题。</p>
+</li>
+</ol>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/f7b73f94-64f8-4cad-82c9-a0077e8e09f0.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/f7b73f94-64f8-4cad-82c9-a0077e8e09f0.png"></p>
+<p>因为高速缓存电路必须并行地搜索许多相匹配的标记，构造一个又大又快的相联高速缓存很困难，而且很昂贵。因此，全相联高速缓存只适合做小的高速缓存，例如虚拟内存系统中的翻译备用缓冲器CTLB),</p>
+<h3 id="第五节-有关写的问题"><a href="#第五节-有关写的问题" class="headerlink" title="第五节 有关写的问题"></a>第五节 有关写的问题</h3><p>正如我们看到的，高速缓存关于读的操作非常简单。写的情况就要复杂一些了。假设我们要写一个已经缓存了的字w(写命中，writehit)。在高速缓存更新了它的w的副本之后，怎么更新w在层次结构中紧接着低一层中的副本呢？最简单的方法，称为直写(write-through),就是立即将w的高速缓存块写回到紧接着的低一层中。虽然简单，但是直写的缺点是每次写都会引起总线流量。另一种方法，称为写回(write-back),尽可能地推迟更新，只有当替换算法要驱逐这个更新过的块时，才把它写到紧接着的低一层中。由于局部性，写回能显著地减少总线流扯，但是它的缺点是增加了复杂性。高速缓存必须为每个高速缓存行维护一个额外的修改位(dirtybit), 表明这个高速缓存块是否被修改过。另一个问题是如何处理写不命中。一种方法，称为写分配(write-allocate),加载相应的低一层中的块到高速缓存中，然后更新这个高速缓存块。写分配试图利用写的空间局部性，但是缺点是每次不命中都会导致一个块从低一层传送到高速缓存。另一种方法，称为非写分配(not-write-allocate), 避开高速缓存，直接把这个字写到低一层中。直写高速缓存通常是非写分配的。写回高速缓存通常是写分配的。</p>
+<h3 id="第六节-一个真实的高速缓存层次结构的解剖"><a href="#第六节-一个真实的高速缓存层次结构的解剖" class="headerlink" title="第六节 一个真实的高速缓存层次结构的解剖"></a>第六节 一个真实的高速缓存层次结构的解剖</h3><p>高速缓存既保存数据，也保存指令。只保存指令的高速缓存称为i-cache，只保存程序数据的高速缓存称为d-cache</p>
+<p>既保存指令又包括数据的高速缓存称为统一的高速缓存现代处理器包括独立的i-cache和cl-cache。这样做有很多原因。有两个独立的高速缓存，处理器能够同时读一个指令字和一个数据字。i-cache通常是只读的，因此比较简单。通常会针对不同的访问模式来优化这两个高速缓存，它们可以有不同的块大小，相联度和容量。使用不同的高速缓存也确保了数据访问不会与指令访问形成冲突不命中，反过来也是一样，代价就是可能会引起容量不命中增加。图6-38给出了IntelCore i7处理器的高速缓存层次结构。每个CPU芯片有四个核。每个核有自己私有的Lli-cache、Llcl-cache和L2统一的高速缓存。所有的核共享片上L3统一的高速缓存。这个层次结构的一个有趣的特性是所有的SRAM高速缓存存储器都在CPU芯片上</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/07d71853-fb29-4a71-ad7d-51f99869898b.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/07d71853-fb29-4a71-ad7d-51f99869898b.png"></p>
+<h3 id="第七节-高速缓存参数的性能影响"><a href="#第七节-高速缓存参数的性能影响" class="headerlink" title="第七节 高速缓存参数的性能影响"></a>第七节 高速缓存参数的性能影响</h3><p>有许多指标来衡量高速缓存的性能：</p>
+<ol>
+<li>不命中率(missrate)。</li>
+</ol>
+<p>在一个程序执行或程序的一部分执行期间，内存引用不命中的比率。它是这样计算的：不命中数量／引用数量。</p>
+<ol start="2">
+<li>命中率(hitrate)。</li>
+</ol>
+<p>命中的内存引用比率。它等于1一不命中率。</p>
+<ol start="3">
+<li><p>命中时间(hittime)。从高速缓存传送一个字到CPU所需的时间，包括组选择、行确认和字选择的时间。对于L1高速缓存来说，命中时间的数量级是几个时钟周期。</p>
+</li>
+<li><p>不命中处罚(misspenalty)。由千不命中所需要的额外的时间。L1不命中需要从L2得到服务的处罚，通常是数10个周期；从L3得到服务的处罚，50个周期；，从主存得到的服务的处罚，200个周期。</p>
+<p><em>高速缓存大小的影响</em></p>
+<p>一方面，较大的高速缓存可能会提高命中率。另一方面，使大存储器运行得更快总是要难一些的。结果，较大的高速缓存可能会增加命中时间。这解释了为什么L1高速缓存比L2高速缓存小，以及为什么L2高速缓存比L3高速缓存小。</p>
+<p><em>块大小的影响</em></p>
+<p>大的块有利有弊。一方面，较大的块能利用程序中可能存在的空间局部性，帮助提高命中率。不过，对千给定的高速缓存大小，块越大就意味着高速缓存行数越少，这会损害时间局部性比空间局部性更好的程序中的命中率。较大的块对不命中处罚也有负面影响，因为块越大，传送时间就越长。现代系统（如Corei7)会折中使高速缓存块包含64个字节。</p>
+<p><em>相联度的影响</em></p>
+<p>这里的间题是参数E选择的影响，E是每个组中高速缓存行数。较高的相联度（也就是E的值较大）的优点是降低了高速缓存由于冲突不命中出现抖动的可能性。不过，较高的相联度会造成较高的成本。较高的相联度实现起来很昂贵，而且很难使之速度变快。每一行需要更多的标记位，每一行需要额外的LRU状态位和额外的控制逻辑。较高的相联度会增加命中时间，因为复杂性增加了，另外，还会增加不命中处罚，因为选择牺牲行的复杂性也增加了。相联度的选择最终变成了命中时间和不命中处罚之间的折中。传统上，努力争取时钟频率的高性能系统会为L1高速缓存选择较低的相联度（这里的不命中处罚只是几个周期），而在不命中处罚比较高的较低层上使用比较小的相联度。例如，IntelCore i7系统中，L1和L2高速缓存是8路组相联的，而L3高速缓存是16路组相联的。</p>
+<p><em>写策略的影响</em></p>
+<p>直写高速缓存比较容易实现，而且能使用独立于高速缓存的写缓冲区(writebuffer) , 用来更新内存。此外，读不命中开销没这么大，因为它们不会触发内存写。另一方面，写回高速缓存引起的传送比较少，它允许更多的到内存的带宽用于执行DMA的1/0设备。此外，越往层次结构下面走，传送时间增加，减少传送的数量就变得更加重要。一般而言，高速缓存越往下层，越可能使用写回而不是直写。</p>
+</li>
+</ol>
+<h2 id="第五部分-编写高速缓存友好的代码"><a href="#第五部分-编写高速缓存友好的代码" class="headerlink" title="第五部分 编写高速缓存友好的代码"></a>第五部分 编写高速缓存友好的代码</h2><p>下面就是我们用来确保代码高速缓存友好的基本方法</p>
+<ol>
+<li><p>把注意力集中在核心函数里的循环上，而忽略其他部分</p>
+</li>
+<li><p>尽量减小每个循环内部的缓存不命中数量在其他条件（例如加载和存储的总次数）相同的情况下，不命中率较低的循环运行得更快。为了看看实际上这是怎么工作的，考虑6.2节中的函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sumvec</span><span class="params">(<span class="keyword">int</span> v[N])</span> </span>&#123; </span><br><span class="line"><span class="keyword">int</span> i, sum= O; </span><br><span class="line"><span class="keyword">for</span> (i = O; i &lt; N; i++) </span><br><span class="line">sum += v[i]; </span><br><span class="line"><span class="keyword">return</span> sum; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<p>   这个函数高速缓存友好吗？首先，注意对于局部变最J.和sum,循环体有良好的时间局部性。实际上，因为它们都是局部变量，任何合理的优化编译器都会把它们缓存在寄存器文件中，也就是存储器层次结构的最高层中。现在考虑一下对向量v的步长为1的引用。一般而言，如果一个高速缓存的块大小为B字节，那么一个步长为K的引用模式（这里k是以字为单位的）平均每次循环迭代会有min(l,(wordsizeXk)/B)次缓存不命中。当k=l时，它取最小值，所以对v的步长为1的引用确实是高速缓存友好的。例如，假设v是块对齐的，字为4个字节，高速缓存块为4个字，而高速缓存初始为空（冷高速缓存）。然后，无论是什么样的高速缓存结构，对v的引用都会得到下面的命中和不命中模式</p>
+<p>   <img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/4708f075-ac1c-4d39-896d-71beab3f0bba.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/4708f075-ac1c-4d39-896d-71beab3f0bba.png"></p>
+<p>在这个例子中，对v[O]的引用会不命中，而相应的包含v[O]~v[3]的块会被从内存加载到高速缓存中。因此，接下来三个引用都会命中。对V[4]的引用会导致不命中，而一个新的块被加载到高速缓存中，接下来的三个引用都命中，依此类推。总的来说，四个引用中，三个会命中，在这种冷缓存的情况下，这是我们所能做到的最好的情况了。总之，简单的sumvec示例说明了两个关千编写高速缓存友好的代码的重要问题：·对局部变量的反复引用是好的，因为编译器能够将它们缓存在寄存器文件中（时间局部性）。·步长为1的引用模式是好的，因为存储器层次结构中所有层次上的缓存都是将数据存储为连续的块（空间局部性）。在对多维数组进行操作的程序中，空间局部性尤其重要。例如，考虑6.2节中的sumarrayrows函数，它按照行优先顺序对一个二维数组的元素求和</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sumarrayrows</span> <span class="params">(<span class="keyword">int</span> a [M] [NJ)</span></span></span><br><span class="line"><span class="function">  </span>&#123; <span class="keyword">int</span> i, j, sum= O; </span><br><span class="line">   <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; M; i ++) </span><br><span class="line">       <span class="keyword">for</span> (j = O; j &lt; N; j++) </span><br><span class="line">           sum += a[i] [j]; </span><br><span class="line">   <span class="keyword">return</span> sum; </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于C语言以行优先顺序存储数组，所以这个函数中的内循环有与sumvec一样好的步长为1的访问模式。例如，假设我们对这个高速缓存做与对sumvec一样的假设。那么对数组a的引用会得到下面的命中和不命中模式：</p>
+<p>但是如果我们做一个看似无伤大雅的改变~交换循环的次序，看看会发生什么：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">surnarraycols</span><span class="params">(<span class="keyword">int</span> a[M] [N])</span> </span>&#123; </span><br><span class="line"> <span class="keyword">int</span> i, j, sum= O; </span><br><span class="line">  <span class="keyword">for</span> (j = O; j &lt; N; j++) </span><br><span class="line">   <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; M; i ++) </span><br><span class="line">  sum += a [i] [j]; </span><br><span class="line">    <span class="keyword">return</span> sum; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>在这种情况中我们是一列一列而不是一行一行地扫描数组的。如果我们够幸运，整个数组都在高速缓存中，那么我们也会有相同的不命中率1/4。不过，如果数组比高速缓存要大（更可能出现这种情况），那么每次对a[i l [j l的访问都会不命中</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/84b6e2f7-e536-4695-bf1a-8faf7e4fe350.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/84b6e2f7-e536-4695-bf1a-8faf7e4fe350.png"></p>
+<p>较高的不命中率对运行时间可以有显著的影响。例如，在桌面机器上，sumarray­rows运行速度比sumarraycols快25倍。总之，程序员应该注意他们程序中的局部性，试着编写利用局部性的程序</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">answer77</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://answer77.top/2021/02/10/CSAPP%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%89/">http://answer77.top/2021/02/10/CSAPP%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://answer77.top" target="_blank">answer77</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/csapp/">csapp</a><a class="post-meta__tags" href="/tags/pwn%E5%9F%BA%E7%A1%80/">pwn基础</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://s3.ax1x.com/2020/12/15/ruoc4S.png" target="_blank"><img class="post-qr-code-img" src="https://s3.ax1x.com/2020/12/15/ruoc4S.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://s3.ax1x.com/2020/12/15/ruo29g.jpg" target="_blank"><img class="post-qr-code-img" src="https://s3.ax1x.com/2020/12/15/ruo29g.jpg" alt="支付寶"/></a><div class="post-qr-code-desc">支付寶</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/14/lab/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">lab-</div></div></a></div><div class="next-post pull-right"><a href="/2021/02/05/csapp%20lab4%20arch%20Lab/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">csapp lab4 arch Lab</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/02/03/csapp lab 3 attack lab-/" title="csapp lab 3 attack lab"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-03</div><div class="title">csapp lab 3 attack lab</div></div></a></div><div><a href="/2021/02/04/csapp lab1 data Lab/" title="csapp lab1 data Lab"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-04</div><div class="title">csapp lab1 data Lab</div></div></a></div><div><a href="/2021/02/01/csapp lab2 boom lab/" title="csapp lab2 boom lab"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-01</div><div class="title">csapp lab2 boom lab</div></div></a></div><div><a href="/2021/02/05/csapp lab4 arch Lab/" title="csapp lab4 arch Lab"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-05</div><div class="title">csapp lab4 arch Lab</div></div></a></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://s3.ax1x.com/2020/12/12/rVz6Ld.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">answer77</div><div class="author-info__description">大二pwn菜鸡一个</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">第六章 存储器层次结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E5%AD%98%E5%82%A8%E6%8A%80%E6%9C%AF"><span class="toc-number">1.1.</span> <span class="toc-text">第一部分 存储技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E5%B1%80%E9%83%A8%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text">第二部分 局部性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-%E5%AF%B9%E7%A8%8B%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%BC%95%E7%94%A8%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7"><span class="toc-number">1.2.1.</span> <span class="toc-text">第一节 对程序数据引用的局部性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%96%E6%8C%87%E4%BB%A4%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7"><span class="toc-number">1.2.2.</span> <span class="toc-text">取指令的局部性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86-%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">第三部分 存储器层次结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E4%B8%AD%E7%9A%84%E7%BC%93%E5%AD%98"><span class="toc-number">1.3.1.</span> <span class="toc-text">第一节 存储器层次结构中的缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%91%BD%E4%B8%AD"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">缓存命中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E4%B8%8D%E5%91%BD%E4%B8%AD%E5%8F%A6"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">缓存不命中另</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E4%B8%8D%E5%91%BD%E4%B8%AD%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="toc-number">1.3.1.3.</span> <span class="toc-text">缓存不命中的种类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E5%AD%98%E5%82%A8%E5%99%A8"><span class="toc-number">1.4.</span> <span class="toc-text">第四部分 高速缓存存储器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-%E9%80%9A%E7%94%A8%E7%9A%84%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E5%AD%98%E5%82%A8%E5%99%A8%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.1.</span> <span class="toc-text">第一节 通用的高速缓存存储器组织结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98"><span class="toc-number">1.4.2.</span> <span class="toc-text">第二节 直接映射高速缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-%E7%BB%84%E7%9B%B8%E8%81%94%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98"><span class="toc-number">1.4.3.</span> <span class="toc-text">第三节 组相联高速缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%8A%82-%E5%85%A8%E7%9B%B8%E8%81%94%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98"><span class="toc-number">1.4.4.</span> <span class="toc-text">第四节 全相联高速缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E8%8A%82-%E6%9C%89%E5%85%B3%E5%86%99%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.5.</span> <span class="toc-text">第五节 有关写的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E8%8A%82-%E4%B8%80%E4%B8%AA%E7%9C%9F%E5%AE%9E%E7%9A%84%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E7%9A%84%E8%A7%A3%E5%89%96"><span class="toc-number">1.4.6.</span> <span class="toc-text">第六节 一个真实的高速缓存层次结构的解剖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E8%8A%82-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E5%8F%82%E6%95%B0%E7%9A%84%E6%80%A7%E8%83%BD%E5%BD%B1%E5%93%8D"><span class="toc-number">1.4.7.</span> <span class="toc-text">第七节 高速缓存参数的性能影响</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86-%E7%BC%96%E5%86%99%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E5%8F%8B%E5%A5%BD%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-number">1.5.</span> <span class="toc-text">第五部分 编写高速缓存友好的代码</span></a></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/02/14/lab/" title="lab-"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="lab-"/></a><div class="content"><a class="title" href="/2021/02/14/lab/" title="lab-">lab-</a><time datetime="2021-02-14T01:49:20.000Z" title="发表于 2021-02-14 09:49:20">2021-02-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/10/CSAPP%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%89/" title="CSAPP 学习笔记（第六章）"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSAPP 学习笔记（第六章）"/></a><div class="content"><a class="title" href="/2021/02/10/CSAPP%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%89/" title="CSAPP 学习笔记（第六章）">CSAPP 学习笔记（第六章）</a><time datetime="2021-02-09T16:00:00.000Z" title="发表于 2021-02-10 00:00:00">2021-02-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/05/csapp%20lab4%20arch%20Lab/" title="csapp lab4 arch Lab"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csapp lab4 arch Lab"/></a><div class="content"><a class="title" href="/2021/02/05/csapp%20lab4%20arch%20Lab/" title="csapp lab4 arch Lab">csapp lab4 arch Lab</a><time datetime="2021-02-05T07:10:28.000Z" title="发表于 2021-02-05 15:10:28">2021-02-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/04/csapp%20lab1%20data%20Lab/" title="csapp lab1 data Lab"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csapp lab1 data Lab"/></a><div class="content"><a class="title" href="/2021/02/04/csapp%20lab1%20data%20Lab/" title="csapp lab1 data Lab">csapp lab1 data Lab</a><time datetime="2021-02-04T07:10:28.000Z" title="发表于 2021-02-04 15:10:28">2021-02-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/03/csapp%20lab%203%20attack%20lab-/" title="csapp lab 3 attack lab"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csapp lab 3 attack lab"/></a><div class="content"><a class="title" href="/2021/02/03/csapp%20lab%203%20attack%20lab-/" title="csapp lab 3 attack lab">csapp lab 3 attack lab</a><time datetime="2021-02-02T16:00:00.000Z" title="发表于 2021-02-03 00:00:00">2021-02-03</time></div></div></div></div></div></div></div></main><footer id="footer" style="background: rgba(0,0,0,0)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By answer77</div><div class="footer_custom_text">qq:1204342476</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=5379200926&auto=1&height=430"></iframe><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="ture"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+})</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":200,"height":600},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
