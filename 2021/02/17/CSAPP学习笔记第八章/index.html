@@ -1,0 +1,699 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>csapp学习笔记第八章 | answer77</title><meta name="keywords" content="csapp,pwn基础"><meta name="author" content="answer77"><meta name="copyright" content="answer77"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="第八章 异常控制流从给处理器加电开始，直到你断电为止，程序计数器假设一个值的序列  其中，每个a(k)是某个相应的指令i (k)的地址。每次从ak到ak一1的过渡称为控制转移(controltransfer)。这样的控制转移序列叫做处理器的控制 最简单的一种控制流是一个“平滑的＂序列，其中每个i(k)和i(k+1)在内存中都是相邻的。 这种平滑流的突变（也就是i(k)与i(k)不相邻）通常是由诸如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="csapp学习笔记第八章">
+<meta property="og:url" content="http://answer77.top/2021/02/17/CSAPP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/index.html">
+<meta property="og:site_name" content="answer77">
+<meta property="og:description" content="第八章 异常控制流从给处理器加电开始，直到你断电为止，程序计数器假设一个值的序列  其中，每个a(k)是某个相应的指令i (k)的地址。每次从ak到ak一1的过渡称为控制转移(controltransfer)。这样的控制转移序列叫做处理器的控制 最简单的一种控制流是一个“平滑的＂序列，其中每个i(k)和i(k+1)在内存中都是相邻的。 这种平滑流的突变（也就是i(k)与i(k)不相邻）通常是由诸如">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-02-17T13:36:19.000Z">
+<meta property="article:modified_time" content="2021-02-21T01:38:59.671Z">
+<meta property="article:author" content="answer77">
+<meta property="article:tag" content="csapp">
+<meta property="article:tag" content="pwn基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://answer77.top/2021/02/17/CSAPP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-02-21 09:38:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://s3.ax1x.com/2020/12/12/rVz6Ld.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 总览</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">answer77</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 总览</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">csapp学习笔记第八章</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-17T13:36:19.000Z" title="发表于 2021-02-17 21:36:19">2021-02-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-21T01:38:59.671Z" title="更新于 2021-02-21 09:38:59">2021-02-21</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="第八章-异常控制流"><a href="#第八章-异常控制流" class="headerlink" title="第八章 异常控制流"></a>第八章 异常控制流</h1><p>从给处理器加电开始，直到你断电为止，程序计数器假设一个值的序列</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/8ad4d787-3561-4833-aed8-35d1fcf7a438.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/8ad4d787-3561-4833-aed8-35d1fcf7a438.png"></p>
+<p>其中，每个a(k)是某个相应的指令i (k)的地址。每次从ak到ak一1的过渡称为控制转移(controltransfer)。这样的控制转移序列叫做处理器的控制</p>
+<p>最简单的一种控制流是一个“平滑的＂序列，其中每个i(k)和i(k+1)在内存中都是相邻的。</p>
+<p>这种平滑流的突变（也就是i(k)与i(k)不相邻）通常是由诸如跳转、调用和返回这样一些熟悉的程序指令造成的。这样一些指令都是必要的机制，使得程序能够对由程序变最表示的内部程序状态中的变化做出反应</p>
+<p>但是系统也必须能够对系统状态的变化做出反应，这些系统状态不是被内部程序变量捕获的，而且也不一定要和程序的执行相关。</p>
+<p>比如，一个硬件定时器定期产生信号，这个事件必须得到处理。包到达网络适配器后，必须存放在内存中。程序向磁盘请求数据，然后休眠，直到被通知说数据己就绪。当子进程终止时，创造这些子进程的父进程必须得到通知。</p>
+<p>现代系统通过使控制流发生突变来对这些情况做出反应。一般而言，我们把这些突变称为异常控制流(ExceptionalControl Flow, ECF)。异常控制流发生在计算机系统的各个层次。比如，在硬件层，硬件检测到的事件会触发控制突然转移到异常处理程序。在操作系统层，内核通过上下文切换将控制从一个用户进程转移到另一个用户进程。在应用层，一个进程可以发送信号到另一个进程，而接收者会将控制突然转移到它的一个信号处理程序。一个程序可以通过回避通常的栈规则，并执行到其他函数中任意位置的非本地跳转来对错误做出反应。</p>
+<p>作为程序员，理解ECF很重要，这有很多原因：• 理解ECF将帮助你理解重要的系统概念。ECF是操作系统用来实现I/0、进程和虚拟内存的基本机制。在能够真正理解这些重要概念之前，你必须理解ECF。• 理解ECF将帮助你理解应用程序是如何与操作系统交互的。应用程序通过使用一个叫做陷阱(trap)或者系统调用(systemcall)的ECF形式，向操作系统请求服务。比如，向磁盘写数据、从网络读取数据、创建一个新进程，以及终止当前进程，都是通过应用程序涸用系统调用来实现的。理解基本的系统调用机制将帮助你理解这些服务是如何提供给应用的。• 理解ECF将帮助你编写有趣的新应用程序。操作系统为应用程序提供了强大的ECF机制，用来创建新进程、等待进程终止、通知其他进程系统中的异常事件，以及检测和响应这些事件。如果理解了这些ECF机制，那么你就能用它们来编写诸如Unixshell和Web服务器之类的有趣程序了。• 理解ECF将帮助你理解并发。ECF是计算机系统中实现并发的基本机制。在运行中的并发的例子有：中断应用程序执行的异常处理程序，在时间上重叠执行的进程和线程，以及中断应用程序执行的信号处理程序。理解ECF是理解并发的第一步。我们会在第12章中更详细地研究并发</p>
+<p> 理解ECF将帮助你理解软件异常如何工作。像C++和Java这样的语言通过try、catch以及throw语句来提供软件异常机制。软件异常允许程序进行非本地跳转（即违反通常的调用／返回栈规则的跳转）来响应错误情况。非本地跳转是一种应用层ECF,在C中是通过setjmp和longjmp函数提供的。理解这些低级函数将帮助你理解高级软件异常如何得以实现。对系统的学习，到目前为止你已经了解了应用是如何与硬件交互的。本章的重要性在于你将开始学习应用是如何与操作系统交互的。有趣的是，这些交互都是围绕着ECF的。我们将描述存在千一个计算机系统中所有层次上的各种形式的ECF。从异常开始，异常位千硬件和操作系统交界的部分。我们还会讨论系统调用，它们是为应用程序提供到操作系统的人口点的异常。然后，我们会提升抽象的层次，描述进程和信号，它们位千应用和操作系统的交界之处。最后讨论非本地跳转，这是ECF的一种应用层形式。</p>
+<h2 id="第一部分-异常"><a href="#第一部分-异常" class="headerlink" title="第一部分 异常"></a>第一部分 异常</h2><p>异常是异常控制流的一种形式，它一部分由硬件实现，一部分由操作系统实现。因为它们有一部分是由硬件实现的，所以具体细节将随系统的不同而有所不同</p>
+<p>异常(exception)就是控制流中的突变，用来响应处理器状态中的某些变化。图8-1展示了基本的思想。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/210d1263-5249-4c9d-8e50-2e14e36212ec.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/210d1263-5249-4c9d-8e50-2e14e36212ec.png"></p>
+<p>在图中，当处理器状态中发生一个重要的变化时，处理器正在执行某个当前指令i（curr）</p>
+<p>在处理器中，状态被编码为不同的位和信号 状态变化称为事件</p>
+<p>事件可能和当前指令的执行直接相关。比如，发生虚拟内存缺页、算术溢出，或者一条指令试图除以零。另一方面，事件也可能和当前指令的执行没有关系。比如，一个系统定时器产生信号或者一个1/0请求完成</p>
+<p>在任何情况下，当处理器检测到有事件发生时，它就会通过一张叫做异常表(exception table)的跳转表，进行一个间接过程调用（异常），到一个专门设计用来处理这类事件的操作系统子程序（异常处理程序(exceptionhandler))。当异常处理程序完成处理后，根i据引起异常的事件的类型，会发生以下3种情况中的一种：</p>
+<p>1)处理程序将控制返回给当前指令i(curr)即当事件发生时正在执行的指令。</p>
+<p>2)处理程序将控制返回给i(next) , 如果没有发生异常将会执行的下一条指令。</p>
+<p>3)处理程序终止被中断的程序。</p>
+<h3 id="第一节-异常处理"><a href="#第一节-异常处理" class="headerlink" title="第一节 异常处理"></a>第一节 异常处理</h3><p>让我们更详细地来看看硬件和软件的分工吧</p>
+<p>系统中可能的每种类型的异常都分配了一个唯一的非负整数的异常号其中一些号码是巾处理器的设计者分配的，其他号码是由操作系统内核（操作系统常驻内存的部分）的设计者分配的</p>
+<p>前者的示例包括被零除、缺页、内存访问违例、断点以及算术运算溢出。后者的示例包括系统调用和来自外部I/0设备的信号。</p>
+<p>在系统启动时（当计算机重启或者加电时），操作系统分配和初始化一张称为异常表的跳转表，使得表目K包含异常k的处理程序的地址。图8-2展示了异常表的格式</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/67822008-0d9a-4ac6-ba47-280ff87ec974.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/67822008-0d9a-4ac6-ba47-280ff87ec974.png"></p>
+<p>当系统在执行某个程序时，处理器检测到发生了一个事件，并且确定了相应的异常号k。随后，处理器触发异常，方法是执行间接过程调用，通过异常表的表目k,转到相应的处理程序。图8-3展示了处理器如何使用异常表来形成适当的异常处理程序的地址异常号是到异常表中的索引，异常表的起始地址放在一个叫做异常表基址寄存器(exceptiontable base register)的特殊CPU寄存器里。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/e08893b0-44b3-466f-9423-22bc2818515b.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/e08893b0-44b3-466f-9423-22bc2818515b.png"></p>
+<p>异常类似于过程调用，但是有一些重要的不同之处</p>
+<p>过程调用时，在跳转到处理程序之前，处理器将返回地址压入栈中。然而，根据异常的类型，返回地址要么是当前指令（当事件发生时正在执行的指令），要么是下一条指令（如果事件不发生，将会在当前指令后执行的指令）。</p>
+<p>·处理器也把一些额外的处理器状态压到栈里，在处理程序返回时，重新开始执行被中断的程序会需要这些状态。比如，x86-64系统会将包含当前条件码的EFLAGS寄存器和其他内容压入栈中。</p>
+<p>• 如果控制从用户程序转移到内核，所有这些项目都被压到内核栈中，而不是压到用户栈中。</p>
+<p>• 异常处理程序运行在内核模式下（见8.2. 4节），这意味着它们对所有的系统资源都有完全的访问权限。一旦硬件触发了异常，剩下的工作就是由异常处理程序在软件中完成。在处理程序处理完事件之后，它通过执行一条特殊的“从中断返回”指令，可选地返回到被中断的程序，该指令将适当的状态弹回到处理器的控制和数据寄存器中，如果异常中断的是一个用户程序，就将状态恢复为用户模式（见8.2.4节），然后将控制返回给被中断的程序。</p>
+<h3 id="第二节-异常的类别"><a href="#第二节-异常的类别" class="headerlink" title="第二节 异常的类别"></a>第二节 异常的类别</h3><p>异常可以分为四类：中断(interrupt)、陷阱(trap)、故障Cfault)和终止(abort)。图8-4中的表对这些类别的属性做了小结。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/457654af-dc5e-40ad-889c-b73e28520ba2.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/457654af-dc5e-40ad-889c-b73e28520ba2.png"></p>
+<ol>
+<li>中断</li>
+</ol>
+<p>中断是异步发生的，是来自处理器外部的I/0设备的信号的结果。硬件中断不是由任何一条专门的指令造成的，从这个意义上来说它是异步的。硬件中断的异常处理程序常常称为中断处理程序(interrupthandler)</p>
+<p>图8-5概述了一个中断的处理。I/0设备，例如网络适配器、磁盘控制器和定时器芯片，通过向处理器芯片上的一个引脚发信号，并将异常号放到系统总线上，来触发中断，这个异常号标识了引起中断的设备。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/2ce4343a-9155-4d7a-8d37-eeaeef851de8.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/2ce4343a-9155-4d7a-8d37-eeaeef851de8.png"></p>
+<p>在当前指令完成执行之后，处理器注意到中断引脚的电压变高了，就从系统总线读取异常号，然后调用适当的中断处理程序。当处理程序返回时，它就将控制返回给下一条指令（也即如果没有发生中断，在控制流中会在当前指令之后的那条指令）。结果是程序继续执行，就好像没有发生过中断一样。剩下的异常类型（陷阱、故障和终止）是同步发生的，是执行当前指令的结果。我们把这类指令叫做故障指令(faultinginstruction)</p>
+<ol start="2">
+<li>陷阱和系统调用</li>
+</ol>
+<p>陷阱是有意的异常，是执行一条指令的结果。就像中断处理程序一样，陷阱处理程序将控制返回到下一条指令。陷阱最重要的用途是在用户程序和内核之间提供一个像过程一样的接口，叫做系统调用</p>
+<p>用户程序经常需要向内核请求服务，比如读一个文件(read)、创建一个新的进程(fork)、加载一个新的程序(execve),或者终止当前进程(exit)。为了允许对这些内核服务的受控的访问，处理器提供了一条特殊的”syscalln”指令，当用户程序想要请求服务n时，可以执行这条指令。执行syscall指令会导致一个到异常处理程序的陷阱，这个处理程序解析参数，并调用适当的内核程序。图8-6概述了一个系统调用的处理</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/d5020963-af8e-44f3-8157-bb3ab79ff3b3.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/d5020963-af8e-44f3-8157-bb3ab79ff3b3.png"></p>
+<p>从程序员的角度来看，系统调用和普通的函数调用是一样的。然而，它们的实现非常不同。普通的函数运行在用户模式中，用户模式限制了函数可以执行的指令的类型，而且它们只能访问与调用函数相同的栈。系统调用运行在内核模式中，内核模式允许系统调用执行特权指令，并访问定义在内核中的栈。</p>
+<p>8.2. 4节会更详细地讨论用户模式和内核模式</p>
+<ol start="3">
+<li>故障</li>
+</ol>
+<p>故障由错误情况引起，它可能能够被故障处理程序修正。当故障发生时，处理器将控制转移给故障处理程序。如果处理程序能够修正这个错误情况，它就将控制返回到引起故障的指令，从而重新执行它。否则，处理程序返回到内核中的的abort例程，abort例程会终止引起故障的应用程序。图8-7概述了一个故障的处理。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/28bb46e8-c00d-4018-81b7-bbb5fc54ea22.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/28bb46e8-c00d-4018-81b7-bbb5fc54ea22.png"></p>
+<p>一个经典的故障示例是缺页异常，当指令引用一个虚拟地址，而与该地址相对应的物理页面不在内存中，因此必须从磁盘中取出时，就会发生故障。就像我们将在第9章中看到的那样，一个页面就是虚拟内存的一个连续的块（典型的是4KB)。缺页处理程序从磁盘加载适当的页面，然后将控制返回给引起故障的指令。当指令再次执行时，相应的物理页面已经驻留在内存中了，指令就可以没有故障地运行完成了</p>
+<ol start="4">
+<li>终止</li>
+</ol>
+<p>终止是不可恢复的致命错误造成的结果，通常是一些硬件错误，比如DRAM或者SRAM位被损坏时发生的奇偶错误。终止处理程序从不将控制返回给应用程序如图8-8所示，处理程序将控制返回给一个abort例程，该例程会终止这个应用程序。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/51e35e8d-ef76-43ac-829d-933d154e786c.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/51e35e8d-ef76-43ac-829d-933d154e786c.png"></p>
+<h3 id="第三节-Linux-x86-64系统中的异常"><a href="#第三节-Linux-x86-64系统中的异常" class="headerlink" title="第三节 Linux/x86-64系统中的异常"></a>第三节 Linux/x86-64系统中的异常</h3><p>我们来看看为x86-64系统定义的一些异常。有高达256种不同的异常类型[50]。0~31的号码对应的是由Intel架构师定义的异常，因此对任何x86-64系统都是一样的。</p>
+<p>32~255的号码对应的是操作系统定义的中断和陷阱。图8-9展示了一些示例</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/38e173d9-6905-49e0-8807-ce0baab51729.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/38e173d9-6905-49e0-8807-ce0baab51729.png"></p>
+<ol>
+<li>Linux/x86-64故障和终止</li>
+</ol>
+<p>除法错误。当应用试图除以零时，或者当一个除法指令的结果对千目标操作数来说太大了的时候，就会发生除法错误（异常0)。Unix不会试图从除法错误中恢复，而是选择终止程序。Linuxshell通常会把除法错误报告为“浮点异常(Floating exception)”。</p>
+<p>一般保护故障。许多原因都会导致不为人知的一般保护故障（异常13),通常是因为一个程序引用了一个未定义的虚拟内存区域，或者因为程序试图写一个只读的文本段，Linux不会尝试恢复这类故障。Linuxshell通常会把这种一般保护故障报告为＂段故障(Segmentation fault)”</p>
+<p>缺页（异常14)是会重新执行产生故障的指令的一个异常示例。处理程序将适当的磁盘上虚拟内存的一个页面映射到物理内存的一个页面，然后重新执行这条产生故障的指令。我们将在第9章中看到缺页是如何工作的细节。</p>
+<p>机器检查。机器检查（异常18)是在导致故障的指令执行中检测到致命的硬件错误时发生的。机器检查处理程序从不返回控制给应用程序</p>
+<ol start="2">
+<li> Linux/86-64系统调用</li>
+</ol>
+<p>Linux提供几百种系统调用，当应用程序想要请求内核服务时可以使用，包括读文件、写文件或是创建一个新进程图</p>
+<p>8-10给出了一些常见的Linux系统调用。每个系统调用都有一个唯一的整数号，对应于一个到内核中跳转表的偏移量。（注意：这个跳转表和异常表不一样）</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/7c55cf75-4996-488d-8f94-1263bd6b5a64.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/7c55cf75-4996-488d-8f94-1263bd6b5a64.png"></p>
+<p>C程序用syscall函数可以直接调用任何系统调用。然而，实际中儿乎没必要这么做。对于大多数系统调用，标准C库提供了一组方便的包装函数。这些包装函数将参数打包到一起，以适当的系统调用指令陷入内核，然后将系统调用的返回状态传递回调用程序本书中，我们将系统调用和与它们相关联的包装函数都称为系统级函数，这两个术语可以互换地使用 </p>
+<p>在x86-64系统上，系统调用是通过一条称为syscall的陷阱指令来提供的。研究程序能够如何使用这条指令来直接调用Linux系统调用是很有趣的。所有到Linux系统调用的参数都是通过通用寄存器而不是栈传递的。按照惯例，寄存器%rax包含系统调用号，寄存器%rdi、%rsi、%rdx、%r10、%r8和%r9包含最多6个参数。第一个参数在%r中中，第二个在%rsi中，以此类推。从系统调用返回时，寄存器%rcx和%rll都会被破坏，%rax包</p>
+<p>含返回值。—4095到一1之间的负数返回值表明发生了错误，对应于负的errno。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/a5712cb0-3f27-4719-ba8a-2f655970b3e6.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/a5712cb0-3f27-4719-ba8a-2f655970b3e6.png"></p>
+<p>图8-11给出的是hello程序的汇编语言版本，直接使用syscall指令来调用wri七e和exit系统调用。第9<del>13行调用write函数。首先，第9行将系统调用write的编号存放在%rax中，第10</del>12行设置参数列表。然后第13行使用syscall指令来调用系统调用。类似地，第14~16行调用_exit系统调用。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/839560e9-9464-44d4-a77b-ae22688b838f.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/839560e9-9464-44d4-a77b-ae22688b838f.png"></p>
+<h3 id="第二部分-进程"><a href="#第二部分-进程" class="headerlink" title="第二部分 进程"></a>第二部分 进程</h3><p>异常是允许操作系统内核提供进程(process)概念的基本构造块</p>
+<p>在现代系统上运行一个程序时，我们会得到一个假象，就好像我们的程序是系统中当前运行的唯一的程序一样。我们的程序好像是独占地使用处理器和内存。处理器就好像是无间断地一条接一条地执行我们程序中的指令。最后，我们程序中的代码和数据好像是系统内存中唯一的对象。这些假象都是通过进程的概念提供给我们的。</p>
+<p>进程的经典定义就是一个执行中程序的实例。系统中的每个程序都运行在某个进程的上下文(context)中。上下文是由程序正确运行所需的状态组成的。这个状态包括存放在内存中的程序的代码和数据，它的栈、通用目的寄存器的内容、程序计数器、环境变量以及打开文件描述符的集合</p>
+<p>每次用户通过向shell输入一个可执行目标文件的名字，运行程序时，shell就会创建一个新的进程，然后在这个新进程的上下文中运行这个可执行目标文件。用程序也能够创建新进程，并且在这个新进程的上下文中运行它们自己的代码或其他应用程序。</p>
+<p>我们将关注进程提供给应用程序的关键抽象：</p>
+<p>• 一个独立的逻辑控制流，它提供一个假象，好像我们的程序独占地使用处理器。</p>
+<p>• 一个私有的地址空间，它提供一个假象，好像我们的程序独占地使用内存系统。让我们更深入地看看这些抽象。</p>
+<h3 id="第一节-逻辑控制流"><a href="#第一节-逻辑控制流" class="headerlink" title="第一节 逻辑控制流"></a>第一节 逻辑控制流</h3><p>如果想用调试器单步执行程序，我们会看到一系列的程序计数器(PC)的值，这些值唯一地对应于包含在程序的可执行目标文件中的指令，或是包含在运行时动态链接到程序的共享对象中的指令。这个PC值的序列叫做逻辑控制流，或者简称逻辑流。</p>
+<p>考虑一个运行着三个进程的系统</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/d1efe7c5-26ce-4089-ae51-8ff35d523591.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/d1efe7c5-26ce-4089-ae51-8ff35d523591.png"></p>
+<p>如图8-12所示。处理器的一个物理控制流被分成了三个逻辑流，每个进程一个。每个竖直的条表示一个进程的逻辑流的一部分。在这个例子中，三个逻辑流的执行是交错的。进程A运行了一会儿，然后是进程B开始运行到完成。然后，进程C运行了一会儿，进程A接着运行直到完成。最后，进程C可以运行到结束了。</p>
+<p>图8-12的关键点在于进程是轮流使用处理器的。每个进程执行它的流的一部分，然后被抢占(preempted)(暂时挂起），然后轮到其他进程。对于一个运行在这些进程之一的上下文中的程序，它看上去就像是在独占地使用处理器。唯一的反面例证是，如果我们精确地测扯每条指令使用的时间，会发现在程序中一些指令的执行之间，CPU好像会周期性地停顿。然而，每次处理器停顿，它随后会继续执行我们的程序，并不改变程序内存位置或寄存器的内容。</p>
+<h3 id="第二节-并发流"><a href="#第二节-并发流" class="headerlink" title="第二节 并发流"></a>第二节 并发流</h3><p>计算机系统中逻辑流有许多不同的形式。</p>
+<p>异常处理程序、进程、信号处理程序、线程和Java进程都是逻辑流的例子</p>
+<p>个逻辑流的执行在时间上与另一个流重叠，称为并发流(concurrentflow) 这两个流被称为并发地运行更准确地说，流X和Y互相并发</p>
+<p>当且仅当X在Y开始之后和Y结束之前开始，或者Y在X开始之后和X结束之前开始。例如，图8-12中，进程A和B并发地运行，A和C也一样。另一方面，B和C没有并发地运行，因为B的最后一条指令在C的第一条指令之前执行</p>
+<p>多个流并发地执行的一般现象被称为并发(concurrency)</p>
+<p>个进程和其他进程轮流运行的概念称为多任务(multitasking)。一个进程执行它的控制流的一部分的每一时间段叫做时间片(timeslice)。因此，多任务也叫做时间分片(timeslicing)例如，图8-12中，进程A的流由两个时间片组成</p>
+<p>注意，并发流的思想与流运行的处理器核数或者计算机数无关</p>
+<p>如果两个流在时间上重叠，那么它们就是并发的，即使它们是运行在同一个处理器上。不过，有时我们会发现确认并行流是很有帮助的，它是并发流的一个真子集。如果两个流并发地运行在不同的处理器核或者计算机上，那么我们称它们为并行流(parallelflow) , 它们并行地运行(runningin parallel) , 且并行地执行(parallelexecution)</p>
+<h3 id="第三节-私有地址空间"><a href="#第三节-私有地址空间" class="headerlink" title="第三节 私有地址空间"></a>第三节 私有地址空间</h3><p>进程也为每个程序提供一种假象，好像它独占地使用系统地址空间。在一台n位地址的机器上地址空间是2^n 个可能地址的集合，0,1, … , (2^n)-1,进程为每个程序提供它自己的私有地址空间。一般而言，和这个空间中某个地址相关联的那个内存字节是不能被其他进程读或者写的，从这个意义上说，这个地址空间是私有的。</p>
+<p>尽管和每个私有地址空间相关联的内存的内容一般是不同的，但是每个这样的空间都有相同的通用结构。比如，图8-13展示了一个x86-64Linux进程的地址空间的组织结构。</p>
+<p>地址空间底部是保留给用户程序的，包括通常的代码、数据、堆和栈段。代码段总是从地址Ox400000开始。地址空间顶部保留给内核（操作系统常驻内存的部分）。地址空间的这个部分包含内核在代表进程执行指令时（比如当应用程序执行系统调用时）使用的代码、数据和栈。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/96662b04-6fb6-4460-81ff-21bd44e265ad.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/96662b04-6fb6-4460-81ff-21bd44e265ad.png"></p>
+<h3 id="第四节-用户模式和内核模式"><a href="#第四节-用户模式和内核模式" class="headerlink" title="第四节 用户模式和内核模式"></a>第四节 用户模式和内核模式</h3><p>为了使操作系统内核提供一个无懈可击的进程抽象，处理器必须提供一种机制，限制一个应用可以执行的指令以及它可以访问的地址空间范围。</p>
+<p>处理器通常是用某个控制寄存器中的一个模式位(modebit)来提供这种功能的，该寄存器描述了进程当前享有的特权当设置了模式位时，进程就运行在内核模式中（有时叫做超级用户模式）。一个运行在内核模式的进程可以执行指令集中的任何指令，并且可以访问系统中的任何内存位置。</p>
+<p>没有设置模式位时，进程就运行在用户模式中。用户模式中的进程不允许执行特权指令(privileged instruction), 比如停止处理器、改变模式位，或者发起一个I/0操作。也不允许用户模式中的进程直接引用地址空间中内核区内的代码和数据。任何这样的尝试都会导致致命的保护故障。反之，用户程序必须通过系统调用接口间接地访问内核代码和数据。</p>
+<p>运行应用程序代码的进程初始时是在用户模式中的。进程从用户模式变为内核模式的唯一方法是通过诸如中断、故障或者陷入系统调用这样的异常。当异常发生时，控制传递到异常处理程序，处理器将模式从用户模式变为内核模式。处理程序运行在内核模式中，当它返回到应用程序代码时，处理器就把模式从内核摸式改回到用户模式。</p>
+<p>Linux提供了一种聪明的机制，叫做/proc文件系统，它允许用户模式进程访问内核数</p>
+<p>据结构的内容。/proc文件系统将许多内核数据结构的内容输出为一个用户程序可以读的文本文件的层次结构。比如，你可以使用/proc文件系统找出一般的系统属性，比如CPU类型(/proc/ cpuinfo) , 或者某个特殊的进程使用的内存段(/proc/<process-id>/maps)。2.6版本的Linux内核引入/sys文件系统，它输出关千系统总线和设备的额外的低层信息。</p>
+<h3 id="第五节-上下文切换"><a href="#第五节-上下文切换" class="headerlink" title="第五节 上下文切换"></a>第五节 上下文切换</h3><p>操作系统内核使用一种称为上下文切换(contextswitch)的较高层形式的异常控制流来实现多任务。</p>
+<p>内核为每个进程维持一个上下文(context)。上下文就是内核重新启动一个被抢占的进程所需的状态。它由一些对象的值组成，这些对象包括通用目的寄存器、浮点寄存器、程序计数器、用户栈、状态寄存器、内核栈和各种内核数据结构，比如描述地址空间的页表、包含有关当前进程信息的进程表，以及包含进程已打开文件的信息的文件表。</p>
+<p>在进程执行的某些时刻，内核可以决定抢占当前进程，并重新开始一个先前被抢占了的进程。这种决策就叫做调度(scheduling),是由内核中称为调度器(scheduler)的代码处理的</p>
+<p>当内核选择一个新的进程运行时，我们说内核调度了这个进程</p>
+<p>在内核调度了一个新的进程运行后，它就抢占当前进程并使用一种称为上下文切换的机制来将控制转移到新的进程，上下文切换</p>
+<p>（1）保存当前进程的上下文，</p>
+<p>（2）恢复某个先前被抢占的进程被保存的上下文，</p>
+<p>（3）将控制传递给这个新恢复的进程</p>
+<p>当内核代表用户执行系统调用时，可能会发生上下文切换。如果系统调用因为等待某个事件发生而阻塞，那么内核可以让当前进程休眠，切换到另一个进程。比如，如果一个read系统调用需要访问磁盘，内核可以选择执行上下文切换，运行另外一个进程，而不是等待数据从磁盘到达。另一个示例是sleep系统调用，它显式地请求让调用进程休眠。一般而言，即使系统调用没有阻塞，内核也可以决定执行上下文切换，而不是将控制返回给调用进程。</p>
+<p>中断也可能引发上下文切换。比如，所有的系统都有某种产生周期性定时器中断的机制，通常为每1毫秒或每10毫秒。每次发生定时器中断时，内核就能判定当前进程已经运行了足够长的时间，并切换到一个新的进程</p>
+<p>图8-14展示了一对进程A和B之间上下文切换的示例。在这个例子中，进程A初始运行在用户模式中，直到它通过执行系统调用read陷入到内核。内核中的陷阱处理程序请求来自磁盘控制器的DMA传输，并且安排在磁盘控制器完成从磁盘到内存的数据传输后，磁盘中断处理器。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/5bd859ad-d571-47ff-9abe-d9b4e7d8f604.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/5bd859ad-d571-47ff-9abe-d9b4e7d8f604.png"></p>
+<p>磁盘取数据要用一段相对较长的时间（数量级为几十毫秒），所以内核执行从进程A到进程B的上下文切换，而不是在这个间歇时间内等待，什么都不做。注意在切换之前，内核正代表进程A在用户模式下执行指令（即没有单独的内核进程）。在切换的第一部分中，内核代表进程A在内核模式下执行指令。然后在某一时刻，它开始代表进程B(仍然是内核模式下）执行指令。在切换之后，内核代表进程B在用户模式下执行指令。随后，进程B在用户模式下运行一会儿，直到磁盘发出一个中断信号，表示数据巳经从磁盘传送到了内存。内核判定进程B已经运行了足够长的时间，就执行一个从进程B到进程A的上下文切换，将控制返回给进程A中紧随在系统调用read之后的那条指令。进程A继续运行，直到下一次异常发生，依此类推。</p>
+<h2 id="第三节-系统调用错误处理"><a href="#第三节-系统调用错误处理" class="headerlink" title="第三节 系统调用错误处理"></a>第三节 系统调用错误处理</h2><p>当Unix系统级函数遇到错误时，它们通常会返回一1,并设詈全局整数变量errno来表示什么出错了。程序员应该总是检查错误，但是不幸的是，许多人都忽略了错误检查，因为它使代码变得擁肿，而且难以读懂。比如，下面是我们调用Unixfork函数时会如何检查错误：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((pid = fork()) &lt; <span class="number">0</span>) </span><br><span class="line"></span><br><span class="line">&#123;  </span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;fork error: %s\n&quot;</span>, strerror(errno)); </span><br><span class="line"></span><br><span class="line">      <span class="built_in">exit</span>(O); </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>strerror函数返回一个文本串，描述了和某个errno值相关联的错误。通过定义下面的错误报告函数，我们能够在某种程度上简化这个代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unix_error</span><span class="params">(<span class="keyword">char</span> *msg)</span> <span class="comment">/* Unix-style error */</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"> </span>&#123; </span><br><span class="line"></span><br><span class="line"><span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="number">11</span>%s: %s\n<span class="string">&quot;, msg, strerror(errno)); </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">exit(O);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"> &#125; </span></span><br></pre></td></tr></table></figure>
+
+<p>给定这个函数，我们对fork的调用从4行缩减到2行：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((pid = fork()) &lt; <span class="number">0</span>) </span><br><span class="line">  unix_error(<span class="string">&quot;fork error&quot;</span>); </span><br></pre></td></tr></table></figure>
+
+<p>通过使用错误处理包装函数，我们可以更进一步地简化代码，Stevens在[110]中首先提出了这种方法。对千一个给定的基本函数foo,我们定义一个具有相同参数的包装函数Foo, 但是第一个字母大写了。包装函数调用基本函数，检查错误，如果有任何问题就终止。比如，下面是fork函数的错误处理包装函数：</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/366ccb8c-e991-4d33-9dd8-c92212362a9a.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/366ccb8c-e991-4d33-9dd8-c92212362a9a.png"></p>
+<p>给定这个包装函数，我们对fork的调用就缩减为1行：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pid = Fork() ;</span><br></pre></td></tr></table></figure>
+
+<p>我们将在本书剩余的部分中都使用错误处理包装函数。它们能够保持代码示例简洁，而又不会给你错误的假象，认为允许忽略错误检查。注意，当在本书中谈到系统级函数时，我们总是用它们的小写字母的基本名字来引用它们，而不是用它们大写的包装函数名来引用。关千Unix错误处理以及本书中使用的错误处理包装函数的讨论，请参见附录A。包装函数定义在一个叫做csapp.c的文件中，它们的原型定义在一个叫做csapp.h的头文件中；可以从CS:APP网站上在线地得到这些代码。</p>
+<h2 id="第四部分-进程控制"><a href="#第四部分-进程控制" class="headerlink" title="第四部分 进程控制"></a>第四部分 进程控制</h2><h3 id="第一节-获取进程ID"><a href="#第一节-获取进程ID" class="headerlink" title="第一节 获取进程ID"></a>第一节 获取进程ID</h3><p>每个进程都有一个唯一的正数（非零）进程ID(PID)。getp过函数返回调用进程的PID。getppid函数返回它的父进程的PID(创建调用进程的进程）。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt; </span></span></span><br><span class="line"><span class="function"><span class="keyword">pid_t</span> <span class="title">getpid</span><span class="params">(<span class="keyword">void</span>)</span></span>;  </span><br><span class="line"><span class="function"><span class="keyword">pid_t</span> <span class="title">getppid</span><span class="params">(<span class="keyword">void</span>)</span></span>;  </span><br><span class="line">                               返回：调用者或其父进程PID。</span><br></pre></td></tr></table></figure>
+
+<p>getpid和getppid函数返回一个类型为pidt的整数值，在Linux系统上它在types.h中被定义为int</p>
+<h3 id="第二节-创建和终止进程"><a href="#第二节-创建和终止进程" class="headerlink" title="第二节 创建和终止进程"></a>第二节 创建和终止进程</h3><p>从程序员的角度，我们可以认为进程总是处于下面三种状态之一：</p>
+<p>• 运行。进程要么在CPU上执行，要么在等待被执行且最终会被内核调度。</p>
+<p>• 停止。进程的执行被挂起(suspended),且不会被调度。当收到SIGSTOP、SIGT­STP、SIGTTIN或者SIGTTOU信号时，进程就停止，并且保持停止直到它收到一个SIGCONT信号，在这个时刻，进程再次开始运行。（信号是一种软件中断的形式，将在8.5节中详细描述。）</p>
+<p>• 终止。进程永远地停止了。进程会因为三种原因终止：</p>
+<p>（1）收到一个信号，该信号的默认行为是终止进程，</p>
+<p>（2）从主程序返回，</p>
+<p>（3）调用exit函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exit</span><span class="params">(<span class="keyword">int</span> status)</span></span>;</span><br><span class="line">                         该函数不返回</span><br></pre></td></tr></table></figure>
+
+<p>exit函数以status退出状态来终止进程（另一种设置退出状态的方法是从主程序中返回一个整数值）。</p>
+<p>父进程通过调用fork函数创建一个新的运行的子进程。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">pid_t</span> <span class="title">fork</span><span class="params">(<span class="keyword">void</span>)</span></span>; </span><br><span class="line"> 返回：子进程返回o,父进程返回子进程的PID,如果出错，则为一l。</span><br></pre></td></tr></table></figure>
+
+<p>新创建的子进程几乎但不完全与父进程相同。子进程得到与父进程用户级虚拟地址空间相同的（但是独立的）一份副本，包括代码和数据段、堆、共享库以及用户栈。子进程还获得与父进程任何打开文件描述符相同的副本，这就意味着当父进程调用fo:rk时，子进程可以读写父进程中打开的任何文件。父进程和新创建的子进程之间最大的区别在千它们有不同的PID</p>
+<p>fork函数是有趣的（也常常令人迷惑），因为它只被调用一次，却会返回两次：一次是在调用进程（父进程）中，一次是在新创建的子进程中。在父进程中，fork返回子进程的PID。在子进程中，fork返回0。因为子进程的PID总是为非零，返回值就提供一个明确的方法来分辨程序是在父进程还是在子进程中执行。</p>
+<p>图8-15展示了一个使用fo吐创建子进程的父进程的示例。当fo:rk调用在第6行返回时，在父进程和子进程中x的值都为1。子进程在第8行加一并输出它的x的副本。相似地，父进程在第13行减一并输出它的x的副本</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/286b6c74-2bd1-4cb9-a710-b6418ef76565.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/286b6c74-2bd1-4cb9-a710-b6418ef76565.png"></p>
+<p>当在Unix系统上运行这个程序时，我们得到下面的结果：linux&gt; ./fork </p>
+<p>parent: x=0 </p>
+<p>child: x=2 </p>
+<p>这个简单的例子有一些微妙的方面</p>
+<p> • <strong><em>调用一次，返回两次。fork函数被父进程调用一次，但是却返回两次一一次是返回到父进程，一次是返回到新创建的子进程对千只创建一个子进程的程序来说，这还是相当简单直接的。</em></strong></p>
+<p>• <strong><em>并发执行。父进程和子进程是并发运行的独立进程。内核能够以任意方式交替执行它们的逻辑控制流中的指令。在我们的系统上运行这个程序时，父进程先完成它的printf语句，然后是子进程。然而，在另一个系统上可能正好相反。一般而言，作为程序员，我们决不能对不同进程中指令的交替执行做任何假设。</em></strong></p>
+<p>• 相同但是独立的地址空间。如果能够在fork函数在父进程和子进程中返回后立即暂停这两个进程，我们会看到两个进程的地址空间都是相同的。每个进程有相同的用户栈、相同的本地变最值、相同的堆、相同的全局变鼠值，以及相同的代码。因此，在我们的示例程序中，当fork函数在第6行返回时，本地变量x在父进程和子进程中都为1。然而，因为父进程和子进程是独立的进程，它们都有自己的私有地址空间。后面，父进程和子进程对x所做的任何改变都是独立的，不会反映在另一个进程的内存中。这就是为什么当父进程和子进程调用它们各自的print£语句时，它们中的变量x会有不同的值。</p>
+<p>• 共享文件。当运行这个示例程序时，我们注意到父进程和子进程都把它们的输出显示在屏幕上。原因是子进程继承了父进程所有的打开文件。当父进程调用fork时，stdout文件是打开的，并指向屏幕。子进程继承了这个文件，因此它的输出也是指向屏幕的。</p>
+<p>如果你是第一次学习fork函数，画进程图通常会有所帮助，进程图是刻画程序语旬的偏序的一种简单的前趋图。每个顶点a对应于一条程序语句的执行。有向边a-&gt;b表示语句a发生在语句b之前，边上可以标记出一些信息，例如一个变星的当前值对应于print£语句的顶点可以标记上print£的输出。每张图从一个顶点开始，对应千调用main的父进程。这个顶点没有入边，并且只有一个出边 每个进程的顶点序列结束千一个对应于exit调用的顶点。这个顶点只有一条入边，没有出边。</p>
+<p>例如，图8-16展示了图8-15中示例程序的进程图。初始时，父进程将变量x设置为1。父进程调用fork,创建一个子进程，它在自己的私有地址空间中与父进程并发执行。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/67835111-1e74-4121-8b50-58dfbca66076.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/67835111-1e74-4121-8b50-58dfbca66076.png"></p>
+<p>对千运行在单处理器上的程序，对应进程图中所有顶点的拓扑排序(topologicalsort)表示程序中语句的一个可行的全序排列下面是一个理解拓扑排序概念的简单方法：给定进程图中顶点的一个排列，把顶点序列从左到右写成一行，然后画出每条有向边。排列是一个拓扑排序，当且仅当画出的每条边的方向都是从左往右的，因此，在图8-15的示例程序中父进程和子进程的print£语旬可以以任意先后顺序执行，因为每种顺序都对应千图顶点的某种拓扑排序</p>
+<p>进程图特别有助千理解带有嵌套fork调用的程序例如，图8-17中的程序源码中两次调用了fork。对应的进程图可帮助我们看清这个程序运行了四个进程，每个都调用了一次print£,这些print£可以以任意顺序执行。</p>
+<h2 id="第三节-回收子进程"><a href="#第三节-回收子进程" class="headerlink" title="第三节 回收子进程"></a>第三节 回收子进程</h2><p>当一个进程由于某种原因终止时，内核并不是立即把它从系统中清除。相反，进程被保持在一种已终止的状态中，直到被它的父进程回收(reaped)。当父进程回收己终止的子进程时，内核将子进程的退出状态传递给父进程，然后抛弃己终止的进程，从此时开始，该进程就不存在了。一个终止了但还未被回收的进程称为僵死进程(zombie)。</p>
+<p>如果一个父进程终止了，内核会安排init进程成为它的孤儿进程的养父。init进程的PID为1,是在系统启动时由内核创建的，它不会终止，是所有进程的祖先。如果父进程没有回收它的僵死子进程就终止了，那么内核会安排init进程去回收它们。不过，长时间运行的程序，比如shell或者服务器，总是应该回收它们的僵死子进程。即使僵死子进程没有运行，它们仍然消耗系统的内存资源。</p>
+<p>一个进程可以通过调用waitpid函数来等待它的子进程终止或者停止。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/748c050d-d67e-4166-894e-f11e869e7843.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/748c050d-d67e-4166-894e-f11e869e7843.png"></p>
+<p>waitpid函数有点复杂。默认情况下（当options=0时），waitpid挂起调用进程的执行，直到它的等待集合(waitpid)中的一个子进程终止。如果等待集合中的一个进程在刚调用的时刻就已经终止了，那么waitpid就立即返回。在这两种情况中，waitpid返回导致waitpid返回的已终止子进程的PID。此时，已终止的子进程巳经被回收，内核会从系统中删除掉它的所有痕迹。</p>
+<ol>
+<li>判定等待集合的成员</li>
+</ol>
+<p>等待集合的成员是由参数pid来确定的：</p>
+<p>• 如果pid&gt;0,那么等待集合就是一个单独的子进程，它的进程ID等于pid。</p>
+<p>• 如果pid=-1, 那么等待集合就是由父进程所有的子进程组成的。waitpid函数还支持其他类型的等待集合，包括Unix进程组，对此我们将不做讨论。</p>
+<ol start="2">
+<li>修改默认行为</li>
+</ol>
+<p>可以通过将options设置为常量WNOHANG、WUNTRACED和WCONTINUED的各种组合来修改默认行为：</p>
+<p> • WNOHANG: 如果等待集合中的任何子进程都还没有终止，那么就立即返回（返回值为0)。默认的行为是挂起调用进程，直到有子进程终止。在等待子进程终止的同时，如果还想做些有用的丁作，这个选项会有用。</p>
+<p>• WUNTRACED: 挂起调用进程的执行，直到等待集合中的一个进程变成巳终止或者被停止。返回的PID为导致返回的巳终止或被停止子进程的PID。默认的行为是只返回己终止的子进程。当你想要检查己终止和被停止的子进程时，这个选项会有用。</p>
+<p>• WCONTINUED: 挂起调用进程的执行，直到等待集合中一个正在运行的进程终止或等待集合中一个被停止的进程收到SIGCONT信号重新开始执行。(8.5节会解释这些信号。）</p>
+<p>可以用或运算把这些选项组合起来。例如：</p>
+<p>• WNOHANG I WUNTRACED: 立即返回，如果等待集合中的子进程都没有被停止或终止，则返回值为0;如果有一个停止或终止，则返回值为该子进程的PID。</p>
+<ol start="3">
+<li>检查己回收子进程的退出状态</li>
+</ol>
+<p>如果statusp参数是非空的，那么waitpid就会在status中放上关于导致返回的子进程的状态信息，status是statusp指向的值。wait.h头文件定义了解释status参数的几个宏：</p>
+<p>• WIFEXITED(status): 如果子进程通过调用exit或者一个返回(return)正常终止，就返回真。• WEXITSTATUS (status): 返回一个正常终止的子进程的退出状态。只有在WIFEXITED()返回为真时，才会定义这个状态。• WIFSIGNALED(status): 如果子进程是因为一个未被捕获的信号终止的，那么就返回真。• WTERMSIG(status): 返回导致子进程终止的信号的编号。只有在WIFSIG­NALED()返回为真时，才定义这个状态。• WIFSTOPPED(status): 如果引起返回的子进程当前是停止的，那么就返回真。• WSTOPSIGC sta七us):返回引起子进程停止的信号的编号。只有在WIFSTOPPEDC)返回为真时，才定义这个状态。• WIFCONTINUED(s七a七us):如果子进程收到SIGCONT信号重新启动，则返回真。</p>
+<ol start="4">
+<li>错误条件</li>
+</ol>
+<p>​     如果调用进程没有子进程，那么waitpid返回—1,并且设置errno为ECHILD。如果waitp迈函数被一个信号中断，那么它返回—1,并设置errno为EINTR</p>
+<ol start="5">
+<li><p>wait函数</p>
+<p>wait函数是waitpid函数的简单版本：</p>
+</li>
+</ol>
+<p>调用wait(&amp;status)等价于调用waitpid(-1,&amp;status,0)。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/5a693a9f-e6f4-420a-b960-cf990c785b2a.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/5a693a9f-e6f4-420a-b960-cf990c785b2a.png"></p>
+<ol start="6">
+<li>使用waitpid的示例</li>
+</ol>
+<p>因为waitpid函数有些复杂，看几个例子会有所帮助。图8-18展示了一个程序，它使用waitpid，不按照特定的顺序等待它的所有N个子进程终止。在第11行，父进程创建N个子进程，在第12行，每个子进程以一个唯一的退出状态退出。在我们继续讲解之前，请确认你已经理解为什么每个子进程会执行第12行，而父进程不会。</p>
+<p>在第15行，父进程用waitpid作为while循环的测试条件，等待它所有的子进程终止。因为第一个参数是—1,所以对waitpid的调用会阻塞，直到任意一个子进程终止。在每个子进程终止时，对waitp远的调用会返回，返回值为该子进程的非零的PID。第16行检查子进程的退出状态。如果子进程是正常终止的在此是以调用exit函数终止的那么父进程就提取出退出状态，把它输出到stdout上。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/97e25763-516e-4bde-a6da-9093f77a8ce3.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/97e25763-516e-4bde-a6da-9093f77a8ce3.png"></p>
+<p>当回收了所有的子进程之后，再调用waitpid就返回—1,并且设置errno为ECHILD。第24行检查wai七pid函数是正常终止的，否则就输出一个错误消息。在我们的Linux系统上运行这个程序时，它产生如下输出：</p>
+<p>linux&gt; ./waitpid1 </p>
+<p>child 22966 terminated normally with exit status=100</p>
+<p> child 22967 terminated normally with exit status=101 </p>
+<p>注意，程序不会按照特定的顺序回收子进程。子进程回收的顺序是这台特定的计算机系统的属性。在另一个系统上，甚至在同一个系统上再执行一次，两个子进程都可能以相反的顺序被回收这是非确定性行为的一个示例，这种非确定性行为使得对并发进行推理非常困难两种可能的结果都同样是正确的，作为一个程序员，你绝不可以假设总是会出现某一个结果，无论多么不可能出现另一个结果。唯一正确的假设是每一个可能的结果都同样可能出现。</p>
+<p>图8-19展示了一个简单的改变，它消除了这种不确定性，按照父进程创建子进程的相同顺序来回收这些子进程。在第11行中，父进程按照顺序存储了它的子进程的PID,然后通过用适当的PID作为第一个参数来调用waitpid,按照同样的顺序来等待每个子进程。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/4f2bc5d1-60c7-4726-a6e8-3e9e2c374ce0.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/4f2bc5d1-60c7-4726-a6e8-3e9e2c374ce0.png"></p>
+<h3 id="第四节-让进程休眠"><a href="#第四节-让进程休眠" class="headerlink" title="第四节 让进程休眠"></a>第四节 让进程休眠</h3><p>sleep函数将一个进程挂起一段指定的时间。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/57d2e952-8faa-488d-bd1c-dda1006d4ebf.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/57d2e952-8faa-488d-bd1c-dda1006d4ebf.png"></p>
+<p>如果请求的时间量已经到了，sleep返回o,否则返回还剩下的要休眠的秒数。后一种情况是可能的，如果因为sleep函数被一个信号中断而过早地返回。我们将在8.5节中详细讨论信号。我们会发现另一个很有用的函数是pause函数，该函数让调用函数休眠，直到该进程收到一个信号</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/935c1fa2-c6f5-4af0-9357-bd587cc66168.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/935c1fa2-c6f5-4af0-9357-bd587cc66168.png"></p>
+<h3 id="第五节-加载并运行程序"><a href="#第五节-加载并运行程序" class="headerlink" title="第五节 加载并运行程序"></a>第五节 加载并运行程序</h3><p>execve函数在当前进程的上下文中加载并运行一个新程序。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/79aa93bf-c97c-44fe-b5c4-97a9d1a7f3a8.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/79aa93bf-c97c-44fe-b5c4-97a9d1a7f3a8.png"></p>
+<p>execve函数加载并运行可执行目标文件filename,且带参数列表argv和环境变量列表envp。只有当出现错误时，例如找不到filename,execve才会返回到调用程序。所以，与fork一次调用返回两次不同，execve调用一次并从不返回。</p>
+<p>参数列表是用图8-20中的数据结构表示的。argv变量指向一个以null结尾的指针数组，其中每个指针都指向一个参数字符串。按照惯例，argv[OJ是可执行目标文件的名字。环境变量的列表是由一个类似的数据结构表示的，如图8-21所示。envp变量指向一个以null结尾的指针数组，其中每个指针指向一个环境变昼字符串，每个串都是形如”name=value”的名字－值对。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/66e1b431-3a24-4b01-ba6b-922475504f6b.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/66e1b431-3a24-4b01-ba6b-922475504f6b.png"></p>
+<p>在execve加载了filename之后，它调用7.9节中描述的启动代码。启动代码设置栈，并将控制传递给新程序的主函数，该主函数有如下形式的原型</p>
+<p>int main(int argc, char **argv, char **envp); </p>
+<p>或者等价的</p>
+<p>int main (int argc, char *argv [], char *envp []) ;</p>
+<p>当main开始执行时，用户栈的组织结构如图8-22所示。让我们从栈底（高地址）往栈顶（低地址）依次看一看。首先是参数和环境字符串。栈往上紧随其后的是以null结尾的指针数组，其中每个指针都指向栈中的一个环境变量字符串。全局变量environ指向这些指针中的第一个envp[0]。紧随环境变量数组之后的是以null结尾的argv[]数组，其中每个元素都指向栈中的一个参数字符串。在栈的顶部是系统启动函数libc_start_main(见7.9节）的栈帧。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/58ac6ac1-41da-4ced-87a7-f84b31f9553f.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/58ac6ac1-41da-4ced-87a7-f84b31f9553f.png"></p>
+<p>main函数有3个参数：1) argc, 它给出argv[]数组中非空指针的数量，2)argv, 指向argv[]数组中的第一个条目，3)envp,指向envp[]数组中的第一个条目。</p>
+<p>Linux提供了几个函数来操作环境数组：</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/5e8d245b-e68f-4268-93de-bdba77045a65.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/5e8d245b-e68f-4268-93de-bdba77045a65.png"></p>
+<p>getenv函数在环境数组中搜索字符串”name=value”。如果找到了，它就返回一个指向value的指针，否则它就返回NULL</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/2dde6a48-c8de-40ec-b19e-f14b15e720d3.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/2dde6a48-c8de-40ec-b19e-f14b15e720d3.png"></p>
+<p>如果环境数组包含一个形如”name=oldvalue”的字符串，那么unsetenv会删除它，而setenv会用newvalue代替oldvalue,但是只有在overwirte非零时才会这样。如果name不存在，那么setenv就把”name=newvalue”添加到数组中</p>
+<h3 id="第六节-利-用fork和execve运行程序"><a href="#第六节-利-用fork和execve运行程序" class="headerlink" title="第六节 利 用fork和execve运行程序"></a>第六节 利 用fork和execve运行程序</h3><p>像Unixshell和Web服务器这样的程序大量使用了fork和execve函数。shell是一个交互型的应用级程序，它代表用户运行其他程序。最早的shell是sh程序，后面出现了一些变种，比如csh、tcsh、ksh和bash。shell执行一系列的读／求值(read/evaluate)步骤，然后终止。读步骤读取来自用户的一个命令行。求值步骤解析命令行，并代表用户运行程序。</p>
+<p>图8-23展示了一个简单shell的main例程。shell打印一个命令行提示符，等待用户在stdin上输入命令行，然后对这个命令行求值。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/8814a456-35fd-4804-b81c-e6f96161573f.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/8814a456-35fd-4804-b81c-e6f96161573f.png"></p>
+<p>图8-24展示了对命令行求值的代码。它的首要任务是调用parseline函数（见图8-25),这个函数解析了以空格分隔的命令行参数，并构造最终会传递给execve的argv向量。第一个参数被假设为要么是一个内置的shell命令名，马上就会解释这个命令，要么是一个可执行目标文件，会在一个新的子进程的上下文中加载并运行这个文件</p>
+<p>如果最后一个参数是一个”&amp;”字符，那么parseline返回1,表示应该在后台执行该程序(shell不会等待它完成）。否则，它返回o,表示应该在前台执行这个程序(shell会等待它完成）。</p>
+<p>在解析了命令行之后，eval函数调用builtin_comrnand函数，该函数检查第一个命令行参数是否是一个内置的shell命令。如果是，它就立即解释这个命令，并返回值1。否则返回0。简单的shell只有一个内置命令——-quit命令，该命令会终止shell。实际使用的shell有大械的命令，比如pwd、jobs和fg。</p>
+<p>如果builtin—command返回o,那么shell创建一个子进程，并在子进程中执行所请求的程序。如果用户要求在后台运行该程序，那么shell返回到循环的顶部，等待下一个命令行。否则，shell使用waitp迈函数等待作业终止。当作业终止时，shell就开始下一轮迭代。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/d346d40f-2406-4bfc-8811-e84fa1fbc4b2.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/d346d40f-2406-4bfc-8811-e84fa1fbc4b2.png"></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/6ffa1c36-6dd1-42eb-8c77-224aa739256a.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/6ffa1c36-6dd1-42eb-8c77-224aa739256a.png"></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c1229b48-455f-4e20-9b63-5dcd99987306.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c1229b48-455f-4e20-9b63-5dcd99987306.png"></p>
+<p>注意，这个简单的shell是有缺陷的，因为它并不回收它的后台子进程。修改这个缺陷就要求使用信号</p>
+<h2 id="第五部分-信号"><a href="#第五部分-信号" class="headerlink" title="第五部分 信号"></a>第五部分 信号</h2><p>一个信号就是一条小消息，它通知进程系统中发生了一个某种类型的事件。每种信号类型都对应千某种系统事件。低层的硬件异常是由内核异常处理程序处理的，正常情况下，对用户进程而言是不可见的。信号提供了一种机制，通知用户进程发生了这些异常。比如，如果一个进程试图除以0,那么内核就发送给它一个SIGFPE信号（号码8) </p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/1f87161f-942a-4fb7-ae76-f486cc2b7235.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/1f87161f-942a-4fb7-ae76-f486cc2b7235.png"></p>
+<h3 id="第一节-信号术语"><a href="#第一节-信号术语" class="headerlink" title="第一节 信号术语"></a>第一节 信号术语</h3><p>传送一个信号到目的进程是由两个不同步骤组成的：</p>
+<p>• 发送信号。内核通过更新目的进程上下文中的某个状态，发送（递送）一个信号给目的进程。发送信号可以有如下两种原因：</p>
+<p>(1)内核检测到一个系统事件，比如除零错误或者子进程终止。(2)一个进程调用了K过1函数（在下一节中讨论），显式地要求内核发送一个信号给目的进程。一个进程可以发送信号给它自己。</p>
+<p>• 接收信号。当目的进程被内核强迫以某种方式对信号的发送做出反应时，它就接收了信号。进程可以忽略这个信号，终止或者通过执行一个称为信号处理程序(signalhan-dler)的用户层函数捕荻这个信号。图8-27给出了信号处理程序捕获信号的基本思想。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/884d1f01-545c-4152-ad62-cf8b20a4c6e9.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/884d1f01-545c-4152-ad62-cf8b20a4c6e9.png"></p>
+<p>   一个发出而没有被接收的信号叫做待处理信号(pendingsignal)。在任何时刻，一种类型至多只会有一个待处理信号。如果一个进程有一个类型为K的待处理信号，那么任何接下来发送到这个进程的类型为K的信号都不会排队等待；它们只是被简单地丢弃。一个进程可以有选择性地阻塞接收某种信号。当一种信号被阻塞时，它仍可以被发送，但是产生的待处理信号不会被接收，直到进程取消对这种信号的阻塞。</p>
+<p>   一个待处理信号最多只能被接收一次。内核为每个进程在pending位向量中维护着待处理信号的集合，而在blocked位向最e中维护着被阻塞的信号集合。只要传送了一个类型为K的信号，内核就会设置pending中的第k位，而只要接收了一个类型为K的信号，内核就会清除pending中的第k位。</p>
+<h3 id="第二节-发送信号"><a href="#第二节-发送信号" class="headerlink" title="第二节 发送信号"></a>第二节 发送信号</h3><p>Unix系统提供了大量向进程发送信号的机制。所有这些机制都是基千进程组(processgroup)这个概念的。</p>
+<ol>
+<li>进程组</li>
+</ol>
+<p>​           每个进程都只属千一个进程组，进程组是由一个正整数进程组ID来标识的。getpgrp函数返回当前进程的进程组ID,</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">pid_t</span> <span class="title">getpgrp</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line">                             返回：调用进程的进程组ID,</span><br></pre></td></tr></table></figure>
+
+<p>​          默认地，一个子进程和它的父进程同属于一个进程组。一个进程可以通过使用set­pgid函数来改变自己或者其他进程的进程组：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">setpgid</span><span class="params">(<span class="keyword">pid_t</span> pid, <span class="keyword">pid_t</span> pgid)</span></span>;</span><br><span class="line">            返回：若成功则为<span class="number">0</span>,若错误则为一<span class="number">1</span>。</span><br></pre></td></tr></table></figure>
+
+<p>setpgid函数将进程p过的进程组改为pgid。如果pid是o,那么就使用当前进程的PID。如果pg过是0,那么就用pid指定的进程的PID作为进程组ID。例如，如果进程15213是调用进程，那么</p>
+<p>setpgid(0，0);</p>
+<p>会创建一个新的进程组，其进程组ID是15213,并且把进程15213加入到这个新的进程组中。</p>
+<ol start="2">
+<li><p>用/bin/kill程序发送信号</p>
+<p>/bin/k过1程序可以向另外的进程发送任意的信号。比如，命</p>
+<p>linux&gt; /bin/kill -9 15213</p>
+<p>发送信号9(SIGKILL)给进程15213。一个为负的PID会导致信号被发送到进程组PID中的每个进程。比如，命令</p>
+<p>linux&gt; /bin/kill -9 -15213 </p>
+</li>
+</ol>
+<p>发送一个SIGKILL信号给进程组15213中的每个进程。注意，在此我们使用完整路径／bin/kill,因为有些Unixshell有自己内置的Kill命令。</p>
+<ol start="3">
+<li>从键盘发送信号</li>
+</ol>
+<p>Unix shell使用作业(job)这个抽象概念来表示为对一条命令行求值而创建的进程。在任何时刻，至多只有一个前台作业和0个或多个后台作业。比如，键入</p>
+<p>linux&gt; ls I sort </p>
+<p>会创建一个由两个进程组成的前台作业,这两个进程是通过Unix管道连接起来的：一个进程运行ls程序，另一个运行sort程序。</p>
+<p>shell为每个作业创建一个独立的进程组。进程组ID通常取自作业中父进程中的一个。比如，图8-28展示了有一个前台作业和两个后台作业的shell。前台作业中的父进程PID为20,进程组ID也为20。父进程创建两个子进程，每个也都是进程组20的成员。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/bcb6bb61-e460-4082-a560-398179086549.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/bcb6bb61-e460-4082-a560-398179086549.png"></p>
+<p>键盘上输入Ctrl+C会导致内核发送一个SIGINT信号到前台进程组中的每个进程。默认情况下，结果是终止前台作业。类似地，输入Ctrl+Z会发送一个SIGTSTP信号到前台进程组中的每个进程。默认情况下，结果是停止（挂起）前台作业。</p>
+<ol start="4">
+<li>用kill函数发送信号</li>
+</ol>
+<p>进程通过调用kill函数发送信号给其他进程（包括它们自己）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">kill</span><span class="params">(<span class="keyword">pid_t</span> pid, <span class="keyword">int</span> sig)</span></span>; </span><br><span class="line">                      返回：若成功则为<span class="number">0</span>,若错误则为一<span class="number">1</span>,</span><br></pre></td></tr></table></figure>
+
+<p>如果pid大于零，那么kill函数发送信号号码sig给进程pid</p>
+<p>如果pid等于零，那么kill发送信号sig给调用进程所在进程组中的每个进程，包括调用进程自己。如果pid小于零，Kill发送信号sig给进程组Ipid I (pid的绝对值）中的每个进程。图8-29展示了一个示例，父进程用Kill函数发送SIGKILL信号给它的子进程。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/249377fc-1cd0-4375-9ebf-45cb0f3c70af.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/249377fc-1cd0-4375-9ebf-45cb0f3c70af.png"></p>
+<ol start="5">
+<li>用alarm函数发送信号</li>
+</ol>
+<p>进程可以通过调用alarm函数向它自己发送SIGALRM信号。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">alarm</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> secs)</span></span>; </span><br><span class="line"></span><br><span class="line">返回：前一次闹钟剩余的秒数，若以前没有设定闹钟，则为<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>alarm函数安排内核在secs秒后发送一个SIGALRM信号给调用进程。如果secs是零，那么不会调度安排新的闹钟(alarm)。在任何情况下，对alarm的调用都将取消任何待处理的(pending)闹钟，并且返回任何待处理的闹钟在被发送前还剩下的秒数（如果这次对alarm的调用没有取消它的话）；如果没有任何待处理的闹钟，就返回零。</p>
+<h3 id="第三节-接收信号"><a href="#第三节-接收信号" class="headerlink" title="第三节 接收信号"></a>第三节 接收信号</h3><p>当内核把进程p从内核模式切换到用户模式时（例如，从系统调用返回或是完成了一次上下文切换）它会检查进程p的未被阻塞的待处理信号的集合(pending&amp; ~blocked）。</p>
+<p>如果这个集合为空（通常情况下），那么内核将控制传递到p的逻辑控制流中的下一条指令i （next）</p>
+<p>然而，如果集合是非空的，那么内核选择集合中的某个信号k(通常是最小的k),并且强制p接收信号k。收到这个信号会触发进程采取某种行为。一旦进程完成了这个行为，那么控制就传递回p的逻辑控制流中的下一条指令i(next)。每个信号类型都有一个预定义的默认行为，是下面中的一种：</p>
+<p>• 进程终止。</p>
+<p>• 进程终止并转储内存。</p>
+<p>• 进程停止（挂起）直到被SIGCONT信号重启。</p>
+<p>• 进程忽略该信号。</p>
+<p>图8-26展示了与每个信号类型相关联的默认行为。</p>
+<p>比如，收到SIGKILL的默认行为就是终止接收进程。另外，接收到SIGCHLD的默认行为就是忽略这个信号。进程可以通过使用signal函数修改和信号相关联的默认行为。唯一的例外是SIGSTOP和SIGKILL,它们的默认行为是不能修改的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*<span class="keyword">sighandler_t</span>)</span><span class="params">(<span class="keyword">int</span>)</span></span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">sighandler_t</span> <span class="title">signal</span><span class="params">(<span class="keyword">int</span> signum, <span class="keyword">sighandler_t</span> handler)</span></span>; </span><br><span class="line"></span><br><span class="line">返回：若成功则为指向前次处理程序的指针，若出错则为SIG_ERRC不设置errno) 。</span><br></pre></td></tr></table></figure>
+
+<p>signal函数可以通过下列三种方法之一来改变和信号signum相关联的行为：</p>
+<p>• 如果handler是SIG_IGN,那么忽略类型为signum的信号。</p>
+<p>• 如果handler是SIG_DFL,那么类型为signum的信号行为恢复为默认行为。</p>
+<p>• 否则，handler就是用户定义的函数的地址，这个函数被称为信号处理程序，只要进程接收到一个类型为signurn的信号，就会调用这个程序。通过把处理程序的地址传递到signal函数从而改变默认行为，这叫做设置信号处理程序(installingthe han-dler)。调用信号处理程序被称为捕获信号。执行信号处理程序被称为处理信号。</p>
+<p>​         当一个进程捕获了一个类型为K的信号时，会调用为信号k设置的处理程序，一个整数参数被设置为K。这个参数允许同一个处理函数捕获不同类型的信号。当处理程序执行它的return语句时，控制（通常）传递回控制流中进程被信号接收中断位置处的指令。我们说“通常”是因为在某些系统中，被中断的系统调用会立即返回一个错误。图8-30展示了一个程序，它捕获用户在键盘上输入Ctrl+C时发送的SIGINT信号。SIG INT的默认行为是立即终止该进程。在这个示例中，我们将默认行为修改为捕获信号，输出一条消息，然后终止该进程。</p>
+<p>​      信号处理程序可以被其他信号处理程序中断，如图8-31所示。在这个例子中，主程序捕获到信号s该信号会中断主程序，将控制转移到处理程序S。S在运行时，程序捕获信号t不等于s,该信号会中断S,控制转移到处理程序T。当T返回时，S从它被中断的地方继续执行。最后，S返回，控制传送回主程序，主程序从它被中断的地方继续执行</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/1d3ed9f2-b2b6-4597-bd78-34009a452921.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/1d3ed9f2-b2b6-4597-bd78-34009a452921.png"></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/dac3b461-a6ac-4483-be88-32cb2e471d35.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/dac3b461-a6ac-4483-be88-32cb2e471d35.png"></p>
+<h3 id="第四节-阻塞和解除阻塞信号"><a href="#第四节-阻塞和解除阻塞信号" class="headerlink" title="第四节 阻塞和解除阻塞信号"></a>第四节 阻塞和解除阻塞信号</h3><p>Linux提供阻塞信号的隐式和显式的机制：</p>
+<p>​          隐式阻塞机制。内核默认阻塞任何当前处理程序正在处理信号类型的待处理的信号。例如，图8-31中，假设程序捕获了信号s,当前正在运行处理程序S。如果发送给该进程另一个信号s,那么直到处理程序S返回，s会变成待处理而没有被接收。</p>
+<p>​         显式阻塞机制。应用程序可以使用sigprocmask函数和它的辅助函数，明确地阻塞和解除阻塞选定的信号。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/073a1021-cbff-4787-861f-b7c33c69d39a.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/073a1021-cbff-4787-861f-b7c33c69d39a.png"></p>
+<p>sigprocmask函数改变当前阻塞的信号集合具体的行为依赖于how的值：</p>
+<p>​        SIG_BLOCK: 把set中的信号添加到blocked中(blocked=blockedI set)。</p>
+<p>​       SIG_ UNBLOCK: 从blocked中删除set中的信号(blocked=blocked&amp;–set)。</p>
+<p>​       SIG_SETMASK: block=set</p>
+<p>如果oldset非空，那么blocked位向量之前的值保存在oldset中。</p>
+<p>使用下述函数对set信号集合进行操作：sigemptyset初始化set为空集合。sigfillset函数把每个信号都添加到set中。sigaddset函数把signum添加到set,sigdels过从set中删除signum,如果signum是set的成员，那么sigismember返回1,否则返回0。</p>
+<p>例如，图8-32展示了如何用sigprocmask来临时阻塞接收SIGINT信号。</p>
+<h3 id="第五节-编写信号处理程序"><a href="#第五节-编写信号处理程序" class="headerlink" title="第五节 编写信号处理程序"></a>第五节 编写信号处理程序</h3><p>处理程序有几个属性使得它们很难推理分析：</p>
+<p>（1）处理程序与主程序并发运行，共享同样的全局变量，因此可能与主程序和其他处理程序互相干扰；</p>
+<p>（2）如何以及何时接收信号的规则常常有违人的直觉；</p>
+<p>（3）不同的系统有不同的信号处理语义。在本节中，我们将讲述这些问题，介绍编写安全、正确和可移植的信号处理程序的一些基本规则。</p>
+<ol>
+<li>安全的信号处理</li>
+</ol>
+<p>信号处理程序很麻烦是因为它们和主程序以及其他信号处理程序并发地运行，正如我们在图8-31中看到的那样。如果处理程序和主程序并发地访问同样的全局数据结构，那么结果可能就不可预知，而且经常是致命的。</p>
+<p>这里我们的目标是给你一些保守的编写处理程序的原则，使得这些处理程序能安全地并发运行。</p>
+<p>​      • G0. 处理程序要尽可能简单。避免麻烦的最好方法是保持处理程序尽可能小和简单。例如，处理程序可能只是简单地设置全局标志并立即返回；所有与接收信号相关的处理都由主程序执行，它周期性地检查（并重置）这个标志。</p>
+<p>​      • G1. 在处理程序中只调用异步信号安全的函数。所谓异步信号安全的函数（或简称安全的函数）能够被信号处理程序安全地调用，原因有二：要么它是可重入的（例如只访问局部变量，见12.7. 2节），要么它不能被信号处理程序中断。</p>
+<p>图8-33列出了Linux保证安全的系统级函数。注意，许多常见的函数（例如printf、sprin七f、malloc和exit)都不在此列</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/47be37a6-e64f-4f04-82a5-fb65cd2f1d5b.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/47be37a6-e64f-4f04-82a5-fb65cd2f1d5b.png"></p>
+<p>信号处理程序中产生输出唯一安全的方法是使用write函数（见10.1节）。特别地，调用printf或sprint f是不安全的。为了绕开这个不幸的限制，我们开发一些安全的函数，称为SIO(安全的I/0)包，可以用来在信号处理程序中打印简单的消息。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/a114c2e1-5843-428a-9c78-14d66444ea31.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/a114c2e1-5843-428a-9c78-14d66444ea31.png"></p>
+<p>sio_putl和sio_puts函数分别向标准输出传送一个long类型数和一个字符串。sio_error函数打印一条错误消息并终止。</p>
+<p>图8-34给出的是SIO包的实现，它使用了csapp.c中两个私有的可重入函数。第3行的sio_s七rlen函数返回字符串s的长度。把v转换成它的基b字符串表示，保存在s中。第17行的_exit函数是exit的一个异步信号安全的变种。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/f8fda132-4564-4d39-8a74-6f9471b8b22b.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/f8fda132-4564-4d39-8a74-6f9471b8b22b.png"></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c1328fb5-3109-4e75-a4ef-14a1a1af8058.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c1328fb5-3109-4e75-a4ef-14a1a1af8058.png"></p>
+<p>• G2. 保存和恢复errno。许多Linux异步信号安全的函数都会在出错返回时设置errno。在处理程序中调用这样的函数可能会干扰主程序中其他依赖于errno的部分。解决方法是在进入处理程序时把errno保存在一个局部变最中，在处理程序返回前恢复它。注意，只有在处理程序要返回时才有此必要。如果处理程序调用_exit终止该进程，那么就不需要这样做了。</p>
+<p>•  G3. 阻塞所有的信号，保护对共享全局数据结构的访问。如果处理程序和主程序或其他处理程序共享一个全局数据结构，那么在访问（读或者写）该数据结构时，你的处理程序和主程序应该暂时阻塞所有的信号。这条规则的原因是从主程序访问一个数据结构d通常需要一系列的指令，如果指令序列被访问d的处理程序中断，那么处理程序可能会发现d的状态不一致，得到不可预知的结果。在访问d时暂时阻塞信号保证了处理程序不会中断该指令序列。</p>
+<p>• G4. 用volatile声明全局变量。考虑一个处理程序和一个main函数，它们共享一个全局变量g。处理程序更新g,main周期性地读g。对于一个优化编译器而言，main中g的值看上去从来没有变化过，因此使用缓存在寄存器中g的副本来满足对g的每次引用是很安全的。如果这样，main函数可能永远都无法看到处理程序更新过的值。可以用volatile类型限定符来定义一个变量，告诉编译器不要缓存这个变量。例如：volatile int g; volatile限定符强迫编译器每次在代码中引用g时，都要从内存中读取g的值。一般来说，和其他所有共享数据结构一样，应该暂时阻塞信号，保护每次对全局变量的访问。</p>
+<p>• G5. 用sig_atornic_t声明标志。在常见的处理程序设计中，处理程序会写全局标志来记录收到了信号。主程序周期性地读这个标志，响应信号，再清除该标志。对千通过这种方式来共享的标志，C提供一种整型数据类型sig_atornic_t,对它的读和写保证会是原子的（不可中断的），因为可以用一条指令来实现它们：</p>
+<p>volatile sig_atomic_t flag; </p>
+<p>因为它们是不可中断的，所以可以安全地读和写sig_atomic_t变量，而不需要暂时阻塞信号。注意，这里对原子性的保证只适用于单个的读和写，不适用于像flag++或flag=flag+l0这样的更新，它们可能需要多条指令。</p>
+<p>要记住我们这里讲述的规则是保守的，也就是说它们不总是严格必需的。例如，如果你知道处理程序绝对不会修改errno,那么就不需要保存和恢复errno。或者如果你可以证明printf的实例都不会被处理程序中断，那么在处理程序中调用printf就是安全的．对共享全局数据结构的访问也是同样。不过，一般来说这种断言很难证明。所以我们建议你采用保守的方法，遵循这些规则，使得处理程序尽可能简单，调用安全函数，保存和恢复errno,保护对共享数据结构的访问，并使用volatile和sig_atomic_t。</p>
+<ol start="2">
+<li>正确的信号处理</li>
+</ol>
+<p>信号的一个与直觉不符的方面是未处理的信号是不排队的。因为pending位向量中每种类型的信号只对应有一位，所以每种类型最多只能有一个未处理的信号此，如果两个类型k的信号发送给一个目的进程，而因为目的进程当前正在执行信号k的处理程序，所以信号k被阻塞了，那么第二个信号就简单地被丢弃了；它不会排队。关键思想是如果存在一个未处理的信号就表明至少有一个信号到达了</p>
+<p>要了解这样会如何影响正确性，来看一个简单的应用，它本质上类似于像shell和Web服务器这样的真实程序。基本的结构是父进程创建一些子进程，这些子进程各自独立运行一段时间，然后终止。父进程必须回收子进程以避免在系统中留下僵死进程。但是我们还希望父进程能够在子进程运行时自由地去做其他的工作。所以，我们决定用SIGCHLD处理程序来回收子进程，而不是显式地等待子进程终止（回想一下，只要有一个子进程终止或者停止，内核就会发送一个SIGCHLD信号给父进程。）</p>
+<p>图8-36展示了我们的初次尝试。父进程设置了一个SIGCHLD处理程序，然后创建了3个子进程。同时，父进程等待来自终端的一个输入行，随后处理它这个处理被模型化为一个无限循环。当每个子进程终止时，内核通过发送一个SIGCHLD信号通知父进程。父进程捕获这个SIGCHLD信号，回收一个子进程，做一些其他的清理工作（模型化为sleep语句），然后返回。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/479e65e6-fa77-4f83-aeb3-2d82af82a61e.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/479e65e6-fa77-4f83-aeb3-2d82af82a61e.png"></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/e2cd46a6-fc69-4e73-a579-d06d5cd41d7a.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/e2cd46a6-fc69-4e73-a579-d06d5cd41d7a.png"></p>
+<p>图8-36中的signall程序看起来相当简单。然而，当在Linux系统上运行它时，我们得到如下输出：</p>
+<p>linux&gt; ./signall </p>
+<p>Hello from child 14073</p>
+<p> Hello from child 14074 </p>
+<p>Hello from child 14075 </p>
+<p>Handler reaped child </p>
+<p>Handler reaped child </p>
+<p>CR </p>
+<p>Parent processing input </p>
+<p>从输出中我们注意到，尽管发送了3个SIGCHLD信号给父进程，但是其中只有两个信号被接收了，因此父进程只是回收了两个子进程。如果挂起父进程，我们看到，实际上子进程14075没有被回收，它成了一个僵死进程（在ps命令的输出中由字符串”defunct”表明）：</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/22888afa-3a64-4fd2-bc27-c923dbdff3f6.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/22888afa-3a64-4fd2-bc27-c923dbdff3f6.png"></p>
+<p>哪里出错了呢？问题就在千我们的代码没有解决信号不会排队等待这样的情况。所发生的情况是：父进程接收并捕获了第一个信号。当处理程序还在处理第一个信号时，第二个信号就传送并添加到了待处理信号集合里。然而，因为SIGCHLD信号被SIGCHLD处理程序阻塞了，所以第二个信号就不会被接收</p>
+<p>此后不久，就在处理程序还在处理第一个信号时，第三个信号到达了。因为已经有了一个待处理的SIGCHLD,第三个SIGCHLD信号会被丢弃。一段时间之后，处理程序返回，内核注意到有一个待处理的SIGCHLD信号，就迫使父进程接收这个信号。父进程捕获这个信号，并第二次执行处理程序。在处理程序完成对第二个信号的处理之后，已经没有待处理的SIGCHLD信号了，而且也绝不会再有，因为第三个SIGCHLD的所有信息都已经丢失了。</p>
+<p>由此得到的重要教训是，不可以用信号未对其他进程中发生的事件计数。</p>
+<p>为了修正这个问题，我们必须回想一下，存在一个待处理的信号只是暗示自进程最后一次收到一个信号以来，至少巳经有一个这种类型的信号被发送了。所以我们必须修改SIGCHLD的处理程序，使得每次SIGCHLD处理程序被调用时，回收尽可能多的僵死子进程。图8-37展示了修改后的SIGCHLD处理程序。</p>
+<p>当我们在Linux系统上运行signal2时，它现在可以正确地回收所有的僵死子进程了：</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/3deac102-5f06-4365-bf6f-321c58ea69a2.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/3deac102-5f06-4365-bf6f-321c58ea69a2.png"></p>
+<p>linux&gt; ./signal2</p>
+<p>Hello from child 15237 </p>
+<p>Hello from child 15238 </p>
+<p>Hello from child 15239 </p>
+<p>Handler reaped child </p>
+<p>Handler reaped child Handler reaped child</p>
+<p> CR</p>
+<p> Parent processing input </p>
+<ol start="3">
+<li>可移植的信号处理</li>
+</ol>
+<p>Unix信号处理的另一个缺陷在于不同的系统有不同的信号处理语义。例如：</p>
+<p>• signal函数的语义各有不同。有些老的Unix系统在信号k被处理程序捕获之后就把对信号k的反应恢复到默认值。在这些系统上，每次运行之后，处理程序必须调用signal函数，显式地重新设置它自己。</p>
+<p>• 系统调用可以被中断。像read、write和accept这样的系统调用潜在地会阻塞进程一段较长的时间，称为慢速系统调用。在某些较早版本的Unix系统中，当处理程序捕获到一个信号时，被中断的慢速系统调用在信号处理程序返回时不再继续，而是立即返回给用户一个错误条件，并将errno设置为EINTR。在这些系统上，程序员必须包括手动重启被中断的系统调用的代码。</p>
+<p>要解决这些问题，Posix标准定义了sigaction函数，它允许用户在设置信号处理时，明确指定他们想要的信号处理语义。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigaction</span><span class="params">(<span class="keyword">int</span> signum, struct sigaction *act, struct sigaction *oldact)</span></span>;</span><br><span class="line">         返回：若成功则为<span class="number">0</span>,若出错则为一<span class="number">1</span> 。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>sigaction函数运用并不广泛，因为它要求用户设置一个复杂结构的条目。一个更简洁的方式，最初是由W.Richard Stevens提出的就是定义一个包装函数，称为Signal, 它调用sigaction。</p>
+<p>图8-38给出了Signal的定义，它的调用方式与signal函数的调用方式一样。</p>
+<p>Signal包装函数设置了一个信号处理程序，其信号处理语义如下：</p>
+<p>• 只有这个处理程序当前正在处理的那种类型的信号被阻塞。</p>
+<p>• 和所有信号实现一样，信号不会排队等待。</p>
+<p>• 只要可能，被中断的系统调用会自动重启。</p>
+<p>• 一旦设置了信号处理程序，它就会一直保持，直到Signal带着handler参数为SIG_IGN或者SIG_DFL被调用。我们在所有的代码中实现Signal包装函数。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/5d02e0d0-a54e-47c2-b827-cf5bafe3a220.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/5d02e0d0-a54e-47c2-b827-cf5bafe3a220.png"></p>
+<h3 id="第六节-同步流以避免讨厌的并发错误"><a href="#第六节-同步流以避免讨厌的并发错误" class="headerlink" title="第六节 同步流以避免讨厌的并发错误"></a>第六节 同步流以避免讨厌的并发错误</h3><p>如何编写读写相同存储位置的并发流程序的问题，困扰着数代计算机科学家。一般而言，流可能交错的数量与指令的数量呈指数关系。这些交错中的一些会产生正确的结果，而有些则不会。基本的问题是以某种方式同步并发流，从而得到最大的可行的交错的集合，每个可行的交错都能得到正确的结果。</p>
+<p>考虑图8-39中的程序，它总结了一个典型的Unixshell的结构。父进程在一个全局作业列表中记录着它的当前子进程，每个作业一个条目。addjob和deletejob函数分别向这个作业列表添加和从中删除作业</p>
+<p>当父进程创建一个新的子进程后，它就把这个子进程添加到作业列表中。当父进程在SIGCHLD处理程序中回收一个终止的（僵死）子进程时，它就从作业列表中删除这个子进程</p>
+<p>乍一看，这段代码是对的。不幸的是，可能发生下面这样的事件序列：</p>
+<p>(1)父进程执行fork函数，内核调度新创建的子进程运行，而不是父进程。</p>
+<p>(2)在父进程能够再次运行之前，子进程就终止，并且变成一个僵死进程，使得内核传递一个SIGCHLD信号给父进程。</p>
+<p>(3)后来，当父进程再次变成可运行但又在它执行之前，内核注意到有未处理的SIGCHLD信号，并通过在父进程中运行处理程序接收这个信号。</p>
+<p>(4)信号处理程序回收终止的子进程，并调用deletejob,这个函数什么也不做，因为父进程还没有把该子进程添加到列表中。</p>
+<p>(5)在处理程序运行完毕后，内核运行父进程，父进程从fork返回，通过调用add­job错误地把（不存在的）子进程添加到作业列表中。</p>
+<p>因此，对千父进程的main程序和信号处理流的某些交错，可能会在addjob之前调用deletejob。这导致作业列表中出现一个不正确的条目，对应于一个不再存在而且永远也不会被删除的作业。另一方面，也有一些交错，事件按照正确的顺序发生。例如，如果在fork调用返回时，内核刚好调度父进程而不是子进程运行那么父进程就会正确地把子进程添加到作业列表中，然后子进程终止，信号处理函数把该作业从列表中删除。</p>
+<p>这是一个称为竞争(race)的经典同步错误的示例</p>
+<p>在这个情况中，main函数中调用addjob和处理程序中调用deletejob之间存在竞争。如果addjob赢得进展，那么结果</p>
+<p>就是正确的。如果它没有，那么结果就是错误的。这样的错误非常难以调试，因为几乎不可能测试所有的交错。你可能运行这段代码十亿次，也没有一次错误，但是下一次测试却导致引发竞争的交错</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/77fd1a26-50d2-4c4c-9687-cb63405d882a.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/77fd1a26-50d2-4c4c-9687-cb63405d882a.png"></p>
+<h3 id="第七节-显式地等待信号"><a href="#第七节-显式地等待信号" class="headerlink" title="第七节 显式地等待信号"></a>第七节 显式地等待信号</h3><p>有时候主程序需要显式地等待某个信号处理程序运行。例如，当Linuxshell创建一个前台作业时，在接收下一条用户命令之前，它必须等待作业终止，被SIGCHLD处理程序回收</p>
+<p>图8-41给出了一个基本的思路。父进程设置SIGINT和SIGCHLD的处理程序，然后进入一个无限循环。它阻塞SIGCHLD信号</p>
+<p>避免8.5. 6节中讨论过的父进程和子进程之间的竞争。创建了子进程之后，把pid重置为0,取消阻塞SIGCHLD,然后以循环的方式等待pid变为非零。子进程终止后，处理程序回收它，把它非零的PID赋值给全局pid变量。这会终止循环，父进程继续其他的工作，然后开始下一次迭代。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c0ed0e1c-c584-46c4-8c67-586b7972ebaf.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c0ed0e1c-c584-46c4-8c67-586b7972ebaf.png"></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c8852de3-fe85-4e51-8c82-8f8b4daaa61d.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c8852de3-fe85-4e51-8c82-8f8b4daaa61d.png"></p>
+<p>当这段代码正确执行的时候，循环在浪费处理器资源。我们可能会想要修补这个问题，在循环体内插入pause:</p>
+<p>while (!pid) I* Race! *I </p>
+<p>pause();</p>
+<p>注意，我们仍然需要一个循环，因为收到一个或多个SIGINT信号，pause会被中断。不过，这段代码有很严重的竞争条件：如果在while测试后和pause之前收到SIGCHLD信号，pause会永远睡眠。另一个选择是用sleep替换pause:</p>
+<p>while (!pid) I* Too slow! *I </p>
+<p>sleep(!); </p>
+<p>当这段代码正确执行时，它太慢了。如果在while之后pause之前收到信号，程序必须等相当长的一段时间才会再次检查循环的终止条件。使用像nanosleep这样更高精度的休眠函数也是不可接受的，因为没有很好的方法来确定休眠的间隔。间隔太小，循环会太浪费。间隔太大，程序又会太慢。合适的解决方法是使用sigsuspend。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;signal.h&gt;</span><br><span class="line"></span><br><span class="line"> int sigsuspend(const sigset_t *mask);</span><br><span class="line">  返回：—l。</span><br></pre></td></tr></table></figure>
+
+<p>sigsuspend函数暂时用mask替换当前的阻塞集合，然后挂起该进程，直到收到一个信号，其行为要么是运行一个处理程序，要么是终止该进程。如果它的行为是终止，那么该进程不从sigsuspend返回就直接终止。如果它的行为是运行一个处理程序，那么sigsuspend从处理程序返回，恢复调用sigsuspend时原有的阻塞集合。</p>
+<p>sigsuspend函数等价于下述代码的原子的（不可中断的）版本：</p>
+<p>sigprocmask(SIG_SETMASK, &amp;mask, &amp;prev); </p>
+<p>pause(); </p>
+<p>sigprocmask(SIG_SETMASK, &amp;prev, NULL); </p>
+<p>原子属性保证对sigprocrnask(第1行）和pause(第2行）的调用总是一起发生的，不会被中断。这样就消除了潜在的竞争，即在调用sigprocrnask之后但在调用pause之前收到了一个信号。</p>
+<p>图8-42展示了如何使用sigsuspend来替代图8-41中的循环。在每次调用sigsus­pend之前，都要阻塞SIGCHLD。sigsuspend会暂时取消阻塞SIGCHLD,然后休眠，直到父进程捕获信号。在返回之前，它会恢复原始的阻塞集合，又再次阻塞SIGCHLD。如果父进程捕获一个SIGINT信号，那么循环测试成功，下一次迭代又再次调用sigsus­pend。如果父进程捕获一个SIGCHLD,那么循环测试失败，会退出循环。此时，SIGCHLD是被阻塞的，所以我们可以可选地取消阻塞SIGCHLD。在真实的有后台作业需要回收的shell中这样做可能会有用处。</p>
+<p>sigsuspend版本比起原来的循环版本不那么浪费，避免了引入pause带来的竞争，又比sleep更有效率。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/be2bc8fe-427b-444f-9093-2bfbee549c60.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/be2bc8fe-427b-444f-9093-2bfbee549c60.png"></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/b0e24654-f8c5-4c3e-9fab-935d60dc834e.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/b0e24654-f8c5-4c3e-9fab-935d60dc834e.png"></p>
+<h2 id="第六部分-非本地跳转"><a href="#第六部分-非本地跳转" class="headerlink" title="第六部分 非本地跳转"></a>第六部分 非本地跳转</h2><p>语言提供了一种用户级异常控制流形式，称为非本地跳转(nonlocaljump), 它将控制直接从一个函数转移到另一个当前正在执行的函数，而不需要经过正常的调用－返回序列。非本地跳转是通过setjrnp和longjrnp函数来提供的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;setjmp.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setjmp</span><span class="params">(jmp_buf env)</span></span>; </span><br><span class="line"></span><br><span class="line">sigsetjmp(sigjmp_buf env, <span class="keyword">int</span> savesigs); </span><br><span class="line"></span><br><span class="line">返回：setjmp返回<span class="number">0</span>,longjmp返回非零。</span><br></pre></td></tr></table></figure>
+
+<p>setjmp函数在env缓冲区中保存当前调用环境，以供后面的longjmp使用，并返回0。调用环境包括程序计数器、栈指针和通用目的寄存器。出于某种超出本书描述范围的原因，setjmp返回的值不能被赋值给变量：</p>
+<p>re= setjmp(env); I* Wrong! *I </p>
+<p>不过它可以安全地用在switch或条件语句的测试中</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;setjmp.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">longjmp</span><span class="params">(jmp_buf env, <span class="keyword">int</span> retval)</span></span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">siglongjmp</span><span class="params">(sigjmp_buf env, <span class="keyword">int</span> retval)</span></span>; </span><br><span class="line">从不返回</span><br></pre></td></tr></table></figure>
+
+<p>longjmp函数从env缓冲区中恢复调用环境，然后触发一个从最近一次初始化env的setjmp调用的返回。然后setjmp返回，并带有非零的返回值retval。</p>
+<p>   第一眼看过去，setjmp和longjmp之间的相互关系令人迷惑setjmp函数只被调用一次，但返回多次：一次是当第一次调用setjmp,而调用环境保存在缓冲区env中时，一次是为每个相应的longjmp调用。另一方面，longjmp函数被调用一次，但从不返回。</p>
+<p>​    非本地跳转的一个重要应用就是允许从一个深层嵌套的函数调用中立即返回，通常是由检测到某个错误情况引起的。如果在一个深层嵌套的函数调用中发现了一个错误情况，我们可以使用非本地跳转直接返回到一个普通的本地化的错误处理程序，而不是费力地解开调用栈。</p>
+<p>​      图8-43展示了一个示例，说明这可能是如何工作的。main函数首先调用setjmp以保存当前的调用环境，然后调用函数foo,foo依次调用函数bar。如果foo或者bar遇到一个错误，它们立即通过一次longjmp调用从setjmp返回。se七jmp的非零返回值指明了错误类型，随后可以被解码，且在代码中的某个位置进行处理</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/671c57cf-53ec-44c6-aabc-5724a05e63da.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/671c57cf-53ec-44c6-aabc-5724a05e63da.png">   <img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/d33dbe98-c638-4ac8-9836-eb4fe2186ff6.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/d33dbe98-c638-4ac8-9836-eb4fe2186ff6.png"></p>
+<p>longjmp允许它跳过所有中间调用的特性可能产生意外的后果。例如，如果中间函数调用中分配了某些数据结构，本来预期在函数结尾处释放它们，那么这些释放代码会被跳过，因而会产生内存泄漏</p>
+<p>​       非本地跳转的另一个重要应用是使一个信号处理程序分支到一个特殊的代码位置，而不是返回到被信号到达中断了的指令的位置。图8-44展示了一个简单的程序，说明了这种基本技术。当用户在键盘上键入Ctrl+C时，这个程序用信号和非本地跳转来实现软重启。sig­setjrnp和siglongjrnp函数是se七jrnp和longjrnp的可以被信号处理程序使用的版本。</p>
+<p>​         在程序第一次启动时，对sigsetjrnp函数的初始调用保存调用环境和信号的上下文（包括待处理的和被阻塞的信号量）。随后，主函数进入一个无限处理循环。当用户键入Ctrl+C时，内核发送一个SIGINT信号给这个进程，该进程捕获这个信号。不是从信号处理程序返回，如果是这样那么信号处理程序会将控制返回给被中断的处理循环，反之，处理程序完成一个非本地跳转，回到main函数的开始处。当我们在系统上运行这个程序时，得到以下输出：</p>
+<p>linux&gt; ./restart starting </p>
+<p>processing .. . </p>
+<p>processing .. . </p>
+<p>Ctrl+C </p>
+<p>restarting processing … </p>
+<p>Ctrl+C </p>
+<p>restarting processing …</p>
+<p>关千这个程序有两件很有趣的事情。首先，为了避免竞争，必须在调用了sigsetjmp之后再设置处理程序。否则，就会冒在初始调用sigsetjmp为siglongjmp设置调用环境之前运行处理程序的风险。其次，你可能巳经注意到了，sigsetjmp和siglongjmp函数不在图8-33中异步信号安全的函数之列。原因是一般来说siglongjmp可以跳到任意代码，所以我们必须小心，只在siglongjmp可达的代码中调用安全的函数。在本例中，我们调用安全的sio_puts和sleep函数。不安全的exit函数是不可达的。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/68615084-8bd3-4840-a46b-e03bc5cd3021.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/68615084-8bd3-4840-a46b-e03bc5cd3021.png"></p>
+<h2 id="第七部分-操作进程的工具"><a href="#第七部分-操作进程的工具" class="headerlink" title="第七部分 操作进程的工具"></a>第七部分 操作进程的工具</h2><p>Linux系统提供了大扯的监控和操作进程的有用工具。STRACE: 打印一个正在运行的程序和它的子进程调用的每个系统调用的轨迹。对于好奇的学生而言，这是一个令人着迷的工具。用-static编译你的程序，能得到一个更干净的、不带有大量与共享库相关的输出的轨迹。PS: 列出当前系统中的进程（包括僵死进程）。TOP: 打印出关千当前进程资源使用的信息。PMAP: 显示进程的内存映射。/proc: 一个虚拟文件系统，以ASCII文本格式输出大量内核数据结构的内容，用户程序可以读取这些内容。比如，输入”cat/proc/loadavg”,可以看到你的Linux系统上当前的平均负载。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>异常控制流(ECF)发生在计算机系统的各个层次，是计算机系统中提供并发的基本机制。在硬件层，异常是由处理器中的事件触发的控制流中的突变。控制流传递给一个软件处理程序，该处理程序进行一些处理，然后返回控制给被中断的控制流。有四种不同类型的异常：中断、故障、终止和陷阱。当一个外部i/0设备（例如定时跺芯片或者磁盘控制器）设置了处理器芯片上的中断管脚时，（对千任意指令）中断会异步地发生。控制返回到故障指令后面的那条指令。一条指令的执行可能导致故障和终止同步发生。故障处理程序会重新启动故障指令，而终止处理程序从不将控制返回给被中断的流。最后，陷阱就像是用来实现向应用提供到操作系统代码的受控的入口点的系统调用的函数调用。在操作系统层，内核用ECF提供进程的基本概念。进程提供给应用两个重要的抽象：1)逻辑控制流，它提供给每个程序一个假象，好像它是在独占地使用处理器，2)私有地址空间，它提供给每个程序一个假象，好像它是在独占地使用主存。在操作系统和应用程序之间的接口处，应用程序可以创建子进程，等待它们的子进程停止或者终止，运行新的程序，以及捕获来自其他进程的信号。信号处理的语义是微妙的，并且随系统不同而不同。然而，在与Posix兼容的系统上存在着一些机制，允许程序清楚地指定期望的信号处理语义。最后，在应用层，C程序可以使用非本地跳转来规避正常的调用／返回栈规则，并且直接从一个函数分支到另一个函数。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">answer77</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://answer77.top/2021/02/17/CSAPP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/">http://answer77.top/2021/02/17/CSAPP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://answer77.top" target="_blank">answer77</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/csapp/">csapp</a><a class="post-meta__tags" href="/tags/pwn%E5%9F%BA%E7%A1%80/">pwn基础</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://s3.ax1x.com/2020/12/15/ruoc4S.png" target="_blank"><img class="post-qr-code-img" src="https://s3.ax1x.com/2020/12/15/ruoc4S.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://s3.ax1x.com/2020/12/15/ruo29g.jpg" target="_blank"><img class="post-qr-code-img" src="https://s3.ax1x.com/2020/12/15/ruo29g.jpg" alt="支付寶"/></a><div class="post-qr-code-desc">支付寶</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/21/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B9%9D%E7%AB%A0/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">csapp学习笔记第九章</div></div></a></div><div class="next-post pull-right"><a href="/2021/02/14/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%83%E7%AB%A0/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">学习笔记第七章</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/02/10/CSAPP 学习笔记（第六章）/" title="CSAPP 学习笔记（第六章）"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-10</div><div class="title">CSAPP 学习笔记（第六章）</div></div></a></div><div><a href="/2021/02/14/csapp学习笔记第七章/" title="学习笔记第七章"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-14</div><div class="title">学习笔记第七章</div></div></a></div><div><a href="/2021/02/03/csapp lab 3 attack lab-/" title="csapp lab 3 attack lab"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-03</div><div class="title">csapp lab 3 attack lab</div></div></a></div><div><a href="/2021/02/13/csapp lab 5 cache lab/" title="csapp lab 5 cache lab"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-13</div><div class="title">csapp lab 5 cache lab</div></div></a></div><div><a href="/2021/02/04/csapp lab1 data Lab/" title="csapp lab1 data Lab"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-04</div><div class="title">csapp lab1 data Lab</div></div></a></div><div><a href="/2021/02/01/csapp lab2 boom lab/" title="csapp lab2 boom lab"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-01</div><div class="title">csapp lab2 boom lab</div></div></a></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://s3.ax1x.com/2020/12/12/rVz6Ld.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">answer77</div><div class="author-info__description">大二pwn菜鸡一个</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E5%BC%82%E5%B8%B8%E6%8E%A7%E5%88%B6%E6%B5%81"><span class="toc-number">1.</span> <span class="toc-text">第八章 异常控制流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E5%BC%82%E5%B8%B8"><span class="toc-number">1.1.</span> <span class="toc-text">第一部分 异常</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">1.1.1.</span> <span class="toc-text">第一节 异常处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-%E5%BC%82%E5%B8%B8%E7%9A%84%E7%B1%BB%E5%88%AB"><span class="toc-number">1.1.2.</span> <span class="toc-text">第二节 异常的类别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-Linux-x86-64%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8"><span class="toc-number">1.1.3.</span> <span class="toc-text">第三节 Linux&#x2F;x86-64系统中的异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.1.4.</span> <span class="toc-text">第二部分 进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-%E9%80%BB%E8%BE%91%E6%8E%A7%E5%88%B6%E6%B5%81"><span class="toc-number">1.1.5.</span> <span class="toc-text">第一节 逻辑控制流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-%E5%B9%B6%E5%8F%91%E6%B5%81"><span class="toc-number">1.1.6.</span> <span class="toc-text">第二节 并发流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-%E7%A7%81%E6%9C%89%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4"><span class="toc-number">1.1.7.</span> <span class="toc-text">第三节 私有地址空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%8A%82-%E7%94%A8%E6%88%B7%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%86%85%E6%A0%B8%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.1.8.</span> <span class="toc-text">第四节 用户模式和内核模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E8%8A%82-%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><span class="toc-number">1.1.9.</span> <span class="toc-text">第五节 上下文切换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">第三节 系统调用错误处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86-%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">1.3.</span> <span class="toc-text">第四部分 进程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8BID"><span class="toc-number">1.3.1.</span> <span class="toc-text">第一节 获取进程ID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-%E5%88%9B%E5%BB%BA%E5%92%8C%E7%BB%88%E6%AD%A2%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.3.2.</span> <span class="toc-text">第二节 创建和终止进程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-%E5%9B%9E%E6%94%B6%E5%AD%90%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">第三节 回收子进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%8A%82-%E8%AE%A9%E8%BF%9B%E7%A8%8B%E4%BC%91%E7%9C%A0"><span class="toc-number">1.4.1.</span> <span class="toc-text">第四节 让进程休眠</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E8%8A%82-%E5%8A%A0%E8%BD%BD%E5%B9%B6%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.4.2.</span> <span class="toc-text">第五节 加载并运行程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E8%8A%82-%E5%88%A9-%E7%94%A8fork%E5%92%8Cexecve%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.4.3.</span> <span class="toc-text">第六节 利 用fork和execve运行程序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86-%E4%BF%A1%E5%8F%B7"><span class="toc-number">1.5.</span> <span class="toc-text">第五部分 信号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-%E4%BF%A1%E5%8F%B7%E6%9C%AF%E8%AF%AD"><span class="toc-number">1.5.1.</span> <span class="toc-text">第一节 信号术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-%E5%8F%91%E9%80%81%E4%BF%A1%E5%8F%B7"><span class="toc-number">1.5.2.</span> <span class="toc-text">第二节 发送信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-%E6%8E%A5%E6%94%B6%E4%BF%A1%E5%8F%B7"><span class="toc-number">1.5.3.</span> <span class="toc-text">第三节 接收信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%8A%82-%E9%98%BB%E5%A1%9E%E5%92%8C%E8%A7%A3%E9%99%A4%E9%98%BB%E5%A1%9E%E4%BF%A1%E5%8F%B7"><span class="toc-number">1.5.4.</span> <span class="toc-text">第四节 阻塞和解除阻塞信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E8%8A%82-%E7%BC%96%E5%86%99%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.5.5.</span> <span class="toc-text">第五节 编写信号处理程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E8%8A%82-%E5%90%8C%E6%AD%A5%E6%B5%81%E4%BB%A5%E9%81%BF%E5%85%8D%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%B9%B6%E5%8F%91%E9%94%99%E8%AF%AF"><span class="toc-number">1.5.6.</span> <span class="toc-text">第六节 同步流以避免讨厌的并发错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E8%8A%82-%E6%98%BE%E5%BC%8F%E5%9C%B0%E7%AD%89%E5%BE%85%E4%BF%A1%E5%8F%B7"><span class="toc-number">1.5.7.</span> <span class="toc-text">第七节 显式地等待信号</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E9%83%A8%E5%88%86-%E9%9D%9E%E6%9C%AC%E5%9C%B0%E8%B7%B3%E8%BD%AC"><span class="toc-number">1.6.</span> <span class="toc-text">第六部分 非本地跳转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E9%83%A8%E5%88%86-%E6%93%8D%E4%BD%9C%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-number">1.7.</span> <span class="toc-text">第七部分 操作进程的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.8.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/02/21/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B9%9D%E7%AB%A0/" title="csapp学习笔记第九章"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csapp学习笔记第九章"/></a><div class="content"><a class="title" href="/2021/02/21/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B9%9D%E7%AB%A0/" title="csapp学习笔记第九章">csapp学习笔记第九章</a><time datetime="2021-02-21T01:40:17.000Z" title="发表于 2021-02-21 09:40:17">2021-02-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/17/CSAPP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/" title="csapp学习笔记第八章"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csapp学习笔记第八章"/></a><div class="content"><a class="title" href="/2021/02/17/CSAPP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AB%E7%AB%A0/" title="csapp学习笔记第八章">csapp学习笔记第八章</a><time datetime="2021-02-17T13:36:19.000Z" title="发表于 2021-02-17 21:36:19">2021-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/14/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%83%E7%AB%A0/" title="学习笔记第七章"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学习笔记第七章"/></a><div class="content"><a class="title" href="/2021/02/14/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%83%E7%AB%A0/" title="学习笔记第七章">学习笔记第七章</a><time datetime="2021-02-14T08:44:31.000Z" title="发表于 2021-02-14 16:44:31">2021-02-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/14/lab/" title="lab-"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="lab-"/></a><div class="content"><a class="title" href="/2021/02/14/lab/" title="lab-">lab-</a><time datetime="2021-02-14T01:49:20.000Z" title="发表于 2021-02-14 09:49:20">2021-02-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/13/csapp%20lab%205%20cache%20lab/" title="csapp lab 5 cache lab"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csapp lab 5 cache lab"/></a><div class="content"><a class="title" href="/2021/02/13/csapp%20lab%205%20cache%20lab/" title="csapp lab 5 cache lab">csapp lab 5 cache lab</a><time datetime="2021-02-13T02:08:09.000Z" title="发表于 2021-02-13 10:08:09">2021-02-13</time></div></div></div></div></div></div></div></main><footer id="footer" style="background: rgba(0,0,0,0)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By answer77</div><div class="footer_custom_text">qq:1204342476</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=5379200926&auto=1&height=430"></iframe><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="ture"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+})</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":200,"height":600},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
