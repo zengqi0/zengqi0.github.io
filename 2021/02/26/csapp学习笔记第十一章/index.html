@@ -1,0 +1,409 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>csapp学习笔记第十一章 | answer77</title><meta name="author" content="answer77"><meta name="copyright" content="answer77"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="第十一章 网络编程网络应用随处可见。任何时候浏览Web、发送email信息或是玩在线游戏，你就正在使用网络应用程序。有趣的是，所有的网络应用都是基千相同的基本编程模型，有着相似的整体逻辑结构，并且依赖相同的编程接口。网络应用依赖千很多在系统研究中已经学习过的概念。例如，进程、信号、字节顺序、内存映射以及动态内存分配，都扮演着重要的角色。还有一些新概念要掌握。我们需要理解基本的客户端－服务器编程模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="csapp学习笔记第十一章">
+<meta property="og:url" content="http://answer77.top/2021/02/26/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/index.html">
+<meta property="og:site_name" content="answer77">
+<meta property="og:description" content="第十一章 网络编程网络应用随处可见。任何时候浏览Web、发送email信息或是玩在线游戏，你就正在使用网络应用程序。有趣的是，所有的网络应用都是基千相同的基本编程模型，有着相似的整体逻辑结构，并且依赖相同的编程接口。网络应用依赖千很多在系统研究中已经学习过的概念。例如，进程、信号、字节顺序、内存映射以及动态内存分配，都扮演着重要的角色。还有一些新概念要掌握。我们需要理解基本的客户端－服务器编程模型">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-02-26T02:58:35.000Z">
+<meta property="article:modified_time" content="2021-02-28T09:16:05.954Z">
+<meta property="article:author" content="answer77">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://answer77.top/2021/02/26/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-02-28 17:16:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://s3.ax1x.com/2020/12/12/rVz6Ld.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 总览</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">answer77</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 总览</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">csapp学习笔记第十一章</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-26T02:58:35.000Z" title="发表于 2021-02-26 10:58:35">2021-02-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-28T09:16:05.954Z" title="更新于 2021-02-28 17:16:05">2021-02-28</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="第十一章-网络编程"><a href="#第十一章-网络编程" class="headerlink" title="第十一章 网络编程"></a>第十一章 网络编程</h1><p>网络应用随处可见。任何时候浏览Web、发送email信息或是玩在线游戏，你就正在使用网络应用程序。有趣的是，所有的网络应用都是基千相同的基本编程模型，有着相似的整体逻辑结构，并且依赖相同的编程接口。网络应用依赖千很多在系统研究中已经学习过的概念。例如，进程、信号、字节顺序、内存映射以及动态内存分配，都扮演着重要的角色。还有一些新概念要掌握。我们需要理解基本的客户端－服务器编程模型，以及如何编写使用因特网提供的服务的客户端－服务器程序。最后，我们将把所有这些概念结合起来，开发一个虽小但功能齐全的Web服务器，能够为真实的Web浏览器提供静态和动态的文本和图形内容</p>
+<h2 id="第一节-客户端－服务器编程模型"><a href="#第一节-客户端－服务器编程模型" class="headerlink" title="第一节 客户端－服务器编程模型"></a>第一节 客户端－服务器编程模型</h2><p>每个网络应用都是基千客户端－服务器模型的。采用这个模型，一个应用是由一个服务器进程和一个或者多个客户端进程组成。服务器管理某种资源，并且通过操作这种资源来为它的客户端提供某种服务。例如，一个Web服务器管理着一组磁盘文件，它会代表客户端进行检索和执行。一个FTP服务器管理着一组磁盘文件，它会为客户端进行存储和检索。相似地，一个电子邮件服务器管理着一些文件，它为客户端进行读和更新。客户端－服务器模型中的基本操作是事务(transaction)(见图11-1)。一个客户端－服务器事务由以下四步组成。</p>
+<p>1)当一个客户端需要服务时，它向服务器发送一个请求，发起一个事务。例如，当Web浏览器需要一个文件时，它就发送一个请求给Web服务器。</p>
+<p>2)服务器收到请求后，解释它，并以适当的方式操作它的资源。例如，当Web服务器收到浏览器发出的请求后，它就读一个磁盘文件。</p>
+<p>（3）服务器给客户端发送一个响应，并等待下一个请求。例如，Web服务器将文件发送回客户端。</p>
+<p>（4）客户端收到响应并处理它。例如，当Web浏览器收到来自服务器的一页后，就在屏幕上显示此页。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/e01ca798-3134-4b64-89d5-8af2208ee288.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/e01ca798-3134-4b64-89d5-8af2208ee288.png"></p>
+<p>认识到客户端和服务器是进程，而不是常提到的机器或者主机，这是很重要的。一台主机可以同时运行许多不同的客户端和服务器，而且一个客户端和服务器的事务可以在同一台或是不同的主机上。无论客户端和服务器是怎样映射到主机上的，客户端－服务器模．型都是相同的。</p>
+<h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><p>客户端和服务器通常运行在不同的主机上，并且通过计算机网络的硬件和软件资源来通信。网络是很复杂的系统，在这里我们只想了解一点皮毛。我们的目标是从程序员的角度给你一个切实可行的思维模型。对主机而言，网络只是又一种1/0设备，是数据源和数据接收方，如图11-2所示。一个插到1/0总线扩展槽的适配器提供了到网络的物理接口。从网络上接收到的数据从适配器经过I/0和内存总线复制到内存，通常是通过DMA传送。相似地，数据也能从内存复制到网络。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/bfb2ab40-28c5-4b4b-a8d9-cd790fe56f2b.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/bfb2ab40-28c5-4b4b-a8d9-cd790fe56f2b.png"></p>
+<p>物理上而言，网络是一个按照地理远近组成的层次系统。最低层是LAN(Local Area Network, 局域网），在一个建筑或者校园范围内</p>
+<p>一个以太网段(Ethernetsegment)包括一些电缆（通常是双绞线）和一个叫做集线器的小盒子，如图11-3所示。以太网段通常跨越一些小的区域，例如某建筑物的一个房间或者一个楼层。每根电缆都有相同的最大位带宽，通常是lOOMb/s或者lGb/s。一端连接到主机的适配器，而另一端则连接到集线器的一个端口上。集线器不加分辨地将从一个端口上收到的每个位复制到其他所有的端口上。因此，每台主机都能看到每个位。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/a8a520c2-20bd-4fe9-aa68-ead6bcdd5ac0.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/a8a520c2-20bd-4fe9-aa68-ead6bcdd5ac0.png"></p>
+<p>每个以太网适配器都有一个全球唯一的48位地址，它存储在这个适配器的非易失性存储器上。一台主机可以发送一段位（称为帧(frame))到这个网段内的其他任何主机。每个帧包括一些固定数量的头部(header)位，用来标识此帧的源和目的地址以及此帧的长度，此后紧随的就是数据位的有效栽荷(payload)。每个主机适配器都能看到这个帧，但是只有目的主机实际读取它。使用一些电缆和叫做网桥(bridge)的小盒子，多个以太网段可以连接成较大的局域网，称为桥接以太网(bridgedEthernet), 如图11-4所示。桥接以太网能够跨越整个建筑物或者校区。在一个桥接以太网里，一些电缆连接网桥与网桥，而另外一些连接网桥和集线器。这些电缆的带宽可以是不同的。在我们的示例中，网桥与网桥之间的电缆有lGb/s的带宽，而四根网桥和集线器之间电缆的带宽却是lOOMb/s。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/3b7db87f-0175-43ce-b017-2aee68bde58b.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/3b7db87f-0175-43ce-b017-2aee68bde58b.png"></p>
+<p>网桥比集线器更充分地利用了电缆带宽。利用一种聪明的分配算法，它们随着时间自动学习哪个主机可以通过哪个端口可达，然后只在有必要时，有选择地将帧从一个端口复制到另一个端口。例如，如果主机A发送一个帧到同网段上的主机B,当该帧到达网桥X的输入端口时，X就将丢弃此帧，因而节省了其他网段上的带宽。然而，如果主机A发送一个帧到一个不同网段上的主机C,那么网桥X只会把此帧复制到和网桥Y相连的端口上，网桥Y会只把此帧复制到与主机C的网段连接的端口。为了简化局域网的表示，我们将把集线器和网桥以及连接它们的电缆画成一根水平线，如图11-5所示。在层次的更高级别中，多个不兼容的局域网可以通过叫做路由器(router)的特殊计算机连接起来，组成一个internet(互联网络）。每台路由器对于它所连接到的每个网络都有一个适配器（端口）。路由器也能连接高速点到点电话连接，这是称为WAN(Wide-Area Network, 广域网）的网络示例，之所以这么叫是因为它们覆盖的地理范围比局域网的大。一般而言，路由器可以用来由各种局域网和广域网构建互联网络。例如，图11-6展示了一个互联网络的示例，3台路由器连接了一对局域网和一对广域网。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/db0b372f-dcce-4481-8a83-5a3068bc60e4.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/db0b372f-dcce-4481-8a83-5a3068bc60e4.png"></p>
+<p>互联网络至关重要的特性是，它能由采用完全不同和不兼容技术的各种局域网和广域网组成。每台主机和其他每台主机都是物理相连的，但是如何能够让某台源主机跨过所有这些不兼容的网络发送数据位到另一台目的主机呢？解决办法是一层运行在每台主机和路由器上的协议软件，它消除了不同网络之间的差异。这个软件实现一种协议，这种协议控制主机和路由器如何协同工作来实现数据传输。这种协议必须提供两种基本能力：</p>
+<p>•命名机制。不同的局域网技术有不同和不兼容的方式来为主机分配地址。互联网络协议通过定义一种一致的主机地址格式消除了这些差异。每台主机会被分配至少一个这种互联网络地址(internetaddress) , 这个地址唯一地标识了这台主机。</p>
+<p>• 传送机制。在电缆上编码位和将这些位封装成帧方面，不同的联网技术有不同的和不兼容的方式。互联网络协议通过定义一种把数据位捆扎成不连续的片（称为包）的统一方式，从而消除了这些差异。一个包是由包头和有效栽荷组成的，其中包头包括包的大小以及源主机和目的主机的地址，有效载荷包括从源主机发出的数据位。</p>
+<p>图11-7展示了主机和路由器如何使用互联网络协议在不兼容的局域网间传送数据的一个示例。这个互联网络示例由两个局域网通过一台路由器连接而成。一个客户端运行在主机A上，主机A与LANI相连，它发送一串数据字节到运行在主机B上的服务器端，主机B则连接在LAN2上。这个过程有8个基本步骤</p>
+<p>1)运行在主机A上的客户端进行一个系统调用，从客户端的虚拟地址空间复制数据到内核缓冲区中。</p>
+<p>2)主机A上的协议软件通过在数据前附加互联网络包头和LANI帧头，创建了一个LANI的帧。互联网络包头寻址到互联网络主机B。LANI帧头寻址到路由器。然后它传送此帧到适配器。注意，LANI帧的有效载荷是一个互联网络包，而互联网络包的有效载荷是实际的用户数据。这种封装是基本的网络互联方法之一。</p>
+<ol start="3">
+<li>LANI适配器复制该帧到网络上。</li>
+</ol>
+<p>4)当此帧到达路由器时，路由器的LANI适配器从电缆上读取它，并把它传送到协议软件。</p>
+<p>5)路由器从互联网络包头中提取出目的互联网络地址，并用它作为路由表的索引，确定向哪里转发这个包，在本例中是LAN2。路由器剥落旧的LANl的帧头，加上寻址到主机B的新的LAN2帧头，并把得到的帧传送到适配器。</p>
+<p>6)路由器的LAN2适配器复制该帧到网络上。</p>
+<p>7)当此帧到达主机B时，它的适配器从电缆上读到此帧，并将它传送到协议软件。</p>
+<p>8)最后，主机B上的协议软件剥落包头和帧头。当服务器进行一个读取这些数据的系统调用时，协议软件最终将得到的数据复制到服务器的虚拟地址空间。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/3e224a9b-b306-4166-9f2e-e214cdd9d80d.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/3e224a9b-b306-4166-9f2e-e214cdd9d80d.png"></p>
+<p>当然，在这里我们掩盖了许多很难的问题。如果不同的网络有不同帧大小的最大值，该怎么办呢？路由器如何知道该往哪里转发帧呢？当网络拓扑变化时，如何通知路由器？如果一个包丢失了又会如何呢？虽然如此，我们的示例抓住了互联网络思想的精髓，封装是关键。</p>
+<h2 id="第三部分-全球IP因特网"><a href="#第三部分-全球IP因特网" class="headerlink" title="第三部分 全球IP因特网"></a>第三部分 全球IP因特网</h2><p>全球IP因特网是最著名和最成功的互联网络实现。从1969年起，它就以这样或那样的形式存在了。虽然因特网的内部体系结构复杂而且不断变化，但是自从20世纪80年代早期以来，客户端－服务器应用的组织就一直保持着相当的稳定。</p>
+<p>图11-8展示了一个因特网客户端－服务器应用程序的基本硬件和软件组织</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/4f152b94-0fdc-4245-bf77-1a95cd3a0ba3.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/4f152b94-0fdc-4245-bf77-1a95cd3a0ba3.png"></p>
+<p>每台因特网主机都运行实现TCP/IP协议）的软软件，几乎每个现代计算机系统都支持这个协议。因特网的客户端和服务器混合使用套接宇接口函数和UnixI/0函数来进行通信（我们将在11.4节中介绍套接字接口）。</p>
+<p>通常将套接字函数实现为系统调用，这些系统调用会陷入内核，并调用各种内核模式的TCP/IP函数。</p>
+<p>TCP/IP实际是一个协议族，其中每一个都提供不同的功能。例如，IP协议提供基本的命名方法和递送机制，这种递送机制能够从一台因特网主机往其他主机发送包，也叫做数据报(datagram)。IP机制从某种意义上而言是不可靠的，因为，如果数据报在网络中丢失或者重复，它并不会试图恢复。UDP(UnreliableDatagram Protocol, 不可靠数据报协议）稍微扩展了IP协议，这样一来，包可以在进程间而不是在主机间传送。TCP是一个构建在IP之上的复杂协议，提供了进程间可靠的全双工（双向的）连接。为了简化讨论，我们将TCP/IP看做是一个单独的整体协议。我们将不讨论它的内部工作，只讨论TCP和IP为应用程序提供的某些基本功能。我们将不讨论UDP。从程序员的角度，我们可以把因特网看做一个世界范围的主机集合，满足以下特性：</p>
+<p>• 主机集合被映射为一组32位的IP地址。</p>
+<p>• 这组IP地址被映射为一组称为因特网域名(Internetdomain name)的标识符。</p>
+<p>• 因特网主机上的进程能够通过连接(connection)和任何其他因特网主机上的进程通信。接下来三节将更详细地讨论这些基本的因特网概念</p>
+<h3 id="第一节-IP地址"><a href="#第一节-IP地址" class="headerlink" title="第一节 IP地址"></a>第一节 IP地址</h3><p>一个IP地址就是一个32位无符号整数。网络程序将IP地址存放在如图11-9所示的IP地址结构中。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/1f39b9e1-e8aa-4d52-914e-3e695c25fd62.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/1f39b9e1-e8aa-4d52-914e-3e695c25fd62.png"></p>
+<p>把一个标量地址存放在结构中，是套接字接口早期实现的不幸产物。为IP地址定义一个标量类型应该更有意义，但是现在更改已经太迟了，因为已经有大量应用是基于此的。因为因特网主机可以有不同的主机字节顺序，TCP/IP为任意整数数据项定义了统一的网络字节顺序(networkbyte order) (大端字节顺序），例如IP地址，它放在包头中跨过网络被</p>
+<p>携带。在IP地址结构中存放的地址总是以（大端法）网络字节顺序存放的，即使主机字节顺序(host byte order)是小端法。Unix提供了下面这样的函数在网络和主机字节顺序间实现转换。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/6fa4c939-022a-4387-b38b-b9690ac6a69a.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/6fa4c939-022a-4387-b38b-b9690ac6a69a.png"></p>
+<p>hotnl函数将32位整数由主机字节顺序转换为网络字节顺序。</p>
+<p>ntohl函数将32位整数从网络字节顺序转换为主机字节。htons和ntohs函数为16位无符号整数执行相应的转换。注意，没有对应的处理64位值的函数。IP地址通常是以一种称为点分十进制表示法来表示的，这里，每个字节由它的十进制值表示，并且用句点和其他字节间分开。</p>
+<p>例如，128.2.194.242就是地址0x8002c2f2的点分十进制表示。在Linux系统上，你能够使用HOSTNAME命令来确定你自己主机的点分十进制地址</p>
+<p>linux&gt; hostname -i </p>
+<p>128.2.210.175</p>
+<p>应用程序使用inet_pton和inet_ntop函数来实现IP地址和点分十进制串之间的转换</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/b25eade8-8ff4-4c38-8804-613cd318cb95.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/b25eade8-8ff4-4c38-8804-613cd318cb95.png"></p>
+<p>在这些函数名中，”n”代表网络，”p”代表表示。它们可以处理32位IPv4地址(AF_IN-ET) (就像这里展示的那样），或者128位IPv6地址(AF_INET6)(这部分我们不讲）。inet—pton函数将一个点分十进制串(src)转换为一个二进制的网络字节顺序的IP地址(dst)。如果src没有指向一个合法的点分十进制字符串，那么该函数就返回0。任何其他错误会返回—1,并设置errno。相似地，inet_ntop函数将一个二进制的网络字节顺序的IP地址(src)转换为它所对应的点分十进制表示，并把得到的以null结尾的字符串的最多size个字节复制到dst。</p>
+<h3 id="第三节-因特网域名"><a href="#第三节-因特网域名" class="headerlink" title="第三节 因特网域名"></a>第三节 因特网域名</h3><p>因特网客户端和服务器互相通信时使用的是IP地址。然而，对千人们而言，大整数是很难记住的，所以因特网也定义了一组更加人性化的域名(domainname), 以及一种将域名映射到IP地址的机制。域名是一串用句点分隔的单词（字母、数字和破折号），例如whaleshark.ics.cs.cmu.ed</p>
+<p>域名集合形成了一个层次结构，每个域名编码了它在这个层次中的位置。通过一个示例你将很容易理解这点。图11-10展示了域名层次结构的一部分。层次结构可以表示为一棵树。树的节点表示域名，反向到根的路径形成了域名。子树称为子域(subdomain)。层次结构中的第一层是一个未命名的根节点。下一层是一组一级域名</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/9bb52e7b-c99a-4bc3-a520-d9aed528ffb6.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/9bb52e7b-c99a-4bc3-a520-d9aed528ffb6.png"></p>
+<p>下一层是二级(second-level)域名，例如cmu.edu,这些域名是由ICANN的各个授权代理按照先到先服务的基础分配的。一旦一个组织得到了一个二级域名，那么它就可以在这个子域中创建任何新的域名了，例如cs.cmu.edu</p>
+<p>因特网定义了域名集合和IP地址集合之间的映射。直到1988年，这个映射都是通过一个叫做HOSTS.TXT的文本文件来手工维护的。从那以后，这个映射是通过分布世界范围内的数据库（称为DNS(DomainName System, 域名系统））来维护的。从概念上而言，DNS数据库由上百万的主机条目结构(hostentry structure)组成，其中每条定义了一组域名和一组IP地址之间的映射。从数学意义上讲，可以认为每条主机条目就是一个域名和</p>
+<p>IP地址的等价类。我们可以用Linux的NSLOOKUP命令程序来探究DNS映射的一些属性，这个程序能展示与某个IP地址对应的域名。</p>
+<p>每台因特网主机都有本地定义的域名localhost,这个域名总是映射为回送地址</p>
+<p>localhost名字为引用运行在同一台机器上的客户端和服务器提供了一种便利和可移植的方式，这对调试相当有用。我们可以使用HOSTNAME命令来确定本地主机的实际域名：</p>
+<p>在最简单的情况中，一个域名和一个IP地址之间是一一映射</p>
+<p>然而，在某些情况下，多个域名可以映射为同一个IP地址：</p>
+<p>在最通常的情况下，多个域名可以映射到同一组的多个IP地址：</p>
+<p>最后，我们注意到某些合法的域名没有映射到任何IP地址：</p>
+<h3 id="第三节-因特网连接"><a href="#第三节-因特网连接" class="headerlink" title="第三节 因特网连接"></a>第三节 因特网连接</h3><p>因特网客户端和服务器通过在连接上发送和接收字节流来通信。从连接一对进程的意义上而言，连接是点对点的。从数据可以同时双向流动的角度来说，它是全双工。并且从（除了一些如粗心的耕锄机操作员切断了电缆引起灾难性的失败以外）由源进程发出的字节流最终被目的进程以它发出的顺序收到它的角度来说，它也是可靠的。</p>
+<p>一个套接宇是连接的一个端点。每个套接字都有相应的套接字地址，是由一个因特网地址和一个16位的整数端口组成的，用“地址：端口”来表示。</p>
+<p>当客户端发起一个连接请求时，客户端套接字地址中的端口是由内核自动分配的，称为临时端口(ephemeralport)。然而，服务器套接字地址中的端口通常是某个知名端口，是和这个服务相对应的。</p>
+<p>例如，Web服务器通常使用端口80,而电子邮件服务器使用端口25。每个具有知名端口的服务都有一个对应的知名的服务名。</p>
+<p>如，Web服务的知名名字是http,email的知名名字是srntp。文件/etc/services包含一张这台机器提供的知名名字和知名端口之间的映射。</p>
+<p>个连接是由它两端的套接字地址唯一确定的。这对套接字地址叫做套接字对(socketpair), </p>
+<p>由下列元组来表示：</p>
+<p>(cliaddr: cliport, servaddr: servport) </p>
+<p>其中cliaddr是客户端的IP地址，cliport是客户端的端口，servaddr是服务器的IP地址，而servport是服务器的端口。例如，图11-11展示了一个Web客户端和一个Web服务器之间的连接。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/390d2659-2897-48cb-9f66-831225337a41.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/390d2659-2897-48cb-9f66-831225337a41.png"></p>
+<p>在这个示例中</p>
+<p>，Web客户端的套接字地址是128.2.194.242:51213 </p>
+<p>其中端口号51213是内核分配的临时端口号。</p>
+<p>Web服务器的套接字地址是208.216.181.15:80 </p>
+<p>其中端口号80是和Web服务相关联的知名端口号。给定这些客户端和服务器套接字地址，客户端和服务器之间的连接就由下列套接字对唯一确定了：</p>
+<p>(128. 2 .194. 242: 51213, 208. 216 .181.15: 80) </p>
+<h3 id="第四部分-套接字接口"><a href="#第四部分-套接字接口" class="headerlink" title="第四部分 套接字接口"></a>第四部分 套接字接口</h3><p>套接宇接口(socketinterface)是一组函数，它们和UnixI/0函数结合起来，用以创建网络应用。大多数现代系统上都实现套接字接口，包括所有的Unix变种、Windows和Macintosh系统。图11-12给出了一个典型的客户端－服务器事务的上下文中的套接字接口概述。当讨论各个函数时，你可以使用这张图来作为向导图</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/4cd476f1-3351-4507-bc35-1f374aa006ff.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/4cd476f1-3351-4507-bc35-1f374aa006ff.png"></p>
+<h3 id="第一节-套接字地址结构"><a href="#第一节-套接字地址结构" class="headerlink" title="第一节 套接字地址结构"></a>第一节 套接字地址结构</h3><p>从Linux内核的角度来看，一个套接字就是通信的一个端点。</p>
+<p>从Linux程序的角度来看，套接字就是一个有相应描述符的打开文件。因特网的套接字地址存放在如图11-13所示的类型为sockaddr_in的16字节结构中。对于因特网应用，sin_famliy成员是AF_INET,sin_po江成员是一个16位的端口号，而sinaddr成员就是一个32位的IP地址。IP地址和端口号总是以网络字节顺序（大端法）存放的</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/10870582-b873-4e0b-9472-4be2cee065ee.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/10870582-b873-4e0b-9472-4be2cee065ee.png"></p>
+<p><em>in后缀是互联网络(internet)的缩写</em></p>
+<p>connect、bind和accept函数要求一个指向与协议相关的套接字地址结构的指针。套接字接口的设计者面临的问题是，如何定义这些函数，使之能接受各种类型的套接字地址结构。今天我们可以使用通用的VO过＊指针，但是那时在C中并不存在这种类型的指针。解决办法是定义套接字函数要求一个指向通用sockaddr结构（图11-13)的指针，然后要求应用程序将与协议特定的结构的指针强制转换成这个通用结构。为了简化代码示例，我们跟随Steven的指导，定义下面的类型：</p>
+<p>typedef struct sockaddr SA; </p>
+<p>然后无论何时需要将sockaddr_in结构强制转换成通用sockaddr结构时，我们都使用这个类型。</p>
+<h3 id="第二节-socket函数"><a href="#第二节-socket函数" class="headerlink" title="第二节 socket函数"></a>第二节 socket函数</h3><p>客户端和服务器使用socket函数来创建一个套接字描述符(socketdescriptor)。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">socket</span><span class="params">(<span class="keyword">int</span> domain, <span class="keyword">int</span> type, <span class="keyword">int</span> protocol)</span></span>; </span><br><span class="line"></span><br><span class="line">返回：若成功则为非负描述符，若出错则为—<span class="number">1</span>。</span><br></pre></td></tr></table></figure>
+
+<p>如果想要使套接字成为连接的一个端点，就用如下硬编码的参数来调用socket函数：</p>
+<p>clientfd = Socket(AF_INET, SOCK_STREAM, O); </p>
+<p>其中，AF_INET表明我们正在使用32位IP地址，而SOCK_STREAM表示这个套接字是连接的一个端点。不过最好的方法是用getaddrinfo函数(11.4. 7节）来自动生成这些参数，这样代码就与协议无关了。我们会在11.4. 8节中向你展示如何配合socket函数来使用getaddrinfo。</p>
+<p>socket返回的clientfd描述符仅是部分打开的，还不能用于读写。如何完成打开套接字的工作，取决于我们是客户端还是服务器。下一节描述当我们是客户端时如何完成打开套接字的工作。</p>
+<h3 id="第三节-connect函数"><a href="#第三节-connect函数" class="headerlink" title="第三节 connect函数"></a>第三节 connect函数</h3><p>客户端通过调用connect函数来建立和服务器的连接。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">connect</span><span class="params">(<span class="keyword">int</span> clientfd, <span class="keyword">const</span> struct sockaddr *addr, <span class="keyword">socklen_t</span> addrlen)</span></span>; </span><br><span class="line"></span><br><span class="line">返回：若成功则为o,若出错则为<span class="number">-1</span></span><br></pre></td></tr></table></figure>
+
+<p>connect函数试图与套接字地址为addr的服务器建立一个因特网连接，其中addrlen是sizeof(sockaddr_in)。connet函数会阻塞，一直到连接成功建立或是发生错误。如果成功，clientfd描述符现在就准备好可以读写了，并且得到的连接是由套接字对(x:y, addr.sin_addr:addr.sin_port) 刻画的，其中x表示客户端的IP地址，而y表示临时端口，它唯一地确定了客户端主机上的客户端进程。对于socket,最好的方法是用getaddrinfo来为connect提供参数（见11.4. 8节）。</p>
+<h3 id="第四节-bind函数"><a href="#第四节-bind函数" class="headerlink" title="第四节 bind函数"></a>第四节 bind函数</h3><p>剩下的套接字函数-bind、listen和accept,服务器用它们来和客户端建立连接。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bind</span><span class="params">(<span class="keyword">int</span> sockfd, <span class="keyword">const</span> struct sockaddr *addr, <span class="keyword">socklen_t</span> addrlen)</span></span>; </span><br><span class="line"></span><br><span class="line">返回：若成功则为o,若出错则力—<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>bind函数告诉内核将addr中的服务器套接字地址和套接字描述符sockfd联系起来。参数addrlen就是sizeof(sockaddr_in)。对于socket和connect,最好的方法是用getaddrinfo来为bind提供参数（见11.4. 8节）</p>
+<h3 id="第五节-listen函数"><a href="#第五节-listen函数" class="headerlink" title="第五节 listen函数"></a>第五节 listen函数</h3><p>客户端是发起连接请求的主动实体。服务器是等待来自客户端的连接请求的被动实体。默认情况下，内核会认为sock吐函数创建的描述符对应于主动套接字(activesock-et), 它存在于一个连接的客户端。服务器调用listen函数告诉内核，描述符是被服务器而不是客户端使用的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">listen</span><span class="params">(<span class="keyword">int</span> sockfd, <span class="keyword">int</span> backlog)</span></span>; </span><br><span class="line"></span><br><span class="line">返回：若成功则为o,若出错则为一<span class="number">1</span>。</span><br></pre></td></tr></table></figure>
+
+<p>listen函数将sockfd从一个主动套接字转化为一个监听套接宇(listeningsocket) , 该套接字可以接受来自客户端的连接请求。backlog参数暗示了内核在开始拒绝连接请求之前，队列中要排队的未完成的连接请求的数最。backlog参数的确切含义要求对TCP/IP协议的理解，这超出了我们讨论的范围。通常我们会把它设置为一个较大的值，比如1024。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/f8685b6f-94df-448a-b46e-04f963bdf954.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/f8685b6f-94df-448a-b46e-04f963bdf954.png"></p>
+<h3 id="第六节-accept函数"><a href="#第六节-accept函数" class="headerlink" title="第六节 accept函数"></a>第六节 accept函数</h3><p>服务器通过调用accep七函数来等待来自客户端的连接请求。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">accept</span><span class="params">(<span class="keyword">int</span> listenfd, struct sockaddr *addr, <span class="keyword">int</span> *addrlen)</span></span>; </span><br><span class="line"></span><br><span class="line">返回：若成功则为非负连接描述符，若出错则为—l。</span><br></pre></td></tr></table></figure>
+
+<p>accept函数等待来自客户端的连接请求到达侦听描述符listenfd,然后在addr中填写客户端的套接字地址，并返回一个已连接描述符(connecteddescriptor) , 这个描述符可被用来利用Unix1/0函数与客户端通信。监听描述符和已连接描述符之间的区别使很多人感到迷惑。监听描述符是作为客户端连接请求的一个端点。它通常被创建一次，并存在千服务器的整个生命周期。已连接描述符是客户端和服务器之间已经建立起来了的连接的一个端点。服务器每次接受连接请求时都会创建一次，它只存在于服务器为一个客户端服务的过程中。图11-14描绘了监听描述符和巳连接描述符的角色。在第一步中，服务器调用accept, 等待连接请求到达监听描述符，具体地我们设定为描述符3。回忆一下，描述符0~2是预留给了标准文件的。在第二步中，客户端调用conne吐函数，发送一个连接请求到listenfd。第三步，accept函数打开了一个新的已连接描述符connfd(我们假设是描述符4),在clientfd和connfd之间建立连接，并且随后返回connfd给应用程序。客户端也从connet返回，在这一点以后，客户端和服务器就可以分别通过读和写clientfd和connfd来回传送数据了。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c1954a67-87e4-4dea-8861-ab64074529a4.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c1954a67-87e4-4dea-8861-ab64074529a4.png"></p>
+<h3 id="第七节-主机和服务的转换"><a href="#第七节-主机和服务的转换" class="headerlink" title="第七节 主机和服务的转换"></a>第七节 主机和服务的转换</h3><p>Linux提供了一些强大的函数（称为getaddrinfo和getnameinfo)实现二进制套接字地址结构和主机名、主机地址、服务名和端口号的字符串表示之间的相互转化。当和套接字接口一起使用时，这些函数能使我们编写独立于任何特定版本的IP协议的网络程序</p>
+<ol>
+<li>getaddrinfo函数getaddrinfo函数将主机名、主机地址、服务名和端口号的字符串表示转化成套接字地址结构。它是已弃用的ge吐ostbyname和getservbyname函数的新的替代品。和以前的那些函数不同，这个函数是可重入的（见12.7. 2节），适用千任何协议。</li>
+</ol>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/4358753a-f2da-4036-9ec1-6046a37cb9b3.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/4358753a-f2da-4036-9ec1-6046a37cb9b3.png"></p>
+<p>给定host和service(套接字地址的两个组成部分），getaddrinfo返回result,, result一个指向addrinfo结构的链表，其中每个结构指向一个对应于host和service的套接字地址结构（图11-15)。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/8b584df7-3e0d-4fa2-9ca0-1e9070c00179.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/8b584df7-3e0d-4fa2-9ca0-1e9070c00179.png"></p>
+<p>在客户端调用了getaddrinfo之后，会遍历这个列表，依次尝试每个套接字地址，直到调用socket和connect成功，建立起连接。类似地，服务器会尝试遍历列表中的每个套接字地址，直到调用sock琴和bind成功，描述符会被绑定到一个合法的套接字地址。为了避免内存泄漏，应用程序必须在最后调用freeaddrinfo,释放该链表。如果getaddrinfo返回非零的错误代码，应用程序可以调用gai_s七reeror,将该代码转换成消息字符串。getaddrinfo的host参数可以是域名，也可以是数字地址（如点分十进制IP地址）。service参数可以是服务名（如http),也可以是十进制端口号。如果不想把主机名转换成地址，可以把host设置为NULL。对service来说也是一样。但是必须指定两者中至少一个。可选的参数hints是一个addrinfo结构（见图11-16),它提供对getaddrinfo返回的套接字地址列表的更好的控制。如果要传递hints参数，只能设置下列字段：ai_fam-ily、ai_socktype、a仁protocol和ai_flags字段。其他字段必须设置为0(或NULL)。实际中，我们用memset将整个结构清零，然后有选择地设置一些字段：</p>
+<p>• getaddrinfo默认可以返回IPv4和IPv6套接字地址。ai_fam斗y设置为AF_IN-ET会将列表限制为IPv4地址；设置为AF_INET6则限制为IPv6地址。</p>
+<p>• 对于host关联的每个地址，getaddrinfo函数默认最多返回三个addrinfo结构，每个的ai_sock七ype字段不同：一个是连接，一个是数据报（本书未讲述），一个是原始套接字（本书未讲述）。ai_socktype设置为SOCK_STREAM将列表限制为对每个地址最多一个addrinfo结构，该结构的套接字地址可以作为连接的一个端点。这是所有示例程序所期望的行为。</p>
+<p>• ai_flags字段是一个位掩码，可以进一步修改默认行为。可以把各种值用OR组合起来得到该掩码。下面是一些我们认为有用的值：AI_ADDRCONFIG。如果在使用连接，就推荐使用这个标志[34]。它要求只有当本地主机被配置为IPv4时，getaddrinfo返回IPv4地址。对IPv6也是类似。AI_CANONNAME。ai_canonname字段默认为NULL。如果设置了该标志，就是告诉getaddrinfo将列表中第一个addrinfo结构的ai_canonname字段指向host的权威（官方）名字（见图11-15)</p>
+<p>AI_NUMERICSERV。参数service默认可以是服务名或端口号。这个标志强制参数service为端口号。AI_PASSIVE。getaddrinfo默认返回套接字地址，客户端可以在调用connect时用作主动套接字。这个标志告诉该函数，返回的套接字地址可能被服务器用作监听套接字。在这种情况中，参数host应该为NULL。得到的套接字地址结构中的地址字段会是通配符地址(wildcardaddress) , 告诉内核这个服务器会接受发送到该主机所有IP地址的请求。这是所有示例服务器所期望的行为</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/3cb73aa1-e254-4d3b-aeca-262bf4c1217d.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/3cb73aa1-e254-4d3b-aeca-262bf4c1217d.png"></p>
+<p>当getaddrinfo创建输出列表中的addrinfo结构时，会填写每个字段，除了aiflags。ai_addr字段指向一个套接字地址结构，ai_addrlen字段给出这个套接字地址结构的大小，而aine江字段指向列表中下一个addrinfo结构。其他字段描述这个套接字地址的各种属性。getaddrinfo一个很好的方面是addrinfo结构中的字段是不透明的，即它们可以直接传递给套接字接口中的函数，应用程序代码无需再做任何处理。例如，ai_family、aisocktype和ai_protocol可以直接传递给socke七。类似地，ai—addr和a三addrlen可以直接传递给connect和bind。这个强大的属性使得我们编写的客户端和服务器能够独立千某个特殊版本的IP协议。    </p>
+<ol start="2">
+<li>getnameinfo函数getnameinfo函数和getaddrinfo是相反的，将一个套接字地址结构转换成相应的主机和服务名字符串。它是已弃用的gethostbyaddr和getservbyport函数的新的替代品，和以前的那些函数不同，它是可重入和与协议无关的</li>
+</ol>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/2cbca1be-3639-4a6a-bfcb-c3f07da7e88a.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/2cbca1be-3639-4a6a-bfcb-c3f07da7e88a.png"></p>
+<p>参数sa指向大小为salen字节的套接字地址结构，host指向大小为hostlen字节的缓冲区，service指向大小为servlen字节的缓冲区。getnameinfo函数将套接字地址结构sa转换成对应的主机和服务名字符串，并将它们复制到host和servcice缓冲区。如果getnarn-einfo返回非零的错误代码，应用程序可以调用gai_strerror把它转化成字符串。如果不想要主机名，可以把host设置为NULL,hostlen设置为0。对服务字段来说也是一样。不过，两者必须设置其中之一。参数flags是一个位掩码，能够修改默认的行为。可以把各种值用OR组合起来得到该掩码。下面是两个有用的值：• NI_NUMERICHOST。getnameinfo默认试图返回ho江中的域名。设置该标志会使该函数返回一个数字地址字符串。• NI_NUMERICSERV。getnameinfo默认会检查le七c/services,如果可能，会返回服务名而不是端口号。设置该标志会使该函数跳过查找，简单地返回端口号。图11-17给出了一个简单的程序，称为HOSTINFO,它使用getaddrinfo和getnameinfo展示出域名到和它相关联的IP地址之间的映射。该程序类似于11.3. 2节中的NSLOOKUP程序</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c7673af1-c51a-4c2b-aedf-20ecd3a6af31.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c7673af1-c51a-4c2b-aedf-20ecd3a6af31.png"></p>
+<p>首先，初始化垣n七s结构，使getaddrinfo返回我们想要的地址。在这里，我们想查找32位的IP地址（第16行），用作连接的端点（第17行）。因为只想getaddrinfo转换域名，所以用service参数为NULL来调用它。调用getadd豆nfo之后，会遍历addrinfo结构，用getnameinfo将每个套接字地址转换成点分十进制地址字符串。遍历完列表之后，我们调用freeaddrinfo小心地释放这个列表（虽然对于这个简单的程序来说，并不是严格需要这样做的）。运行HOSTINFO时，我们看到twitter.com映射到了四个IP地址，和11.3. 2节用NSLOOKUP的结果一样。</p>
+<h3 id="第八节-套接字接口的辅助函数"><a href="#第八节-套接字接口的辅助函数" class="headerlink" title="第八节 套接字接口的辅助函数"></a>第八节 套接字接口的辅助函数</h3><p>初学时，getnameinfo函数和套接字接口看上去有些可怕。用高级的辅助函数包装一下会方便很多，称为open_clientfd和open_listenfd,客户端和服务器互相通信时可以使用这些函数。</p>
+<ol>
+<li>open_clientfd函数客户端调用open_clientfd建立与服务器的连接。</li>
+</ol>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/49c58ff5-a911-40b1-a088-da701877b492.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/49c58ff5-a911-40b1-a088-da701877b492.png"></p>
+<p>open_clientfd函数建立与服务器的连接，该服务器运行在主机hostname上，并在端口号port上监听连接请求。它返回一个打开的套接字描述符，该描述符准备好了，可以用UnixI/0函数做输入和输出。图11-18给出了open_clien七fd的代码。我们调用getaddrinfo,它返回addrinfo结构的列表，每个结构指向一个套接字地址结构，可用于建立与服务器的连接，该服务器运行在hostname上并监听port端口。然后遍历该列表，依次尝试列表中的每个条目，直到调用socket和connect成功。如果connect失败，在尝试下一个条目之前，要小心地关闭套接字描述符。如果connect成功，我们会释放列表内存，并把套接字描述符返回给客户端，客户端可以立即开始用Unix I/0与服务器通信了。注意，所有的代码都与任何版本的IP无关。socket和connect的参数都是用getaddrinfo自动产生的，这使得我们的代码干净可移植。</p>
+<ol start="2">
+<li>open_listenfd函数调用open_listenfd函数，服务器创建一个监听描述符，准备好接收连接请求。</li>
+</ol>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/98019e24-e3b1-4970-9b86-8f1af36b8b34.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/98019e24-e3b1-4970-9b86-8f1af36b8b34.png"></p>
+<p>open_listenfd函数打开和返回一个监听描述符，这个描述符准备好在端口po江上接收连接请求。图11-19展示了open_lis七enfd的代码。open_lis七enfd的风格类似于open_clientfd。调用getaddrinfo,然后遍历结果列表，直到调用socket和bind成功。注意，在第20行，我们使用setsockop七函数（本书中没有讲述）来配置服务器，使得服务器能够被终止、重启和立即开始接收连接请求。一个重启的服务器默认将在大约30秒内拒绝客户端的连接请求，这严重地阻碍了调试。因为我们调用getaddrinfo时，使用了AI_PASSIVE标志并将host参数设置为NULL, 每个套接字地址结构中的地址字段会被设置为通配符地址，这告诉内核这个服务器会接收发送到本主机所有IP地址的请求</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/6abeb00d-428e-4206-b927-b6eed939db13.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/6abeb00d-428e-4206-b927-b6eed939db13.png"></p>
+<p>最后，我们调用lis七en函数，将listenfd转换为一个监听描述符，并返回给调用者。如果listen失败，我们要小心地避免内存泄漏，在返回前关闭描述符</p>
+<h3 id="第九节-echo客户端和服务器的示例"><a href="#第九节-echo客户端和服务器的示例" class="headerlink" title="第九节 echo客户端和服务器的示例"></a>第九节 echo客户端和服务器的示例</h3><p>学习套接字接口的最好方法是研究示例代码。</p>
+<p>图11-20展示了一个echo客户端的代码。在和服务器建立连接之后，客户端进入一个循环，反复从标准输入读取文本行，发送文本行给服务器，从服务器读取回送的行，并输出结果到标准输出。当fgets在标准输入上遇到EOF时，或者因为用户在键盘上键入Ctr!+D, 或者因为在一个重定向的输入文件中用尽了所有的文本行时，循环就终止。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c779b6de-56fe-4885-b76b-227f2ac6cf35.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/c779b6de-56fe-4885-b76b-227f2ac6cf35.png"></p>
+<p>循环终止之后，客户端关闭描述符。这会导致发送一个EOF通知到服务器，当服务器从它的reo_readlineb函数收到一个为零的返回码时，就会检测到这个结果。在关闭它的描述符后，客户端就终止了。既然客户端内核在一个进程终止时会自动关闭所有打开的描述符，第24行的close就没有必要了。不过，显式地关闭已经打开的任何描述符是一个良好的编程习惯。</p>
+<p>图11-21展示了echo服务器的主程序。在打开监听描述符后，它进入一个无限循环。每次循环都等待一个来自客户端的连接请求，输出已连接客户端的域名和IP地址，并调用echo函数为这些客户端服务。在echo程序返回后，主程序关闭巳连接描述符。一旦客户端和服务器关闭了它们各自的描述符，连接也就终止了。第9行的clientaddr变量是一个套接字地址结构，被传递给accept。在accep七返回之前，会在clientaddr中填上连接另一端客户端的套接字地址。注意，我们将cl士entaddr声明为structsockaddr _ storage类型，而不是structsockaddr_in类型。根据定义，sockaddr_storage结构足够大能够装下任何类型的套接字地址，以保持代码的协议无关性。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/41e9f84b-433c-4b4f-af9c-50e18a9951f1.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/41e9f84b-433c-4b4f-af9c-50e18a9951f1.png"></p>
+<p>注意，简单的echo服务器一次只能处理一个客户端。这种类型的服务器一次一个地在客户端间迭代，称为迭代服务器(itera ti ve server)。在第12章中，我们将学习如何建立更加复杂的并发服务器(concurrentserver )  , 它能够同时处理多个客户端。最后，图11-22展示了echo程序的代码，该程序反复读写文本行，直到rioreadlineb 函数在第10行遇到EOF</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/a46be867-4a05-4ecb-a388-6271a520a6fd.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/a46be867-4a05-4ecb-a388-6271a520a6fd.png"></p>
+<h2 id="第五部分-Web服务器"><a href="#第五部分-Web服务器" class="headerlink" title="第五部分 Web服务器"></a>第五部分 Web服务器</h2><p>迄今为止，我们巳经在一个简单的echo服务器的上下文中讨论了网络编程。在这一节里，我们将向你展示如何利用网络编程的基本概念，来创建你自己的虽小但功能齐全的Web服务器</p>
+<h3 id="第一节-Web基础"><a href="#第一节-Web基础" class="headerlink" title="第一节 Web基础"></a>第一节 Web基础</h3><p>Web客户端和服务器之间的交互用的是一个基于文本的应用级协议，叫做HTTPCH邓pertextTransfer Protocol, 超文本传输协议）。HTTP是一个简单的协议。一个Web客户端（即浏览器）打开一个到服务器的因特网连接，并且请求某些内容。服务器响应所请求的内容，然后关闭连接。浏览器读取这些内容，并把它显示在屏幕上。Web服务和常规的文件检索服务（例如FTP)有什么区别呢？主要的区别是Web内容可以用一种叫做HTML(Hypertext Markup Language, 超文本标记语言）的语言来编写。一个HTML程序（页）包含指令（标记），它们告诉浏览器如何显示这页中的各种文本和图形对象。例如，代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span> Make me bold! <span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>HTML真正的强大之处在于一个页面可以包含指针（超链接），这些指针可以指向存放在任何因特网主机上的内容。</p>
+<h3 id="第二节-Web内容"><a href="#第二节-Web内容" class="headerlink" title="第二节 Web内容"></a>第二节 Web内容</h3><p>对于Web客户端和服务器而言，内容是与一个MIME类型(Multipurpose Internet Mail Extensions, 多用途的网际邮件扩充协议）相关的字节序列</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/ccc8a07b-2132-4d5b-aa98-20d34c1b00ab.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/ccc8a07b-2132-4d5b-aa98-20d34c1b00ab.png"></p>
+<p>web服务器以两种不同的方式向客户端提供内容：</p>
+<p>• 取一个磁盘文件，并将它的内容返回给客户端。磁盘文件称为静态内容(staticcon-tent) , 而返回文件给客户端的过程称为服务静态内容(servingstatic content)。</p>
+<p>• 运行一个可执行文件，并将它的输出返回给客户端。运行时可执行文件产生的输出称为动态内容(dynamiccontent) , 而运行程序并返回它的输出到客户端的过程称为服务动态内容(servingdynamic content)</p>
+<p>每条由Web服务器返回的内容都是和它管理的某个文件相关联的。这些文件中的每一个都有一个唯一的名字，叫做URL(UniversalResource Locator, 通用资源定位符）</p>
+<p>如，URL <a target="_blank" rel="noopener" href="http://www.google.com/">http://www.google.com</a>: 80/index.html</p>
+<p>表示因特网主机<a target="_blank" rel="noopener" href="http://www.google.com上一个称为/index.html%E7%9A%84HTML%E6%96%87%E4%BB%B6%EF%BC%8C%E5%AE%83%E6%98%AF%E7%94%B1%E4%B8%80%E4%B8%AA%E7%9B%91%E5%90%AC%E7%AB%AF%E5%8F%A380%E7%9A%84Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%A1%E7%90%86%E7%9A%84%E3%80%82%E7%AB%AF%E5%8F%A3%E5%8F%B7%E6%98%AF%E5%8F%AF%E9%80%89%E7%9A%84%EF%BC%8C%E9%BB%98%E8%AE%A4%E4%B8%BA%E7%9F%A5%E5%90%8D%E7%9A%84HTTP%E7%AB%AF%E5%8F%A380%E3%80%82%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84URL%E5%8F%AF%E4%BB%A5%E5%9C%A8%E6%96%87%E4%BB%B6%E5%90%8D%E5%90%8E%E5%8C%85%E6%8B%AC%E7%A8%8B%E5%BA%8F%E5%8F%82%E6%95%B0%E3%80%82&quot;?&quot;%E5%AD%97%E7%AC%A6%E5%88%86%E9%9A%94%E6%96%87%E4%BB%B6%E5%90%8D%E5%92%8C%E5%8F%82%E6%95%B0%EF%BC%8C%E8%80%8C%E4%B8%94%E6%AF%8F%E4%B8%AA%E5%8F%82%E6%95%B0%E9%83%BD%E7%94%A8&quot;&amp;&quot;%E5%AD%97%E7%AC%A6%E5%88%86%E9%9A%94%E5%BC%80%E3%80%82">www.google.com上一个称为/index.html的HTML文件，它是由一个监听端口80的Web服务器管理的。端口号是可选的，默认为知名的HTTP端口80。可执行文件的URL可以在文件名后包括程序参数。&quot;?&quot;字符分隔文件名和参数，而且每个参数都用&quot;&amp;&quot;字符分隔开。</a></p>
+<p><a target="_blank" rel="noopener" href="http://bluefish.ics.cs.cmu.edu:8000/cgi-bin/adder?15000&amp;213">http://bluefish.ics.cs.cmu.edu:8000/cgi-bin/adder?15000&amp;213</a></p>
+<p>标识了一个叫做/cgi-bin/adder的可执行文件，会带两个参数字符串15000和213来调用它。在事务过程中，客户端和服务器使用的是URL的不同部分。例如，客户端使用前缀</p>
+<p><a target="_blank" rel="noopener" href="http://www.google.com/">http://www.google.com</a>: 80 </p>
+<p>来决定与哪类服务器联系，服务器在哪里，以及它监听的端口号是多少。服务器使用后缀/index.html </p>
+<p>来发现在它文件系统中的文件，并确定请求的是静态内容还是动态内容。</p>
+<p>关千服务器如何解释一个URL的后缀，有几点需要理解：</p>
+<p>• 确定一个URL指向的是静态内容还是动态内容没有标准的规则。每个服务器对它所管理的文件都有自己的规则。一种经典的（老式的）方法是，确定一组目录，例如cg丘区n,所有的可执行性文件都必须存放这些目录中。</p>
+<p>• 后缀中的最开始的那个”/“不表示Linux的根目录。相反，它表示的是被请求内容类型的主目录。例如，可以将一个服务器配置成这样：所有的静态内容存放在目录／usr/httpd/html下，而所有的动态内容都存放在目录/usr/httpd/cgi-bin下。</p>
+<p>• 最小的URL后缀是”/“字符，所有服务器将其扩展为某个默认的主页，例如/index.html。这解释了为什么简单地在浏览器中键入一个域名就可以取出一个网站的主页。浏览器在URL后添加缺失的＂／＂，并将之传递给服务器，服务器又把”/“扩展到某个默认的文件名。</p>
+<h3 id="第三节-HTTP事务"><a href="#第三节-HTTP事务" class="headerlink" title="第三节 HTTP事务"></a>第三节 HTTP事务</h3><p>​       因为HTTP是基于在因特网连接上传送的文本行的，我们可以使用Linux的TEL­NET程序来和因特网上的任何Web服务器执行事务。对于调试在连接上通过文本行来与客户端对话的服务器来说，TELNET程序是非常便利的。例如，图11-24使用TELNET向AOLWeb服务器请求主页。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/04e9cbe5-fa53-4cb5-941e-ce244470aa06.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/04e9cbe5-fa53-4cb5-941e-ce244470aa06.png"></p>
+<p>在第1行，我们从Linuxshell运行TELNET,要求它打开一个到AOLWeb服务器的连接。TELNET向终端打印三行输出，打开连接，然后等待我们输入文本（第5行）。每次输入一个文本行，并键入回车键，TELNET会读取该行，在后面加上回车和换行符号（在C的表示中为”\r\n”),并且将这一行发送到服务器。这是和HTTP标准相符的，HTTP标准要求每个文本行都由一对回车和换行符来结束。为了发起事务，我们输入一个HTTP请求（第5<del>7行）。服务器返回HTTP响应（第8</del>17行），然后关闭连接（第18行）。</p>
+<ol>
+<li><p>HTTP请求</p>
+<p>一个HTTP请求的组成是这样的：一个请求行(requestline) (第5行），后面跟随零个或更多个请求报头(requestheader) (第6行），再跟随一个空的文本行来终止报头列表（第7行）。一个请求行的形式是</p>
+<p>method URI version </p>
+<p>HTTP支持许多不同的方法，包括GET、POST、OPTIONS、HEAD、PUT、DELETE和TRACE。我们将只讨论广为应用的GET方法，大多数HTTP请求都是这种类型的。</p>
+<p>GET方法指导服务器生成和返回URI(UniformResource Identifier, 统一资源标识符）标识的内容。URI是相应的URL的后缀，包括文件名和可选的参数</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">answer77</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://answer77.top/2021/02/26/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/">http://answer77.top/2021/02/26/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://answer77.top" target="_blank">answer77</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://s3.ax1x.com/2020/12/15/ruoc4S.png" target="_blank"><img class="post-qr-code-img" src="https://s3.ax1x.com/2020/12/15/ruoc4S.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://s3.ax1x.com/2020/12/15/ruo29g.jpg" target="_blank"><img class="post-qr-code-img" src="https://s3.ax1x.com/2020/12/15/ruo29g.jpg" alt="支付寶"/></a><div class="post-qr-code-desc">支付寶</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/28/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">csapp学习笔记第十二章</div></div></a></div><div class="next-post pull-right"><a href="/2021/02/25/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E7%AB%A0/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">csapp学习笔记第十章</div></div></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://s3.ax1x.com/2020/12/12/rVz6Ld.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">answer77</div><div class="author-info__description">大二pwn菜鸡一个</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">第十一章 网络编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-%E5%AE%A2%E6%88%B7%E7%AB%AF%EF%BC%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">第一节 客户端－服务器编程模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-number">1.1.1.</span> <span class="toc-text">网络</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86-%E5%85%A8%E7%90%83IP%E5%9B%A0%E7%89%B9%E7%BD%91"><span class="toc-number">1.2.</span> <span class="toc-text">第三部分 全球IP因特网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-IP%E5%9C%B0%E5%9D%80"><span class="toc-number">1.2.1.</span> <span class="toc-text">第一节 IP地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-%E5%9B%A0%E7%89%B9%E7%BD%91%E5%9F%9F%E5%90%8D"><span class="toc-number">1.2.2.</span> <span class="toc-text">第三节 因特网域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-%E5%9B%A0%E7%89%B9%E7%BD%91%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.2.3.</span> <span class="toc-text">第三节 因特网连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86-%E5%A5%97%E6%8E%A5%E5%AD%97%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.2.4.</span> <span class="toc-text">第四部分 套接字接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-%E5%A5%97%E6%8E%A5%E5%AD%97%E5%9C%B0%E5%9D%80%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.5.</span> <span class="toc-text">第一节 套接字地址结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-socket%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.6.</span> <span class="toc-text">第二节 socket函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-connect%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.7.</span> <span class="toc-text">第三节 connect函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%8A%82-bind%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.8.</span> <span class="toc-text">第四节 bind函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E8%8A%82-listen%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.9.</span> <span class="toc-text">第五节 listen函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E8%8A%82-accept%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.10.</span> <span class="toc-text">第六节 accept函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E8%8A%82-%E4%B8%BB%E6%9C%BA%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.2.11.</span> <span class="toc-text">第七节 主机和服务的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E8%8A%82-%E5%A5%97%E6%8E%A5%E5%AD%97%E6%8E%A5%E5%8F%A3%E7%9A%84%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.12.</span> <span class="toc-text">第八节 套接字接口的辅助函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E8%8A%82-echo%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.2.13.</span> <span class="toc-text">第九节 echo客户端和服务器的示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86-Web%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.3.</span> <span class="toc-text">第五部分 Web服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-Web%E5%9F%BA%E7%A1%80"><span class="toc-number">1.3.1.</span> <span class="toc-text">第一节 Web基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-Web%E5%86%85%E5%AE%B9"><span class="toc-number">1.3.2.</span> <span class="toc-text">第二节 Web内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-HTTP%E4%BA%8B%E5%8A%A1"><span class="toc-number">1.3.3.</span> <span class="toc-text">第三节 HTTP事务</span></a></li></ol></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/03/29/codeql%E5%88%9D%E5%85%A5/" title="codeql初入"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="codeql初入"/></a><div class="content"><a class="title" href="/2021/03/29/codeql%E5%88%9D%E5%85%A5/" title="codeql初入">codeql初入</a><time datetime="2021-03-29T06:14:01.000Z" title="发表于 2021-03-29 14:14:01">2021-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/04/IDApython/" title="IDApython"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IDApython"/></a><div class="content"><a class="title" href="/2021/03/04/IDApython/" title="IDApython">IDApython</a><time datetime="2021-03-03T23:32:02.000Z" title="发表于 2021-03-04 07:32:02">2021-03-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/28/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/" title="csapp学习笔记第十二章"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csapp学习笔记第十二章"/></a><div class="content"><a class="title" href="/2021/02/28/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/" title="csapp学习笔记第十二章">csapp学习笔记第十二章</a><time datetime="2021-02-28T09:16:49.000Z" title="发表于 2021-02-28 17:16:49">2021-02-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/26/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/" title="csapp学习笔记第十一章"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csapp学习笔记第十一章"/></a><div class="content"><a class="title" href="/2021/02/26/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/" title="csapp学习笔记第十一章">csapp学习笔记第十一章</a><time datetime="2021-02-26T02:58:35.000Z" title="发表于 2021-02-26 10:58:35">2021-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/25/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E7%AB%A0/" title="csapp学习笔记第十章"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csapp学习笔记第十章"/></a><div class="content"><a class="title" href="/2021/02/25/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E7%AB%A0/" title="csapp学习笔记第十章">csapp学习笔记第十章</a><time datetime="2021-02-25T02:25:44.000Z" title="发表于 2021-02-25 10:25:44">2021-02-25</time></div></div></div></div></div></div></div></main><footer id="footer" style="background: rgba(0,0,0,0)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By answer77</div><div class="footer_custom_text">qq:1204342476</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=5379200926&auto=1&height=430"></iframe><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="ture"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+})</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":200,"height":600},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

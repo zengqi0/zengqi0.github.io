@@ -1,0 +1,364 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>csapp学习笔记第十章 | answer77</title><meta name="keywords" content="csapp,pwn基础"><meta name="author" content="answer77"><meta name="copyright" content="answer77"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="[TOC] 第十章 系统级i&#x2F;O输入／轮出(I&#x2F;0)是在主存和外部设备（例如磁盘驱动器、终端和网络）之间复制数据的过程。输入操作是从I&#x2F;0设备复制数据到主存，而输出操作是从主存复制数据到I&#x2F;0设备。 所有语言的运行时系统都提供执行I&#x2F;0的较高级别的工具例如，ANSIC提供标准i&#x2F;0库，包含像printf和scanf这样执行带缓冲区的i&#x2F;0函数。C++语言用它的重载操作符＜＜（输入）和＞＞（输出）提">
+<meta property="og:type" content="article">
+<meta property="og:title" content="csapp学习笔记第十章">
+<meta property="og:url" content="http://answer77.top/2021/02/25/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E7%AB%A0/index.html">
+<meta property="og:site_name" content="answer77">
+<meta property="og:description" content="[TOC] 第十章 系统级i&#x2F;O输入／轮出(I&#x2F;0)是在主存和外部设备（例如磁盘驱动器、终端和网络）之间复制数据的过程。输入操作是从I&#x2F;0设备复制数据到主存，而输出操作是从主存复制数据到I&#x2F;0设备。 所有语言的运行时系统都提供执行I&#x2F;0的较高级别的工具例如，ANSIC提供标准i&#x2F;0库，包含像printf和scanf这样执行带缓冲区的i&#x2F;0函数。C++语言用它的重载操作符＜＜（输入）和＞＞（输出）提">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-02-25T02:25:44.000Z">
+<meta property="article:modified_time" content="2021-02-26T02:58:05.975Z">
+<meta property="article:author" content="answer77">
+<meta property="article:tag" content="csapp">
+<meta property="article:tag" content="pwn基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://answer77.top/2021/02/25/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E7%AB%A0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-02-26 10:58:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://s3.ax1x.com/2020/12/12/rVz6Ld.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 总览</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">answer77</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 总览</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">csapp学习笔记第十章</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-25T02:25:44.000Z" title="发表于 2021-02-25 10:25:44">2021-02-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-26T02:58:05.975Z" title="更新于 2021-02-26 10:58:05">2021-02-26</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>[TOC]</p>
+<h1 id="第十章-系统级i-O"><a href="#第十章-系统级i-O" class="headerlink" title="第十章 系统级i/O"></a>第十章 系统级i/O</h1><p>输入／轮出(I/0)是在主存和外部设备（例如磁盘驱动器、终端和网络）之间复制数据的过程。输入操作是从I/0设备复制数据到主存，而输出操作是从主存复制数据到I/0设备。</p>
+<p>所有语言的运行时系统都提供执行I/0的较高级别的工具例如，ANSIC提供标准i/0库，包含像printf和scanf这样执行带缓冲区的i/0函数。C++语言用它的重载操作符＜＜（输入）和＞＞（输出）提供了类似的功能。在Linux系统中，是通过使用由内核提供的系统级UnixI/0函数来实现这些较高级别的I/O函数的。大多数时候，高级别1/0函数工作良好，没有必要直接使用UnixI/O。那么为什么还要麻烦地学习UnixI/O呢？</p>
+<p>• 了解UnixI/0将帮助你理解其他的系统概念。I/0是系统操作不可或缺的一部分，因此，我们经常遇到I/0和其他系统概念之间的循环依赖。例如，I/0在进程的创建和执行中扮演着关键的角色。反过来，进程创建又在不同进程间的文件共享中扮演着关键角色。因此，要真正理解1/0,你必须理解进程，</p>
+<p>反之亦然。在对存储器层次结构、链接和加载、进程以及虚拟内存的讨论中，我们已经接触了I/0的某些方面。既然你对这些概念有了比较好的理解，我们就能闭合这个循环，更加深入地研究I/O。</p>
+<p>• 有时你除了使用UnixI/O以外别无选择。在某些重要的情况中，使用高级I/O函数不太可能，或者不太合适。例如，标准I/0库没有提供读取文件元数据的方式，例如文件大小或文件创建时间。另外，I/0库还存在一些问题，使得用它来进行网络编程非常冒险。这一章介绍UnixI/O和标准I/0的一般概念，并且向你展示在C程序中如何可靠地使用它们。除了作为一般性的介绍之外，这一章还为我们随后学习网络编程和并发性奠定坚实的基础</p>
+<h2 id="第一部分-unix-I-O"><a href="#第一部分-unix-I-O" class="headerlink" title="第一部分 unix I/O"></a>第一部分 unix I/O</h2><p>一个Linux文件就是一个m个字节的序列：</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/f56ae863-5d80-44cb-9c18-aea4ac28ca65.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/f56ae863-5d80-44cb-9c18-aea4ac28ca65.png"></p>
+<p>所有的I/0设备（例如网络、磁盘和终端）都被模型化为文件，而所有的输入和输出都被当作对相应文件的读和写来执行。这种将设备优雅地映射为文件的方式，允许Linux内核引出一个简单、低级的应用接口，称为UnixI/0, 这使得所有的输入和输出都能以一种统一且一致的方式来执行：</p>
+<p>• 打开文件。一个应用程序通过要求内核打开相应的文件，来宣告它想要访间一个i/0设备。内核返回一个小的非负整数，叫做描述符，它在后续对此文件的所有操作中标识这个文件。内核记录有关这个打开文件的所有信息。应用程序只需记住这个描述符。</p>
+<p>• Linux shell创建的每个进程开始时都有三个打开的文件：标准输入（描述符为0)、标准输出（描述符为1)和标准错误（描述符为2)。头文件&lt;unistd.h&gt;定义了常量STDIN_FILENO、STOOUT_FILENO和STDERR_FILENO,它们可用来代替显式的描述符值。</p>
+<p>• 改变当前的文件位置。对于每个打开的文件，内核保持着一个文件位置k,初始为0。这个文件位置是从文件开头起始的字节偏移量。应用程序能够通过执行seek操作，显式地设置文件的当前位置为K</p>
+<p>• 读写文件。一个读操作就是从文件复制n&gt;O个字节到内存，从当前文件位置k开始，然后将K增加到k+n。给定一个大小为m字节的文件，当k&gt;=m时执行读操作会触发一个称为end-of-file(EOF)的条件，应用程序能检测到这个条件。在文件结尾处并没有明确的”EOF符号”</p>
+<p>类似地，写操作就是从内存复制n&gt;O个字节到一个文件，从当前文件位置k开始，然后更新k</p>
+<p>• 关闭文件。当应用完成了对文件的访问之后，它就通知内核关闭这个文件。作为响应，内核释放文件打开时创建的数据结构，并将这个描述符恢复到可用的描述符池中。无论一个进程因为何种原因终止时，内核都会关闭所有打开的文件并释放它们的内存资源。</p>
+<h2 id="第二节-文件"><a href="#第二节-文件" class="headerlink" title="第二节 文件"></a>第二节 文件</h2><p>每个Linux文件都有一个类型(type)来表明它在系统中的角色：</p>
+<p>• 普通文件(regularfile)包含任意数据。应用程序常常要区分文本文件(textfile)和二进制文件(binaryfile) , 文本文件是只含有ASCII或Unicode字符的普通文件；二进制文件是所有其他的文件。对内核而言，文本文件和二进制文件没有区别。Linux文本文件包含了一个文本行(textline)序列，其中每一行都是一个字符序列，以一个新行符(“\ n”)结束。新行符与ASCII的换行符(LF)是一样的，其数字值为OxOa。</p>
+<p>• 目录（如ectory)是包含一组链接Clink)的文件，其中每个链接都将一个文件名(filename)映射到一个文件，这个文件可能是另一个目录。每个目录至少含有两个条目：“．”是到该目录自身的链接，以及”.. “是到目录层次结构（见下文）中父目录(parentdirectory)的链接。你可以用mkdir命令创建一个目录，用ls查看其内容，用rmdir删除该目录。</p>
+<p>• 套接宇(socket)是用来与另一个进程进行跨网络通信的文件(11.4节）。其他文件类型包含命名通道(namedpipe)、符号链接(symboliclink), 以及字符和块设备(characterand block device) , 这些不在本书的讨论范畴。Linux内核将所有文件都组织成一个目录层次结构(directoryhierarchy) , 由名为／（斜杠）的根目录确定。系统中的每个文件都是根目录的直接或间接的后代。图10-1显示了Linux系统的目录层次结构的一部分。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/3993b768-7b58-4ed9-a0c5-bde39034677a.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/3993b768-7b58-4ed9-a0c5-bde39034677a.png"></p>
+<p>作为其上下文的一部分，每个进程都有一个当前工作目录(currentworking directory) 来确定其在目录层次结构中的当前位置。你可以用cd命令来修改shell中的当前工作目录。目录层次结构中的位置用路径名(pathname)来指定。路径名是一个字符串，包括一个可选斜杠，其后紧跟一系列的文件名，文件名之间用斜杠分隔。路径名有两种形式：</p>
+<p>• 绝对路径名(absolutepathname)以一个斜杠开始，表示从根节点开始的路径。例如，在图10-1中，hello.c的绝对路径名为/home/droh/hello.c。</p>
+<p>• 相对路径名(relativepathname)以文件名开始，表示从当前工作目录开始的路径。例如，在图10-1中，如果/home/droh是当前工作目录，那么hello.c的相对路径名就是./hello.c。反之，如果/home/bryant是当前工作目录，那么相对路径名就是../home/droh/hello.c</p>
+<h2 id="第三节-打开和关闭文件"><a href="#第三节-打开和关闭文件" class="headerlink" title="第三节 打开和关闭文件"></a>第三节 打开和关闭文件</h2><p>进程是通过调用open函数来打开一个已存在的文件或者创建一个新文件的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl. h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">open</span><span class="params">(<span class="keyword">char</span> *filename, <span class="keyword">int</span> flags, <span class="keyword">mode_t</span> mode)</span></span>; </span><br><span class="line"></span><br><span class="line">返回：若成功则为新文件描述符，若出错为一<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>open函数将filename转换为一个文件描述符，并且返回描述符数字。返回的描述符总是在进程中当前没有打开的最小描述符。flags参数指明了进程打算如何访问这个文件：</p>
+<p>•  O_RDONLY: 只读。</p>
+<p>• O_WRONLY: 只写。</p>
+<p>• O_RDWR: 可读可写。</p>
+<p>例如，下面的代码说明如何以读的方式打开一个已存在的文件：</p>
+<figure class="highlight cc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fd = Open(<span class="string">&quot;foo.txt&quot;</span>, O_RDONLY, <span class="number">0</span>); </span><br></pre></td></tr></table></figure>
+
+<p>flags参数也可以是一个或者更多位掩码的或，为写提供给一些额外的指示：</p>
+<p>• O_CREAT: 如果文件不存在，就创建它的一个截断的(truncated)(空）文件。</p>
+<p>• O_TRUNC: 如果文件巳经存在，就截断它。</p>
+<p>• O_APPEND: 在每次写操作前，设置文件位置到文件的结尾处。例如，下面的代码说明的是如何打开一个已存在文件，并在后面添加一些数据：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fd = Open(<span class="string">&quot;foo.txt&quot;</span>, O_WRONLYIO_APPEND,<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>mode参数指定了新文件的访问权限位。这些位的符号名字如图10-2所示。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/52f727b6-0fbd-4384-ad29-6bafffec73ff.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/52f727b6-0fbd-4384-ad29-6bafffec73ff.png"></p>
+<p>作为上下文的一部分，每个进程都有一个umask,它是通过调用umask函数来设置的。当进程通过带某个mode参数的open函数调用来创建一个新文件时，文件的访问权限位被设置为mode&amp; ~ umask。例如，假设我们给定下面的mode和umask默认值：</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/b1efeabd-c46d-4195-9d45-ccd9fa4adf7f.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/b1efeabd-c46d-4195-9d45-ccd9fa4adf7f.png"></p>
+<p>接下来，下面的代码片段创建一个新文件，文件的拥有者有读写权限，而所有其他的用户都有读权限：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">umask(DEF_UMASK); </span><br><span class="line"></span><br><span class="line">fd = Open(<span class="string">&quot;foo.txt&quot;</span>, O_CREAT|O_TRUNC|O_WRONLY, DEF_MODE);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>最后，进程通过调用close函数关闭一个打开的文件。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">close</span><span class="params">(<span class="keyword">int</span> fd)</span></span>; </span><br><span class="line"></span><br><span class="line">返回：若成功则为o,若出错则为<span class="number">-1</span>。</span><br></pre></td></tr></table></figure>
+
+<h2 id="第四节-读和写文件"><a href="#第四节-读和写文件" class="headerlink" title="第四节 读和写文件"></a>第四节 读和写文件</h2><p>应用程序是通过分别调用read和write函数来执行输入和输出的。</p>
+<figure class="highlight cc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">void</span> *buf, <span class="keyword">size_t</span> n)</span></span>; </span><br><span class="line"></span><br><span class="line">返回：若成功则为读的字节数，若EOF则为o,若出错为一<span class="number">1</span>。</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">write</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> <span class="keyword">void</span> *buf, <span class="keyword">size_t</span> n)</span></span>; 返回：若成功则为写的字节数，若出错则为一<span class="number">1</span>。</span><br></pre></td></tr></table></figure>
+
+<p>read函数从描述符为fd的当前文件位置复制最多n个字节到内存位置buf。返回值-1表示一个错误，而返回值0表示EOF。否则，返回值表示的是实际传送的字节数量。write函数从内存位置buf复制至多n个字节到描述符fd的当前文件位置。图10-3展示了一个程序使用read和write调用一次一个字节地从标准输入复制到标准输出。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/e2456efe-ebc7-4605-98ed-4aee09cfa9b0.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/e2456efe-ebc7-4605-98ed-4aee09cfa9b0.png"></p>
+<p>在某些情况下，read和write传送的字节比应用程序要求的要少。这些不足值(shortcount)不表示有错误。出现这样情况的原因有：</p>
+<p>•读时遇到EOF。假设我们准备读一个文件，该文件从当前文件位置开始只含有20多个字节，而我们以50个字节的片进行读取。这样一来，下一个read返回的不足值为20,此后的read将通过返回不足值0来发出EOF信号。</p>
+<p>• 从终端读文本行。如果打开文件是与终端相关联的（如键盘和显示器），那么每个read函数将一次传送一个文本行，返回的不足值等于文本行的大小。</p>
+<p>• 读和写网络套接宇(socket)。如果打开的文件对应千网络套接字(11.4节），那么内部缓冲约束和较长的网络延迟会引起read和write返回不足值。对Linux管道(pipe)调用read和write时，也有可能出现不足值，这种进程间通信机制不在我们讨论的范圃之内。</p>
+<p>实际上，除了EOF,当你在读磁盘文件时，将不会遇到不足值，而且在写磁盘文件时，也不会遇到不足值。然而，如果你想创建健壮的（可靠的）诸如Web服务器这样的网络应用，就必须通过反复调用read和write处理不足值，直到所有需要的字节都传送完毕。</p>
+<h2 id="第五节-用RIO包健壮地读写"><a href="#第五节-用RIO包健壮地读写" class="headerlink" title="第五节 用RIO包健壮地读写"></a>第五节 用RIO包健壮地读写</h2><p>在这一小节里，我们会讲述一个I/0包，称为RIO(RobustI/0, 健壮的I/0)包，它会自动为你处理上文中所述的不足值。在像网络程序这样容易出现不足值的应用中，RIO包提供了方便、健壮和高效的I/0。RIO提供了两类不同的函数：</p>
+<p>• 无缓冲的输入输出函数。这些函数直接在内存和文件之间传送数据，没有应用级缓冲。它们对将二进制数据读写到网络和从网络读写二进制数据尤其有用。</p>
+<p>• 带缓冲的输入函数。这些函数允许你高效地从文件中读取文本行和二进制数据，这些文件的内容缓存在应用级缓冲区内，类似于为printf这样的标准I/0函数提供的缓冲区。与[110]中讲述的带缓冲的I/0例程不同，带缓冲的RIO输入函数是线程安全的），它在同一个描述符上可以被交错地调用。例如，你可以从一个描述符中读一些文本行，然后读取一些二进制数据，接着再多读取一些文本行。</p>
+<h3 id="第一节-RIO的无缓冲的输入输出函数"><a href="#第一节-RIO的无缓冲的输入输出函数" class="headerlink" title="第一节 RIO的无缓冲的输入输出函数"></a>第一节 RIO的无缓冲的输入输出函数</h3><p>通过调用rio—reacln和rio_writen函数，应用程序可以在内存和文件之间直接传送数据。</p>
+<figure class="highlight cc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;csapp.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">rio_readn</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">void</span> *usrbuf, <span class="keyword">size_t</span> n)</span></span>; <span class="function"><span class="keyword">ssize_t</span> <span class="title">rio_writen</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">void</span> *usrbuf, <span class="keyword">size_t</span> n)</span></span>; </span><br><span class="line">返回：若成功则为传送的宇节数，若EOF则为<span class="number">0</span>(只对rio_readn石言），若出错则为—<span class="number">1</span>。</span><br></pre></td></tr></table></figure>
+
+<p>rio—readn函数从描述符fd的当前文件位置最多传送n个字节到内存位置usrbuf。类似地，rio_writen函数从位置usrbuf传送n个字节到描述符fd。</p>
+<p>rio_read函数在遇到EOF时只能返回一个不足值。rio_writen函数决不会返回不足值。对同一个描述符，可以任意交错地调用rio—readn和rio—writen。</p>
+<p>图10-4显示了rio—readn和rio—writen的代码。注意，如果rio_readn和rio_wri~en函数被一个从应用信号处理程序的返回中断，那么每个函数都会手动地重启read或write。为了尽可能有较好的可移植性，我们允许被中断的系统调用，且在必要时重启它们。</p>
+<h3 id="第二节-RIO的带缓冲的输入函数"><a href="#第二节-RIO的带缓冲的输入函数" class="headerlink" title="第二节 RIO的带缓冲的输入函数"></a>第二节 RIO的带缓冲的输入函数</h3><p>假设我们要编写一个程序来计算文本文件中文本行的数量，该如何来实现呢？</p>
+<p>一种方法就是用read函数来一次一个字节地从文件传送到用户内存，检查每个字节来查找换行符。这个方法的缺点是效率不是很高，每读取文件中的一个字节都要求陷入内核。</p>
+<p>一种更好的方法是调用一个包装函数Crio_readlineb),它从一个内部读缓冲区复制一个文本行，当缓冲区变空时，会自动地调用read重新填满缓冲区。对于既包含文本行也包含二进制数据的文件（例如11.5. 3节中描述的HTTP响应），我们也提供了一个rio_readn带缓冲区的版本，叫做rio_readnb,它从和rioreadlineb一样的读缓冲区中传送原始字节。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;csapp.h&quot;</span> </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rio_readinitb</span><span class="params">(<span class="keyword">rio_t</span> *rp, <span class="keyword">int</span> fd)</span></span>; </span><br><span class="line">返回：无。<span class="keyword">ssize_t</span> </span><br><span class="line">rio_readlineb(<span class="keyword">rio_t</span> *rp, <span class="keyword">void</span> *usrbuf, <span class="keyword">size_t</span> maxlen); <span class="keyword">ssize_t</span> </span><br><span class="line"> rio_readnb(<span class="keyword">rio_t</span> *rp, <span class="keyword">void</span> *usrbuf, <span class="keyword">size_t</span> n); </span><br><span class="line">返回：若成功则为读的字节数，若EOF则为o,若出错则为一<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>每打开一个描述符，都会调用一次rio_readinitb函数。它将描述符fd和地址rp处的一个类型为rio_t的读缓冲区联系起来。rio_readlineb函数从文件rp读出下一个文本行（包括结尾的换行符），将它复制到内存位置usrbuf,并且用NULL(零）字符来结束这个文本行。rio_readlineb函数最多读maxlen-1个字节，余下的一个字符留给结尾的NULL字符。超过maxlen-1字节的文</p>
+<p>本行被截断，并用一个NULL字符结束。rio—readnb函数从文件rp最多读n个字节到内存位置usrbuf。对同一描述符，对rio_readlineb和rio_readnb的调用可以任意交叉进行。然而，对这些带缓冲的函数的调用却不应和无缓冲的rio_readn函数交叉使用。在本书剩下的部分中将给出大量的RIO函数的示例。</p>
+<p>图10-5展示了如何使用RIO函数来一次一行地从标准输入复制一个文本文件到标准输出。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/f7f7e39d-d8a0-4375-b860-78e553c4c8f7.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/f7f7e39d-d8a0-4375-b860-78e553c4c8f7.png"></p>
+<p>图10-6展示了一个读缓冲区的格式，以及初始化它的rio—readinitb函数的代码。rio—readinitb函数创建了一个空的读缓冲区，并且将一个打开的文件描述符和这个缓冲区联系起来。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/b87f0776-4a51-4424-9d71-ea0c0c85f938.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/b87f0776-4a51-4424-9d71-ea0c0c85f938.png"></p>
+<p>IO读程序的核心是图10-7所示的rio_read函数。rio_read函数是Linuxread函数的带缓冲的版本。当调用rio_read要求读n个字节时，读缓冲区内有rp-&gt;rio_cnt个未读字节。如果缓冲区为空，那么会通过调用read再填满它。这个read调用收到一个不足值并不是错误，只不过读缓冲区是填充了一部分。一旦缓冲区非空，rio_read就从读缓冲区复制n和rp-&gt;rio_cnt中较小值个字节到用户缓冲区，并返回复制的字节数。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/bd117721-b845-4fbd-9f66-5a1d9e4d4ba9.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/bd117721-b845-4fbd-9f66-5a1d9e4d4ba9.png"></p>
+<p>对于一个应用程序，rio_read函数和Linuxread函数有同样的语义。在出错时，它返回值-1,并且适当地设置errno。在EOF时，它返回值0。如果要求的字节数超过了读缓冲区内未读的字节的数量，它会返回一个不足值。两个函数的相似性使得很容易通过用rio_read代替read来创建不同类型的带缓冲的读函数。例如，用rio_read代替read, 图10-8中的rio_readnb函数和rio—readn有相同的结构。相似地，图10-8中的豆o_readlineb程序最多调用maxlen-1次rio_read。每次调用都从读缓冲区返回一个字节，然后检查这个字节是否是结尾的换行符。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/0f76a391-5183-4b29-9539-fbcec9d5f04b.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/0f76a391-5183-4b29-9539-fbcec9d5f04b.png"></p>
+<h2 id="第六部分-读取文件元数据"><a href="#第六部分-读取文件元数据" class="headerlink" title="第六部分 读取文件元数据"></a>第六部分 读取文件元数据</h2><p>应用程序能够通过调用stat和fstat函数，检索到关千文件的信息（有时也称为文件的元数据(metadata))。</p>
+<figure class="highlight cc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt; </span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">stat</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *filename, struct stat *buf)</span></span>; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fstat</span><span class="params">(<span class="keyword">int</span> fd, struct stat *buf)</span></span>; </span><br><span class="line">返回：若成功则为o,若出错则为—l</span><br></pre></td></tr></table></figure>
+
+<p>stat函数以一个文件名作为输入，并填写如图10-9所示的一个stat数据结构中的各个成员。fstat函数是相似的，只不过是以文件描述符而不是文件名作为输入。当我们在11.5节中讨论Web服务器时，会需要stat数据结构中的st_mode和st_size成员，其他成员则不在我们的讨论之列。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/4e05c4ad-1a6a-4799-bf40-29a5566a55d3.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/4e05c4ad-1a6a-4799-bf40-29a5566a55d3.png"></p>
+<p>st_size成员包含了文件的字节数大小。</p>
+<p>st_mode成员则编码了文件访问许可位</p>
+<p>Linux在sys/stat.h中定义了宏谓词来确定st_mode成员的文件类型：S_ISREG(m)。这是一个普通文件吗？S_ISDIR(m)。这是一个目录文件吗？S_ISSOCK(m)。这是一个网络套接字吗？图10-10展示了我们会如何使用这些宏和stat函数来读取和解释一个文件的stmode位</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/4b93c1e9-f744-46b3-8d31-f4eaaed36953.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/4b93c1e9-f744-46b3-8d31-f4eaaed36953.png"></p>
+<h2 id="第七部分-读取目录内容"><a href="#第七部分-读取目录内容" class="headerlink" title="第七部分 读取目录内容"></a>第七部分 读取目录内容</h2><p>应用程序可以用readdir系列函数来读取目录的内容。</p>
+<figure class="highlight cc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#fnclude <span class="meta-string">&lt;dirent.h&gt; DIR *opendir(const char *name);</span></span></span><br><span class="line"></span><br><span class="line"> 返回：若成功，则为处理的指针；若出错，则为<span class="literal">NULL</span>。</span><br></pre></td></tr></table></figure>
+
+<p>函数opendir以路径名为参数，返回指向目录流(directorystream)的指针。流是对条目有序列表的抽象，在这里是指目录项的列表。</p>
+<figure class="highlight cc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;dirent.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function">struct dirent *<span class="title">readdir</span><span class="params">(DIR *dirp)</span></span>; </span><br><span class="line"></span><br><span class="line">返回：若成功，则为指向下一个目录项的指针；若没有更多的目录项或出错，则为<span class="literal">NULL</span></span><br></pre></td></tr></table></figure>
+
+<p>每次对readdir的调用返回的都是指向流dirp中下一个目录项的指针，或者，如果没有更多目录项则返回NULL。每个目录项都是一个结构，其形式如下：</p>
+<figure class="highlight cc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">dirent</span> &#123;</span> </span><br><span class="line">        <span class="keyword">ino_t</span> d_ino; <span class="comment">/* inode number*/</span></span><br><span class="line">         <span class="keyword">char</span> d_name[<span class="number">256</span>]; <span class="comment">/* Filename*/</span></span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>虽然有些Linux版本包含了其他的结构成员，但是只有这两个对所有系统来说都是标的。成员d_name是文件名，d_ino是文件位置。</p>
+<p>如果出错，则readdir返回NULL,并设置errno。可惜的是，唯一能区分错误和流结束情况的方法是检查自调用readdir以来errno是否被修改过。</p>
+<figure class="highlight cc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;dirent.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">closedir</span><span class="params">(DIR *dirp)</span></span>; </span><br><span class="line"></span><br><span class="line">返回：成功为O;错误为一<span class="number">1</span>。</span><br></pre></td></tr></table></figure>
+
+<p>函数closedir关闭流并释放其所有的资源。图10-11展示了怎样用readdir来读取目录的内容</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/cf9b7380-b7ef-429d-b5b9-d8e5882c067e.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/cf9b7380-b7ef-429d-b5b9-d8e5882c067e.png"></p>
+<h2 id="第八部分-共享文件"><a href="#第八部分-共享文件" class="headerlink" title="第八部分 共享文件"></a>第八部分 共享文件</h2><p>可以用许多不同的方式来共享Linux文件。除非你很清楚内核是如何表示打开的文件，否则文件共享的概念相当难懂。内核用三个相关的数据结构来表示打开的文件：</p>
+<p>• 描述符表(descriptortable)。每个进程都有它独立的描述符表，它的表项是由进程打开的文件描述符来索引的。每个打开的描述符表项指向文件表中的一个表项。</p>
+<p>• 文件表(filetable)。打开文件的集合是由一张文件表来表示的，所有的进程共享这张表。每个文件表的表项组成（针对我们的目的）包括当前的文件位置、引用计数(reference count) (即当前指向该表项的描述符表项数），以及一个指向v-node表中对应表项的指针。关闭一个描述符会减少相应的文件表表项中的引用计数。内核不会删除这个文件表表项，直到它的引用计数为零</p>
+<p>• v-node表(v-nodetable)。同文件表一样，所有的进程共享这张v-node表。每个表项包含stat结构中的大多数信息，包括st_mode和st_size成员。</p>
+<p>图10-12展示了一个示例，其中描述符l和4通过不同的打开文件表表项来引用两个不同的文件。这是一种典型的情况，没有共享文件，并且每个描述符对应一个不同的文件。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/2042f9a5-a69f-4b0a-a55c-2cccc673c142.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/2042f9a5-a69f-4b0a-a55c-2cccc673c142.png"></p>
+<p>如图10-13所示，多个描述符也可以通过不同的文件表表项来引用同一个文件。例如，如果以同一个巨lename调用open函数两次，就会发生这种情况。关键思想是每个描述符都有它自己的文件位置，所以对不同描述符的读操作可以从文件的不同位置获取数据。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/a1d991c0-5336-4d4b-82e2-b6e39ef32eb1.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/a1d991c0-5336-4d4b-82e2-b6e39ef32eb1.png"></p>
+<p>我们也能理解父子进程是如何共享文件的。假设在调用fork之前，父进程有如图10-12所示的打开文件。然后，图10-14展示了调用fork后的情况。子进程有一个父进程描述符表的副本。父子进程共享相同的打开文件表集合，因此共享相同的文件位置。一个很重要的结果就是，在内核删除相应文件表表项之前，父子进程必须都关闭了它们的描述符。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/f4bad33e-006f-42e2-8231-bdca490bca63.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/f4bad33e-006f-42e2-8231-bdca490bca63.png"></p>
+<h2 id="第九部分-I-0重定向"><a href="#第九部分-I-0重定向" class="headerlink" title="第九部分 I/0重定向"></a>第九部分 I/0重定向</h2><p>Linux shell提供了I/0重定向操作符，允许用户将磁盘文件和标准输入输出联系起来。例如，键入</p>
+<p>linux&gt; ls&gt; foo.txt </p>
+<p>使得shell加载和执行ls程序，将标准输出重定向到磁盘文件foo.txt。就如我们将在11. 5节中看到的那样，当一个Web服务器代表客户端运行CGI程序时，它就执行一种相似类型的重定向。那么I/0重定向是如何工作的呢？一种方式是使用dup2函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dup2</span><span class="params">(<span class="keyword">int</span> oldfd, <span class="keyword">int</span> newfd)</span></span>; </span><br><span class="line"></span><br><span class="line">返回：若成功则为非负的描述符，若出错则为—<span class="number">1</span>。</span><br></pre></td></tr></table></figure>
+
+<p>dup2函数复制描述符表表项oldfd到描述符表表项newfd,覆盖描述符表表项new­fd以前的内容。如果newfd已经打开了，dup2会在复制oldfd之前关闭newfd。假设在调用dup2(4,1)之前，我们的状态如图10-12所示，其中描述符1(标准输出）对应千文件AC比如一个终端），描述符4对应于文件BC比如一个磁盘文件）。A和B的引用计数都等于1。图10-15显示了调用dup2(4,1)之后的情况。两个描述符现在都指向文件B;文件A已经被关闭了，并且它的文件表和v-node表表项也已经被删除了；文件B的引用计数已经增加了。从此以后，任何写到标准输出的数据都被重定向到文件B。</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/366cf526-126f-44c7-b207-1d0602ca1ca0.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/366cf526-126f-44c7-b207-1d0602ca1ca0.png"></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/4034dd59-3013-413c-9fb0-185dbac808d3.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/4034dd59-3013-413c-9fb0-185dbac808d3.png"></p>
+<h2 id="第十部分-标准-I-O"><a href="#第十部分-标准-I-O" class="headerlink" title="第十部分 标准 I/O"></a>第十部分 标准 I/O</h2><p>C语言定义了一组高级输入输出函数，称为标准1/0库，为程序员提供了UnixI/0 的较高级别的替代。这个库(libc)提供了打开和关闭文件的函数(fopen和fclose)、读和写字节的函数(fread和fwrite)、读和写字符串的函数(fgets和fputs),以及复杂的格式化的I/0函数(scanf和printf)。标准I/0库将一个打开的文件模型化为一个流。对于程序员而言，一个流就是一个指向FILE类型的结构的指针。每个ANSIC程序开始时都有三个打开的流stdin、stdout和stderr,分别对应于标准输入、标准输出和标准错误：</p>
+<figure class="highlight cc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt; </span></span></span><br><span class="line"><span class="keyword">extern</span> FILE *Stdin; </span><br><span class="line"><span class="comment">/* Standard input (descriptor 0) */</span></span><br><span class="line"><span class="keyword">extern</span> FILE *Stdout; </span><br><span class="line"><span class="comment">/* Standard output (descriptor 1) */</span></span><br><span class="line"><span class="keyword">extern</span> FILE *<span class="built_in">stderr</span>; </span><br><span class="line"><span class="comment">/* Standard error (descriptor 2) */</span></span><br></pre></td></tr></table></figure>
+
+<p>类型为FILE的流是对文件描述符和流缓冲区的抽象。流缓冲区的目的和RIO读缓冲区的一样：就是使开销较高的Linux1/0系统调用的数量尽可能得小。例如，假设我们有一个程序，它反复调用标准1/0的getc函数，每次调用返回文件的下一个字符。当第一次调用getc时，库通过调用一次read函数来填充流缓冲区，然后将缓冲区中的第一个字节返回给应用程序。只要缓冲区中还有未读的字节，接下来对getc的调用就能直接从流缓冲区得到服务。</p>
+<h2 id="第十一部分-我该使用哪些I-0函数？"><a href="#第十一部分-我该使用哪些I-0函数？" class="headerlink" title="第十一部分 我该使用哪些I/0函数？"></a>第十一部分 我该使用哪些I/0函数？</h2><p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/0624dcaa-5581-4491-b3fb-af670a4faa6c.png" alt="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b1ebbd3c-ca49-405b-957b-effe60782276/0624dcaa-5581-4491-b3fb-af670a4faa6c.png"></p>
+<p>Unix I/0模型是在操作系统内核中实现的。应用程序可以通过诸如open、close、lseek、read、write和stat这样的函数来访问UnixI/0。较高级别的RIO和标准I/0函数都是基于（使用）Unix I/0函数来实现的。RIO函数是专为本书开发的read和write的健壮的包装函数。它们自动处理不足值，并且为读文本行提供一种高效的带缓冲的方法。标准I/0函数提供了UnixI/0函数的一个更加完整的带缓冲的替代品，包括格式化的I/0例程，如printf和scanf</p>
+<p>那么，在你的程序中该使用这些函数中的哪一个呢？下面是一些基本的指导原则：</p>
+<p>• G1: 只要有可能就使用标准I/0。对磁盘和终端设备I/0来说，标准I/0函数是首选方法。大多数C程序员在其整个职业生涯中只使用标准I/0,从不受较低级的Unix I/0函数的困扰（可能stat除外，因为在标准I/0库中没有与它对应的函数）</p>
+<p>• G2: 不要使用scanf或rio_readlineb来读二进制文件。像scanf或rio_read­巨neb这样的函数是专门设计来读取文本文件的。学生通常会犯的一个错误就是用这些函数来读取二进制文件，这就使得他们的程序出现了诡异莫测的失败。比如，二进制文件可能散布着很多Oxa字节，而这些字节又与终止文本行无关。</p>
+<p>• G3: 对网络套接字的I/0使用RIO函数。不幸的是，当我们试着将标准I/0用千网络的输入输出时，出现了一些令人讨厌的问题。如同我们将在11.4节所见，Linux对网络的抽象是一种称为套接字的文件类型。就像所有的Linux文件一样，套接字由文件描述符来引用，在这种情况下称为套接字描述符。应用程序进程通过读写套接字描述符来与运行在其他计算机的进程实现通信。标准I/0流，从某种意义上而言是全双工的，因为程序能够在同一个流上执行输入和输出。然而，对流的限制和对套接字的限制，有时候会互相冲突，而又极少有文档描述这些现象：</p>
+<p>• 限制一：跟在输出函数之后的输入函数。如果中间没有插入对fflush、fseek、. fsetpos或者rewind的调用，一个输入函数不能跟随在一个输出函数之后。fflush函数清空与流相关的缓冲区。后三个函数使用UnixI/0 lseek函数来重置当前的文件位置。</p>
+<p>• 限制二：跟在输入函数之后的输出函数。如果中间没有插入对fseek、fsetpos或者rewind的调用，一个输出函数不能跟随在一个输入函数之后，除非该输入函数遇到了一个文件结束。这些限制给网络应用带来了一个问题，因为对套接字使用lseek函数是非法的。对流I/0的第一个限制能够通过采用在每个输入操作前刷新缓冲区这样的规则来满足。然而，要满足第二个限制的唯一办法是，对同一个打开的套接字描述符打开两个流，一个用来读，一个用来写：</p>
+<p>FILE *fpin,   *fpout; </p>
+<p>fpin = fdopen(sockfd,   “r”);</p>
+<p> fpout = fdopen(sockfd, “w”); </p>
+<p>但是这种方法也有问题，因为它要求应用程序在两个流上都要调用fclose,这样才能释放与每个流相关联的内存资源，避免内存泄漏：</p>
+<p>fclose(fpin); </p>
+<p>fclose(fpout);</p>
+<p>这些操作中的每一个都试图关闭同一个底层的套接字描述符，所以第二个close操作就会失败。对顺序的程序来说，这并不是问题，但是在一个线程化的程序中关闭一个已经关闭了的描述符是会导致灾难的（见12.7. 4节）。因此，我们建议你在网络套接字上不要使用标准I/0函数来进行输入和输出，而要使用健壮的RIO函数。如果你需要格式化的输出，使用sprin七f函数在内存中格式化一个字符串，然后用rio_writen把它发送到套接口。如果你需要格式化输入，使用rioreadlineb来读一个完整的文本行，然后用sscanf从文本行提取不同的字段。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Linux提供了少星的基于Unix1/0模型的系统级函数，它们允许应用程序打开、关闭、读和写文件，提取文件的元数据，以及执行l/0重定向。Linux的读和写操作会出现不足值，应用程序必须能正确地预计和处理这种情况。应用程序不应直接调用Unixl/0函数，而应该使用RIO包，RIO包通过反复执行读写操作，直到传送完所有的请求数据，自动处理不足值。Linux内核使用三个相关的数据结构来表示打开的文件。描述符表中的表项指向打开文件表中的表项，而打开文件表中的表项又指向v-node表中的表项。每个进程都有它自己单独的描述符表，而所有的进程共享同一个打开文件表和v-node表。理解这些结构的一般组成就能使我们清楚地理解文件共享和l/0重定向。标准l/0库是基千Unix1/0实现的，并提供了一组强大的高级I/0例程。对于大多数应用程序而言，标准I/0更简单，是优千UnixI/0的选择。然而，因为对标准1/0和网络文件的一些相互不兼容的限制，UnixI/0比之标准l/0更该适用于网络应用程序。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">answer77</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://answer77.top/2021/02/25/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E7%AB%A0/">http://answer77.top/2021/02/25/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E7%AB%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://answer77.top" target="_blank">answer77</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/csapp/">csapp</a><a class="post-meta__tags" href="/tags/pwn%E5%9F%BA%E7%A1%80/">pwn基础</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://s3.ax1x.com/2020/12/15/ruoc4S.png" target="_blank"><img class="post-qr-code-img" src="https://s3.ax1x.com/2020/12/15/ruoc4S.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://s3.ax1x.com/2020/12/15/ruo29g.jpg" target="_blank"><img class="post-qr-code-img" src="https://s3.ax1x.com/2020/12/15/ruo29g.jpg" alt="支付寶"/></a><div class="post-qr-code-desc">支付寶</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/26/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">csapp学习笔记第十一章</div></div></a></div><div class="next-post pull-right"><a href="/2021/02/21/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B9%9D%E7%AB%A0/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">csapp学习笔记第九章</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/02/28/csapp学习笔记第十二章/" title="csapp学习笔记第十二章"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-28</div><div class="title">csapp学习笔记第十二章</div></div></a></div><div><a href="/2021/02/10/CSAPP 学习笔记（第六章）/" title="CSAPP 学习笔记（第六章）"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-10</div><div class="title">CSAPP 学习笔记（第六章）</div></div></a></div><div><a href="/2021/02/14/csapp学习笔记第七章/" title="学习笔记第七章"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-14</div><div class="title">学习笔记第七章</div></div></a></div><div><a href="/2021/02/17/CSAPP学习笔记第八章/" title="csapp学习笔记第八章"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-17</div><div class="title">csapp学习笔记第八章</div></div></a></div><div><a href="/2021/02/03/csapp lab 3 attack lab-/" title="csapp lab 3 attack lab"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-03</div><div class="title">csapp lab 3 attack lab</div></div></a></div><div><a href="/2021/02/13/csapp lab 5 cache lab/" title="csapp lab 5 cache lab"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-13</div><div class="title">csapp lab 5 cache lab</div></div></a></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://s3.ax1x.com/2020/12/12/rVz6Ld.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">answer77</div><div class="author-info__description">大二pwn菜鸡一个</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-%E7%B3%BB%E7%BB%9F%E7%BA%A7i-O"><span class="toc-number">1.</span> <span class="toc-text">第十章 系统级i&#x2F;O</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-unix-I-O"><span class="toc-number">1.1.</span> <span class="toc-text">第一部分 unix I&#x2F;O</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text">第二节 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-%E6%89%93%E5%BC%80%E5%92%8C%E5%85%B3%E9%97%AD%E6%96%87%E4%BB%B6"><span class="toc-number">1.3.</span> <span class="toc-text">第三节 打开和关闭文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%8A%82-%E8%AF%BB%E5%92%8C%E5%86%99%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">第四节 读和写文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E8%8A%82-%E7%94%A8RIO%E5%8C%85%E5%81%A5%E5%A3%AE%E5%9C%B0%E8%AF%BB%E5%86%99"><span class="toc-number">1.5.</span> <span class="toc-text">第五节 用RIO包健壮地读写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-RIO%E7%9A%84%E6%97%A0%E7%BC%93%E5%86%B2%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0"><span class="toc-number">1.5.1.</span> <span class="toc-text">第一节 RIO的无缓冲的输入输出函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-RIO%E7%9A%84%E5%B8%A6%E7%BC%93%E5%86%B2%E7%9A%84%E8%BE%93%E5%85%A5%E5%87%BD%E6%95%B0"><span class="toc-number">1.5.2.</span> <span class="toc-text">第二节 RIO的带缓冲的输入函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E9%83%A8%E5%88%86-%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E5%85%83%E6%95%B0%E6%8D%AE"><span class="toc-number">1.6.</span> <span class="toc-text">第六部分 读取文件元数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E9%83%A8%E5%88%86-%E8%AF%BB%E5%8F%96%E7%9B%AE%E5%BD%95%E5%86%85%E5%AE%B9"><span class="toc-number">1.7.</span> <span class="toc-text">第七部分 读取目录内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E9%83%A8%E5%88%86-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6"><span class="toc-number">1.8.</span> <span class="toc-text">第八部分 共享文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E9%83%A8%E5%88%86-I-0%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">1.9.</span> <span class="toc-text">第九部分 I&#x2F;0重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E9%83%A8%E5%88%86-%E6%A0%87%E5%87%86-I-O"><span class="toc-number">1.10.</span> <span class="toc-text">第十部分 标准 I&#x2F;O</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E9%83%A8%E5%88%86-%E6%88%91%E8%AF%A5%E4%BD%BF%E7%94%A8%E5%93%AA%E4%BA%9BI-0%E5%87%BD%E6%95%B0%EF%BC%9F"><span class="toc-number">1.11.</span> <span class="toc-text">第十一部分 我该使用哪些I&#x2F;0函数？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.12.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/03/29/codeql%E5%88%9D%E5%85%A5/" title="codeql初入"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="codeql初入"/></a><div class="content"><a class="title" href="/2021/03/29/codeql%E5%88%9D%E5%85%A5/" title="codeql初入">codeql初入</a><time datetime="2021-03-29T06:14:01.000Z" title="发表于 2021-03-29 14:14:01">2021-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/04/IDApython/" title="IDApython"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IDApython"/></a><div class="content"><a class="title" href="/2021/03/04/IDApython/" title="IDApython">IDApython</a><time datetime="2021-03-03T23:32:02.000Z" title="发表于 2021-03-04 07:32:02">2021-03-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/28/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/" title="csapp学习笔记第十二章"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csapp学习笔记第十二章"/></a><div class="content"><a class="title" href="/2021/02/28/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/" title="csapp学习笔记第十二章">csapp学习笔记第十二章</a><time datetime="2021-02-28T09:16:49.000Z" title="发表于 2021-02-28 17:16:49">2021-02-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/26/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/" title="csapp学习笔记第十一章"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csapp学习笔记第十一章"/></a><div class="content"><a class="title" href="/2021/02/26/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0/" title="csapp学习笔记第十一章">csapp学习笔记第十一章</a><time datetime="2021-02-26T02:58:35.000Z" title="发表于 2021-02-26 10:58:35">2021-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/25/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E7%AB%A0/" title="csapp学习笔记第十章"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csapp学习笔记第十章"/></a><div class="content"><a class="title" href="/2021/02/25/csapp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E7%AB%A0/" title="csapp学习笔记第十章">csapp学习笔记第十章</a><time datetime="2021-02-25T02:25:44.000Z" title="发表于 2021-02-25 10:25:44">2021-02-25</time></div></div></div></div></div></div></div></main><footer id="footer" style="background: rgba(0,0,0,0)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By answer77</div><div class="footer_custom_text">qq:1204342476</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=5379200926&auto=1&height=430"></iframe><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="ture"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+})</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":200,"height":600},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
