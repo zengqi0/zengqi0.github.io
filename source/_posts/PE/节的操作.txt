@@ -1,0 +1,583 @@
+#include<stdio.h>
+
+#include<string.h>
+
+#include<windows.h>
+
+#include<stdlib.h>
+
+char FileName[500] = { 0 };//读取的文件名（地址）
+
+char NewFileName[555] = { 0 }; //写入的新的文件名（地址）
+
+size_t NewFileSize = 0;//文件状态下的大小
+
+
+//功能：将文件PE读入内存1
+//参数：文件地址
+//返回值：指向内存1的指针
+LPVOID ReadPeFile(char FileName[]);
+
+//功能：将内存1的文件copy到内存2，构造成PE内存状态
+//参数：指向内存1的指针
+//返回值:指向内存2的指针
+LPVOID CreateImageBuffer(LPVOID pFileBuffer);
+
+//功能：在内存2中，添加指定代码至节区
+//参数：指向内存2的指针
+//返回值：int型变量flag，功能成功返回1，失败返回0
+int AddCodeToSection(LPVOID pImageBuffer);
+
+//功能：扩大最后一个节区的大小
+//参数：指向内存2的指针
+//返回值：int型变量flag，功能成功返回1，失败返回0
+int EnlargeLastSection(LPVOID pImageBuffer);
+
+//功能:合并最后两个节区
+//参数：指向内存2的指针
+//返回值：int型变量flag，功能成功返回1，失败返回0
+int MergeLastSection(LPVOID pImageBuffer);
+
+//功能：添加一个节区
+//参数：指向内存2的指针
+//返回值：int型变量flag，功能成功返回1，失败返回0
+int IncreaseSection(LPVOID pImageBuffer);
+
+
+//功能：将内存2中的PE内存状态copy至内存3，并构造成PE文件状态
+//参数：指向内存2的指针
+//返回值：指向内存3的指针
+LPVOID CreateNewFileBuffer(LPVOID pImageBuffer);
+
+//功能：将内存3中的数据写入文件，更改名字
+//参数：指向内存3的指针
+//返回值：整数，成功返回1（非零），失败返回0
+int WritePeFile(LPVOID pNewFileBuffer);//将文件状态的信息写入缓冲区
+
+
+
+
+int main()
+{
+	LPVOID pFileBuffer = NULL;
+	LPVOID pImageBuffer = NULL;
+	LPVOID pNewFileBuffer = NULL;
+
+	int flag = 0, end = 0;
+	int option = 0;
+
+	printf("Please input:    (for example:  D:/user/Desktop/PE文件对齐、内存对齐/任意区段添加代码/实验.exe   )\n");
+	gets(FileName);
+
+	printf("***************************\n");
+	printf(" 1.Add Code To Section  (Sorry,It's failed!) \n");
+	printf(" 2.Enlarge Last Section\n");
+	printf(" 3.Merge Last Section\n");
+	printf(" 4.Increase Section\n");
+	printf("***************************\n");
+	printf("please input option:  (1 ~ 4)\n");
+	scanf("%d", &option);
+	if (option < 1 || option>4)
+	{
+		printf("Sorry,not a void option!\n");
+		return 0;
+	}
+
+
+	pFileBuffer = ReadPeFile(FileName);
+
+	if (pFileBuffer)
+	{
+		pImageBuffer = CreateImageBuffer(pFileBuffer);
+
+		//printf("%x\n" , *(PWORD)(pFileBuffer));
+
+		if (pImageBuffer)
+		{
+			switch (option)
+			{
+			case 1:
+				flag = AddCodeToSection(pImageBuffer);
+				break;
+			case 2:
+				flag = EnlargeLastSection(pImageBuffer);
+				break;
+			case 3:
+				flag = MergeLastSection(pImageBuffer);
+				break;
+			case 4:
+				flag = IncreaseSection(pImageBuffer);
+				break;
+			}
+
+			//flag = 1;		
+
+			if (flag)
+			{
+				pNewFileBuffer = CreateNewFileBuffer(pImageBuffer);
+
+				if (pNewFileBuffer)
+				{
+					end = WritePeFile(pNewFileBuffer);
+					if (end)
+						printf("nice,successfully!\n");
+					else
+						printf("sorry,failed!\n");
+				}
+			}
+		}
+	}
+	//	puts(FileName);
+
+	system("PAUSE");
+	return 0;
+}
+
+
+
+
+//功能：将文件PE读入内存1
+//参数：文件地址
+//返回值：指向内存1的指针
+LPVOID ReadPeFile(char FileName[])
+{
+	LPVOID pFileBuffer = NULL;
+	FILE* pFile = NULL;
+	DWORD FileSize = 0;
+	size_t flag = 0;
+
+	//打开文件
+	pFile = fopen(FileName, "rb");
+	if (!pFile)
+	{
+		printf("open file failure!\n");
+		return NULL;
+	}
+
+	//读取文件大小
+	fseek(pFile, 0, SEEK_END);
+	FileSize = ftell(pFile);
+	fseek(pFile, 0, SEEK_SET);
+
+	//分配内存1 空间 并初始化为0
+	pFileBuffer = calloc(FileSize, 1);
+	if (!pFileBuffer)
+	{
+		printf("Failed to allocate memory space_1!\n");
+		fclose(pFile);
+		return NULL;
+	}
+
+
+	//读取文件数据 至 内存1
+	flag = fread(pFileBuffer, FileSize, 1, pFile);
+	if (!flag)
+	{
+		printf("read data failure!\n");
+		fclose(pFile);
+		free(pFileBuffer);
+		return NULL;
+	}
+
+	//关闭文件
+	fclose(pFile);
+	//
+
+	//	printf("%x\n" , *(PWORD)(pFileBuffer));
+
+
+	return pFileBuffer;
+}
+
+
+
+//功能：将内存1的文件copy到内存2，构造成PE内存状态
+//参数：指向内存1的指针
+//返回值:指向内存2的指针
+LPVOID CreateImageBuffer(LPVOID pFileBuffer)
+{
+	LPVOID pImageBuffer = NULL;//指向内存2
+
+	PIMAGE_DOS_HEADER pDosHeader = NULL;//DOS头 指针
+	PIMAGE_NT_HEADERS32 pNtHeader = NULL;//NT头 指针
+	PIMAGE_FILE_HEADER pFileHeader = NULL;//文件头 指针
+	PIMAGE_OPTIONAL_HEADER pOptionHeader = NULL;//可选头 指针
+	PIMAGE_SECTION_HEADER pSectionHeader = NULL;//节区头 指针
+
+	size_t i;//记录节区
+
+//	printf("%x\n" , *(PWORD)(pFileBuffer));
+
+	//检测是否是'MZ'标志
+	if (*(PWORD)pFileBuffer != IMAGE_DOS_SIGNATURE)
+	{
+		printf("sorry , not a void 'MZ' signature!\n");
+		free(pFileBuffer);
+		return NULL;
+	}
+
+	pDosHeader = (PIMAGE_DOS_HEADER)pFileBuffer;
+
+	//检测是否是'PE'标志
+	pNtHeader = (PIMAGE_NT_HEADERS32)((DWORD)pFileBuffer + pDosHeader->e_lfanew);
+	if (pNtHeader->Signature != IMAGE_NT_SIGNATURE)
+	{
+		printf("sorry , not a void 'PE' signature\n");
+		free(pFileBuffer);
+		return NULL;
+	}
+
+	pFileHeader = (PIMAGE_FILE_HEADER)((DWORD)pNtHeader + 4);
+
+	pOptionHeader = (PIMAGE_OPTIONAL_HEADER)((DWORD)pFileHeader + IMAGE_SIZEOF_FILE_HEADER);
+
+	//分配内存2 空间 并初始化为0
+	pImageBuffer = calloc(pOptionHeader->SizeOfImage, 1);//
+	if (!pImageBuffer)
+	{
+		printf("failed to allocate memory space_2!\n");
+		free(pFileBuffer);
+		return NULL;
+	}
+
+	//	printf("size = %x\n",pOptionHeader->SizeOfImage );
+		//将header复制到ImageBuffer
+	memcpy(pImageBuffer, pFileBuffer, pOptionHeader->SizeOfHeaders);
+
+	//	printf("SizeOfHeaders = %x\n",pOptionHeader->SizeOfHeaders );
+
+	//printf("1\n");
+
+		//将 多个 节区复制到ImageBuffer
+	pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pOptionHeader + pFileHeader->SizeOfOptionalHeader);
+	for (i = pFileHeader->NumberOfSections; i > 0; i--)
+	{
+		memcpy((LPVOID)((DWORD)pImageBuffer + pSectionHeader->VirtualAddress), (LPVOID)((DWORD)pDosHeader + pSectionHeader->PointerToRawData), pSectionHeader->SizeOfRawData);
+		//循环遍历 再 copy
+		pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pSectionHeader + IMAGE_SIZEOF_SECTION_HEADER);
+	}
+
+	//释放 内存1 的空间
+	free(pFileBuffer);
+
+
+	//	printf("%x\n" , *(PWORD)(pImageBuffer));
+
+
+	return pImageBuffer;
+}
+
+//功能：在内存2中，添加指定代码至节区
+//参数：指向内存2的指针
+//返回值：int型变量flag，功能成功返回1，失败返回0
+
+int AddCodeToSection(LPVOID pImageBuffer)
+{
+	int flag = 0;
+
+
+	return flag;
+}
+
+//功能：扩大最后一个节区的大小
+//参数：指向内存2的指针
+//返回值：int型变量flag，功能成功返回1，失败返回0
+int EnlargeLastSection(LPVOID pImageBuffer)
+{
+	int flag = 0;
+
+	PIMAGE_DOS_HEADER pDosHeader = NULL;
+	PIMAGE_NT_HEADERS32 pNtHeader = NULL;
+	PIMAGE_FILE_HEADER pFileHeader = NULL;
+	PIMAGE_OPTIONAL_HEADER pOptionHeader = NULL;
+	PIMAGE_SECTION_HEADER pSectionHeader = NULL;
+
+	int i = 0;//循环节
+
+	pDosHeader = (PIMAGE_DOS_HEADER)pImageBuffer;
+
+	pNtHeader = (PIMAGE_NT_HEADERS32)((DWORD)pDosHeader + pDosHeader->e_lfanew);
+
+	pFileHeader = (PIMAGE_FILE_HEADER)((DWORD)pNtHeader + 4);
+
+	pOptionHeader = (PIMAGE_OPTIONAL_HEADER)((DWORD)pFileHeader + IMAGE_SIZEOF_FILE_HEADER);
+
+	pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pOptionHeader + pFileHeader->SizeOfOptionalHeader);
+
+	//扩大最后一个节的大小
+	//循环遍历，指向最后一个节表	 
+	for (i = pFileHeader->NumberOfSections; i > 1; i--)
+		pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pSectionHeader + IMAGE_SIZEOF_SECTION_HEADER);
+	//修改SizeOfRawData,一般我就扩大一个SectionAlignment / FileAliment的大小;
+	pSectionHeader->SizeOfRawData += pOptionHeader->SectionAlignment;//pOptionHeader->FileAlignment;
+
+	//判断是否超出SectionAlignment大小，是否需要更改SizeOfImage
+	if (pSectionHeader->SizeOfRawData > pOptionHeader->SectionAlignment)
+		pOptionHeader->SizeOfImage += (pSectionHeader->SizeOfRawData / pOptionHeader->SectionAlignment) * pOptionHeader->SectionAlignment;
+
+	//最后可以修改节区属性Characteristics,这里我给他增加一个代码段的属性
+	pSectionHeader->Characteristics |= 0x60000020;
+
+	flag = 1;
+
+	return flag;
+}
+
+//功能:合并最后 两个 节区
+//参数：指向内存2的指针
+//返回值：int型变量flag，功能成功返回1，失败返回0
+int MergeLastSection(LPVOID pImageBuffer)
+{
+	int flag = 0;
+
+	PIMAGE_DOS_HEADER pDosHeader = NULL;
+	PIMAGE_NT_HEADERS32 pNtHeader = NULL;
+	PIMAGE_FILE_HEADER pFileHeader = NULL;
+	PIMAGE_OPTIONAL_HEADER pOptionHeader = NULL;
+	PIMAGE_SECTION_HEADER pSectionHeader = NULL;
+
+	int i = 0;//循环节
+
+	pDosHeader = (PIMAGE_DOS_HEADER)pImageBuffer;
+
+	pNtHeader = (PIMAGE_NT_HEADERS32)((DWORD)pDosHeader + pDosHeader->e_lfanew);
+
+	pFileHeader = (PIMAGE_FILE_HEADER)((DWORD)pNtHeader + 4);
+
+	pOptionHeader = (PIMAGE_OPTIONAL_HEADER)((DWORD)pFileHeader + IMAGE_SIZEOF_FILE_HEADER);
+
+	pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pOptionHeader + pFileHeader->SizeOfOptionalHeader);
+
+
+
+	//SizeOfImage可以不用改，应为合并节里面，倒数第二个节区要按照SectionAlignment对齐，而不是按照FileAlignment对齐。
+	//循环遍历，指向倒数第二个节表，i>2。
+	for (i = pFileHeader->NumberOfSections; i > 2; i--)
+		pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pSectionHeader + IMAGE_SIZEOF_SECTION_HEADER);
+
+	//更改节表的SizeOfRawData，等于倒数第二个节区的SectionAlignment对齐 加上 
+	pSectionHeader->SizeOfRawData = (pSectionHeader->SizeOfRawData / pOptionHeader->SectionAlignment + 1) * pOptionHeader->SectionAlignment + pSectionHeader->SizeOfRawData;
+
+	//将末尾两个节区的Characteristics相或，让他们有相同权限
+	pSectionHeader->Characteristics |= ((PIMAGE_SECTION_HEADER)((DWORD)pSectionHeader + IMAGE_SIZEOF_SECTION_HEADER))->Characteristics;
+
+	//将最后一个节表 用0填充
+	pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pSectionHeader + IMAGE_SIZEOF_SECTION_HEADER);
+	memset(pSectionHeader, 0, IMAGE_SIZEOF_SECTION_HEADER);
+
+	//最后更改NumberOfSection,我这里合并末尾你两个节，就只需减一即可。
+	pFileHeader->NumberOfSections -= 1;
+	flag = 1;
+
+	return flag;
+}
+
+
+//功能：添加一个节表和节区
+//参数：指向内存2的指针
+//返回值：int型变量flag，功能成功返回1，失败返回0
+int IncreaseSection(LPVOID pImageBuffer)
+{
+	int flag = 0;
+
+	PIMAGE_DOS_HEADER pDosHeader = NULL;
+	PIMAGE_NT_HEADERS32 pNtHeader = NULL;
+	PIMAGE_FILE_HEADER pFileHeader = NULL;
+	PIMAGE_OPTIONAL_HEADER pOptionHeader = NULL;
+	PIMAGE_SECTION_HEADER pSectionHeader = NULL;
+
+	PIMAGE_SECTION_HEADER pSectionHeader_First = NULL;//多增加一个节表指针指向第一个节表首地址，查看PointerToRawData。
+	PIMAGE_SECTION_HEADER pSectionHeader_Last = NULL;//定义最后一个节表指针，方便获取VirtualAddress 和 SizeOfRawData
+
+	int i = 0;//循环节
+
+	pDosHeader = (PIMAGE_DOS_HEADER)pImageBuffer;
+
+	pNtHeader = (PIMAGE_NT_HEADERS32)((DWORD)pDosHeader + pDosHeader->e_lfanew);
+
+	pFileHeader = (PIMAGE_FILE_HEADER)((DWORD)pNtHeader + 4);
+
+	pOptionHeader = (PIMAGE_OPTIONAL_HEADER)((DWORD)pFileHeader + IMAGE_SIZEOF_FILE_HEADER);
+
+	pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pOptionHeader + pFileHeader->SizeOfOptionalHeader);
+
+	pSectionHeader_First = pSectionHeader;
+
+	//循环遍历，指向倒数第一个节表再往后移,指向我们将要添加节表的位置 ,i>0。
+	for (i = pFileHeader->NumberOfSections; i > 0; i--)
+		pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pSectionHeader + IMAGE_SIZEOF_SECTION_HEADER);
+
+	//先判断是否有节表的区域是否还有空间 用于添加节表。确保在SizeOfRawData范围内。
+	//这里一般要空出两个节表位置，一个用于我们添加新节表，一个用于空的空间填充0（约定俗成）。
+	if (((DWORD)pDosHeader + pSectionHeader_First->PointerToRawData) - (DWORD)pSectionHeader < 2 * IMAGE_SIZEOF_SECTION_HEADER)
+	{
+		//如果没有足够空间，就考虑缩短 pDosHeader->e_lfanew，有没有足够空间，用于开辟新的空间。0x40为DOS头的大小
+		if ((pDosHeader->e_lfanew - 0x40) + (((DWORD)pDosHeader + pSectionHeader_First->PointerToRawData) - (DWORD)pSectionHeader) > 2 * IMAGE_SIZEOF_SECTION_HEADER)
+		{
+			memcpy((LPVOID)((DWORD)pDosHeader + 0x40), pNtHeader, ((DWORD)pSectionHeader - (DWORD)pFileHeader));
+
+			//修改e_lfanew
+			pDosHeader->e_lfanew = 0x40;
+
+			//重新计算各头区的偏移
+			pNtHeader = (PIMAGE_NT_HEADERS32)((DWORD)pDosHeader + pDosHeader->e_lfanew);
+			pFileHeader = (PIMAGE_FILE_HEADER)((DWORD)pNtHeader + 4);
+			pOptionHeader = (PIMAGE_OPTIONAL_HEADER)((DWORD)pFileHeader + IMAGE_SIZEOF_FILE_HEADER);
+			pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pOptionHeader + pFileHeader->SizeOfOptionalHeader);
+
+			pSectionHeader_First = pSectionHeader;
+
+			//同样  //循环遍历，指向倒数第一个节表再往后移,指向我们将要添加节表的位置 ,i>0。
+			for (i = pFileHeader->NumberOfSections; i > 0; i--)
+				pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pSectionHeader + IMAGE_SIZEOF_SECTION_HEADER);
+
+			//此时已经符合条件，有足够空间用于新增节表头。
+			//即退出if语句后。
+		}
+		else//没有足够空间则不能添加节，flag=0，失败
+		{
+			free(pImageBuffer);//释放空间
+			flag = 0;
+			printf("Sorry,There is not enough space of new section header!\n");
+			return flag;
+		}
+	}
+
+	//复制一个节表头过来。
+	memcpy(pSectionHeader, pSectionHeader_First, IMAGE_SIZEOF_SECTION_HEADER);
+
+	//更改节表名.NewSec
+	strcpy(pSectionHeader->Name, ".NewSec");
+
+	//Misc.VirtualSize = 0，那下面构造内存3的文件状态时，就不会往节区填充垃圾数据
+	pSectionHeader->Misc.VirtualSize = 0;
+
+	//SizeOfRawData = FileAlignment
+	pSectionHeader->SizeOfRawData = pOptionHeader->FileAlignment;
+
+	//RVA
+	pSectionHeader_Last = (PIMAGE_SECTION_HEADER)((DWORD)pSectionHeader - IMAGE_SIZEOF_SECTION_HEADER);
+	pSectionHeader->VirtualAddress = pSectionHeader_Last->VirtualAddress + ((pSectionHeader_Last->SizeOfRawData - 1) / pOptionHeader->SectionAlignment + 1) * pOptionHeader->SectionAlignment;
+
+	//PointerToRawData
+	pSectionHeader->PointerToRawData = pSectionHeader_Last->PointerToRawData + pSectionHeader_Last->SizeOfRawData;
+
+	//Characteristics，权限，相 或 即可，我给他加上数据段的权限0x42000040
+	pSectionHeader->Characteristics |= 0x42000040;
+
+	//SizeOfImage 
+	pOptionHeader->SizeOfImage += ((pSectionHeader->SizeOfRawData - 1) / pOptionHeader->FileAlignment + 1) * pOptionHeader->SectionAlignment;
+
+	//NumberOfSection
+	pFileHeader->NumberOfSections += 1;
+
+	//将新添加的节区按照VitualSize大小，用6填充
+	//memset( (LPVOID)( (DWORD)pDosHeader + pSectionHeader->VirtualAddress) , 66 , pSectionHeader->Misc.VirtualSize );
+	//填充不了，应为这个地址没有开辟空间。。。。。。。
+
+	//最后成功之后falg=1；
+	flag = 1;
+
+	return flag;
+}
+
+
+//功能：将内存2中的PE内存状态copy至内存3，并构造成PE文件状态
+//参数：指向内存2的指针
+//返回值：指向内存3的指针
+LPVOID CreateNewFileBuffer(LPVOID pImageBuffer)
+{
+	PIMAGE_DOS_HEADER pDosHeader = NULL;//DOS头
+	PIMAGE_NT_HEADERS32 pNtHeader = NULL;//NT头
+	PIMAGE_FILE_HEADER pFileHeader = NULL;//文件头
+	PIMAGE_OPTIONAL_HEADER pOptionHeader = NULL;//可选头
+	PIMAGE_SECTION_HEADER pSectionHeader = NULL;//节区头
+
+
+	int i;//循环节区
+
+	LPVOID pNewFileBuffer = NULL;//指向内存3的指针
+
+
+	//定义 头指针
+	pDosHeader = (PIMAGE_DOS_HEADER)pImageBuffer;
+
+	pNtHeader = (PIMAGE_NT_HEADERS32)((DWORD)pDosHeader + pDosHeader->e_lfanew);
+
+	pFileHeader = (PIMAGE_FILE_HEADER)((DWORD)pNtHeader + 4);
+
+	pOptionHeader = (PIMAGE_OPTIONAL_HEADER)((DWORD)pFileHeader + IMAGE_SIZEOF_FILE_HEADER);
+
+	pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pOptionHeader + pFileHeader->SizeOfOptionalHeader);
+
+
+	//计算文件Raw大小：最后 一个节区文件地址PointerToRawData+文件对齐大小SizeOfRawData
+	pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pSectionHeader + ((pFileHeader->NumberOfSections - 1) * IMAGE_SIZEOF_SECTION_HEADER));
+	NewFileSize = pSectionHeader->PointerToRawData + pSectionHeader->SizeOfRawData;
+
+	//	printf("File_Size = %x\n", FileSize );
+		//分配内存， 并初始化为0
+	pNewFileBuffer = calloc(NewFileSize, 1);
+	if (!pNewFileBuffer)
+	{
+		printf("failure to allocate memory space_3!\n");
+		free(pImageBuffer);
+		return NULL;
+	}
+
+	//将ImageBuffer复制到NewFileBuffer，并构造为文件状态
+	//复制头区
+	memcpy(pNewFileBuffer, pDosHeader, pOptionHeader->SizeOfHeaders);
+	//复制节区
+	pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pOptionHeader + pFileHeader->SizeOfOptionalHeader);
+	for (i = pFileHeader->NumberOfSections; i > 0; i--)
+	{
+
+		//这里 我复制的字节大小是Misc.VirtualSize,方便新增节区的时候，就不会填充垃圾数据。
+		memcpy((LPVOID)((DWORD)pNewFileBuffer + pSectionHeader->PointerToRawData), (LPVOID)((DWORD)pDosHeader + pSectionHeader->VirtualAddress), pSectionHeader->Misc.VirtualSize);
+
+
+		pSectionHeader = (PIMAGE_SECTION_HEADER)((DWORD)pSectionHeader + IMAGE_SIZEOF_SECTION_HEADER);
+	}
+
+	//释放内存2的空间
+	free(pImageBuffer);
+
+	return pNewFileBuffer;
+}
+
+
+//功能：将内存3中的数据写入文件，更改名字
+//参数：指向内存3的指针
+//返回值：无
+int WritePeFile(LPVOID pNewFileBuffer)
+{
+	FILE* pNewFile = NULL;
+
+	int len = 0;
+
+	//更改新的名字，写入New_文件。
+	strcpy(NewFileName, FileName);
+
+	len = strlen(NewFileName);
+
+	strcpy(NewFileName + len - 4, "_New.exe");
+
+
+	pNewFile = fopen(NewFileName, "wb");
+	if (!pNewFile)
+	{
+		printf("file creaction failed!\n");
+		free(pNewFileBuffer);
+		return 0;
+	}
+
+	//写入文件
+	fwrite(pNewFileBuffer, NewFileSize, 1, pNewFile);
+
+	//关闭文件，缓冲区
+	fclose(pNewFile);
+	free(pNewFileBuffer);
+
+	return 1;
+}
