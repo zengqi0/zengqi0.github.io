@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>codeql初入 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="codeql初入 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://example.com/categories/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-05-06T07:25:18.000Z">
+<meta property="article:modified_time" content="2023-10-27T02:58:20.693Z">
+<meta property="article:author" content="answer77">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.png"/>
+</a>
+<div class="author">
+    <span>answer77</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(90)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="安全开发">
+                        
+                        安全开发
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="安卓逆向">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        安卓逆向
+                        <small>(9)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="安卓逆向<--->入门手册">
+                                        
+                                        入门手册
+                                        
+                                            <small>(7
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="恶意代码分析">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        恶意代码分析
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="恶意代码分析<--->勒索病毒">
+                                        
+                                        勒索病毒
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="恶意代码分析<--->蠕虫">
+                                        
+                                        蠕虫
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="红队">
+                        
+                        红队
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="技术研究">
+                        
+                        技术研究
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="健身">
+                        
+                        健身
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="漏洞研究">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        漏洞研究
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="漏洞研究<--->漏洞相关知识">
+                                        
+                                        漏洞相关知识
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="软件逆向">
+                        
+                        软件逆向
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="渗透测试">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        渗透测试
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="渗透测试<--->HTB">
+                                        
+                                        HTB
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="思想">
+                        
+                        思想
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="应急响应">
+                        
+                        应急响应
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="游戏逆向">
+                        
+                        游戏逆向
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="APT研究">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        APT研究
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-08(蔓灵花)">
+                                        
+                                        APT-C-08(蔓灵花)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-23(双尾蝎)">
+                                        
+                                        APT-C-23(双尾蝎)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-26（Lazarus）">
+                                        
+                                        APT-C-26（Lazarus）
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-35(肚脑虫)">
+                                        
+                                        APT-C-35(肚脑虫)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-48(CNC)">
+                                        
+                                        APT-C-48(CNC)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-56(透明部落)">
+                                        
+                                        APT-C-56(透明部落)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-Q-31(海莲花)">
+                                        
+                                        APT-Q-31(海莲花)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="HackTheBox">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        HackTheBox
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="HackTheBox<--->Challenge">
+                                        
+                                        Challenge
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="HackTheBox<--->startpointer">
+                                        
+                                        startpointer
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="IOT">
+                        
+                        IOT
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="win内核">
+                        
+                        win内核
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="90">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a id="top" class="All 思想 "
+           href="/2023/06/14/%E5%AF%B9%E4%B8%AD%E5%9B%BD%E6%95%B4%E4%B8%AA%E5%AE%89%E5%85%A8%E8%A1%8C%E4%B8%9A%E7%9A%84%E7%90%86%E8%A7%A3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
+            <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_hard_socnet2">红队打靶之VulnHub_hard_socnet2</span>
+            <span class="post-date" title="2024-06-20 14:31:01">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_AdmX_new">红队打靶之VulnHub_AdmX_new</span>
+            <span class="post-date" title="2024-06-20 08:40:02">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/18/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-CHRONOS-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_CHRONOS_1">红队打靶之VulnHub_CHRONOS_1</span>
+            <span class="post-date" title="2024-06-18 17:16:48">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/18/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-%E4%BA%91-AV/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_BOREDHACKERBLOG_云_AV">红队打靶之VulnHub_BOREDHACKERBLOG_云_AV</span>
+            <span class="post-date" title="2024-06-18 11:18:34">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2024/06/17/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_BOREDHACKERBLOG_SOCIAL_NETWORK">红队打靶之VulnHub_BOREDHACKERBLOG_SOCIAL_NETWORK</span>
+            <span class="post-date" title="2024-06-17 21:52:00">2024/06/17</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/09/07/Apache%20HTTP%20Server%20%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E%20CVE-2023-25690/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Apache HTTP Server 请求走私漏洞 CVE-2023-25690">Apache HTTP Server 请求走私漏洞 CVE-2023-25690</span>
+            <span class="post-date" title="2023-09-07 16:12:59">2023/09/07</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/09/06/BurpSuite%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="BurpSuite学习">BurpSuite学习</span>
+            <span class="post-date" title="2023-09-06 15:34:11">2023/09/06</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/12/%E6%8B%8D%E7%85%A7%E6%8A%80%E5%B7%A7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="拍照技巧">拍照技巧</span>
+            <span class="post-date" title="2023-08-12 03:14:34">2023/08/12</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/11/%E7%A9%BF%E6%90%AD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="穿搭">穿搭</span>
+            <span class="post-date" title="2023-08-11 23:47:23">2023/08/11</span>
+        </a>
+        
+        
+        <a  class="All 健身 "
+           href="/2023/08/10/%E8%85%B0%E9%83%A8%E7%A0%94%E7%A9%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="腰部研究">腰部研究</span>
+            <span class="post-date" title="2023-08-10 01:04:12">2023/08/10</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/01/DVWA%E4%B9%8BSQL%20Injection%20Snort%E8%A7%84%E5%88%99%E6%8F%90%E5%8F%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-08-01 09:43:02">2023/08/01</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/31/%E8%AF%9D%E6%9C%AF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="话术">话术</span>
+            <span class="post-date" title="2023-07-31 14:46:46">2023/07/31</span>
+        </a>
+        
+        
+        <a  class="All 安全开发 "
+           href="/2023/07/24/%E6%81%B6%E6%84%8F%E6%B5%81%E9%87%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="恶意流量系统开发">恶意流量系统开发</span>
+            <span class="post-date" title="2023-07-24 16:46:05">2023/07/24</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/24/%E5%90%8E%E9%97%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="后门开发">后门开发</span>
+            <span class="post-date" title="2023-07-24 10:15:44">2023/07/24</span>
+        </a>
+        
+        
+        <a  class="All 安全开发 "
+           href="/2023/07/21/%E6%89%AB%E6%8F%8F%E5%99%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="tcp端口扫描器">tcp端口扫描器</span>
+            <span class="post-date" title="2023-07-21 09:25:02">2023/07/21</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/19/%E6%8C%81%E4%B9%85%E5%8C%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="持久化">持久化</span>
+            <span class="post-date" title="2023-07-19 16:46:54">2023/07/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/17/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Mysql数据库完整学习">Mysql数据库完整学习</span>
+            <span class="post-date" title="2023-07-17 16:03:05">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/17/%E9%98%B2%E5%BE%A1%E8%A7%84%E9%81%BF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="防御规避">防御规避</span>
+            <span class="post-date" title="2023-07-17 14:22:21">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/17/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="代码执行">代码执行</span>
+            <span class="post-date" title="2023-07-17 10:27:01">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/14/%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初始访问">初始访问</span>
+            <span class="post-date" title="2023-07-14 16:10:59">2023/07/14</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/14/%E4%BB%A3%E7%A0%81%E4%B8%8E%E8%BF%9B%E7%A8%8B%E6%B3%A8%E5%85%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="代码与进程注入">代码与进程注入</span>
+            <span class="post-date" title="2023-07-14 09:41:04">2023/07/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/11/python%E9%BB%91%E5%AE%A2%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BC%96%E7%A8%8B%E4%B9%8B%E9%81%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="python黑客渗透测试编程之道">python黑客渗透测试编程之道</span>
+            <span class="post-date" title="2023-07-11 10:54:54">2023/07/11</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/11/%E7%BA%A2%E9%98%9F%E6%80%9D%E8%B7%AF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队思路">红队思路</span>
+            <span class="post-date" title="2023-07-11 10:43:16">2023/07/11</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/30/go%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go语言入门">go语言入门</span>
+            <span class="post-date" title="2023-06-30 16:46:48">2023/06/30</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院文件包含">htb学院文件包含</span>
+            <span class="post-date" title="2023-06-28 16:17:24">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2%E4%BD%BF%E7%94%A8%20FFUF%20%E6%94%BB%E5%87%BB%20WEB%20%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应用程序">应用程序</span>
+            <span class="post-date" title="2023-06-28 16:14:55">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2linux%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院 htb学院linux基础">htb学院 htb学院linux基础</span>
+            <span class="post-date" title="2023-06-28 16:13:26">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院htb学院sql注入基础">htb学院htb学院sql注入基础</span>
+            <span class="post-date" title="2023-06-28 16:11:22">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-Q-31(海莲花) "
+           href="/2023/06/14/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-Q-31(海莲花)时间线及攻击手法总结">APT-Q-31(海莲花)时间线及攻击手法总结</span>
+            <span class="post-date" title="2023-06-14 17:00:06">2023/06/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/08/Gophish%E9%92%93%E9%B1%BC%E5%B9%B3%E5%8F%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Gophish钓鱼平台">Gophish钓鱼平台</span>
+            <span class="post-date" title="2023-06-08 15:05:05">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/08/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%A5%E9%97%A8-%E5%85%A5%E4%BE%B5%E6%8E%92%E6%9F%A5%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应入门-入侵排查篇">应急响应入门-入侵排查篇</span>
+            <span class="post-date" title="2023-06-08 15:05:05">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All 思想 "
+           href="/2023/06/05/%E8%AE%BA%E6%96%B0%E4%B8%AD%E5%9B%BD%E6%88%90%E7%AB%8B%E4%BB%A5%E6%9D%A5%E7%BB%8F%E6%B5%8E%E5%8D%B1%E6%9C%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="论新中国成立以来经济危机">论新中国成立以来经济危机</span>
+            <span class="post-date" title="2023-06-05 15:27:21">2023/06/05</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试 HTB "
+           href="/2023/04/25/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="windows基础知识">windows基础知识</span>
+            <span class="post-date" title="2023-04-25 15:08:28">2023/04/25</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试 HTB "
+           href="/2023/04/23/%E4%BD%BF%E7%94%A8METASPLOIT%E6%A1%86%E6%9E%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="使用METASPLOIT框架">使用METASPLOIT框架</span>
+            <span class="post-date" title="2023-04-23 16:53:53">2023/04/23</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/13/Crypto/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Crypto">Crypto</span>
+            <span class="post-date" title="2023-03-13 17:04:01">2023/03/13</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/11/machine/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="machine">machine</span>
+            <span class="post-date" title="2023-03-11 17:47:30">2023/03/11</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox Challenge "
+           href="/2023/03/10/Forensics%20Collection/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Forensics Collection">Forensics Collection</span>
+            <span class="post-date" title="2023-03-10 15:15:04">2023/03/10</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/09/Reminiscent/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Reminiscent">Reminiscent</span>
+            <span class="post-date" title="2023-03-09 09:41:42">2023/03/09</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox startpointer "
+           href="/2023/03/08/HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HackTheBox上分锦囊(一)">HackTheBox上分锦囊(一)</span>
+            <span class="post-date" title="2023-03-08 13:55:09">2023/03/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/27/%E8%AE%B0%E4%B8%80%E6%AC%A1Kaiji%E5%83%B5%E5%B0%B8%E7%BD%91%E7%BB%9C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="记一次Kaiji僵尸网络">记一次Kaiji僵尸网络</span>
+            <span class="post-date" title="2023-02-27 17:16:34">2023/02/27</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 "
+           href="/2023/02/24/cve2012-0158%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="cve2012-0158漏洞复现">cve2012-0158漏洞复现</span>
+            <span class="post-date" title="2023-02-24 16:43:56">2023/02/24</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2023/02/22/PowerShell%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PowerShell基础">PowerShell基础</span>
+            <span class="post-date" title="2023-02-22 11:46:25">2023/02/22</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-48(CNC) "
+           href="/2023/02/20/APT-C-48-CNC%E7%BB%84%E7%BB%87%E6%94%BB%E5%87%BB%E5%88%A9%E7%94%A8pub%E6%96%87%E4%BB%B6%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-48-CNC组织攻击利用pub文件攻击活动分析">APT-C-48-CNC组织攻击利用pub文件攻击活动分析</span>
+            <span class="post-date" title="2023-02-20 14:10:47">2023/02/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/14/APT-C-56-%E9%80%8F%E6%98%8E%E9%83%A8%E8%90%BD%E4%BC%AA%E8%A3%85%E7%AE%80%E5%8E%86%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-56-透明部落伪装简历攻击活动分析">APT-C-56-透明部落伪装简历攻击活动分析</span>
+            <span class="post-date" title="2023-02-14 16:08:03">2023/02/14</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-35(肚脑虫) "
+           href="/2023/02/11/APT-C-35%E8%82%9A%E8%84%91%E8%99%AB%E6%9F%90%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E4%B8%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-35肚脑虫某样本分析(一)">APT-C-35肚脑虫某样本分析(一)</span>
+            <span class="post-date" title="2023-02-11 18:13:48">2023/02/11</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2023/02/09/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应入门指南">应急响应入门指南</span>
+            <span class="post-date" title="2023-02-09 13:37:00">2023/02/09</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-56(透明部落) "
+           href="/2023/02/06/APT-C-56%EF%BC%88%E9%80%8F%E6%98%8E%E9%83%A8%E8%90%BD%EF%BC%89%E5%88%A9%E7%94%A8%E5%A4%96%E8%B4%B8%E9%93%BE%E6%8E%A5%E4%BC%AA%E8%A3%85%E6%96%87%E6%A1%A3%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-56（透明部落）利用外贸链接伪装文档攻击分析">APT-C-56（透明部落）利用外贸链接伪装文档攻击分析</span>
+            <span class="post-date" title="2023-02-06 18:13:48">2023/02/06</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/11/27/%E5%A4%A7%E7%81%B0%E7%8B%BC%E8%BF%9C%E6%8E%A7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大灰狼远控">大灰狼远控</span>
+            <span class="post-date" title="2022-11-27 21:35:19">2022/11/27</span>
+        </a>
+        
+        
+        <a  class="All 软件逆向 "
+           href="/2022/11/27/peid%E9%80%86%E5%90%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="peid逆向">peid逆向</span>
+            <span class="post-date" title="2022-11-27 10:15:30">2022/11/27</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/19/windbg%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="windbg命令学习">windbg命令学习</span>
+            <span class="post-date" title="2022-11-19 22:31:27">2022/11/19</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/19/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="进程和线程">进程和线程</span>
+            <span class="post-date" title="2022-11-19 20:42:28">2022/11/19</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/15/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="保护模式">保护模式</span>
+            <span class="post-date" title="2022-11-15 15:35:26">2022/11/15</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/14/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="winX86内核驱动开发">winX86内核驱动开发</span>
+            <span class="post-date" title="2022-11-14 16:22:58">2022/11/14</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/13/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="内核环境搭建学习">内核环境搭建学习</span>
+            <span class="post-date" title="2022-11-13 15:05:11">2022/11/13</span>
+        </a>
+        
+        
+        <a  class="All 游戏逆向 "
+           href="/2022/11/07/%E7%83%AD%E8%A1%80%E6%B1%9F%E6%B9%96%E6%B8%B8%E6%88%8F%E5%AE%89%E5%85%A8%E7%AD%91%E5%9F%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="热血江湖游戏安全筑基">热血江湖游戏安全筑基</span>
+            <span class="post-date" title="2022-11-07 21:27:59">2022/11/07</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BAPK%E4%BF%9D%E6%8A%A4%E7%AD%96%E7%95%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APK反破解技术">APK反破解技术</span>
+            <span class="post-date" title="2022-09-29 16:55:42">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BXposed%E6%A1%86%E6%9E%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之Xposed框架">安卓逆向之Xposed框架</span>
+            <span class="post-date" title="2022-09-29 14:53:11">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BNDK%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="NDK开发">NDK开发</span>
+            <span class="post-date" title="2022-09-29 14:42:34">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 "
+           href="/2022/09/27/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%AE%9E%E6%88%98%E4%BF%AE%E6%94%B9%E8%B5%84%E6%BA%90%E5%8E%BB%E5%B9%BF%E5%91%8A01/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向实战修改资源去广告01">安卓逆向实战修改资源去广告01</span>
+            <span class="post-date" title="2022-09-27 19:46:34">2022/09/27</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/26/%E9%80%9A%E8%BF%87%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0smali%E6%B1%87%E7%BC%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="smali与dalvik指令">smali与dalvik指令</span>
+            <span class="post-date" title="2022-09-26 15:50:15">2022/09/26</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/23/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="基于Android的ARM汇编">基于Android的ARM汇编</span>
+            <span class="post-date" title="2022-09-23 15:17:52">2022/09/23</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/21/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BAPK%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之APK打包流程">安卓逆向之APK打包流程</span>
+            <span class="post-date" title="2022-09-21 10:17:44">2022/09/21</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/19/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8B%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之安卓开发">安卓逆向之安卓开发</span>
+            <span class="post-date" title="2022-09-19 17:18:12">2022/09/19</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/16/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8Bjava%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之java基础">安卓逆向之java基础</span>
+            <span class="post-date" title="2022-09-16 18:02:04">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All IOT "
+           href="/2022/09/01/IOT%E5%88%9D%E6%8E%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="iot初探">iot初探</span>
+            <span class="post-date" title="2022-09-01 14:51:06">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 漏洞相关知识 "
+           href="/2022/09/01/win%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%8E%9F%E7%90%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="漏洞利用原理">漏洞利用原理</span>
+            <span class="post-date" title="2022-09-01 11:16:25">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 "
+           href="/2022/08/31/CVE-2010-2883%E5%A4%8D%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CVE-2010-2883_Adobe Reader TTF字体SING表栈溢出漏洞复现">CVE-2010-2883_Adobe Reader TTF字体SING表栈溢出漏洞复现</span>
+            <span class="post-date" title="2022-08-31 17:35:30">2022/08/31</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/08/23/APT_Shamoon/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="关于Shamoon.APT组织的一次完整攻击链分析">关于Shamoon.APT组织的一次完整攻击链分析</span>
+            <span class="post-date" title="2022-08-23 10:12:17">2022/08/23</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/08/16/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="日志分析">日志分析</span>
+            <span class="post-date" title="2022-08-16 17:04:55">2022/08/16</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/08/16/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94everything%E6%96%87%E4%BB%B6%E8%BF%87%E6%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="everything文件过滤">everything文件过滤</span>
+            <span class="post-date" title="2022-08-16 16:22:03">2022/08/16</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-26（Lazarus） "
+           href="/2022/08/12/Lazarus%E4%B8%80%E6%AC%A1%E9%92%88%E5%AF%B9%E8%88%AA%E7%A9%BA%E8%88%AA%E5%A4%A9%E8%A1%8C%E4%B8%9A%E7%9A%84%E6%94%BB%E5%87%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Lazarus一次针对航空航天行业的攻击">Lazarus一次针对航空航天行业的攻击</span>
+            <span class="post-date" title="2022-08-12 15:02:59">2022/08/12</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-08(蔓灵花) "
+           href="/2022/08/11/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="BITTER组织样本分析1">BITTER组织样本分析1</span>
+            <span class="post-date" title="2022-08-11 16:06:21">2022/08/11</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/07/19/%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="爬虫">爬虫</span>
+            <span class="post-date" title="2022-07-19 16:12:19">2022/07/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/07/15/Google_Hacking_%E8%B0%B7%E6%AD%8C%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Google_Hacking_谷歌搜索引擎">Google_Hacking_谷歌搜索引擎</span>
+            <span class="post-date" title="2022-07-15 09:56:40">2022/07/15</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/07/13/2022-7-13-exe/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="个人简历.exe">个人简历.exe</span>
+            <span class="post-date" title="2022-07-13 09:12:38">2022/07/13</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/07/06/%E5%88%9D%E5%85%A5Yara/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Yara入门">Yara入门</span>
+            <span class="post-date" title="2022-07-06 16:14:17">2022/07/06</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 蠕虫 "
+           href="/2022/06/28/2022-06-25_Scar%E6%84%9F%E6%9F%93%E5%BC%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2022.06.25_Scar感染式样本分析">2022.06.25_Scar感染式样本分析</span>
+            <span class="post-date" title="2022-06-28 09:25:02">2022/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/06/27/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应手册">应急响应手册</span>
+            <span class="post-date" title="2022-06-27 15:20:12">2022/06/27</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/03/08/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="宏病毒基础入门">宏病毒基础入门</span>
+            <span class="post-date" title="2022-03-08 09:23:03">2022/03/08</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 勒索病毒 "
+           href="/2022/03/07/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WannaCry病毒分析">WannaCry病毒分析</span>
+            <span class="post-date" title="2022-03-07 11:40:13">2022/03/07</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/03/03/wireshark/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="wireshark">wireshark</span>
+            <span class="post-date" title="2022-03-03 12:18:53">2022/03/03</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-23(双尾蝎) "
+           href="/2022/02/27/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-23境外双尾蝎组织样本分析">APT-C-23境外双尾蝎组织样本分析</span>
+            <span class="post-date" title="2022-02-27 16:00:07">2022/02/27</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/02/24/%E8%AE%B0%E5%BD%95%E6%A0%A1%E5%9B%ADMAC%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="记录校园MAC挖矿病毒">记录校园MAC挖矿病毒</span>
+            <span class="post-date" title="2022-02-24 20:04:18">2022/02/24</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 蠕虫 "
+           href="/2022/02/24/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="熊猫烧香分析">熊猫烧香分析</span>
+            <span class="post-date" title="2022-02-24 18:09:42">2022/02/24</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/02/20/win%E5%86%85%E6%A0%B8%E4%B8%8E%E9%A9%B1%E5%8A%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="win内核与驱动">win内核与驱动</span>
+            <span class="post-date" title="2022-02-20 08:23:51">2022/02/20</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/01/28/PE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PE">PE</span>
+            <span class="post-date" title="2022-01-28 21:26:29">2022/01/28</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2021/04/10/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="unix环境高级编程">unix环境高级编程</span>
+            <span class="post-date" title="2021-04-10 14:54:25">2021/04/10</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2021/03/29/codeql%E5%88%9D%E5%85%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="codeql初入">codeql初入</span>
+            <span class="post-date" title="2021-03-29 14:14:01">2021/03/29</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-codeql初入" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">codeql初入</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="技术研究">技术研究</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-10-27 10:58:43'>2021-03-29 14:14</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#codeql"><span class="toc-text">codeql</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#codeql%E7%AE%80%E4%BB%8B"><span class="toc-text">codeql简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#codeql%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">codeql环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#codeql-%E8%AF%AD%E6%B3%95"><span class="toc-text">codeql 语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-text">类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#where%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text"> where逻辑表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88"><span class="toc-text"> 聚合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%93%E8%AF%8D-Predicate"><span class="toc-text"> 谓词 Predicate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E8%AF%AD%E5%8F%A5"><span class="toc-text"> 判断语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E7%B1%BB"><span class="toc-text"> 定义类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92"><span class="toc-text"> 递归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E9%80%92%E9%97%AD%E5%8C%85"><span class="toc-text"> 传递闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#codeql%E6%9F%A5%E8%AF%A2"><span class="toc-text"> codeql查询</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-6 i,
+    .toc-level-6 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="codeql"><a href="#codeql" class="headerlink" title="codeql"></a>codeql</h1><h2 id="codeql简介"><a href="#codeql简介" class="headerlink" title="codeql简介"></a>codeql简介</h2><p>codeql 是一个静态源码扫描工具，支持 c, python, java 等语言，用户可以使用 ql 语言编写自定义规则识别软件中的漏洞，也可以使用ql自带的规则进行扫描。</p>
+<h2 id="codeql环境搭建"><a href="#codeql环境搭建" class="headerlink" title="codeql环境搭建"></a>codeql环境搭建</h2><p>在windows下在vscode里面安装数据库来操作codeql</p>
+<p>首先我们安装 </p>
+<p> CodeQL CLI  <a target="_blank" rel="noopener" href="https://github.com/github/codeql-cli-binaries/releases">https://github.com/github/codeql-cli-binaries/releases</a></p>
+<p>然后在codeqlcli的根目录下 执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --recursive https://github.com/github/vscode-codeql-starter/</span><br></pre></td></tr></table></figure>
+
+<p>这个时候我们就会出现两个目录，一个是codeql，一个是ql</p>
+<p>然后在vscode 扩展里面下载一个codeql，路径就填写codeql.cmd文件的路径</p>
+<p>之后在vscode终端并且cd 到codeql根目录下使用<code>codeql database create</code> 来创建一个用于查询的数据库 <code>--language=python</code>指定语言是python，如果要创建cpp这种编程语言，则需要在后面加上command，编译命令，可以用gcc或者make</p>
+<p>目标database创建好后，目录结构为</p>
+<ul>
+<li>log&#x2F;                  # 输出的日志信息</li>
+<li>db-cpp&#x2F;               # 编译的数据库</li>
+<li>src.zip               # 编译所对应的目标源码</li>
+<li>codeql-database.yml   # 数据库相关配置</li>
+</ul>
+<p>这样环境就搭建好了</p>
+<h2 id="codeql-语法"><a href="#codeql-语法" class="headerlink" title="codeql 语法"></a>codeql 语法</h2><p>我们可以在<a target="_blank" rel="noopener" href="https://lgtm.com/query">https://lgtm.com/query</a> 这里不用安装环境就可以用codeql 可以看作云codeql，先入手一下，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import &lt;language&gt; /* 导入对应的语言包 */</span><br><span class="line">/* 可能存在的 一些谓词 类的设置 */</span><br><span class="line">from /* 声明变量等 */</span><br><span class="line">where /* 设置逻辑表达式 */</span><br><span class="line">select /* 打印结果 */</span><br></pre></td></tr></table></figure>
+
+<p>字符型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from string s</span><br><span class="line">where s = &quot;hello&quot;</span><br><span class="line">select s</span><br></pre></td></tr></table></figure>
+
+<p>其中，在from语句中，我们定义了一个字符串类型的变量s，然后，我们在where语句中，将字符串”hello”赋值给了变量s，最后，我们在select语句中返回变量s的值。如果在查询控制台运行上述代码的话，运行结果将为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello</span><br></pre></td></tr></table></figure>
+
+<p><strong>整型与浮点型</strong></p>
+<p>简单来说，整型变量用于保存整数，如306；而浮点型变量则用于保存浮点数，也就是带小数位的数，如3.14。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from float x, int y</span><br><span class="line">where x = 3.6 and y = 3</span><br><span class="line">select x.pow(y)</span><br></pre></td></tr></table></figure>
+
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p>codeql中存在5种类型: <code>int</code> <code>date</code> <code>float</code> <code>boolean</code> <code>string</code>， 每个类型有对应的谓词(也可以先理解为函数)可以被调用， 如下例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> &quot;hello world&quot;.length() </span><br></pre></td></tr></table></figure>
+
+<h3 id="where逻辑表达式"><a href="#where逻辑表达式" class="headerlink" title="# where逻辑表达式"></a><a target="_blank" rel="noopener" href="https://lingze.xyz/pages/1948eb/#where%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F">#</a> where逻辑表达式</h3><p>可以使用<code>and</code> <code>or</code> 等连接各个表达式，使用exists定义局部变量，</p>
+<p>有一种比较有趣的使用方式，这表示<code>t.getHairColor()</code>肯定和一个字符串匹配，</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exists</span>(string c<span class="operator">|</span> t.getHairColor() <span class="operator">=</span> c)</span><br></pre></td></tr></table></figure>
+
+<p>下面这是另一个示例， 表示肯定存在一个person的年龄比t大，但我们也不想知道这个大的是哪个，只是表示t不是最大年龄这个意思。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exists</span>(Person p<span class="operator">|</span> p.getAge() <span class="operator">&gt;</span> t.getAge()) </span><br></pre></td></tr></table></figure>
+
+<h3 id="聚合"><a href="#聚合" class="headerlink" title="# 聚合"></a><a target="_blank" rel="noopener" href="https://lingze.xyz/pages/1948eb/#%E8%81%9A%E5%90%88">#</a> 聚合</h3><p>聚合函数，<code>max</code> <code>count</code> <code>min</code> <code>sum</code> <code>avg</code></p>
+<p>下面的示例就是配合<code>exists</code>选取最大的年龄，</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Person t </span><br><span class="line"><span class="keyword">where</span> t.getAge() <span class="operator">=</span> <span class="built_in">max</span>(<span class="type">int</span> i <span class="operator">|</span> <span class="keyword">exists</span>(Person p <span class="operator">|</span> p.getAge() <span class="operator">=</span> i) <span class="operator">|</span> i)</span><br><span class="line"><span class="keyword">select</span> t</span><br></pre></td></tr></table></figure>
+
+<p>但是我们也可以使用<code>order by</code> 关键字</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">max</span>(Person p <span class="operator">|</span> <span class="operator">|</span> p <span class="keyword">order</span> <span class="keyword">by</span> p.getAge())</span><br></pre></td></tr></table></figure>
+
+<h3 id="谓词-Predicate"><a href="#谓词-Predicate" class="headerlink" title="# 谓词 Predicate"></a><a target="_blank" rel="noopener" href="https://lingze.xyz/pages/1948eb/#%E8%B0%93%E8%AF%8D-predicate">#</a> 谓词 <strong>Predicate</strong></h3><p>谓词有点类似函数的意思，但是并不完全等同于函数，他也是一种描述，来指示某种状态，</p>
+<p>无返回值的谓词其实有点像宏的意思，他会直接替换过来,</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">predicate isSouthern(Person p)&#123;</span><br><span class="line">	p.getLocation() <span class="operator">=</span> &quot;south&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Person p </span><br><span class="line"><span class="keyword">where</span> isSouthern(p)</span><br><span class="line"><span class="keyword">select</span> p </span><br></pre></td></tr></table></figure>
+
+<p>有返回值的谓词通过<code>result</code>来表示返回的值，而且这里的<code>result</code>也可以理解为一个类型是该谓词返回类型的变量，也可以被函数调用等，如下示：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Person relativeOf(Person p)&#123;</span><br><span class="line">	parentOf(<span class="keyword">result</span>) <span class="operator">=</span> parentOf(p)</span><br><span class="line">&#125;</span><br><span class="line">Person childOf(Person p)&#123;</span><br><span class="line">  p <span class="operator">=</span> parentOf(<span class="keyword">result</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="判断语句"><a href="#判断语句" class="headerlink" title="# 判断语句"></a><a target="_blank" rel="noopener" href="https://lingze.xyz/pages/1948eb/#%E5%88%A4%E6%96%AD%E8%AF%AD%E5%8F%A5">#</a> 判断语句</h3><p>在ql语言中是不存在if for等语法的，循环一般通过递归实现，判断一般通过逻辑表达式实现：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string other() &#123;</span><br><span class="line">  this <span class="operator">=</span> &quot;Left&quot; <span class="keyword">and</span> <span class="keyword">result</span> <span class="operator">=</span> &quot;Right&quot; </span><br><span class="line">  <span class="keyword">or</span> </span><br><span class="line">  this <span class="operator">=</span> &quot;Right&quot; <span class="keyword">and</span> <span class="keyword">result</span> <span class="operator">=</span> &quot;Left&quot; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义类"><a href="#定义类" class="headerlink" title="# 定义类"></a><a target="_blank" rel="noopener" href="https://lingze.xyz/pages/1948eb/#%E5%AE%9A%E4%B9%89%E7%B1%BB">#</a> 定义类</h3><p>可以自己定义类型，定义类，这里的类其实是类似集合的概念，表示符合某种属性的集合</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class <span class="type">SmallInt</span> extends <span class="type">int</span> &#123;<span class="number">3</span></span><br><span class="line">	<span class="type">SmallInt</span>() &#123;this <span class="keyword">in</span> [<span class="number">1.</span><span class="number">.10</span>] &#125;</span><br><span class="line">	<span class="type">int</span> square() &#123;<span class="keyword">result</span> <span class="operator">=</span> this <span class="operator">*</span> this&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Southerner extends Person &#123;</span><br><span class="line">	Southerner () &#123;</span><br><span class="line">		this.getLocation() <span class="operator">=</span> &quot;south&quot;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>类中的谓词也可以重写，这里语法有点类似oop中的类中的方法的重写</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Child extends Person &#123;</span><br><span class="line">	Child () &#123;</span><br><span class="line">		this.getAge() <span class="operator">&lt;</span> <span class="number">10</span> </span><br><span class="line">	&#125;</span><br><span class="line">  	override predicate isAllowedIn(string region)&#123;</span><br><span class="line">      region <span class="operator">=</span> this.getLocation()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="递归"><a href="#递归" class="headerlink" title="# 递归"></a><a target="_blank" rel="noopener" href="https://lingze.xyz/pages/1948eb/#%E9%80%92%E5%BD%92">#</a> 递归</h3><p>这其实是谓词的一种特性，可以轻易的使用递归，</p>
+<p>这里介绍一个最简单的递归类型, 在定义中调用了自己本身</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Person ancestorOf(Person p)&#123;</span><br><span class="line">  <span class="keyword">result</span> <span class="operator">=</span> parentOf(p) <span class="keyword">or</span> </span><br><span class="line">  <span class="keyword">result</span> <span class="operator">=</span> parentOf(ancestorOf(p))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="传递闭包"><a href="#传递闭包" class="headerlink" title="# 传递闭包"></a><a target="_blank" rel="noopener" href="https://lingze.xyz/pages/1948eb/#%E4%BC%A0%E9%80%92%E9%97%AD%E5%8C%85">#</a> 传递闭包</h3><p>同一个操作被多次使用(这里的<code>ancestorOf()</code>操作)在ql中比较常见，这种操作称为传递闭包，</p>
+<p>其中两个符号非常有用，<code>+</code> <code>*</code></p>
+<p>在递归的例子中展示的<code>parentOf()</code>来演示：</p>
+<ul>
+<li><code>parentOf+(p)</code> 将会调用p一次到多次，等同于上面的<code>ancestorOf(p)</code>，</li>
+<li><code>parentOf*(p)</code> 将会调用p 0次到多次，他会返回p和p的祖先，</li>
+</ul>
+<h3 id="codeql查询"><a href="#codeql查询" class="headerlink" title="# codeql查询"></a><a target="_blank" rel="noopener" href="https://lingze.xyz/pages/1948eb/#codeql%E6%9F%A5%E8%AF%A2">#</a> codeql查询</h3><p>首先是在最开始导入对应的语言库，<code>import &lt;language&gt;</code></p>
+<p>参考 </p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://codeql.github.com/docs/codeql-overview/">https://codeql.github.com/docs/codeql-overview/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://kiprey.github.io/2020/12/CodeQL-setup/">https://kiprey.github.io/2020/12/CodeQL-setup/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://paper.seebug.org/1078/#_1">https://paper.seebug.org/1078/#_1</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/92769710?utm_source=wechat_session">https://zhuanlan.zhihu.com/p/92769710?utm_source=wechat_session</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://lingze.xyz/pages/1948eb/#%E7%8E%AF%E5%A2%83">https://lingze.xyz/pages/1948eb/#%E7%8E%AF%E5%A2%83</a></p>
+</li>
+</ol>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2023 answer77
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 672px;
+    }
+    .nav.fullscreen {
+        margin-left: -672px;
+    }
+    .nav-left {
+        width: 250px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 572px;
+        }
+        .nav.fullscreen {
+            margin-left: -572px;
+        }
+        .nav-left {
+            width: 180px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 572px;
+            margin-left: -572px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/3.png);
+    }
+    
+    
+    #post .index {
+        background: url(/img/3.png);
+    }
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+        background: url("/img/2.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

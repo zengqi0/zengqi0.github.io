@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>smali与dalvik指令 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="smali与dalvik指令 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://example.com/categories/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-05-06T07:25:18.000Z">
+<meta property="article:modified_time" content="2023-10-27T02:58:20.693Z">
+<meta property="article:author" content="answer77">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.png"/>
+</a>
+<div class="author">
+    <span>answer77</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(90)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="安全开发">
+                        
+                        安全开发
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="安卓逆向">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        安卓逆向
+                        <small>(9)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="安卓逆向<--->入门手册">
+                                        
+                                        入门手册
+                                        
+                                            <small>(7
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="恶意代码分析">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        恶意代码分析
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="恶意代码分析<--->勒索病毒">
+                                        
+                                        勒索病毒
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="恶意代码分析<--->蠕虫">
+                                        
+                                        蠕虫
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="红队">
+                        
+                        红队
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="技术研究">
+                        
+                        技术研究
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="健身">
+                        
+                        健身
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="漏洞研究">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        漏洞研究
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="漏洞研究<--->漏洞相关知识">
+                                        
+                                        漏洞相关知识
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="软件逆向">
+                        
+                        软件逆向
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="渗透测试">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        渗透测试
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="渗透测试<--->HTB">
+                                        
+                                        HTB
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="思想">
+                        
+                        思想
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="应急响应">
+                        
+                        应急响应
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="游戏逆向">
+                        
+                        游戏逆向
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="APT研究">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        APT研究
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-08(蔓灵花)">
+                                        
+                                        APT-C-08(蔓灵花)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-23(双尾蝎)">
+                                        
+                                        APT-C-23(双尾蝎)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-26（Lazarus）">
+                                        
+                                        APT-C-26（Lazarus）
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-35(肚脑虫)">
+                                        
+                                        APT-C-35(肚脑虫)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-48(CNC)">
+                                        
+                                        APT-C-48(CNC)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-56(透明部落)">
+                                        
+                                        APT-C-56(透明部落)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-Q-31(海莲花)">
+                                        
+                                        APT-Q-31(海莲花)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="HackTheBox">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        HackTheBox
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="HackTheBox<--->Challenge">
+                                        
+                                        Challenge
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="HackTheBox<--->startpointer">
+                                        
+                                        startpointer
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="IOT">
+                        
+                        IOT
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="win内核">
+                        
+                        win内核
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="90">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a id="top" class="All 思想 "
+           href="/2023/06/14/%E5%AF%B9%E4%B8%AD%E5%9B%BD%E6%95%B4%E4%B8%AA%E5%AE%89%E5%85%A8%E8%A1%8C%E4%B8%9A%E7%9A%84%E7%90%86%E8%A7%A3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
+            <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_hard_socnet2">红队打靶之VulnHub_hard_socnet2</span>
+            <span class="post-date" title="2024-06-20 14:31:01">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_AdmX_new">红队打靶之VulnHub_AdmX_new</span>
+            <span class="post-date" title="2024-06-20 08:40:02">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/18/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-CHRONOS-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_CHRONOS_1">红队打靶之VulnHub_CHRONOS_1</span>
+            <span class="post-date" title="2024-06-18 17:16:48">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/18/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-%E4%BA%91-AV/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_BOREDHACKERBLOG_云_AV">红队打靶之VulnHub_BOREDHACKERBLOG_云_AV</span>
+            <span class="post-date" title="2024-06-18 11:18:34">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2024/06/17/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_BOREDHACKERBLOG_SOCIAL_NETWORK">红队打靶之VulnHub_BOREDHACKERBLOG_SOCIAL_NETWORK</span>
+            <span class="post-date" title="2024-06-17 21:52:00">2024/06/17</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/09/07/Apache%20HTTP%20Server%20%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E%20CVE-2023-25690/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Apache HTTP Server 请求走私漏洞 CVE-2023-25690">Apache HTTP Server 请求走私漏洞 CVE-2023-25690</span>
+            <span class="post-date" title="2023-09-07 16:12:59">2023/09/07</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/09/06/BurpSuite%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="BurpSuite学习">BurpSuite学习</span>
+            <span class="post-date" title="2023-09-06 15:34:11">2023/09/06</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/12/%E6%8B%8D%E7%85%A7%E6%8A%80%E5%B7%A7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="拍照技巧">拍照技巧</span>
+            <span class="post-date" title="2023-08-12 03:14:34">2023/08/12</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/11/%E7%A9%BF%E6%90%AD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="穿搭">穿搭</span>
+            <span class="post-date" title="2023-08-11 23:47:23">2023/08/11</span>
+        </a>
+        
+        
+        <a  class="All 健身 "
+           href="/2023/08/10/%E8%85%B0%E9%83%A8%E7%A0%94%E7%A9%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="腰部研究">腰部研究</span>
+            <span class="post-date" title="2023-08-10 01:04:12">2023/08/10</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/01/DVWA%E4%B9%8BSQL%20Injection%20Snort%E8%A7%84%E5%88%99%E6%8F%90%E5%8F%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-08-01 09:43:02">2023/08/01</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/31/%E8%AF%9D%E6%9C%AF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="话术">话术</span>
+            <span class="post-date" title="2023-07-31 14:46:46">2023/07/31</span>
+        </a>
+        
+        
+        <a  class="All 安全开发 "
+           href="/2023/07/24/%E6%81%B6%E6%84%8F%E6%B5%81%E9%87%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="恶意流量系统开发">恶意流量系统开发</span>
+            <span class="post-date" title="2023-07-24 16:46:05">2023/07/24</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/24/%E5%90%8E%E9%97%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="后门开发">后门开发</span>
+            <span class="post-date" title="2023-07-24 10:15:44">2023/07/24</span>
+        </a>
+        
+        
+        <a  class="All 安全开发 "
+           href="/2023/07/21/%E6%89%AB%E6%8F%8F%E5%99%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="tcp端口扫描器">tcp端口扫描器</span>
+            <span class="post-date" title="2023-07-21 09:25:02">2023/07/21</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/19/%E6%8C%81%E4%B9%85%E5%8C%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="持久化">持久化</span>
+            <span class="post-date" title="2023-07-19 16:46:54">2023/07/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/17/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Mysql数据库完整学习">Mysql数据库完整学习</span>
+            <span class="post-date" title="2023-07-17 16:03:05">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/17/%E9%98%B2%E5%BE%A1%E8%A7%84%E9%81%BF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="防御规避">防御规避</span>
+            <span class="post-date" title="2023-07-17 14:22:21">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/17/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="代码执行">代码执行</span>
+            <span class="post-date" title="2023-07-17 10:27:01">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/14/%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初始访问">初始访问</span>
+            <span class="post-date" title="2023-07-14 16:10:59">2023/07/14</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/14/%E4%BB%A3%E7%A0%81%E4%B8%8E%E8%BF%9B%E7%A8%8B%E6%B3%A8%E5%85%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="代码与进程注入">代码与进程注入</span>
+            <span class="post-date" title="2023-07-14 09:41:04">2023/07/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/11/python%E9%BB%91%E5%AE%A2%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BC%96%E7%A8%8B%E4%B9%8B%E9%81%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="python黑客渗透测试编程之道">python黑客渗透测试编程之道</span>
+            <span class="post-date" title="2023-07-11 10:54:54">2023/07/11</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/11/%E7%BA%A2%E9%98%9F%E6%80%9D%E8%B7%AF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队思路">红队思路</span>
+            <span class="post-date" title="2023-07-11 10:43:16">2023/07/11</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/30/go%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go语言入门">go语言入门</span>
+            <span class="post-date" title="2023-06-30 16:46:48">2023/06/30</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院文件包含">htb学院文件包含</span>
+            <span class="post-date" title="2023-06-28 16:17:24">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2%E4%BD%BF%E7%94%A8%20FFUF%20%E6%94%BB%E5%87%BB%20WEB%20%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应用程序">应用程序</span>
+            <span class="post-date" title="2023-06-28 16:14:55">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2linux%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院 htb学院linux基础">htb学院 htb学院linux基础</span>
+            <span class="post-date" title="2023-06-28 16:13:26">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院htb学院sql注入基础">htb学院htb学院sql注入基础</span>
+            <span class="post-date" title="2023-06-28 16:11:22">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-Q-31(海莲花) "
+           href="/2023/06/14/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-Q-31(海莲花)时间线及攻击手法总结">APT-Q-31(海莲花)时间线及攻击手法总结</span>
+            <span class="post-date" title="2023-06-14 17:00:06">2023/06/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/08/Gophish%E9%92%93%E9%B1%BC%E5%B9%B3%E5%8F%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Gophish钓鱼平台">Gophish钓鱼平台</span>
+            <span class="post-date" title="2023-06-08 15:05:05">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/08/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%A5%E9%97%A8-%E5%85%A5%E4%BE%B5%E6%8E%92%E6%9F%A5%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应入门-入侵排查篇">应急响应入门-入侵排查篇</span>
+            <span class="post-date" title="2023-06-08 15:05:05">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All 思想 "
+           href="/2023/06/05/%E8%AE%BA%E6%96%B0%E4%B8%AD%E5%9B%BD%E6%88%90%E7%AB%8B%E4%BB%A5%E6%9D%A5%E7%BB%8F%E6%B5%8E%E5%8D%B1%E6%9C%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="论新中国成立以来经济危机">论新中国成立以来经济危机</span>
+            <span class="post-date" title="2023-06-05 15:27:21">2023/06/05</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试 HTB "
+           href="/2023/04/25/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="windows基础知识">windows基础知识</span>
+            <span class="post-date" title="2023-04-25 15:08:28">2023/04/25</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试 HTB "
+           href="/2023/04/23/%E4%BD%BF%E7%94%A8METASPLOIT%E6%A1%86%E6%9E%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="使用METASPLOIT框架">使用METASPLOIT框架</span>
+            <span class="post-date" title="2023-04-23 16:53:53">2023/04/23</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/13/Crypto/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Crypto">Crypto</span>
+            <span class="post-date" title="2023-03-13 17:04:01">2023/03/13</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/11/machine/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="machine">machine</span>
+            <span class="post-date" title="2023-03-11 17:47:30">2023/03/11</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox Challenge "
+           href="/2023/03/10/Forensics%20Collection/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Forensics Collection">Forensics Collection</span>
+            <span class="post-date" title="2023-03-10 15:15:04">2023/03/10</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/09/Reminiscent/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Reminiscent">Reminiscent</span>
+            <span class="post-date" title="2023-03-09 09:41:42">2023/03/09</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox startpointer "
+           href="/2023/03/08/HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HackTheBox上分锦囊(一)">HackTheBox上分锦囊(一)</span>
+            <span class="post-date" title="2023-03-08 13:55:09">2023/03/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/27/%E8%AE%B0%E4%B8%80%E6%AC%A1Kaiji%E5%83%B5%E5%B0%B8%E7%BD%91%E7%BB%9C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="记一次Kaiji僵尸网络">记一次Kaiji僵尸网络</span>
+            <span class="post-date" title="2023-02-27 17:16:34">2023/02/27</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 "
+           href="/2023/02/24/cve2012-0158%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="cve2012-0158漏洞复现">cve2012-0158漏洞复现</span>
+            <span class="post-date" title="2023-02-24 16:43:56">2023/02/24</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2023/02/22/PowerShell%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PowerShell基础">PowerShell基础</span>
+            <span class="post-date" title="2023-02-22 11:46:25">2023/02/22</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-48(CNC) "
+           href="/2023/02/20/APT-C-48-CNC%E7%BB%84%E7%BB%87%E6%94%BB%E5%87%BB%E5%88%A9%E7%94%A8pub%E6%96%87%E4%BB%B6%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-48-CNC组织攻击利用pub文件攻击活动分析">APT-C-48-CNC组织攻击利用pub文件攻击活动分析</span>
+            <span class="post-date" title="2023-02-20 14:10:47">2023/02/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/14/APT-C-56-%E9%80%8F%E6%98%8E%E9%83%A8%E8%90%BD%E4%BC%AA%E8%A3%85%E7%AE%80%E5%8E%86%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-56-透明部落伪装简历攻击活动分析">APT-C-56-透明部落伪装简历攻击活动分析</span>
+            <span class="post-date" title="2023-02-14 16:08:03">2023/02/14</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-35(肚脑虫) "
+           href="/2023/02/11/APT-C-35%E8%82%9A%E8%84%91%E8%99%AB%E6%9F%90%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E4%B8%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-35肚脑虫某样本分析(一)">APT-C-35肚脑虫某样本分析(一)</span>
+            <span class="post-date" title="2023-02-11 18:13:48">2023/02/11</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2023/02/09/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应入门指南">应急响应入门指南</span>
+            <span class="post-date" title="2023-02-09 13:37:00">2023/02/09</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-56(透明部落) "
+           href="/2023/02/06/APT-C-56%EF%BC%88%E9%80%8F%E6%98%8E%E9%83%A8%E8%90%BD%EF%BC%89%E5%88%A9%E7%94%A8%E5%A4%96%E8%B4%B8%E9%93%BE%E6%8E%A5%E4%BC%AA%E8%A3%85%E6%96%87%E6%A1%A3%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-56（透明部落）利用外贸链接伪装文档攻击分析">APT-C-56（透明部落）利用外贸链接伪装文档攻击分析</span>
+            <span class="post-date" title="2023-02-06 18:13:48">2023/02/06</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/11/27/%E5%A4%A7%E7%81%B0%E7%8B%BC%E8%BF%9C%E6%8E%A7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大灰狼远控">大灰狼远控</span>
+            <span class="post-date" title="2022-11-27 21:35:19">2022/11/27</span>
+        </a>
+        
+        
+        <a  class="All 软件逆向 "
+           href="/2022/11/27/peid%E9%80%86%E5%90%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="peid逆向">peid逆向</span>
+            <span class="post-date" title="2022-11-27 10:15:30">2022/11/27</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/19/windbg%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="windbg命令学习">windbg命令学习</span>
+            <span class="post-date" title="2022-11-19 22:31:27">2022/11/19</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/19/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="进程和线程">进程和线程</span>
+            <span class="post-date" title="2022-11-19 20:42:28">2022/11/19</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/15/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="保护模式">保护模式</span>
+            <span class="post-date" title="2022-11-15 15:35:26">2022/11/15</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/14/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="winX86内核驱动开发">winX86内核驱动开发</span>
+            <span class="post-date" title="2022-11-14 16:22:58">2022/11/14</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/13/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="内核环境搭建学习">内核环境搭建学习</span>
+            <span class="post-date" title="2022-11-13 15:05:11">2022/11/13</span>
+        </a>
+        
+        
+        <a  class="All 游戏逆向 "
+           href="/2022/11/07/%E7%83%AD%E8%A1%80%E6%B1%9F%E6%B9%96%E6%B8%B8%E6%88%8F%E5%AE%89%E5%85%A8%E7%AD%91%E5%9F%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="热血江湖游戏安全筑基">热血江湖游戏安全筑基</span>
+            <span class="post-date" title="2022-11-07 21:27:59">2022/11/07</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BAPK%E4%BF%9D%E6%8A%A4%E7%AD%96%E7%95%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APK反破解技术">APK反破解技术</span>
+            <span class="post-date" title="2022-09-29 16:55:42">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BXposed%E6%A1%86%E6%9E%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之Xposed框架">安卓逆向之Xposed框架</span>
+            <span class="post-date" title="2022-09-29 14:53:11">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BNDK%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="NDK开发">NDK开发</span>
+            <span class="post-date" title="2022-09-29 14:42:34">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 "
+           href="/2022/09/27/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%AE%9E%E6%88%98%E4%BF%AE%E6%94%B9%E8%B5%84%E6%BA%90%E5%8E%BB%E5%B9%BF%E5%91%8A01/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向实战修改资源去广告01">安卓逆向实战修改资源去广告01</span>
+            <span class="post-date" title="2022-09-27 19:46:34">2022/09/27</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/26/%E9%80%9A%E8%BF%87%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0smali%E6%B1%87%E7%BC%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="smali与dalvik指令">smali与dalvik指令</span>
+            <span class="post-date" title="2022-09-26 15:50:15">2022/09/26</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/23/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="基于Android的ARM汇编">基于Android的ARM汇编</span>
+            <span class="post-date" title="2022-09-23 15:17:52">2022/09/23</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/21/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BAPK%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之APK打包流程">安卓逆向之APK打包流程</span>
+            <span class="post-date" title="2022-09-21 10:17:44">2022/09/21</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/19/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8B%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之安卓开发">安卓逆向之安卓开发</span>
+            <span class="post-date" title="2022-09-19 17:18:12">2022/09/19</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/16/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8Bjava%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之java基础">安卓逆向之java基础</span>
+            <span class="post-date" title="2022-09-16 18:02:04">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All IOT "
+           href="/2022/09/01/IOT%E5%88%9D%E6%8E%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="iot初探">iot初探</span>
+            <span class="post-date" title="2022-09-01 14:51:06">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 漏洞相关知识 "
+           href="/2022/09/01/win%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%8E%9F%E7%90%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="漏洞利用原理">漏洞利用原理</span>
+            <span class="post-date" title="2022-09-01 11:16:25">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 "
+           href="/2022/08/31/CVE-2010-2883%E5%A4%8D%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CVE-2010-2883_Adobe Reader TTF字体SING表栈溢出漏洞复现">CVE-2010-2883_Adobe Reader TTF字体SING表栈溢出漏洞复现</span>
+            <span class="post-date" title="2022-08-31 17:35:30">2022/08/31</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/08/23/APT_Shamoon/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="关于Shamoon.APT组织的一次完整攻击链分析">关于Shamoon.APT组织的一次完整攻击链分析</span>
+            <span class="post-date" title="2022-08-23 10:12:17">2022/08/23</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/08/16/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="日志分析">日志分析</span>
+            <span class="post-date" title="2022-08-16 17:04:55">2022/08/16</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/08/16/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94everything%E6%96%87%E4%BB%B6%E8%BF%87%E6%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="everything文件过滤">everything文件过滤</span>
+            <span class="post-date" title="2022-08-16 16:22:03">2022/08/16</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-26（Lazarus） "
+           href="/2022/08/12/Lazarus%E4%B8%80%E6%AC%A1%E9%92%88%E5%AF%B9%E8%88%AA%E7%A9%BA%E8%88%AA%E5%A4%A9%E8%A1%8C%E4%B8%9A%E7%9A%84%E6%94%BB%E5%87%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Lazarus一次针对航空航天行业的攻击">Lazarus一次针对航空航天行业的攻击</span>
+            <span class="post-date" title="2022-08-12 15:02:59">2022/08/12</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-08(蔓灵花) "
+           href="/2022/08/11/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="BITTER组织样本分析1">BITTER组织样本分析1</span>
+            <span class="post-date" title="2022-08-11 16:06:21">2022/08/11</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/07/19/%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="爬虫">爬虫</span>
+            <span class="post-date" title="2022-07-19 16:12:19">2022/07/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/07/15/Google_Hacking_%E8%B0%B7%E6%AD%8C%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Google_Hacking_谷歌搜索引擎">Google_Hacking_谷歌搜索引擎</span>
+            <span class="post-date" title="2022-07-15 09:56:40">2022/07/15</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/07/13/2022-7-13-exe/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="个人简历.exe">个人简历.exe</span>
+            <span class="post-date" title="2022-07-13 09:12:38">2022/07/13</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/07/06/%E5%88%9D%E5%85%A5Yara/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Yara入门">Yara入门</span>
+            <span class="post-date" title="2022-07-06 16:14:17">2022/07/06</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 蠕虫 "
+           href="/2022/06/28/2022-06-25_Scar%E6%84%9F%E6%9F%93%E5%BC%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2022.06.25_Scar感染式样本分析">2022.06.25_Scar感染式样本分析</span>
+            <span class="post-date" title="2022-06-28 09:25:02">2022/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/06/27/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应手册">应急响应手册</span>
+            <span class="post-date" title="2022-06-27 15:20:12">2022/06/27</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/03/08/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="宏病毒基础入门">宏病毒基础入门</span>
+            <span class="post-date" title="2022-03-08 09:23:03">2022/03/08</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 勒索病毒 "
+           href="/2022/03/07/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WannaCry病毒分析">WannaCry病毒分析</span>
+            <span class="post-date" title="2022-03-07 11:40:13">2022/03/07</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/03/03/wireshark/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="wireshark">wireshark</span>
+            <span class="post-date" title="2022-03-03 12:18:53">2022/03/03</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-23(双尾蝎) "
+           href="/2022/02/27/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-23境外双尾蝎组织样本分析">APT-C-23境外双尾蝎组织样本分析</span>
+            <span class="post-date" title="2022-02-27 16:00:07">2022/02/27</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/02/24/%E8%AE%B0%E5%BD%95%E6%A0%A1%E5%9B%ADMAC%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="记录校园MAC挖矿病毒">记录校园MAC挖矿病毒</span>
+            <span class="post-date" title="2022-02-24 20:04:18">2022/02/24</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 蠕虫 "
+           href="/2022/02/24/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="熊猫烧香分析">熊猫烧香分析</span>
+            <span class="post-date" title="2022-02-24 18:09:42">2022/02/24</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/02/20/win%E5%86%85%E6%A0%B8%E4%B8%8E%E9%A9%B1%E5%8A%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="win内核与驱动">win内核与驱动</span>
+            <span class="post-date" title="2022-02-20 08:23:51">2022/02/20</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/01/28/PE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PE">PE</span>
+            <span class="post-date" title="2022-01-28 21:26:29">2022/01/28</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2021/04/10/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="unix环境高级编程">unix环境高级编程</span>
+            <span class="post-date" title="2021-04-10 14:54:25">2021/04/10</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2021/03/29/codeql%E5%88%9D%E5%85%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="codeql初入">codeql初入</span>
+            <span class="post-date" title="2021-03-29 14:14:01">2021/03/29</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-通过实战学习smali汇编" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">smali与dalvik指令</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="安卓逆向">安卓逆向</a> > 
+            
+            <a  data-rel="安卓逆向&lt;---&gt;入门手册">入门手册</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-10-27 10:58:20'>2022-09-26 15:50</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SMAIL%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="toc-text">SMAIL文件格式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dalvik%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">dalvik寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">基本数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%91%BD%E5%90%8D%E6%B3%95"><span class="toc-text">寄存器的命名法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v%E5%91%BD%E5%90%8D%E6%B3%95"><span class="toc-text">v命名法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#p%E5%91%BD%E5%90%8D%E6%B3%95"><span class="toc-text">p命名法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E6%AE%B5"><span class="toc-text">字段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dalvik%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="toc-text">Dalvik指令集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text">空操作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text">数据操作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E6%8C%87%E4%BB%A4"><span class="toc-text">返回指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4"><span class="toc-text">数据定义指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text">实例操作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text">数组操作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E6%8C%87%E4%BB%A4"><span class="toc-text">异常指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-text">跳转指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A4"><span class="toc-text">比较指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E6%AE%B5%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text">字段操作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text">方法调用指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2%E6%8C%87%E4%BB%A4"><span class="toc-text">数据转换指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4"><span class="toc-text">数据运算指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#smali%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3"><span class="toc-text">smali文件详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0%E7%B1%BB%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="toc-text">描述类的信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%AD%97%E6%AE%B5"><span class="toc-text">静态字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E5%AD%97%E6%AE%B5"><span class="toc-text">实例字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E6%96%B9%E6%B3%95"><span class="toc-text">直接方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%96%B9%E6%B3%95"><span class="toc-text">虚方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-text">接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3"><span class="toc-text">注解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E4%BE%8B%E5%AD%90"><span class="toc-text">实战例子</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E5%8D%93%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E7%B1%BB"><span class="toc-text">安卓程序中的类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-text">内部类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5smail%E6%A0%BC%E5%BC%8F"><span class="toc-text">循环语句smail格式</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-6 i,
+    .toc-level-6 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="SMAIL文件格式"><a href="#SMAIL文件格式" class="headerlink" title="SMAIL文件格式"></a>SMAIL文件格式</h1><p>使用Apktool反编译apk文件后，会在反编译工程目录下生成一个smali文件夹，里面存放着所有反编译出的smali文件，这些文件会根据程序包的层次结构生成相应的目录，程序中所有的类都会在相应的目录下生成独立的smali 文件。如上一节中程序的主Activity名为com.droider.crackme0502.MainActivity,就会在smali目录下依次生成com\droider\crackme0502目录结构，然后在这个目录下生成MainActivity.smali文件。</p>
+<p>无论是普通类、抽象类、接口类或者内部类,在反编译出的代码中,它们都以单独的smali<br>文件来存放。每个smali文件都由若干条语句组成，所有的语句都遵循着一套语法规范。 ’</p>
+<h2 id="dalvik寄存器"><a href="#dalvik寄存器" class="headerlink" title="dalvik寄存器"></a><strong>dalvik寄存器</strong></h2><p>dalvik中的寄存器都是32位大小，这个就直接记住，它支持所有类型。对于小于或等于32位类型，使用一个寄存器就够啦，对64位（long和double)类型，可以使用两个相邻的寄存器来</p>
+<p>存储</p>
+<p>smali语言是Davlik的<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%AF%84%E5%AD%98%E5%99%A8&spm=1001.2101.3001.7020">寄存器</a>语言，语法上和汇编语言相似，Dalvik VM与JVM的最大的区别之一就是Dalvik VM是基于寄存器的。基于寄存器的意思是，在smali里的所有操作都必须经过寄存器来进行。</p>
+<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><p><strong>B—byte<br> C—char<br> D—double<br> F—float<br> I—int<br> S—short<br> V—void<br> J—long<br> Z—boolean</strong></p>
+<h2 id="寄存器的命名法"><a href="#寄存器的命名法" class="headerlink" title="寄存器的命名法"></a><strong>寄存器的命名法</strong></h2><h3 id="v命名法"><a href="#v命名法" class="headerlink" title="v命名法"></a>v命名法</h3><p>v命名法是变量 </p>
+<p>比如说 现在一个方法 2个参数 有5个变量  v0-v4 那么v0-v2 这三个寄存器就是他的变量 v3 v4是这个方法的参数，就是从变量的个数的减去方法的参数个数 </p>
+<p><img src="/%E9%80%9A%E8%BF%87%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0smali%E6%B1%87%E7%BC%96/2.png"></p>
+<h3 id="p命名法"><a href="#p命名法" class="headerlink" title="p命名法"></a>p命名法</h3><p>p命名是参数</p>
+<p><img src="/%E9%80%9A%E8%BF%87%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0smali%E6%B1%87%E7%BC%96/3.png">getHelloWorld方法，也是有两个参数。通过阅读smali代码可以看到有p开头的寄存器，所以这里采用的是p命名法。图中第一个红色方框里可以看到v1是局部寄存器，p0是参数寄存器。在图中第二个红色方框里可以看到v0是局部寄存器，p1是参数寄存器</p>
+<h2 id="字段"><a href="#字段" class="headerlink" title="字段"></a>字段</h2><p>dalvik表示字段的格式：先看一个例子例如：Lpackage&#x2F;name&#x2F;<strong><strong>类名</strong></strong>;-&gt;****字段名:Ljava&#x2F;lang&#x2F;String;</p>
+<p>解释 Lpackage&#x2F;name&#x2F;ObjectName;”这部分表示的是当前这个字段所在的类。</p>
+<p> “L”是“java类类型”，“package&#x2F;name&#x2F;”是包名，“ObjectName”是类名** </p>
+<p> “FieldName“是字段名称<strong><strong>，</strong></strong>“Ljava&#x2F;lang&#x2F;String;”是字段类型</p>
+<p>注意:字段名称和字段类型之间要用“:”隔开。</p>
+<p>字段格式：</p>
+<p> 类型（包名＋类名）＋字段名称＋字段类型</p>
+<p> 例：****(<strong><strong>尝试解释一下</strong></strong>)</p>
+<p> Landroid&#x2F;content&#x2F;pm&#x2F;ActivityInfo;-&gt;theme:I** **Lorg&#x2F;cocos2dx&#x2F;lua&#x2F;AppActivity;-&gt;handler:Landroid&#x2F;os&#x2F;Handler;</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p> 例如：Lpackage&#x2F;name&#x2F;ObjectName;-&gt;MethodName (III) Z</p>
+<p>Lpackage&#x2F;name&#x2F;ObjectName;这部分表示的是当前这个方法所在的类。</p>
+<p> L是java类类型，package&#x2F;name&#x2F;是包名，ObjectName是类名**，</p>
+<p> MethodName这部分表示的是方法名</p>
+<p> (III) Z 这部分表示的是方法的签名信息，由方法参数列表(III)和返回值（Z）构成</p>
+<p>　　　　(III)表示三个int型参数；Z表示返回值类型为 boolean。</p>
+<p>格式：</p>
+<p> 类型（包名＋类名）＋方法名（＋参数类型）＋返回值类型</p>
+<p> Landroid&#x2F;os&#x2F;Handler;-&gt;<init>()V</p>
+<p> Landroid&#x2F;app&#x2F;Activity;-&gt;onCreate(Landroid&#x2F;os&#x2F;Bundle;)V</p>
+<h2 id="Dalvik指令集"><a href="#Dalvik指令集" class="headerlink" title="Dalvik指令集"></a>Dalvik指令集</h2><p> 基础字节码 - 名称后缀&#x2F;字节码后缀 目的寄存器 源寄存</p>
+<p> “- ”这个连接符号在有的指令里是没有的</p>
+<p> 名称后缀是wide，表示数据宽度为64位<strong><strong>、</strong></strong>字节码后缀是from16，表示源寄存器为16位</p>
+<p>例如：基础字节码 - 名称后缀&#x2F;字节码后缀 目的寄存器 源寄存</p>
+<p> move-wide&#x2F;from16 vAA,VBBBB</p>
+<p> move为基础字节码,即opcode<strong><strong>，</strong></strong>wide为名称后缀,标识指令操作的数据宽度为64位****，</p>
+<p> from16为字节码后缀,标识源为一个16位的寄存器引用变量** **；</p>
+<p> vAA为目的寄存器,它始终在源的前面，取值范围为v0~v255****，</p>
+<p> vBBBB为源寄存器，取值范围为v0~v65535****；</p>
+<p>Dalvik 指令集中大多数指令用到了寄存器作为目的操作数或源操作数，其中 A&#x2F;B&#x2F;</p>
+<p> &#x2F;D&#x2F;E&#x2F;F&#x2F;G&#x2F;H 代表一个4位的数值， AA&#x2F;BB&#x2F;…&#x2F;HH代表一个8位的数值，AAAA&#x2F;BBBB&#x2F;</p>
+<p> …&#x2F;HHHH 代表一个16位的数值****；</p>
+<p> 接下来我们学习13种dalvik指令的使用</p>
+<h3 id="空操作指令"><a href="#空操作指令" class="headerlink" title="空操作指令"></a>空操作指令</h3><p>空操作指令的助记符为nop。它的值为00，</p>
+<p>通常nop指令被用来对齐代码之用，无实际操作</p>
+<h3 id="数据操作指令"><a href="#数据操作指令" class="headerlink" title="数据操作指令"></a>数据操作指令</h3><p>数据操作指令为move。 move 指令根据字节码大小与类型不同，后面会跟上不同的后缀；</p>
+<p>格式：基础字节码 - 名称后缀&#x2F;字节码后缀 目的寄存器 源寄存</p>
+<p>move vA, vB：将vB寄存器的值赋给vA寄存器，源寄存器与目的寄存器都为4位。</p>
+<p>move&#x2F;from16 vAA, vBBBB：将vBBBB寄存器的值赋给vAA寄存器，源寄存器为16位，目的寄存器为8位。</p>
+<p>move&#x2F;16 vAAAA, vBBBB：将vBBBB寄存器的值赋给vAAAA寄存器源寄存器与目的寄存器都为16位。</p>
+<p>move-wide vA, vB：为4位的寄存器对赋值。源寄存器与目的寄存器都为4位。</p>
+<p>move-object vA, vB：object是对象的意思，那这里就是为对象赋值。源寄存器与目的寄存器都为4位。</p>
+<p>move-object&#x2F;from16 vAA, vBBBB：为对象赋值。源寄存器为16位，目的寄存器为8位。</p>
+<p>move-object&#x2F;16 vAA, vBBBB：为对象赋值。源寄存器与目的寄存器都为16位。</p>
+<p>move-result vAA：将上一个invoke类型指令操作的单字非对象结果赋给vAA寄存器。</p>
+<p>move-result-wide vAA：将上一个invoke类型指令操作的双字非对象结果赋给vAA寄存器。</p>
+<p>move-result-object vAA：将上一个invoke类型指令操作的对象结果赋给vAA寄存器。</p>
+<p>move-exception vAA：保存运行时发生的异常到vAA寄存器，</p>
+<p>这条指令必须是异常发生时的异常处理器的一条指令。否则的话指令无效。</p>
+<p>分析了这么多，总结起来move指令有三种作用：</p>
+<p>第一种作用：进行赋值操作、第二种作用：move-result 接收返回值操作、第三种作用：处理异常的操作</p>
+<h3 id="返回指令"><a href="#返回指令" class="headerlink" title="返回指令"></a>返回指令</h3><p><strong>return就是返回的意思，大家根据这个英文就可以理解</strong></p>
+<p><strong>return-void：表示函数从一个void方法返回，返回值为空。</strong></p>
+<p><strong>return vAA：表示函数返回一个32位非对象类型的值，返回值寄存器为8位的寄存器vAA。</strong></p>
+<p><strong>return-wide vAA：表示函数返回一个64位非对象类型的值，返回值为8位的寄存器对vAA。</strong></p>
+<p><strong>return-object vAA：这里面出现了object,表示函数返回一个对象类型的值。</strong></p>
+<p><strong>返回值为8位的寄存器vAA</strong></p>
+<h3 id="数据定义指令"><a href="#数据定义指令" class="headerlink" title="数据定义指令"></a>数据定义指令</h3><p><strong>数据定义指令用来定义程序中用到的常量，字符串，类等数据</strong></p>
+<p><strong>const&#x2F;4 vA, #+B：将数值符号扩展为32位后赋给寄存器vA。</strong></p>
+<p><strong>const&#x2F;16 vAA, #+BBBB”：将数据符号扩展为32位后赋给寄存器vAA。</strong></p>
+<p><strong>const vAA, #+BBBBBBBB：将数值赋给寄存器vAA。</strong></p>
+<p><strong>const&#x2F;high16 vAA, #+BBBB0000：将数值右边零扩展为32位后赋给寄存器vAA。</strong></p>
+<p><strong>const-wide&#x2F;16 vAA, #+BBBB：将数值符号扩展为64位后赋给寄存器对vAA。</strong></p>
+<p><strong>const-wide&#x2F;32 vAA, #+BBBBBBBB：将数值符号扩展为64位后赋给寄存器vAA。</strong></p>
+<p><strong>const-wide vAA, #+BBBBBBBBBBBBBBBB：将数值赋给寄存器vAA。</strong></p>
+<p><strong>const-wide&#x2F;high16 vAA, #+BBBB000000000000：将数值右边零扩展为64位后赋给寄存器vAA。</strong></p>
+<p><strong>const-string vAA, string@BBBB：通过字符串索引构造一个字符串并赋给寄存器vAA。</strong></p>
+<p><strong>const-string&#x2F;jumbo vAA, string@BBBBBBBB：通过字符串索引（较大）构造一个字符串并赋给寄存器vAA。</strong></p>
+<p><strong>const-class vAA, type@BBBB：通过类型索引获取一个类引用并赋给寄存器vAA。</strong></p>
+<p><strong>const-class&#x2F;jumbo vAAAA, type@BBBBBBBB：通过给定的类型索引获取一个类引用并赋给寄存器vAAAA。</strong></p>
+<p><strong>这条指令占用两个字节，值为0xooff（Android4.0中新增的指令）。</strong></p>
+<h3 id="实例操作指令"><a href="#实例操作指令" class="headerlink" title="实例操作指令"></a>实例操作指令</h3><p><strong>1-</strong> <strong>check-cast vAA, type@BBBB：将vAA寄存器中的对象引用转换成指定的类型。</strong></p>
+<p><strong>如果失败会报出ClassCastException异常。</strong></p>
+<p><strong>如果类型B指定的是基本类型，对于非基本类型的A来说，运行时始终会失败。</strong></p>
+<p><strong>实例：</strong></p>
+<p> <strong>check-cast v0, Lcom&#x2F;renren&#x2F;mobile&#x2F;android&#x2F;dao&#x2F;AccountDAO;</strong></p>
+<p> <strong>转成<strong><strong>java</strong></strong>：**</strong>(AccountDAO)v0;**</p>
+<p> <strong>check-cast v0, Landroid&#x2F;widget&#x2F;ImageView;</strong></p>
+<p> <strong>转成<strong><strong>java</strong></strong>：**</strong>(ImageView)v0**<strong>；</strong></p>
+<p>**2-**<strong>instance-of vA, vB, type@CCCC：判断vB寄存器中的对象引用是否可以转换成指定的类型。</strong></p>
+<p><strong>如果可以vA寄存器赋值为1，否则vA寄存器赋值为0。</strong></p>
+<p><strong>实例：</strong></p>
+<p>  <strong>instance-of v1, p1, Landroid&#x2F;support&#x2F;v4&#x2F;util&#x2F;Pair;</strong></p>
+<p><strong>（<strong><strong>v1</strong></strong>里面存放的是布尔值：如果<strong><strong>p1</strong></strong>能转换成后面指定类型<strong><strong>Pair</strong></strong>，则<strong><strong>v1</strong></strong>是<strong><strong>1</strong></strong>；否则，<strong><strong>v1</strong></strong>是<strong><strong>0</strong></strong>）</strong></p>
+<p> <strong>instance-of v1, v0, Landroid&#x2F;support&#x2F;v4&#x2F;view&#x2F;ViewPager;</strong></p>
+<p><strong>（<strong><strong>v1</strong></strong>里面存放的是布尔值：如果<strong><strong>v0</strong></strong>能住转换成指定类型<strong><strong>ViewPager</strong></strong>，则<strong><strong>v1</strong></strong>是<strong><strong>1</strong></strong>；否则，为<strong><strong>v1</strong></strong>是<strong><strong>0</strong></strong>）</strong></p>
+<p>**3-**<strong>new-instance vAA, type@BBBB：构造一个指定类型对象的新实例，并将对象引用赋值给vAA寄存器。</strong></p>
+<p><strong>类型符type指定的类型不能是数组类。</strong></p>
+<p><strong>实例：</strong></p>
+<p> <strong>new-instance v0, Landroid&#x2F;support&#x2F;v4&#x2F;view&#x2F;PagerTitleStrip$PagerTitleStripImplIcs;</strong></p>
+<p> <strong>解释：****PagerTitleStripImplIcs</strong> <strong>v0 &#x3D;</strong>  <strong>new PagerTitleStripImplIcs();</strong></p>
+<p> <strong>new-instance v1, Landroid&#x2F;widget&#x2F;TextView;</strong></p>
+<p> *<em>解释：</em>***TextView v1 &#x3D; new TextView();****3-**<strong>new-instance vAA, type@BBBB：构造一个指定类型对象的新实例，并将对象引用赋值给vAA寄存器。</strong></p>
+<p><strong>类型符type指定的类型不能是数组类。</strong></p>
+<p><strong>实例：</strong></p>
+<p> <strong>new-instance v0, Landroid&#x2F;support&#x2F;v4&#x2F;view&#x2F;PagerTitleStrip$PagerTitleStripImplIcs;</strong></p>
+<p> <strong>解释：****PagerTitleStripImplIcs</strong> <strong>v0 &#x3D;</strong>  <strong>new PagerTitleStripImplIcs();</strong></p>
+<p> <strong>new-instance v1, Landroid&#x2F;widget&#x2F;TextView;</strong></p>
+<p> <strong>解释：****TextView v1 &#x3D; new TextView();</strong></p>
+<h3 id="数组操作指令"><a href="#数组操作指令" class="headerlink" title="数组操作指令"></a>数组操作指令</h3><p><strong>数组操作包括获取数组长度，新建数组，数组赋值，数组元素取值与赋值等操作</strong></p>
+<p> <strong>array-length vA, vB：</strong></p>
+<p> <strong>获取给定vB寄存器中数组的长度并将值赋给vA寄存器。数组长度指的是数组的条目个数。</strong></p>
+<p> <strong>实例：</strong></p>
+<p><strong>new-array vA, vB, type@CCCC：</strong></p>
+<p> <strong>构造指定类型（type@CCCC）与大小（vB）的数组，并将值赋给vA寄存器。</strong></p>
+<p> <strong>实例：（加<strong><strong>new</strong></strong>）</strong></p>
+<p><img src="/%E9%80%9A%E8%BF%87%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0smali%E6%B1%87%E7%BC%96/4.png"></p>
+<p><strong>filled-new-array {vC, vD, vE, vF, vG},type@BBBB：</strong></p>
+<p>  <strong>构造指定类型（type@BBBB）与大小（vA）的数组并填充数组内容。vA寄存器是隐含使用的，除了指定数组的大小外还指定了参数的个数，vC~vG是使用到的参数寄存序列。</strong></p>
+<p> <strong>实例：</strong></p>
+<p> <strong>filled-new-array {v0, v1}, [I</strong></p>
+<p> <strong>解释：<strong><strong>int[] array &#x3D; new int[vA]{v0</strong></strong>，****v1};</strong></p>
+<p><strong>fill-array-data vAA, +BBBBBBBB：</strong></p>
+<p> <strong>用指定的数据来填充数组，vAA寄存器为数组引用，引用必须为基础类型的数组，在指令后面会紧跟一个数据表。</strong></p>
+<p><img src="/%E9%80%9A%E8%BF%87%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0smali%E6%B1%87%E7%BC%96/4.png"></p>
+<p> <strong>解释：<strong>*<em>float[] v1&#x3D;new float[]{<strong><strong>数据</strong></strong>1</em>*</strong>，数据<strong><strong>2</strong></strong>};</strong></p>
+<h3 id="异常指令"><a href="#异常指令" class="headerlink" title="异常指令"></a>异常指令</h3><p><strong>“throw vAA”抛出vAA寄存器中指定类型的异常</strong></p>
+<h3 id="跳转指令"><a href="#跳转指令" class="headerlink" title="跳转指令"></a>跳转指令</h3><p><strong>Dalvik指令集中有三种跳转指令：</strong></p>
+<p> <strong>（1）goto：无条件跳转</strong></p>
+<p> <strong>（2）switch：分支跳转</strong></p>
+<p>​    <strong>packed-switch：有规律跳转<strong><strong>、</strong></strong>sparse-switch: 无规律跳转</strong></p>
+<p> <strong>（3）if：条件跳转</strong>   </p>
+<p>​      <strong>if-eq：等于&#x2F;if-ne：不等于<strong><strong>、</strong></strong>if-lt<strong><strong>（</strong></strong>less than<strong><strong>）</strong></strong>：小于&#x2F;if-le：小于等于</strong></p>
+<p>​    <strong>if-gt<strong><strong>（greater than）</strong></strong>：大于&#x2F;if-ge：大于等于<strong><strong>、</strong></strong>if-eqz：等于0&#x2F;if-nez：不等于0</strong></p>
+<p>​    <strong>if-ltz：小于0&#x2F;if-lez：小于等于0<strong><strong>、</strong></strong>if-gtz：大于0&#x2F;if-gez：大于等于0</strong></p>
+<h3 id="比较指令"><a href="#比较指令" class="headerlink" title="比较指令"></a>比较指令</h3><p><strong>比较指令用于对两个寄存器的值（浮点型或长整型）进行比较。</strong></p>
+<p> <strong>大于(1)&#x2F;等于(0)&#x2F;小于(-1)&#x3D;&gt;cmpg、cmp<strong><strong>、</strong></strong>大于(-1)&#x2F;等于(0)&#x2F;小于(1)&#x3D;&gt;cmpl</strong></p>
+<p><strong>例如：cmp-long vAA, vBB, vCC<strong><strong>：</strong></strong>比较两个长整型数。如果vBB大于vCC，则结果为1，相等则为0，小于则结果为-1。</strong></p>
+<p><strong>例如：cmpg-float vAA, vBB, vCC<strong><strong>：</strong></strong>比较两个单精度浮点数。如果vBB大于vCC，结果为1，相等则为0，小于的话为-1。</strong></p>
+<h3 id="字段操作指令"><a href="#字段操作指令" class="headerlink" title="字段操作指令"></a>字段操作指令</h3><p>普通字段 &#x3D;&gt; iget读 &#x2F; iput 写</p>
+<p><strong>实例：</strong></p>
+<p><strong>iget v2, p0, Landroid&#x2F;support&#x2F;design&#x2F;internal&#x2F;ForegroundLinearLayout;-&gt;mq:I</strong></p>
+<p> <strong>解释：把<strong><strong>this</strong></strong>指向的<strong><strong>int</strong></strong>类型的<strong><strong>mq</strong></strong>给<strong><strong>v2</strong></strong>；</strong></p>
+<p><strong>iput v0, p0, Landroid&#x2F;support&#x2F;design&#x2F;internal&#x2F;ForegroundLinearLayout;-&gt;mq:I</strong></p>
+<p> <strong>解释：把<strong><strong>v0</strong></strong>的值写入<strong><strong>this</strong></strong>指向的<strong><strong>mq</strong></strong>；</strong></p>
+<p><strong>静态字段 &#x3D;&gt; sget读 &#x2F; sput 写</strong></p>
+<p><strong>实例：</strong></p>
+<p> <strong>sget-object v0, Landroid&#x2F;support&#x2F;design&#x2F;R$styleable;-&gt;ForegroundLinearLayout:[I</strong></p>
+<p> <strong>解释：把<strong><strong>ForegroundLinearLayout</strong></strong>给<strong><strong>v0</strong></strong>；</strong></p>
+<p> <strong>sput v0, Landroid&#x2F;support&#x2F;v4&#x2F;app&#x2F;NotificationManagerCompat;-&gt;Hp:I</strong></p>
+<p> <strong>解释：<strong><strong>v0</strong></strong>给****Hp</strong></p>
+<h3 id="方法调用指令"><a href="#方法调用指令" class="headerlink" title="方法调用指令"></a>方法调用指令</h3><p><strong>根据方法类型不同，共有5条方法调用指令</strong></p>
+<p> <strong>invoke-virtual ：调用实例的虚方法</strong></p>
+<p> <strong>invoke-super ：调用实例的父类&#x2F;基类方法</strong></p>
+<p> <strong>invoke-direct ：调用实例的直接方法</strong></p>
+<p> <strong>invoke-static ：调用实例的静态方法</strong></p>
+<p> <strong>invoke-interface ：调用实例的接口方法</strong></p>
+<h3 id="数据转换指令"><a href="#数据转换指令" class="headerlink" title="数据转换指令"></a>数据转换指令</h3><p><strong>数据转换指令用于将一种类型的数值转换成另一种类型。</strong></p>
+<p><strong>它的格式为“opcode vA, vB”，vB寄存器存放需要转换的数据，转换后的结果保存在vA寄存器中。</strong></p>
+<p> <strong>neg-数据类型 &#x3D;&gt; 求补</strong></p>
+<p> <strong>not-数据类型 &#x3D;&gt; 求反</strong></p>
+<p> <strong>数据类型1-to-数据类型2 &#x3D;&gt; 将数据类型1转换为数据类型2</strong></p>
+<h3 id="数据运算指令"><a href="#数据运算指令" class="headerlink" title="数据运算指令"></a>数据运算指令</h3><p><strong>add&#x2F;sub&#x2F;mul&#x2F;div&#x2F;rem   加&#x2F;减&#x2F;乘&#x2F;除&#x2F;模</strong></p>
+<p> <strong>and&#x2F;or&#x2F;xor 与&#x2F;或&#x2F;异或</strong></p>
+<p> <strong>shl&#x2F;shr&#x2F;ushr 有符号左移&#x2F;有符号右移&#x2F;无符号右移</strong></p>
+<h2 id="smali文件详解"><a href="#smali文件详解" class="headerlink" title="smali文件详解"></a>smali文件详解</h2><h3 id="描述类的信息"><a href="#描述类的信息" class="headerlink" title="描述类的信息"></a><strong>描述类的信息</strong></h3><p><strong>在打开smali文件的时候，它的头三行描述了当前类的一些信息</strong></p>
+<p>　　　<strong>.class &lt; 访问权限&gt; [ 修饰关键字] &lt; 类名&gt;</strong></p>
+<p>  <strong>.super &lt; 父类名&gt;</strong></p>
+<p>  <strong>.source &lt;源文件名&gt;</strong></p>
+<p><strong>.class指令表示当前的类名，类的访问权限是public，类名为LHelloWorld，类开头的L表示后面跟随的字符串是一个类。</strong></p>
+<p><strong>.super指定了当前类所继承的父类，后面指的就是这个父类的类名，L表示后面跟的字符串是一个类.</strong></p>
+<p><strong>在这里同学们会发现，source行代码为空。是原因经过混淆的dex文件，</strong></p>
+<p><strong>反编译出来的smali代码可能没有源文件信息，因此source行的代码可能为空，这一点大家要注意。</strong></p>
+<p><strong>method这四行我们先跳过，稍后学习中会讲到。接着往下看，</strong></p>
+<p><strong>nop,从这里开始是我们上节课讲到的dalvik指令</strong></p>
+<h3 id="静态字段"><a href="#静态字段" class="headerlink" title="静态字段"></a>静态字段</h3><p><strong># static fields</strong></p>
+<p><strong>.field &lt; 访问权限&gt; static [ 修饰关键字]&lt; 字段名&gt;:&lt; 字段类型&gt;</strong></p>
+<p><strong>baksmali在生成smali文件时，会在静态字段声明的起始处添加注释”static fields”，注释是以#开头。</strong></p>
+<p><strong>访问权限包括：private、protected、public修饰关键字为字段其他属性，例如，final字段名和类型就不用解释了</strong></p>
+<h3 id="实例字段"><a href="#实例字段" class="headerlink" title="实例字段"></a><strong>实例字段</strong></h3><p><strong>相比于静态字段就少了一个static的静态声明而已，其他都一样。</strong> </p>
+<p><strong># instance fields</strong></p>
+<p>**.field &lt; 访问权限&gt; [ 修饰关键字] &lt; 字段名&gt;:&lt; 字段类型&gt;**<strong>例：</strong></p>
+<h3 id="直接方法"><a href="#直接方法" class="headerlink" title="直接方法"></a><strong>直接方法</strong></h3><p><strong>直接方法指的是该类中定义的方法。</strong></p>
+<p><strong># direct methods</strong></p>
+<p>**.method &lt;访问权限&gt; [ 修饰关键字] &lt; 方法原型&gt;**<strong>、</strong></p>
+<p><strong>&lt;.registers&gt;<strong><strong>、</strong></strong>&lt;.locals&gt; [.param][.prologue][.line]&lt;代码体&gt;</strong></p>
+<p> <strong>.end method</strong></p>
+<p><strong>#direct methods 是注释，是baksmali添加的，访问权限和修饰关键字 跟字段是一样的。方法原型 描述了</strong></p>
+<p><strong>方法的名称、参数与返回值。</strong></p>
+<p><strong>.registers 指令指定了方法中寄存器的总数,这个数量是参数和本地变量总和。</strong></p>
+<p><strong>.param 表明了方法的参数，每个.param指令表示一个参数，方法使用了几个参数就有几个.parameter指令。</strong></p>
+<p><strong>.prologue 指定了代码的开始处，混淆过的代码可能去掉了该指令。</strong></p>
+<p><strong>.line 指明了该处代码在源代码中的行号，同样，混淆后的代码可能去掉了行号。</strong></p>
+<p><strong>.local 使用这个指定表明方法中非参寄存器</strong></p>
+<h3 id="虚方法"><a href="#虚方法" class="headerlink" title="虚方法"></a><strong>虚方法</strong></h3><p><strong>虚方法指的是从父类中继承的方法或者实现的接口的方法，它的声明跟直接方法相同，</strong></p>
+<p><strong>只是起始的初始为“virtual methods”。</strong></p>
+<p><strong># virtual methods</strong></p>
+<p><strong>.method &lt;访问权限&gt; [ 修饰关键字] &lt; 方法原型&gt;</strong></p>
+<p><strong>&lt;.registers&gt;&lt;.locals&gt; [.param]  [.prologue] [.line] &lt;代码体&gt;</strong></p>
+<p><strong>.end method</strong></p>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a><strong>接口</strong></h3><p><strong>如果一个类实现了一个接口，那么会在smali文件中用.implements指令指出。</strong></p>
+<p><strong># interfaces</strong></p>
+<p><strong>.implements &lt; 接口名&gt;</strong></p>
+<p><strong>#interfaces是注释，</strong></p>
+<p><strong>.implements 是接口关键字，后面的接口名是 DexClassDef 结构中 interfacesOff 字段指定的内容</strong></p>
+<h3 id="注解"><a href="#注解" class="headerlink" title="注解"></a><strong>注解</strong></h3><p><strong>如果一个类使用了注解，那么sma # annotations</strong></p>
+<p><strong>.annotation [ 注解属性] &lt; 注解类名&gt;[ 注解字段 &#x3D; 值]</strong></p>
+<p> <strong>.end annotation</strong></p>
+<p><strong>注解的作用范围可以是类、方法或字段。</strong></p>
+<p><strong>如果注解的作用范围是类，“.annotation” 指令会直接定义在 smali 文件中；</strong></p>
+<p><strong>如果是方法或字段，“.annotation ”指令则会包含在方法或字段定义中。li中会使用.annotation指令</strong></p>
+<p><img src="/%E9%80%9A%E8%BF%87%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0smali%E6%B1%87%E7%BC%96/6.png"></p>
+<p><img src="/%E9%80%9A%E8%BF%87%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0smali%E6%B1%87%E7%BC%96/7.png"></p>
+<p><img src="/%E9%80%9A%E8%BF%87%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0smali%E6%B1%87%E7%BC%96/8.png"></p>
+<h2 id="实战例子"><a href="#实战例子" class="headerlink" title="实战例子"></a>实战例子</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br></pre></td><td class="code"><pre><span class="line">.<span class="keyword">class</span> <span class="title class_">public</span> Lcom/droider/crackme0201/MainActivity;              </span><br><span class="line">#指定了当前类的类名为Lcom/droider/crackme0201/MainActivity$<span class="number">1</span>         </span><br><span class="line">.<span class="built_in">super</span> Landroid/app/Activity;                                 </span><br><span class="line">#指定了父类为 Ljava/lang/Object</span><br><span class="line">.source <span class="string">&quot;MainActivity.java&quot;</span>                                    </span><br><span class="line">    #指定了当前类的类名为<span class="string">&quot;MainActivity.java&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># instance fields  实例字段    field &lt;访问权限&gt; [修饰关键字&lt;字段名&gt;:&lt;字段类型&gt;                                      </span><br><span class="line">.field <span class="keyword">private</span> btn_register:Landroid/widget/Button;       #表示一个私有字段 btn_register，它的类型为Button</span><br><span class="line"></span><br><span class="line">.field <span class="keyword">private</span> edit_sn:Landroid/widget/EditText;</span><br><span class="line"></span><br><span class="line">.field <span class="keyword">private</span> edit_userName:Landroid/widget/EditText;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># direct methods   直接方法   .method&lt;访问权限&gt; [修饰关键字] &lt;方法原型&gt;</span><br><span class="line">.method <span class="keyword">public</span> constructor &lt;init&gt;()V     #无参构造函数</span><br><span class="line">    .locals <span class="number">0</span>     #.locals指定了使用的局部变量的个数</span><br><span class="line">                         #</span><br><span class="line">    .prologue     #.prologue指定了代码的开始处，混淆过的代码可能去掉了该指令。</span><br><span class="line">    .line <span class="number">17</span></span><br><span class="line">    invoke-direct &#123;p0&#125;, Landroid/app/Activity;-&gt;&lt;init&gt;()V   #这里init()就是定义在Activity中的一个<span class="keyword">private</span>函数</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span>-<span class="keyword">void</span>        #即无返回值</span><br><span class="line">.end method</span><br><span class="line"></span><br><span class="line">.method <span class="keyword">static</span> synthetic access$<span class="number">0</span>(Lcom/droider/crackme0201/MainActivity;)Landroid/widget/EditText;</span><br><span class="line">    .locals <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    .prologue</span><br><span class="line">    .line <span class="number">18</span>       #.method <span class="keyword">static</span> synthetic access$<span class="number">0</span></span><br><span class="line">    iget-object v0, p0, Lcom/droider/crackme0201/MainActivity;-&gt;edit_userName:Landroid/widget/EditText;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span>-object v0</span><br><span class="line">.end method</span><br><span class="line"></span><br><span class="line">.method <span class="keyword">static</span> synthetic access$<span class="number">1</span>(Lcom/droider/crackme0201/MainActivity;)Landroid/widget/EditText;</span><br><span class="line">    .locals <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    .prologue           </span><br><span class="line">    .line <span class="number">19</span>            #<span class="keyword">private</span> EditText edit_sn;</span><br><span class="line">    iget-object v0, p0, Lcom/droider/crackme0201/MainActivity;-&gt;edit_sn:Landroid/widget/EditText;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span>-object v0</span><br><span class="line">.end method</span><br><span class="line"></span><br><span class="line">.method <span class="keyword">static</span> synthetic access$<span class="number">2</span>(Lcom/droider/crackme0201/MainActivity;Ljava/lang/String;Ljava/lang/String;)Z</span><br><span class="line">    .locals <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    .prologue</span><br><span class="line">    .line <span class="number">52</span>    </span><br><span class="line">    invoke-direct &#123;p0, p1, p2&#125;, Lcom/droider/crackme0201/MainActivity;-&gt;checkSN(Ljava/lang/String;Ljava/lang/String;)Z</span><br><span class="line"></span><br><span class="line">    move-result v0</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> v0</span><br><span class="line">.end method</span><br><span class="line"></span><br><span class="line">.method <span class="keyword">static</span> synthetic access$<span class="number">3</span>(Lcom/droider/crackme0201/MainActivity;)Landroid/widget/Button;</span><br><span class="line">    .locals <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    .prologue</span><br><span class="line">    .line <span class="number">20</span>        #.line指定了该处指令在源代码中的行号，同样的，混淆过的代码可能去除了行号信息。</span><br><span class="line">    iget-object v0, p0, Lcom/droider/crackme0201/MainActivity;-&gt;btn_register:Landroid/widget/Button;</span><br><span class="line">    #从v0寄存器中获取MainActivity类中的btn_register变量，变量类型是Button</span><br><span class="line">    #这里注意一下 Lcom/droider/crackme0201是它的包名，MainActivity是它的类名 btn_register是它的变量名</span><br><span class="line">    <span class="keyword">return</span>-object v0</span><br><span class="line">.end method</span><br><span class="line"></span><br><span class="line">.method <span class="keyword">private</span> <span class="title function_">checkSN</span><span class="params">(Ljava/lang/String;Ljava/lang/String;)</span>Z</span><br><span class="line">    .locals <span class="number">10</span></span><br><span class="line">    .param p1, <span class="string">&quot;userName&quot;</span>    # Ljava/lang/String;</span><br><span class="line">    .param p2, <span class="string">&quot;sn&quot;</span>    # Ljava/lang/String;</span><br><span class="line"></span><br><span class="line">    .prologue</span><br><span class="line">    const/<span class="number">4</span> v7, <span class="number">0x0</span>    #把<span class="number">0x0</span>放到v7</span><br><span class="line"></span><br><span class="line">    .line <span class="number">54</span></span><br><span class="line">    <span class="keyword">if</span>-eqz p1, :cond_0          #p1是userName，如果username=<span class="literal">null</span> 就跳转  cond_0</span><br><span class="line">     #这里要补充两个smali指令 一个是<span class="keyword">if</span>-eqz 另一个是<span class="keyword">if</span>-nez 这两条指令是相对的 </span><br><span class="line">      #(<span class="number">1</span>)<span class="keyword">if</span>-eqz vA, vB, :cond如果vA等于vB则跳转到:cond</span><br><span class="line">      #(<span class="number">2</span>)<span class="keyword">if</span>-nez vA, vB, :cond如果vA不等于vB则跳转到:cond</span><br><span class="line"></span><br><span class="line">    :try_start_0</span><br><span class="line">    invoke-virtual &#123;p1&#125;, Ljava/lang/String;-&gt;length()I</span><br><span class="line"></span><br><span class="line">    move-result v8   #length方法返回结果到v8</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>-nez v8, :cond_1     #如果v8不等于<span class="literal">null</span>就跳转</span><br><span class="line"></span><br><span class="line">    .line <span class="number">76</span>    </span><br><span class="line">    :cond_0        #如果不跳转 运行 cond_0部分 也就是返回v7</span><br><span class="line">    :goto_0</span><br><span class="line">    <span class="keyword">return</span> v7</span><br><span class="line"></span><br><span class="line">    .line <span class="number">56</span>    #源代码<span class="keyword">if</span> ((sn == <span class="literal">null</span>) || (sn.length() != <span class="number">16</span>))</span><br><span class="line">    :cond_1        #如果v8不等于<span class="number">0</span> 就来这里</span><br><span class="line">    <span class="keyword">if</span>-eqz p2, :cond_0     #如果 sn=<span class="literal">null</span> 就跳转  cond_0</span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;p2&#125;, Ljava/lang/String;-&gt;length()I</span><br><span class="line"></span><br><span class="line">    move-result v8</span><br><span class="line"></span><br><span class="line">    const/<span class="number">16</span> v9, <span class="number">0x10</span>   #v9=<span class="number">0x10</span> 也就是<span class="number">0x10</span>十进制<span class="number">16</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>-ne v8, v9, :cond_0     #如果v8不等于v9跳 也就是v8等于<span class="number">16</span>程序继续运行</span><br><span class="line"></span><br><span class="line">    .line <span class="number">58</span>       #源码<span class="type">MessageDigest</span> <span class="variable">digest</span> <span class="operator">=</span> MessageDigest.getInstance(<span class="string">&quot;MD5&quot;</span>);</span><br><span class="line">    const-string v8, <span class="string">&quot;MD5&quot;</span></span><br><span class="line"></span><br><span class="line">    invoke-<span class="keyword">static</span> &#123;v8&#125;, Ljava/security/MessageDigest;-&gt;getInstance(Ljava/lang/String;)Ljava/security/MessageDigest;</span><br><span class="line"></span><br><span class="line">    move-result-object v1</span><br><span class="line"></span><br><span class="line">    .line <span class="number">59</span></span><br><span class="line">    .local v1, <span class="string">&quot;digest&quot;</span>:Ljava/security/MessageDigest;</span><br><span class="line">    invoke-virtual &#123;v1&#125;, Ljava/security/MessageDigest;-&gt;reset()V</span><br><span class="line"></span><br><span class="line">    .line <span class="number">60</span></span><br><span class="line">    invoke-virtual &#123;p1&#125;, Ljava/lang/String;-&gt;getBytes()[B</span><br><span class="line"></span><br><span class="line">    move-result-object v8</span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;v1, v8&#125;, Ljava/security/MessageDigest;-&gt;update([B)V</span><br><span class="line"></span><br><span class="line">    .line <span class="number">61</span></span><br><span class="line">    invoke-virtual &#123;v1&#125;, Ljava/security/MessageDigest;-&gt;digest()[B</span><br><span class="line"></span><br><span class="line">    move-result-object v0</span><br><span class="line"></span><br><span class="line">    .line <span class="number">62</span></span><br><span class="line">    .local v0, <span class="string">&quot;bytes&quot;</span>:[B</span><br><span class="line">    const-string v8, <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    invoke-<span class="keyword">static</span> &#123;v0, v8&#125;, Lcom/droider/crackme0201/MainActivity;-&gt;toHexString([BLjava/lang/String;)Ljava/lang/String;</span><br><span class="line"></span><br><span class="line">    move-result-object v3</span><br><span class="line"></span><br><span class="line">    .line <span class="number">63</span></span><br><span class="line">    .local v3, <span class="string">&quot;hexstr&quot;</span>:Ljava/lang/String;</span><br><span class="line">    <span class="keyword">new</span>-instance v5, Ljava/lang/StringBuilder;</span><br><span class="line"></span><br><span class="line">    invoke-direct &#123;v5&#125;, Ljava/lang/StringBuilder;-&gt;&lt;init&gt;()V</span><br><span class="line"></span><br><span class="line">    .line <span class="number">64</span></span><br><span class="line">    .local v5, <span class="string">&quot;sb&quot;</span>:Ljava/lang/StringBuilder;</span><br><span class="line">    const/<span class="number">4</span> v4, <span class="number">0x0</span></span><br><span class="line"></span><br><span class="line">    .local v4, <span class="string">&quot;i&quot;</span>:I</span><br><span class="line">    :goto_1</span><br><span class="line">    invoke-virtual &#123;v3&#125;, Ljava/lang/String;-&gt;length()I</span><br><span class="line"></span><br><span class="line">    move-result v8</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>-lt v4, v8, :cond_2</span><br><span class="line"></span><br><span class="line">    .line <span class="number">67</span></span><br><span class="line">    invoke-virtual &#123;v5&#125;, Ljava/lang/StringBuilder;-&gt;toString()Ljava/lang/String;</span><br><span class="line"></span><br><span class="line">    move-result-object v6</span><br><span class="line"></span><br><span class="line">    .line <span class="number">70</span></span><br><span class="line">    .local v6, <span class="string">&quot;userSN&quot;</span>:Ljava/lang/String;</span><br><span class="line">    invoke-virtual &#123;v6, p2&#125;, Ljava/lang/String;-&gt;equalsIgnoreCase(Ljava/lang/String;)Z</span><br><span class="line"></span><br><span class="line">    move-result v8</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>-eqz v8, :cond_0</span><br><span class="line"></span><br><span class="line">    .line <span class="number">76</span></span><br><span class="line">    const/<span class="number">4</span> v7, <span class="number">0x1</span></span><br><span class="line"></span><br><span class="line">    goto :goto_0</span><br><span class="line"></span><br><span class="line">    .line <span class="number">65</span></span><br><span class="line">    .end local v6    # <span class="string">&quot;userSN&quot;</span>:Ljava/lang/String;</span><br><span class="line">    :cond_2</span><br><span class="line">    invoke-virtual &#123;v3, v4&#125;, Ljava/lang/String;-&gt;charAt(I)C</span><br><span class="line"></span><br><span class="line">    move-result v8</span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;v5, v8&#125;, Ljava/lang/StringBuilder;-&gt;append(C)Ljava/lang/StringBuilder;</span><br><span class="line">    :try_end_0</span><br><span class="line">    .<span class="keyword">catch</span> Ljava/security/NoSuchAlgorithmException; &#123;:try_start_0 .. :try_end_0&#125; :catch_0</span><br><span class="line"></span><br><span class="line">    .line <span class="number">64</span></span><br><span class="line">    add-<span class="type">int</span>/lit8 v4, v4, <span class="number">0x2</span></span><br><span class="line"></span><br><span class="line">    goto :goto_1</span><br><span class="line"></span><br><span class="line">    .line <span class="number">72</span></span><br><span class="line">    .end local v0    # <span class="string">&quot;bytes&quot;</span>:[B</span><br><span class="line">    .end local v1    # <span class="string">&quot;digest&quot;</span>:Ljava/security/MessageDigest;</span><br><span class="line">    .end local v3    # <span class="string">&quot;hexstr&quot;</span>:Ljava/lang/String;</span><br><span class="line">    .end local v4    # <span class="string">&quot;i&quot;</span>:I</span><br><span class="line">    .end local v5    # <span class="string">&quot;sb&quot;</span>:Ljava/lang/StringBuilder;</span><br><span class="line">    :catch_0</span><br><span class="line">    move-exception v2</span><br><span class="line"></span><br><span class="line">    .line <span class="number">73</span></span><br><span class="line">    .local v2, <span class="string">&quot;e&quot;</span>:Ljava/security/NoSuchAlgorithmException;</span><br><span class="line">    invoke-virtual &#123;v2&#125;, Ljava/security/NoSuchAlgorithmException;-&gt;printStackTrace()V</span><br><span class="line"></span><br><span class="line">    goto :goto_0</span><br><span class="line">.end method</span><br><span class="line"></span><br><span class="line">.method <span class="keyword">private</span> <span class="keyword">static</span> <span class="title function_">toHexString</span><span class="params">([BLjava/lang/String;)</span>Ljava/lang/String;</span><br><span class="line">    .locals <span class="number">7</span></span><br><span class="line">    .param p0, <span class="string">&quot;bytes&quot;</span>    # [B</span><br><span class="line">    .param p1, <span class="string">&quot;separator&quot;</span>    # Ljava/lang/String;</span><br><span class="line"></span><br><span class="line">    .prologue</span><br><span class="line">    .line <span class="number">80</span></span><br><span class="line">    <span class="keyword">new</span>-instance v2, Ljava/lang/StringBuilder;</span><br><span class="line"></span><br><span class="line">    invoke-direct &#123;v2&#125;, Ljava/lang/StringBuilder;-&gt;&lt;init&gt;()V</span><br><span class="line"></span><br><span class="line">    .line <span class="number">81</span></span><br><span class="line">    .local v2, <span class="string">&quot;hexString&quot;</span>:Ljava/lang/StringBuilder;</span><br><span class="line">    array-length v4, p0</span><br><span class="line"></span><br><span class="line">    const/<span class="number">4</span> v3, <span class="number">0x0</span></span><br><span class="line"></span><br><span class="line">    :goto_0</span><br><span class="line">    <span class="keyword">if</span>-lt v3, v4, :cond_0</span><br><span class="line"></span><br><span class="line">    .line <span class="number">88</span></span><br><span class="line">    invoke-virtual &#123;v2&#125;, Ljava/lang/StringBuilder;-&gt;toString()Ljava/lang/String;</span><br><span class="line"></span><br><span class="line">    move-result-object v3</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span>-object v3</span><br><span class="line"></span><br><span class="line">    .line <span class="number">81</span></span><br><span class="line">    :cond_0</span><br><span class="line">    aget-<span class="type">byte</span> v0, p0, v3</span><br><span class="line"></span><br><span class="line">    .line <span class="number">82</span></span><br><span class="line">    .local v0, <span class="string">&quot;b&quot;</span>:B</span><br><span class="line">    and-<span class="type">int</span>/lit16 v5, v0, <span class="number">0xff</span></span><br><span class="line"></span><br><span class="line">    invoke-<span class="keyword">static</span> &#123;v5&#125;, Ljava/lang/Integer;-&gt;toHexString(I)Ljava/lang/String;</span><br><span class="line"></span><br><span class="line">    move-result-object v1</span><br><span class="line"></span><br><span class="line">    .line <span class="number">83</span></span><br><span class="line">    .local v1, <span class="string">&quot;hex&quot;</span>:Ljava/lang/String;</span><br><span class="line">    invoke-virtual &#123;v1&#125;, Ljava/lang/String;-&gt;length()I</span><br><span class="line"></span><br><span class="line">    move-result v5</span><br><span class="line"></span><br><span class="line">    const/<span class="number">4</span> v6, <span class="number">0x1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>-ne v5, v6, :cond_1</span><br><span class="line"></span><br><span class="line">    .line <span class="number">84</span></span><br><span class="line">    const/<span class="number">16</span> v5, <span class="number">0x30</span></span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;v2, v5&#125;, Ljava/lang/StringBuilder;-&gt;append(C)Ljava/lang/StringBuilder;</span><br><span class="line"></span><br><span class="line">    .line <span class="number">86</span></span><br><span class="line">    :cond_1</span><br><span class="line">    invoke-virtual &#123;v2, v1&#125;, Ljava/lang/StringBuilder;-&gt;append(Ljava/lang/String;)Ljava/lang/StringBuilder;</span><br><span class="line"></span><br><span class="line">    move-result-object v5</span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;v5, p1&#125;, Ljava/lang/StringBuilder;-&gt;append(Ljava/lang/String;)Ljava/lang/StringBuilder;</span><br><span class="line"></span><br><span class="line">    .line <span class="number">81</span></span><br><span class="line">    add-<span class="type">int</span>/lit8 v3, v3, <span class="number">0x1</span></span><br><span class="line"></span><br><span class="line">    goto :goto_0</span><br><span class="line">.end method</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># virtual methods</span><br><span class="line">.method <span class="keyword">public</span> <span class="title function_">onCreate</span><span class="params">(Landroid/os/Bundle;)</span>V     #一个名为 onCreate 并且有一个参数为 Bundle 类型，参数名为 savedInstanceState。</span><br><span class="line">    .locals <span class="number">2</span></span><br><span class="line">    .param p1, <span class="string">&quot;savedInstanceState&quot;</span>    # Landroid/os/Bundle;  </span><br><span class="line"></span><br><span class="line">    .prologue</span><br><span class="line">    .line <span class="number">23</span></span><br><span class="line">    invoke-<span class="built_in">super</span> &#123;p0, p1&#125;, Landroid/app/Activity;-&gt;onCreate(Landroid/os/Bundle;)V    </span><br><span class="line">    #p0 代表当前，也就是 <span class="built_in">this</span>，对应类型为 Landroid/support/v7/app/AppCompatActivity；   </span><br><span class="line">    #p1 则对应参数 onCreate(Landroid/os/Bundle;)V，这里参数依旧使用上面的 Bundle –&gt; savedInstanceState</span><br><span class="line"></span><br><span class="line">    .line <span class="number">24</span></span><br><span class="line">    const/high16 v0, <span class="number">0x7f030000</span>         #setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;p0, v0&#125;, Lcom/droider/crackme0201/MainActivity;-&gt;setContentView(I)V</span><br><span class="line"></span><br><span class="line">    .line <span class="number">25</span></span><br><span class="line">    const v0, <span class="number">0x7f050009</span>        #源码 setTitle(R.string.unregister);  <span class="comment">//模拟程序未注册</span></span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;p0, v0&#125;, Lcom/droider/crackme0201/MainActivity;-&gt;setTitle(I)V</span><br><span class="line">    # invoke-virtual用于调用<span class="keyword">protected</span>或<span class="keyword">public</span>函数，同样注意修改smali时不要错用invoke-direct或invoke-<span class="keyword">static</span></span><br><span class="line">    .line <span class="number">26</span></span><br><span class="line">    const v0, <span class="number">0x7f080001</span>        #源码 edit_userName = (EditText) findViewById(R.id.edit_username);</span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;p0, v0&#125;, Lcom/droider/crackme0201/MainActivity;-&gt;findViewById(I)Landroid/view/View;</span><br><span class="line"></span><br><span class="line">    move-result-object v0</span><br><span class="line"></span><br><span class="line">    check-cast v0, Landroid/widget/EditText;</span><br><span class="line"></span><br><span class="line">    iput-object v0, p0, Lcom/droider/crackme0201/MainActivity;-&gt;edit_userName:Landroid/widget/EditText;</span><br><span class="line"></span><br><span class="line">    .line <span class="number">27</span></span><br><span class="line">    const v0, <span class="number">0x7f080002</span></span><br><span class="line">                                  #源码edit_sn = (EditText) findViewById(R.id.edit_sn);</span><br><span class="line">    invoke-virtual &#123;p0, v0&#125;, Lcom/droider/crackme0201/MainActivity;-&gt;findViewById(I)Landroid/view/View;</span><br><span class="line"></span><br><span class="line">    move-result-object v0 # v0保存的就是调用<span class="built_in">this</span>.findViewById方法返回的view实例。</span><br><span class="line"></span><br><span class="line">    check-cast v0, Landroid/widget/EditText;</span><br><span class="line"></span><br><span class="line">    iput-object v0, p0, Lcom/droider/crackme0201/MainActivity;-&gt;edit_sn:Landroid/widget/EditText;</span><br><span class="line"></span><br><span class="line">    .line <span class="number">28</span></span><br><span class="line">    const v0, <span class="number">0x7f080003</span></span><br><span class="line">                            #源码btn_register = (Button) findViewById(R.id.button_register);</span><br><span class="line">    invoke-virtual &#123;p0, v0&#125;, Lcom/droider/crackme0201/MainActivity;-&gt;findViewById(I)Landroid/view/View;</span><br><span class="line"></span><br><span class="line">    move-result-object v0</span><br><span class="line"></span><br><span class="line">    check-cast v0, Landroid/widget/Button;       #检查类型是否可以转换</span><br><span class="line"></span><br><span class="line">    iput-object v0, p0, Lcom/droider/crackme0201/MainActivity;-&gt;btn_register:Landroid/widget/Button;</span><br><span class="line">      #MainActivity类里的一个名为btn_register类型为button的属性拿过来，这里是修饰p0，其实也就是<span class="built_in">this</span>.name</span><br><span class="line">    .line <span class="number">29</span></span><br><span class="line">    iget-object v0, p0, Lcom/droider/crackme0201/MainActivity;-&gt;btn_register:Landroid/widget/Button;</span><br><span class="line">    #从v0寄存器中获取MainActivity类中的btn_register变量，变量类型是Button </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">new</span>-instance v1, Lcom/droider/crackme0201/MainActivity$<span class="number">1</span>;</span><br><span class="line">     #创建一个对象，放入v1寄存器，类型是MainActivity$<span class="number">1</span></span><br><span class="line">     </span><br><span class="line">    invoke-direct &#123;v1, p0&#125;, Lcom/droider/crackme0201/MainActivity$<span class="number">1</span>;-&gt;&lt;init&gt;(Lcom/droider/crackme0201/MainActivity;)V</span><br><span class="line">    #这里init()就是定义在MainActivity$<span class="number">1</span>中的一个<span class="keyword">private</span>函数</span><br><span class="line">    invoke-virtual &#123;v0, v1&#125;, Landroid/widget/Button;-&gt;setOnClickListener(Landroid/view/View$OnClickListener;)V</span><br><span class="line">    #用于调用<span class="keyword">protected</span>或<span class="keyword">public</span>函数，同样注意修改smali时不要错用invoke-direct或invoke-<span class="keyword">static</span></span><br><span class="line">    .line <span class="number">44</span></span><br><span class="line">    <span class="keyword">return</span>-<span class="keyword">void</span></span><br><span class="line">.end method</span><br><span class="line"> </span><br><span class="line">    &#125;</span><br><span class="line">.method <span class="keyword">public</span> <span class="title function_">onCreateOptionsMenu</span><span class="params">(Landroid/view/Menu;)</span>Z</span><br><span class="line">   #源码<span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> &#123;</span><br><span class="line">     #   <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    .locals <span class="number">2</span>         #两个局部变量                                                </span><br><span class="line">    .param p1, <span class="string">&quot;menu&quot;</span>    # Landroid/view/Menu; #参数为menu</span><br><span class="line"></span><br><span class="line">    .prologue   #函数开始</span><br><span class="line">    .line <span class="number">48</span>               #getMenuInflater().inflate(R.menu.activity_main, menu);</span><br><span class="line">    invoke-virtual &#123;p0&#125;, Lcom/droider/crackme0201/MainActivity;-&gt;getMenuInflater()Landroid/view/MenuInflater;</span><br><span class="line"></span><br><span class="line">    move-result-object v0</span><br><span class="line"></span><br><span class="line">    const/high16 v1, <span class="number">0x7f070000</span>   #把  <span class="number">0x7f070000</span>存到v1中</span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;v0, v1, p1&#125;, Landroid/view/MenuInflater;-&gt;inflate(ILandroid/view/Menu;)V</span><br><span class="line"></span><br><span class="line">    .line <span class="number">49</span></span><br><span class="line">    const/<span class="number">4</span> v0, <span class="number">0x1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> v0</span><br><span class="line">.end method</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="安卓程序中的类"><a href="#安卓程序中的类" class="headerlink" title="安卓程序中的类"></a>安卓程序中的类</h1><h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p>Java语言允许在一个类的内部定义另一个类,这种在类中定义的类被称为内部类(Inner<br>Class)</p>
+<p>内部类可分为成员内部类、静态嵌套类、方法内部类、匿名内部类。前面我们曾经<br>说过，baksmali 在反编译dex文件的时候，会为每个类单独生成了-一个smali文件，内部类<br>作为一个独立的类，它也拥有自己独立的smali 文件,只是内部类的文件名形式为“[外部<br>类]$[内部类].smali”,例如下面的类</p>
+<p>class Outer {<br>class Inner {}<br>}</p>
+<p>baksmali反编译.上述代码后会生成两个文件: Outer.smali 与Outer$Inner.smali。查看5.2<br>节生成的smali文件，发现在smalicom)droider\crackme0502目录下有一个MainActivity$<br>SNChecker.smali文件，这个SNChecker就是MainActivity的一个内部类。打开这个文件，<br>代码结构如下</p>
+<p><img src="/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/2.png"></p>
+<p><img src="/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/3.png"></p>
+<p>发现它有两个注解定义块“Ldalvik&#x2F;annotation&#x2F;EnclosingClass;”与“Ldalvik&#x2F;annotation&#x2F;<br>InnerClass;</p>
+<p>“两个实例字段sn与this$0一个直接方法init()、一个虚方法isRegistered()。注解定义块我们稍后进行讲解。先看它的实例字段，sn 是字符串类型, this$0 是MainActivity类型，synthetic 关键字表明它是“合成”的，那this$0到底是个什么东西呢?其实this$O是内部类自动保留的一个指向所在外部类的引用。左边的this表示为父类的引用，右边的数值0表示引用的层数。我们看下面的类。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Outer &#123;</span><br><span class="line">/ / this$0</span><br><span class="line">public class FirstInner &#123;</span><br><span class="line">/ /this$1</span><br><span class="line">public class SecondInner &#123; / / this$2 </span><br><span class="line">public class ThirdInner &#123;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>每往里一层右边的数值就加一-，如ThirdInner类访问FirstInner 类的引用为this$1.在生<br>成的反汇编代码中，this$X 型字段都被指定了synthetic 属性，表明它们是被编译器合成的、<br>虚构的，代码的作者并没有声明该字段。我们再看看MainActivity$SNChecker的构造函数，看它是如何初始化的。代码如下。</p>
+<p><img src="/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/4.png"></p>
+<p><img src="/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/5.png"></p>
+<p>细心的读者会发现，这段代码声明时使用“.parameter”指令指定了两个参数，而实际<br>上却使用了p0~p2共3个寄存器，为什么会出现这种情况呢?</p>
+<p>在第3章介绍Dalvik虚拟机时曾经讲过，对于一个非静态的方法而言，会隐含的使用p0寄存器当作类的this引用。因此,这里的确是使用了3个寄存器: p0 表示MainActivity$SNChecker自身的引用,pl 表示<br>MainActivity的引用,p2表示sn字符串。另外，从MainActivity$SNChecker的构造函数可以看出,</p>
+<p>内部类的初始化共有以下3个步骤:首先是保存外部类的引用到本类的一个synthetic字段中，以便内部类的其它方法使用，然后是调用内部类的父类的构造函数来初始化父类，最后是对内部类自身进行初始化。</p>
+<p>阅读反编译的smali代码</p>
+<h2 id="循环语句smail格式"><a href="#循环语句smail格式" class="headerlink" title="循环语句smail格式"></a>循环语句smail格式</h2><p>迭代器循环</p>
+<p><a target="_blank" rel="noopener" href="http://code.newban.cn/172.html">http://code.newban.cn/172.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/CLinuxF/article/details/88319485">https://blog.csdn.net/CLinuxF/article/details/88319485</a></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2023 answer77
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 672px;
+    }
+    .nav.fullscreen {
+        margin-left: -672px;
+    }
+    .nav-left {
+        width: 250px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 572px;
+        }
+        .nav.fullscreen {
+            margin-left: -572px;
+        }
+        .nav-left {
+            width: 180px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 572px;
+            margin-left: -572px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/3.png);
+    }
+    
+    
+    #post .index {
+        background: url(/img/3.png);
+    }
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+        background: url("/img/2.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

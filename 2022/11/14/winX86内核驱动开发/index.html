@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>winX86内核驱动开发 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="winX86内核驱动开发 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://example.com/categories/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-05-06T07:25:18.000Z">
+<meta property="article:modified_time" content="2023-10-27T02:58:20.693Z">
+<meta property="article:author" content="answer77">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.png"/>
+</a>
+<div class="author">
+    <span>answer77</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(90)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="安全开发">
+                        
+                        安全开发
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="安卓逆向">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        安卓逆向
+                        <small>(9)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="安卓逆向<--->入门手册">
+                                        
+                                        入门手册
+                                        
+                                            <small>(7
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="恶意代码分析">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        恶意代码分析
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="恶意代码分析<--->勒索病毒">
+                                        
+                                        勒索病毒
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="恶意代码分析<--->蠕虫">
+                                        
+                                        蠕虫
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="红队">
+                        
+                        红队
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="技术研究">
+                        
+                        技术研究
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="健身">
+                        
+                        健身
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="漏洞研究">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        漏洞研究
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="漏洞研究<--->漏洞相关知识">
+                                        
+                                        漏洞相关知识
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="软件逆向">
+                        
+                        软件逆向
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="渗透测试">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        渗透测试
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="渗透测试<--->HTB">
+                                        
+                                        HTB
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="思想">
+                        
+                        思想
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="应急响应">
+                        
+                        应急响应
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="游戏逆向">
+                        
+                        游戏逆向
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="APT研究">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        APT研究
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-08(蔓灵花)">
+                                        
+                                        APT-C-08(蔓灵花)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-23(双尾蝎)">
+                                        
+                                        APT-C-23(双尾蝎)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-26（Lazarus）">
+                                        
+                                        APT-C-26（Lazarus）
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-35(肚脑虫)">
+                                        
+                                        APT-C-35(肚脑虫)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-48(CNC)">
+                                        
+                                        APT-C-48(CNC)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-56(透明部落)">
+                                        
+                                        APT-C-56(透明部落)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-Q-31(海莲花)">
+                                        
+                                        APT-Q-31(海莲花)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="HackTheBox">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        HackTheBox
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="HackTheBox<--->Challenge">
+                                        
+                                        Challenge
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="HackTheBox<--->startpointer">
+                                        
+                                        startpointer
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="IOT">
+                        
+                        IOT
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="win内核">
+                        
+                        win内核
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="90">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a id="top" class="All 思想 "
+           href="/2023/06/14/%E5%AF%B9%E4%B8%AD%E5%9B%BD%E6%95%B4%E4%B8%AA%E5%AE%89%E5%85%A8%E8%A1%8C%E4%B8%9A%E7%9A%84%E7%90%86%E8%A7%A3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
+            <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_hard_socnet2">红队打靶之VulnHub_hard_socnet2</span>
+            <span class="post-date" title="2024-06-20 14:31:01">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_AdmX_new">红队打靶之VulnHub_AdmX_new</span>
+            <span class="post-date" title="2024-06-20 08:40:02">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/18/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-CHRONOS-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_CHRONOS_1">红队打靶之VulnHub_CHRONOS_1</span>
+            <span class="post-date" title="2024-06-18 17:16:48">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/18/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-%E4%BA%91-AV/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_BOREDHACKERBLOG_云_AV">红队打靶之VulnHub_BOREDHACKERBLOG_云_AV</span>
+            <span class="post-date" title="2024-06-18 11:18:34">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2024/06/17/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_BOREDHACKERBLOG_SOCIAL_NETWORK">红队打靶之VulnHub_BOREDHACKERBLOG_SOCIAL_NETWORK</span>
+            <span class="post-date" title="2024-06-17 21:52:00">2024/06/17</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/09/07/Apache%20HTTP%20Server%20%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E%20CVE-2023-25690/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Apache HTTP Server 请求走私漏洞 CVE-2023-25690">Apache HTTP Server 请求走私漏洞 CVE-2023-25690</span>
+            <span class="post-date" title="2023-09-07 16:12:59">2023/09/07</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/09/06/BurpSuite%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="BurpSuite学习">BurpSuite学习</span>
+            <span class="post-date" title="2023-09-06 15:34:11">2023/09/06</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/12/%E6%8B%8D%E7%85%A7%E6%8A%80%E5%B7%A7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="拍照技巧">拍照技巧</span>
+            <span class="post-date" title="2023-08-12 03:14:34">2023/08/12</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/11/%E7%A9%BF%E6%90%AD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="穿搭">穿搭</span>
+            <span class="post-date" title="2023-08-11 23:47:23">2023/08/11</span>
+        </a>
+        
+        
+        <a  class="All 健身 "
+           href="/2023/08/10/%E8%85%B0%E9%83%A8%E7%A0%94%E7%A9%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="腰部研究">腰部研究</span>
+            <span class="post-date" title="2023-08-10 01:04:12">2023/08/10</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/01/DVWA%E4%B9%8BSQL%20Injection%20Snort%E8%A7%84%E5%88%99%E6%8F%90%E5%8F%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-08-01 09:43:02">2023/08/01</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/31/%E8%AF%9D%E6%9C%AF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="话术">话术</span>
+            <span class="post-date" title="2023-07-31 14:46:46">2023/07/31</span>
+        </a>
+        
+        
+        <a  class="All 安全开发 "
+           href="/2023/07/24/%E6%81%B6%E6%84%8F%E6%B5%81%E9%87%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="恶意流量系统开发">恶意流量系统开发</span>
+            <span class="post-date" title="2023-07-24 16:46:05">2023/07/24</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/24/%E5%90%8E%E9%97%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="后门开发">后门开发</span>
+            <span class="post-date" title="2023-07-24 10:15:44">2023/07/24</span>
+        </a>
+        
+        
+        <a  class="All 安全开发 "
+           href="/2023/07/21/%E6%89%AB%E6%8F%8F%E5%99%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="tcp端口扫描器">tcp端口扫描器</span>
+            <span class="post-date" title="2023-07-21 09:25:02">2023/07/21</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/19/%E6%8C%81%E4%B9%85%E5%8C%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="持久化">持久化</span>
+            <span class="post-date" title="2023-07-19 16:46:54">2023/07/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/17/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Mysql数据库完整学习">Mysql数据库完整学习</span>
+            <span class="post-date" title="2023-07-17 16:03:05">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/17/%E9%98%B2%E5%BE%A1%E8%A7%84%E9%81%BF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="防御规避">防御规避</span>
+            <span class="post-date" title="2023-07-17 14:22:21">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/17/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="代码执行">代码执行</span>
+            <span class="post-date" title="2023-07-17 10:27:01">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/14/%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初始访问">初始访问</span>
+            <span class="post-date" title="2023-07-14 16:10:59">2023/07/14</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/14/%E4%BB%A3%E7%A0%81%E4%B8%8E%E8%BF%9B%E7%A8%8B%E6%B3%A8%E5%85%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="代码与进程注入">代码与进程注入</span>
+            <span class="post-date" title="2023-07-14 09:41:04">2023/07/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/11/python%E9%BB%91%E5%AE%A2%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BC%96%E7%A8%8B%E4%B9%8B%E9%81%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="python黑客渗透测试编程之道">python黑客渗透测试编程之道</span>
+            <span class="post-date" title="2023-07-11 10:54:54">2023/07/11</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/11/%E7%BA%A2%E9%98%9F%E6%80%9D%E8%B7%AF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队思路">红队思路</span>
+            <span class="post-date" title="2023-07-11 10:43:16">2023/07/11</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/30/go%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go语言入门">go语言入门</span>
+            <span class="post-date" title="2023-06-30 16:46:48">2023/06/30</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院文件包含">htb学院文件包含</span>
+            <span class="post-date" title="2023-06-28 16:17:24">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2%E4%BD%BF%E7%94%A8%20FFUF%20%E6%94%BB%E5%87%BB%20WEB%20%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应用程序">应用程序</span>
+            <span class="post-date" title="2023-06-28 16:14:55">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2linux%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院 htb学院linux基础">htb学院 htb学院linux基础</span>
+            <span class="post-date" title="2023-06-28 16:13:26">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院htb学院sql注入基础">htb学院htb学院sql注入基础</span>
+            <span class="post-date" title="2023-06-28 16:11:22">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-Q-31(海莲花) "
+           href="/2023/06/14/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-Q-31(海莲花)时间线及攻击手法总结">APT-Q-31(海莲花)时间线及攻击手法总结</span>
+            <span class="post-date" title="2023-06-14 17:00:06">2023/06/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/08/Gophish%E9%92%93%E9%B1%BC%E5%B9%B3%E5%8F%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Gophish钓鱼平台">Gophish钓鱼平台</span>
+            <span class="post-date" title="2023-06-08 15:05:05">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/08/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%A5%E9%97%A8-%E5%85%A5%E4%BE%B5%E6%8E%92%E6%9F%A5%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应入门-入侵排查篇">应急响应入门-入侵排查篇</span>
+            <span class="post-date" title="2023-06-08 15:05:05">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All 思想 "
+           href="/2023/06/05/%E8%AE%BA%E6%96%B0%E4%B8%AD%E5%9B%BD%E6%88%90%E7%AB%8B%E4%BB%A5%E6%9D%A5%E7%BB%8F%E6%B5%8E%E5%8D%B1%E6%9C%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="论新中国成立以来经济危机">论新中国成立以来经济危机</span>
+            <span class="post-date" title="2023-06-05 15:27:21">2023/06/05</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试 HTB "
+           href="/2023/04/25/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="windows基础知识">windows基础知识</span>
+            <span class="post-date" title="2023-04-25 15:08:28">2023/04/25</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试 HTB "
+           href="/2023/04/23/%E4%BD%BF%E7%94%A8METASPLOIT%E6%A1%86%E6%9E%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="使用METASPLOIT框架">使用METASPLOIT框架</span>
+            <span class="post-date" title="2023-04-23 16:53:53">2023/04/23</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/13/Crypto/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Crypto">Crypto</span>
+            <span class="post-date" title="2023-03-13 17:04:01">2023/03/13</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/11/machine/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="machine">machine</span>
+            <span class="post-date" title="2023-03-11 17:47:30">2023/03/11</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox Challenge "
+           href="/2023/03/10/Forensics%20Collection/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Forensics Collection">Forensics Collection</span>
+            <span class="post-date" title="2023-03-10 15:15:04">2023/03/10</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/09/Reminiscent/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Reminiscent">Reminiscent</span>
+            <span class="post-date" title="2023-03-09 09:41:42">2023/03/09</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox startpointer "
+           href="/2023/03/08/HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HackTheBox上分锦囊(一)">HackTheBox上分锦囊(一)</span>
+            <span class="post-date" title="2023-03-08 13:55:09">2023/03/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/27/%E8%AE%B0%E4%B8%80%E6%AC%A1Kaiji%E5%83%B5%E5%B0%B8%E7%BD%91%E7%BB%9C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="记一次Kaiji僵尸网络">记一次Kaiji僵尸网络</span>
+            <span class="post-date" title="2023-02-27 17:16:34">2023/02/27</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 "
+           href="/2023/02/24/cve2012-0158%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="cve2012-0158漏洞复现">cve2012-0158漏洞复现</span>
+            <span class="post-date" title="2023-02-24 16:43:56">2023/02/24</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2023/02/22/PowerShell%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PowerShell基础">PowerShell基础</span>
+            <span class="post-date" title="2023-02-22 11:46:25">2023/02/22</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-48(CNC) "
+           href="/2023/02/20/APT-C-48-CNC%E7%BB%84%E7%BB%87%E6%94%BB%E5%87%BB%E5%88%A9%E7%94%A8pub%E6%96%87%E4%BB%B6%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-48-CNC组织攻击利用pub文件攻击活动分析">APT-C-48-CNC组织攻击利用pub文件攻击活动分析</span>
+            <span class="post-date" title="2023-02-20 14:10:47">2023/02/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/14/APT-C-56-%E9%80%8F%E6%98%8E%E9%83%A8%E8%90%BD%E4%BC%AA%E8%A3%85%E7%AE%80%E5%8E%86%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-56-透明部落伪装简历攻击活动分析">APT-C-56-透明部落伪装简历攻击活动分析</span>
+            <span class="post-date" title="2023-02-14 16:08:03">2023/02/14</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-35(肚脑虫) "
+           href="/2023/02/11/APT-C-35%E8%82%9A%E8%84%91%E8%99%AB%E6%9F%90%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E4%B8%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-35肚脑虫某样本分析(一)">APT-C-35肚脑虫某样本分析(一)</span>
+            <span class="post-date" title="2023-02-11 18:13:48">2023/02/11</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2023/02/09/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应入门指南">应急响应入门指南</span>
+            <span class="post-date" title="2023-02-09 13:37:00">2023/02/09</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-56(透明部落) "
+           href="/2023/02/06/APT-C-56%EF%BC%88%E9%80%8F%E6%98%8E%E9%83%A8%E8%90%BD%EF%BC%89%E5%88%A9%E7%94%A8%E5%A4%96%E8%B4%B8%E9%93%BE%E6%8E%A5%E4%BC%AA%E8%A3%85%E6%96%87%E6%A1%A3%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-56（透明部落）利用外贸链接伪装文档攻击分析">APT-C-56（透明部落）利用外贸链接伪装文档攻击分析</span>
+            <span class="post-date" title="2023-02-06 18:13:48">2023/02/06</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/11/27/%E5%A4%A7%E7%81%B0%E7%8B%BC%E8%BF%9C%E6%8E%A7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大灰狼远控">大灰狼远控</span>
+            <span class="post-date" title="2022-11-27 21:35:19">2022/11/27</span>
+        </a>
+        
+        
+        <a  class="All 软件逆向 "
+           href="/2022/11/27/peid%E9%80%86%E5%90%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="peid逆向">peid逆向</span>
+            <span class="post-date" title="2022-11-27 10:15:30">2022/11/27</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/19/windbg%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="windbg命令学习">windbg命令学习</span>
+            <span class="post-date" title="2022-11-19 22:31:27">2022/11/19</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/19/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="进程和线程">进程和线程</span>
+            <span class="post-date" title="2022-11-19 20:42:28">2022/11/19</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/15/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="保护模式">保护模式</span>
+            <span class="post-date" title="2022-11-15 15:35:26">2022/11/15</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/14/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="winX86内核驱动开发">winX86内核驱动开发</span>
+            <span class="post-date" title="2022-11-14 16:22:58">2022/11/14</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/13/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="内核环境搭建学习">内核环境搭建学习</span>
+            <span class="post-date" title="2022-11-13 15:05:11">2022/11/13</span>
+        </a>
+        
+        
+        <a  class="All 游戏逆向 "
+           href="/2022/11/07/%E7%83%AD%E8%A1%80%E6%B1%9F%E6%B9%96%E6%B8%B8%E6%88%8F%E5%AE%89%E5%85%A8%E7%AD%91%E5%9F%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="热血江湖游戏安全筑基">热血江湖游戏安全筑基</span>
+            <span class="post-date" title="2022-11-07 21:27:59">2022/11/07</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BAPK%E4%BF%9D%E6%8A%A4%E7%AD%96%E7%95%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APK反破解技术">APK反破解技术</span>
+            <span class="post-date" title="2022-09-29 16:55:42">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BXposed%E6%A1%86%E6%9E%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之Xposed框架">安卓逆向之Xposed框架</span>
+            <span class="post-date" title="2022-09-29 14:53:11">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BNDK%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="NDK开发">NDK开发</span>
+            <span class="post-date" title="2022-09-29 14:42:34">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 "
+           href="/2022/09/27/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%AE%9E%E6%88%98%E4%BF%AE%E6%94%B9%E8%B5%84%E6%BA%90%E5%8E%BB%E5%B9%BF%E5%91%8A01/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向实战修改资源去广告01">安卓逆向实战修改资源去广告01</span>
+            <span class="post-date" title="2022-09-27 19:46:34">2022/09/27</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/26/%E9%80%9A%E8%BF%87%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0smali%E6%B1%87%E7%BC%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="smali与dalvik指令">smali与dalvik指令</span>
+            <span class="post-date" title="2022-09-26 15:50:15">2022/09/26</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/23/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="基于Android的ARM汇编">基于Android的ARM汇编</span>
+            <span class="post-date" title="2022-09-23 15:17:52">2022/09/23</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/21/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BAPK%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之APK打包流程">安卓逆向之APK打包流程</span>
+            <span class="post-date" title="2022-09-21 10:17:44">2022/09/21</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/19/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8B%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之安卓开发">安卓逆向之安卓开发</span>
+            <span class="post-date" title="2022-09-19 17:18:12">2022/09/19</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/16/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8Bjava%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之java基础">安卓逆向之java基础</span>
+            <span class="post-date" title="2022-09-16 18:02:04">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All IOT "
+           href="/2022/09/01/IOT%E5%88%9D%E6%8E%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="iot初探">iot初探</span>
+            <span class="post-date" title="2022-09-01 14:51:06">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 漏洞相关知识 "
+           href="/2022/09/01/win%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%8E%9F%E7%90%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="漏洞利用原理">漏洞利用原理</span>
+            <span class="post-date" title="2022-09-01 11:16:25">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 "
+           href="/2022/08/31/CVE-2010-2883%E5%A4%8D%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CVE-2010-2883_Adobe Reader TTF字体SING表栈溢出漏洞复现">CVE-2010-2883_Adobe Reader TTF字体SING表栈溢出漏洞复现</span>
+            <span class="post-date" title="2022-08-31 17:35:30">2022/08/31</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/08/23/APT_Shamoon/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="关于Shamoon.APT组织的一次完整攻击链分析">关于Shamoon.APT组织的一次完整攻击链分析</span>
+            <span class="post-date" title="2022-08-23 10:12:17">2022/08/23</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/08/16/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="日志分析">日志分析</span>
+            <span class="post-date" title="2022-08-16 17:04:55">2022/08/16</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/08/16/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94everything%E6%96%87%E4%BB%B6%E8%BF%87%E6%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="everything文件过滤">everything文件过滤</span>
+            <span class="post-date" title="2022-08-16 16:22:03">2022/08/16</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-26（Lazarus） "
+           href="/2022/08/12/Lazarus%E4%B8%80%E6%AC%A1%E9%92%88%E5%AF%B9%E8%88%AA%E7%A9%BA%E8%88%AA%E5%A4%A9%E8%A1%8C%E4%B8%9A%E7%9A%84%E6%94%BB%E5%87%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Lazarus一次针对航空航天行业的攻击">Lazarus一次针对航空航天行业的攻击</span>
+            <span class="post-date" title="2022-08-12 15:02:59">2022/08/12</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-08(蔓灵花) "
+           href="/2022/08/11/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="BITTER组织样本分析1">BITTER组织样本分析1</span>
+            <span class="post-date" title="2022-08-11 16:06:21">2022/08/11</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/07/19/%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="爬虫">爬虫</span>
+            <span class="post-date" title="2022-07-19 16:12:19">2022/07/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/07/15/Google_Hacking_%E8%B0%B7%E6%AD%8C%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Google_Hacking_谷歌搜索引擎">Google_Hacking_谷歌搜索引擎</span>
+            <span class="post-date" title="2022-07-15 09:56:40">2022/07/15</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/07/13/2022-7-13-exe/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="个人简历.exe">个人简历.exe</span>
+            <span class="post-date" title="2022-07-13 09:12:38">2022/07/13</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/07/06/%E5%88%9D%E5%85%A5Yara/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Yara入门">Yara入门</span>
+            <span class="post-date" title="2022-07-06 16:14:17">2022/07/06</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 蠕虫 "
+           href="/2022/06/28/2022-06-25_Scar%E6%84%9F%E6%9F%93%E5%BC%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2022.06.25_Scar感染式样本分析">2022.06.25_Scar感染式样本分析</span>
+            <span class="post-date" title="2022-06-28 09:25:02">2022/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/06/27/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应手册">应急响应手册</span>
+            <span class="post-date" title="2022-06-27 15:20:12">2022/06/27</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/03/08/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="宏病毒基础入门">宏病毒基础入门</span>
+            <span class="post-date" title="2022-03-08 09:23:03">2022/03/08</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 勒索病毒 "
+           href="/2022/03/07/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WannaCry病毒分析">WannaCry病毒分析</span>
+            <span class="post-date" title="2022-03-07 11:40:13">2022/03/07</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/03/03/wireshark/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="wireshark">wireshark</span>
+            <span class="post-date" title="2022-03-03 12:18:53">2022/03/03</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-23(双尾蝎) "
+           href="/2022/02/27/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-23境外双尾蝎组织样本分析">APT-C-23境外双尾蝎组织样本分析</span>
+            <span class="post-date" title="2022-02-27 16:00:07">2022/02/27</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/02/24/%E8%AE%B0%E5%BD%95%E6%A0%A1%E5%9B%ADMAC%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="记录校园MAC挖矿病毒">记录校园MAC挖矿病毒</span>
+            <span class="post-date" title="2022-02-24 20:04:18">2022/02/24</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 蠕虫 "
+           href="/2022/02/24/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="熊猫烧香分析">熊猫烧香分析</span>
+            <span class="post-date" title="2022-02-24 18:09:42">2022/02/24</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/02/20/win%E5%86%85%E6%A0%B8%E4%B8%8E%E9%A9%B1%E5%8A%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="win内核与驱动">win内核与驱动</span>
+            <span class="post-date" title="2022-02-20 08:23:51">2022/02/20</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/01/28/PE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PE">PE</span>
+            <span class="post-date" title="2022-01-28 21:26:29">2022/01/28</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2021/04/10/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="unix环境高级编程">unix环境高级编程</span>
+            <span class="post-date" title="2021-04-10 14:54:25">2021/04/10</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2021/03/29/codeql%E5%88%9D%E5%85%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="codeql初入">codeql初入</span>
+            <span class="post-date" title="2021-03-29 14:14:01">2021/03/29</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-winX86内核驱动开发" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">winX86内核驱动开发</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="win内核">win内核</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-10-27 10:58:34'>2022-11-14 16:22</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="toc-text">编写驱动程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E5%88%86%E7%B1%BB%E7%AE%80%E8%BF%B0"><span class="toc-text">驱动分类简述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NT%E5%BC%8F%E9%A9%B1%E5%8A%A8"><span class="toc-text">NT式驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WDM%E5%BC%8F%E9%A9%B1%E5%8A%A8"><span class="toc-text">WDM式驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WDF%E5%BC%8F%E9%A9%B1%E5%8A%A8"><span class="toc-text">WDF式驱动</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE"><span class="toc-text">创建驱动项目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-text">创建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E5%85%A5%E5%8F%A3%E5%87%BD%E6%95%B0%EF%BC%88DriverEntry%EF%BC%89"><span class="toc-text">驱动入口函数（DriverEntry）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E5%85%A5%E5%8F%A3%E5%87%BD%E6%95%B0"><span class="toc-text">指定入口函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81"><span class="toc-text">编写代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%8D%B0%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AF%B9%E8%B1%A1"><span class="toc-text">打印字符串对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E9%A9%B1%E5%8A%A8"><span class="toc-text">生成驱动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E9%A9%B1%E5%8A%A8%EF%BC%88%E9%83%A8%E7%BD%B2-%E5%90%AF%E5%8A%A8-%E5%81%9C%E6%AD%A2-%E5%8D%B8%E8%BD%BD%EF%BC%89"><span class="toc-text">加载驱动（部署-启动-停止-卸载）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E8%AF%95%E9%A9%B1%E5%8A%A8"><span class="toc-text">调试驱动</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E5%AF%B9%E8%B1%A1PDRIVER-OBJECT%E5%88%9D%E8%AF%86"><span class="toc-text">驱动对象PDRIVER_OBJECT初识</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E5%8A%A0%E8%BD%BD%E6%96%B9%E6%B3%95"><span class="toc-text">驱动加载方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%8A%A0%E8%BD%BD"><span class="toc-text">服务加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%8A%A0%E8%BD%BD"><span class="toc-text">直接加载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BB%83%E4%B9%A0"><span class="toc-text">第一个练习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%8F%8AAPI"><span class="toc-text">驱动常用类型及API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">基本数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%A0%81%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-text">错误码返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3"><span class="toc-text">字符串相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">定义字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">初始化字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%8C%96"><span class="toc-text">字符串转化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8A%E6%94%BE%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">释放字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-text">字符串格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83"><span class="toc-text">字符串比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3"><span class="toc-text">内存相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B3%E8%AF%B7%E5%86%85%E5%AD%98"><span class="toc-text">申请内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%B7%E8%B4%9D%E3%80%81%E8%AE%BE%E7%BD%AE%E3%80%81%E6%AF%94%E8%BE%83%E5%86%85%E5%AD%98"><span class="toc-text">拷贝、设置、比较内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8A%E6%94%BE%E5%86%85%E5%AD%98"><span class="toc-text">释放内存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%B6%E8%BF%9F"><span class="toc-text">延迟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B"><span class="toc-text">创建线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E9%93%BE%E8%A1%A8API"><span class="toc-text">内核链表API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E4%BA%8C%E5%8F%89%E6%A0%91API"><span class="toc-text">内核二叉树API</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E5%AF%B9%E8%B1%A1-DriverSection"><span class="toc-text">驱动对象-DriverSection</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9D%97%E9%81%8D%E5%8E%86-%E6%89%8B%E5%8A%A8"><span class="toc-text">驱动模块遍历-手动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9D%97%E9%81%8D%E5%8E%86-%E4%BB%A3%E7%A0%81"><span class="toc-text">驱动模块遍历-代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9D%97%E9%9A%90%E8%97%8F-%E6%96%AD%E9%93%BE"><span class="toc-text">驱动模块隐藏-断链</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%AD%E9%93%BE1-HTTP-sys"><span class="toc-text">断链1-HTTP.sys</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%A9%B1%E5%8A%A8%E5%AF%B9%E8%B1%A1%E6%8C%87%E9%92%88"><span class="toc-text">获取驱动对象指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%AD%E9%93%BE2-HTTP-sys%E5%A2%9E%E5%BC%BA"><span class="toc-text">断链2-HTTP.sys增强</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%AD%E9%93%BE3-%E8%87%AA%E8%BA%AB%E9%A9%B1%E5%8A%A8"><span class="toc-text">断链3-自身驱动</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E9%80%9A%E4%BF%A1-%E5%B8%B8%E8%A7%84"><span class="toc-text">驱动通信-常规</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0%E7%8E%AF%E4%BB%A3%E7%A0%81-%E5%88%9B%E5%BB%BA%E8%AE%BE%E5%A4%87"><span class="toc-text">0环代码-创建设备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0%E7%8E%AF%E4%BB%A3%E7%A0%81-%E8%AE%BE%E7%BD%AE%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F"><span class="toc-text">0环代码-设置数据交互方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0%E7%8E%AF%E4%BB%A3%E7%A0%81-%E5%88%9B%E5%BB%BA%E7%AC%A6%E5%8F%B7%E9%93%BE%E6%8E%A5"><span class="toc-text">0环代码-创建符号链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IRP%E6%B6%88%E6%81%AF"><span class="toc-text">IRP消息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B4%BE%E9%81%A3%E5%87%BD%E6%95%B0"><span class="toc-text">派遣函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0%E7%8E%AF%E4%BB%A3%E7%A0%81-%E5%A4%84%E7%90%86IRP%E6%B6%88%E6%81%AF1"><span class="toc-text">0环代码-处理IRP消息1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E7%8E%AF%E4%BB%A3%E7%A0%81-%E5%8F%91%E9%80%81IRP%E6%B6%88%E6%81%AF"><span class="toc-text">3环代码-发送IRP消息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0%E7%8E%AF%E4%BB%A3%E7%A0%81-%E5%A4%84%E7%90%86IRP%E6%B6%88%E6%81%AF-%E6%89%A9%E5%B1%95"><span class="toc-text">0环代码-处理IRP消息-扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0%E7%8E%AF%E4%BB%A3%E7%A0%81-%E5%8D%B8%E8%BD%BD%E8%AE%BE%E5%A4%87%E5%92%8C%E7%AC%A6%E5%8F%B7%E9%93%BE%E6%8E%A5"><span class="toc-text">0环代码-卸载设备和符号链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E6%95%88%E6%9E%9C"><span class="toc-text">执行效果</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-6 i,
+    .toc-level-6 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="编写驱动程序"><a href="#编写驱动程序" class="headerlink" title="编写驱动程序"></a>编写驱动程序</h1><h2 id="驱动分类简述"><a href="#驱动分类简述" class="headerlink" title="驱动分类简述"></a>驱动分类简述</h2><p>驱动大体分为三种，分别是：NT式驱动、WDM式驱动、WDF式驱动（KWDF内核驱动,UWDF用户驱动）。</p>
+<h3 id="NT式驱动"><a href="#NT式驱动" class="headerlink" title="NT式驱动"></a>NT式驱动</h3><p>NT虚拟驱动，老式驱动，从WIN95开始使用NT式驱动。 若所开发的驱动不与硬件打交道，建议使用NT式驱动或WDM式驱动。如果NT式驱动出现了绑定设备的情况，该驱动将无法卸载。只能通过重启系统进行卸载。对于服务器来说重启很伤。比如说你要插个鼠标 就要重启</p>
+<h3 id="WDM式驱动"><a href="#WDM式驱动" class="headerlink" title="WDM式驱动"></a>WDM式驱动</h3><p>相对于NT式驱动来讲，WDM式驱动支持卸载（热拔插）。无需重启即可卸载。并且WDM式驱动对于NT式驱动进行了一些封装和优化。本质区别不大。</p>
+<h3 id="WDF式驱动"><a href="#WDF式驱动" class="headerlink" title="WDF式驱动"></a>WDF式驱动</h3><p>WDF式驱动相较前两种，其最大的意义是简化开发。不像NT与WDM驱动那么底层化。WDF式驱动将WDM式驱动进行了封装，做成了一套架构，使得开发驱动变得更简单。同时带来的弊端就是无法掌控底层。</p>
+<p>由于开发简便，不容易蓝屏，所以公司开发驱动一般选用WDF式驱动。</p>
+<p>想要学习WDF式驱动，需要了解COM相关知识。</p>
+<p>只有系统中存在WDFLDR.sys驱动，我们编写的WDF驱动才可以跑起来。并且项目中需要一个inf文件，NT&#x2F;WDM式驱动则不需要这个inf文件。</p>
+<h1 id="创建驱动项目"><a href="#创建驱动项目" class="headerlink" title="创建驱动项目"></a>创建驱动项目</h1><h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>打开VS2017，新建项目选择Visual C++ -&gt; Windwos Drivers -&gt; Legacy -&gt; Empty WDM Driver</p>
+<p>右键SourceFiles目录，新建项。创建一个扩展名为C的C++文件。（不要用cpp扩展名）。文件名随意起，不是非要和项目名一样。</p>
+<p> 在.c文件中先引入头文件 <code>ntifs.h</code>。</p>
+<p>删除INF文件</p>
+<h2 id="驱动入口函数（DriverEntry）"><a href="#驱动入口函数（DriverEntry）" class="headerlink" title="驱动入口函数（DriverEntry）"></a>驱动入口函数（DriverEntry）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;ntifs.h&quot;</span><br><span class="line">NTSTATUS DriverEntry(PDRIVER_OBJECT DriverObject,PUNICODE_STRING RegistryPath)&#123;</span><br><span class="line">    //代码</span><br><span class="line">    return STATUS_UNSUCCESSFUL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>DriverEntry是我们写代码时的入口函数。其编译生成的sys文件真正的入口点并不是DriverEntry。在IDA中可以看到驱动真正的入口点函数是GsDriverEntry。其内部调用了我们的DriverEntry函数。这个函数的返回值是一个NTSTATUS类型，这个返回值的宏定义在ntstatus.h这个头文件中<br>2 参数PDRIVER_OBJECT</p>
+<p>它代表的是windows中的一个指向驱动对象的指针，前面的P就是Pointer的意思，这个驱动对象对应的就是我们要操作的.sys驱动</p>
+<p>这个驱动对象是Windows系统中对某个驱动的唯一标识，里面包括了这个驱动的各种信息，各个功能函数的入口地址等重要信息，这些信息非常的庞大和复杂。</p>
+<p>驱动对象一般包括一个及以上的设备对象，总之驱动就是要在一系列设备上进行信息交互实现功能。<br>3 参数PUNICODE_STRING</p>
+<p>这是一个UNICODE类型的字符串，它代表了驱动在注册表中的参数所存放的位置，由于每个驱动都是以一个类似服务的形式存在，在系统注册表存放，注册表可以通过cmd输入regedit进入。</p>
+<p>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services</p>
+<p>Windows内核在启动时加载了一个最小文件系统，分析磁盘并将注册表树下的所有内容读到内存中，这样保证这一部分的注册表内容在Windows内核刚加载之后就是可以读写状态。</p>
+<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/3.png"></p>
+<h3 id="指定入口函数"><a href="#指定入口函数" class="headerlink" title="指定入口函数"></a>指定入口函数</h3><p>如果不想让编译器生成GsDriverEntry而是直接将入口函数设置为DriverEntry，可以按照下图设置。</p>
+<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/2.png"></p>
+<h2 id="编写代码"><a href="#编写代码" class="headerlink" title="编写代码"></a>编写代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ntddk.h&quot;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="type">void</span> <span class="title function_">UnloadDriver</span><span class="params">(PDRIVER_OBJECT driver)</span>;</span><br><span class="line"> </span><br><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)</span> &#123;</span><br><span class="line">    DbgBreakPoint();        <span class="comment">//相当于 __asm&#123;int 3&#125;</span></span><br><span class="line">    DbgPrint(<span class="string">&quot;驱动加载了。\r\n&quot;</span>);    <span class="comment">//驱动的打印函数，相当于3环的printf</span></span><br><span class="line">    DriverObject-&gt;DriverUnload = UnloadDriver;    <span class="comment">//为驱动指定卸载函数</span></span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//驱动卸载函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">UnloadDriver</span><span class="params">(PDRIVER_OBJECT driver)</span> &#123;</span><br><span class="line">    DbgPrint(<span class="string">&quot;驱动停止了。\r\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="打印字符串对象"><a href="#打印字符串对象" class="headerlink" title="打印字符串对象"></a>打印字符串对象</h2><p>如果想要打印字符串对象中的字符串，可以使用如下格式：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT DriverObject, PUNICODE_STRING pReg)</span> &#123;</span><br><span class="line">    DbgPrint(<span class="string">&quot;-------%wZ--------&quot;</span>,pReg);<span class="comment">//传入字符串对象指针。</span></span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="生成驱动"><a href="#生成驱动" class="headerlink" title="生成驱动"></a>生成驱动</h2><p>点击生成解决方案即可。若报一些格式错误，就删除一些特殊符号之类的东西。</p>
+<h2 id="加载驱动（部署-启动-停止-卸载）"><a href="#加载驱动（部署-启动-停止-卸载）" class="headerlink" title="加载驱动（部署-启动-停止-卸载）"></a>加载驱动（部署-启动-停止-卸载）</h2><p>使用InstDrv.exe加载驱动。使用DbgView.exe查看输出（必须选中监视核心，否则无法监视驱动层输出）。</p>
+<h2 id="调试驱动"><a href="#调试驱动" class="headerlink" title="调试驱动"></a>调试驱动</h2><p>通过调用函数DbgBreakPoint为驱动增加一个断点。这个函数相当于int 3指令。</p>
+<p>在虚拟机用驱动加载工具运行驱动我们生成的驱动</p>
+<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/1.png"></p>
+<h1 id="驱动对象PDRIVER-OBJECT初识"><a href="#驱动对象PDRIVER-OBJECT初识" class="headerlink" title="驱动对象PDRIVER_OBJECT初识"></a>驱动对象PDRIVER_OBJECT初识</h1><p>在成功断在我们的代码中后，查看驱动对象结构。</p>
+<p> <img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/4.png"></p>
+<p> <img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/6.png"></p>
+<ul>
+<li><p>Type：驱动对象类型。</p>
+</li>
+<li><p>Size：驱动对象大小</p>
+</li>
+<li><p>DeviceObject：设备对象，我们这里没添加设备，因此是null</p>
+</li>
+<li><p>DriverStart：驱动文件基址，也就是PE格式中的ImageBase。通过db命令可以看到4D 5A。</p>
+</li>
+<li><p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/7.png"></p>
+</li>
+<li><p>DriverSize：驱动模块大小，也就是PE格式中的SizeOfImage。</p>
+</li>
+<li><p>DriverExtension：驱动扩展对象。使用dt命令查看该对象</p>
+<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/8.png"></p>
+</li>
+<li><p>DriverObject：指向当前驱动对象首地址。</p>
+</li>
+<li><p>ServiceKeyName：驱动服务注册表文件夹名。</p>
+</li>
+</ul>
+<p>DriverName：驱动名，也就是驱动的文件名前面加个\Driver\。这个名字是个字符串结构体。</p>
+<p>查看该字符串结构：</p>
+<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/9.png"></p>
+<p>HardwareDatabase：驱动服务注册表路径。前往注册表查看该路径，可以发现一个名为“hellodriver”的文件夹，这就是我们的驱动。</p>
+<p> <img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/5.png"></p>
+<ul>
+<li>DisplayName：驱动名</li>
+</ul>
+<ul>
+<li>ErrorControl：当驱动加载失败时会设置这个值。</li>
+<li>ImagePath：驱动文件路径。??\是设备路径，我们平时访问各种文件夹其实都带这个??\，只是windows底层帮我们补充了。</li>
+<li>Start：驱动加载类型。手动启动为3，开机自启为2，BIOS自启为1。</li>
+<li>Type：服务类型。1为驱动。</li>
+<li>DriverInit ：驱动入口点，也就是PE文件的AddressOfEntryPoint。</li>
+<li>DriverUnload：驱动卸载函数地址。</li>
+</ul>
+<h1 id="驱动加载方法"><a href="#驱动加载方法" class="headerlink" title="驱动加载方法"></a>驱动加载方法</h1><p>加载驱动大体分为两种：服务加载和直接加载。实际应用中可以将两种方法都利用上。</p>
+<h2 id="服务加载"><a href="#服务加载" class="headerlink" title="服务加载"></a>服务加载</h2><ol>
+<li>调用OpenSCManager打开服务控制。</li>
+<li>调用CreateService创建服务。实际上就是创建注册表相关键值。在执行完该API后，驱动已经被注册为服务了。这时我们通过CMD执行net start XXXX也可以加载我们的驱动。</li>
+<li>调用OpenService打开现有服务。</li>
+<li>调用StartService启动服务</li>
+</ol>
+<p>这种方式实际上加载该驱动的进程，并不是调用API的进程。而是通过API向系统通知我要加载一个驱动。系统进程接收到通知后加入到系统中的一个队列。并由系统进程在某时某刻加载该驱动。</p>
+<p>也就是这种方式是通知系统进程来进行加载。</p>
+<h2 id="直接加载"><a href="#直接加载" class="headerlink" title="直接加载"></a>直接加载</h2><p>调用ZwLoadDriver或NtLoadDriver加载一个已被正确注册的驱动。</p>
+<p>这种方法需要我们自己手动去注册表内注册该驱动的相关信息。这样该驱动才可以被加载。</p>
+<p>直接加载的方式在调用API后就会直接加载该驱动，所以该驱动的加载者就是调用该API的进程。相比于服务加载会留下痕迹。</p>
+<h1 id="第一个练习"><a href="#第一个练习" class="headerlink" title="第一个练习"></a>第一个练习</h1><p>编写两个驱动A和B，在A中定义全局变量值为100，打印A的地址pA。在B中打印pA的数据，观察是否与A中定义的相同。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ntddk.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">UnloadDriver</span><span class="params">(PDRIVER_OBJECT driver)</span>;</span><br><span class="line">UINT32 i = <span class="number">100</span>;</span><br><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)</span> &#123;</span><br><span class="line">    DbgPrint(<span class="string">&quot;驱动加载了。\r\n&quot;</span>);    <span class="comment">//驱动的打印函数，相当于3环的printf</span></span><br><span class="line">    DbgPrint(<span class="string">&quot;i addr = %08x\r\n&quot;</span>, &amp;i);</span><br><span class="line">    DriverObject-&gt;DriverUnload = UnloadDriver;    <span class="comment">//为驱动指定卸载函数</span></span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//驱动卸载函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">UnloadDriver</span><span class="params">(PDRIVER_OBJECT driver)</span> &#123;</span><br><span class="line">    DbgPrint(<span class="string">&quot;驱动停止了。\r\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 老规矩 生成了之后 拖入虚拟机里面加载 然后运行 程序就会断到vs设置断点的位置 我们此时给输出i哪一行 按下f9 看看 windbg窗口 db一下地址显示 64 也就是十进制100</p>
+<p>此时虚拟机是卡着的很正常，</p>
+<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/10.png"></p>
+<p>然后根据作业要求 打印这个地址 看看是不是64</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//B</span><br><span class="line">#include &quot;ntddk.h&quot;</span><br><span class="line"></span><br><span class="line">void UnloadDriver(PDRIVER_OBJECT driver);</span><br><span class="line">UINT32 i=9b4fa000;</span><br><span class="line">NTSTATUS DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath) &#123;</span><br><span class="line">    DbgPrint(&quot;驱动加载了。\r\n&quot;);    //驱动的打印函数，相当于3环的printf</span><br><span class="line">    DbgPrint(&quot;%08x\r\n&quot;, &amp;i);</span><br><span class="line">    DriverObject-&gt;DriverUnload = UnloadDriver;    //为驱动指定卸载函数</span><br><span class="line">    return STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line">//驱动卸载函数</span><br><span class="line">void UnloadDriver(PDRIVER_OBJECT driver) &#123;</span><br><span class="line">    DbgPrint(&quot;驱动停止了。\r\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/11.png"></p>
+<p>数值不见了</p>
+<h1 id="驱动常用类型及API"><a href="#驱动常用类型及API" class="headerlink" title="驱动常用类型及API"></a>驱动常用类型及API</h1><p>在驱动中写代码与3环不同，一些数据类型及常用API也最好使用驱动开发专用的版本。这算是一种代码规范。</p>
+<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><p>在驱动中，原数据类型int char等均被封装、重定义。在驱动开发中应使用如下数据类型：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">UINT8,PUINT8 -&gt; <span class="type">unsigned</span> <span class="type">char</span></span><br><span class="line">UINT16,PUINT16 -&gt; <span class="type">unsigned</span> <span class="type">short</span> </span><br><span class="line">UINT32,PUINT32 -&gt; <span class="type">unsigned</span> <span class="type">int</span></span><br><span class="line">UINT64,PUINT64 -&gt; <span class="type">unsigned</span> __int64</span><br><span class="line">INT8,PINT8 -&gt; <span class="type">char</span></span><br><span class="line">INT16,PINT16 -&gt; <span class="type">short</span></span><br><span class="line">INT32,PINT32 -&gt; <span class="type">int</span></span><br><span class="line">INT64,PINT64 -&gt; __int64</span><br><span class="line">LONG32,PLONG32 -&gt; <span class="type">int</span></span><br><span class="line">ULONG32,PULONG32 -&gt; <span class="type">unsigned</span> <span class="type">int</span></span><br><span class="line">DWORD32,PDWRD32 -&gt; <span class="type">int</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="错误码返回值"><a href="#错误码返回值" class="headerlink" title="错误码返回值"></a>错误码返回值</h2><p>绝大多数内核函数都会有一个返回值，类型为<code>NTSTATUS</code>。该类型本质就是一个LONG。</p>
+<p>如GetLastError这种取错误码的函数，取到的值其实就是NTSTATUS转化后的错误码。</p>
+<p>常用的NTSTATUS宏如下,负数（大于0X80000000）的返回值为错误，大于等于0为成功</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">STATUS_SEVERITY_SUCCESS          <span class="number">0x0</span></span><br><span class="line">STATUS_SEVERITY_INFORMATIONAL    <span class="number">0x1</span></span><br><span class="line">STATUS_SEVERITY_WARNING          <span class="number">0x2</span></span><br><span class="line">STATUS_SEVERITY_ERROR            <span class="number">0x3</span></span><br><span class="line">STATUS_UNSUCCESSFUL              <span class="number">0xC0000001</span></span><br><span class="line">STATUS_ACCESS_VIOLATION             <span class="number">0xC0000005</span></span><br></pre></td></tr></table></figure>
+
+<p>同时有一个宏用于判断返回值是成功还是失败：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NT_SUCCESS(NTSATUS类型参数)  ``/``/``<span class="meta">#<span class="keyword">define</span> NT_SUCCESS(Status) (((NTSTATUS)(Status)) &gt;= 0)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="字符串相关"><a href="#字符串相关" class="headerlink" title="字符串相关"></a>字符串相关</h2><p>在内核开发中，字符串不要定义为char* x &#x3D; “xx”，WDK为我们准备了一些字符串相关的API。</p>
+<h3 id="定义字符串"><a href="#定义字符串" class="headerlink" title="定义字符串"></a>定义字符串</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cUNICODE_STRING uStr = &#123;<span class="number">0</span>&#125;;    <span class="comment">//定义一个unicode字符串，类型为UNICODE_STRING</span></span><br><span class="line">STRING aStr = &#123;<span class="number">0</span>&#125;;    <span class="comment">//定义一个ascii字符串，类型为STRING</span></span><br><span class="line">ANSI_STRING aStr = &#123;<span class="number">0</span>&#125;;  <span class="comment">//所有ANSI与直接STRING 作用相同</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="初始化字符串"><a href="#初始化字符串" class="headerlink" title="初始化字符串"></a>初始化字符串</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RtlInitUnicodeString(&amp;uStr,<span class="string">L&quot;unicode string&quot;</span>);<span class="comment">//初始化unicode字符串，为其赋值。不会申请内存。</span></span><br><span class="line">RtlInitString(&amp;aStr,<span class="string">&quot;ascii string&quot;</span>); <span class="comment">//初始化ascii字符串，为其赋值，不会申请内存。</span></span><br><span class="line">RtlInitAnsiString(&amp;aStr,<span class="string">&quot;ascii string&quot;</span>); <span class="comment">//初始化ascii字符串，为其赋值，不会申请内存。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串转化"><a href="#字符串转化" class="headerlink" title="字符串转化"></a>字符串转化</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RtlAnsiStringToUnicodeString(&amp;uStr,&amp;aStr,<span class="literal">true</span>);<span class="comment">//将ascii字符串转为unicode字符串，无需为unicode字符串做初始化，第三个参数为true则自动申请内存。为false则不申请，仅修改unicode现有空间。若为true，则需要手动释放字符串内存。</span></span><br><span class="line">RtlUnicodeStringToAnsiString（）；<span class="comment">//将unicode字符串转为ascii字符串，用法与上面相同。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="释放字符串"><a href="#释放字符串" class="headerlink" title="释放字符串"></a>释放字符串</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RtlFreeUnicodeString();<span class="comment">//释放unicode字符串内存，当字符串初始化中为其分配了内存时，需要释放内存。</span></span><br><span class="line">RtlFreeAnsiString(); <span class="comment">//释放ascii字符串内存，当字符串初始化中为其分配了内存时，需要释放内存</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串格式化"><a href="#字符串格式化" class="headerlink" title="字符串格式化"></a>字符串格式化</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ntstrsafe.h&gt;</span> <span class="comment">//使用格式化API需要引入此头文件</span></span></span><br><span class="line"><span class="type">char</span> aStr[<span class="number">0x1000</span>]= &#123;<span class="number">0</span>&#125;;</span><br><span class="line">RtlStringCbPrintfA(aStr, <span class="number">0x1000</span>, <span class="string">&quot;%d---%s&quot;</span>, <span class="number">123</span>, <span class="string">&quot;test&quot;</span>);<span class="comment">//参数1： Ascii字符串指针</span></span><br><span class="line">wchar uStr[<span class="number">0x1000</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">RtlStringCbPrintfW(uStr, <span class="number">0x1000</span>, <span class="string">L&quot;%d---%s&quot;</span>, <span class="number">123</span>, <span class="string">L&quot;test&quot;</span>);<span class="comment">//参数1： Unicode字符串指针</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RtlCompareUnicodeString(&amp;uStr1,&amp;uStr2,TRUE);<span class="comment">//比较两个unicode字符串是否相等，true忽略大小写</span></span><br><span class="line">RtlCompareString    <span class="comment">//比较两个ascii字符串是否相等</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="内存相关"><a href="#内存相关" class="headerlink" title="内存相关"></a>内存相关</h2><h3 id="申请内存"><a href="#申请内存" class="headerlink" title="申请内存"></a>申请内存</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ExAllocatePool(type,size);<span class="comment">//type:内存类型，PagePool和NonPagePool，分别为分页内存和非分页内存。</span></span><br><span class="line"><span class="comment">//分页内存：后面章节会详细说，暂时理解为不可执行的内存</span></span><br><span class="line"><span class="comment">//非分页内存：后面章节会详细说，暂时理解为可执行的内存   通常填NonPagePool，对应属性为PTE的XD/NX位。</span></span><br><span class="line">ExAllocatePoolWithTag(type,size,tag);<span class="comment">//tag：内存标志，四个字节最多，如&#x27;test&#x27;，为申请的内存起个名字。用单引号包含，内部最终转为16进制数据。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="拷贝、设置、比较内存"><a href="#拷贝、设置、比较内存" class="headerlink" title="拷贝、设置、比较内存"></a>拷贝、设置、比较内存</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RtlFillMemory(pointer,length,value);<span class="comment">//相当于memset</span></span><br><span class="line">RtlEqualMemory(pointer,Source,Length)<span class="comment">//相当于memcmp结果取反</span></span><br><span class="line">RtlMoveMemory(pointer,Source,Length) <span class="comment">//相当于memmove</span></span><br><span class="line">RtlCopyMemory(pointer,Source,Length) <span class="comment">//相当于memcpy</span></span><br><span class="line">RtlZeroMemory(pointer,Length) <span class="comment">//相当于memset第二参数为0.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="释放内存"><a href="#释放内存" class="headerlink" title="释放内存"></a>释放内存</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExFreePool(pointer);<span class="comment">//释放内存</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="延迟"><a href="#延迟" class="headerlink" title="延迟"></a>延迟</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//驱动代码中的延迟不可以使用Sleep，而是KeDelayExecutionThread</span></span><br><span class="line">LARGE_INTEGER li = &#123; <span class="number">0</span> &#125;;    <span class="comment">//时长结构。</span></span><br><span class="line">li.QuadPart = <span class="number">-10000</span> * <span class="number">5000</span>;    <span class="comment">//时间单位 负数代表相对时间  正数代表绝对时间。 5000代表5秒。</span></span><br><span class="line">KeDelayExecutionThread(KernelMode,FALSE,&amp;li);</span><br><span class="line"><span class="comment">//第一个参数：延迟模式，我们这里选内核模式</span></span><br><span class="line"><span class="comment">//第二个参数：强制唤醒。如果为FALSE，那么休眠时间未结束前，不会被唤醒。</span></span><br><span class="line"><span class="comment">//第三个参数：延迟时长。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//线程函数</span></span><br><span class="line">VOID <span class="title function_">myThreadFun</span><span class="params">(_In_ PVOID StartContext)</span> &#123;</span><br><span class="line">    <span class="comment">//线程函数代码</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">HANDLE tHandle = <span class="literal">NULL</span>;</span><br><span class="line">NTSTATUS tRet = PsCreateSystemThread(&amp;tHandle,THREAD_ALL_ACCESS,<span class="literal">NULL</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>, myThreadFun,<span class="literal">NULL</span>);</span><br><span class="line"><span class="comment">//最后一个参数是线程函数启动参数。</span></span><br><span class="line"><span class="keyword">if</span>(NT_SUCCESS(tRet))&#123;</span><br><span class="line">    ZwClose(tHandle);<span class="comment">//相当于CloseHandle</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="内核链表API"><a href="#内核链表API" class="headerlink" title="内核链表API"></a>内核链表API</h2><p>windows开发人员很喜欢使用链表，你可以在很多内核结构中看到<code>LIST_ENTRY</code>成员。这就是链表节点结构。也是WDK中提供的一个官方链表结构。LIST_ENTRY是一个双向链表。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">Monster</span> &#123;</span>    <span class="comment">//定义一个结构体，成员包含节点结构。这样该结构体也可以作为节点。</span></span><br><span class="line">    UINT32 ID;</span><br><span class="line">    LIST_ENTRY node;</span><br><span class="line">    UINT32 hp;</span><br><span class="line">    UINT32 level;</span><br><span class="line">    UNICODE_STRING name;</span><br><span class="line">&#125;Monster,*PMonster;</span><br><span class="line"> </span><br><span class="line">Monster m1 = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">InitializeListHead(&amp;m1.node);    <span class="comment">//初始化链表，防止出现垃圾数据作为指针的情况。</span></span><br><span class="line">IsListEmpty(&amp;m1.node);    <span class="comment">//判断整条链表是否为空，传入整条链表中任意一个节点即可。</span></span><br><span class="line">Monster m2 = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">InsertHeadList(&amp;m1.node, &amp;m2.node);<span class="comment">//将m2节点插入至链表头部。</span></span><br><span class="line">Monster m3 = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">InsertTailList(&amp;m1.node, &amp;m3.node);<span class="comment">//将m3节点插入至链表尾部。</span></span><br><span class="line">RemoveHeadList(&amp;m2.node);<span class="comment">//将整条链表的头部节点移除，传入任一节点即可。</span></span><br><span class="line">RemoveTailList(&amp;m2.node);<span class="comment">//将整条链表的尾部节点移除，传入任一节点即可。</span></span><br><span class="line">RemoveEntryList(&amp;m3.node);<span class="comment">//将指定节点移除，断链。</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//通过FLINK找到Monster，架设要找到m2下一个节点</span></span><br><span class="line">PMonster pm = (PMonster)((UCHAR)m2.node.Flink - ((UCHAR)(&amp;m2.node) - (UCHAR)&amp;m2));</span><br><span class="line"><span class="comment">//计算出ListEntry结构相对于Monster结构的偏移，用Flink减去该偏移得到m3的地址。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="内核二叉树API"><a href="#内核二叉树API" class="headerlink" title="内核二叉树API"></a>内核二叉树API</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">Monster</span> &#123;</span></span><br><span class="line">    UINT32 id;</span><br><span class="line">    UINT32 hp;</span><br><span class="line">    UINT32 level;</span><br><span class="line">    UNICODE_STRING name;</span><br><span class="line">&#125;Monster,*PMonster;</span><br><span class="line"><span class="comment">//树节点比较函数</span></span><br><span class="line">RTL_GENERIC_COMPARE_RESULTS NTAPI <span class="title function_">myCmpFunc</span><span class="params">(_In_ <span class="keyword">struct</span> _RTL_GENERIC_TABLE *Table,_In_ PVOID FirstStruct,_In_ PVOID SecondStruct)</span> &#123;</span><br><span class="line">    PMonster m1 = (PMonster)FirstStruct;    <span class="comment">//内部强转为自己需要的结构体</span></span><br><span class="line">    PMonster m2 = (PMonster)SecondStruct;</span><br><span class="line">    <span class="keyword">if</span> (m1-&gt;id == m2-&gt;id) &#123;                <span class="comment">//判断方法自己指定，我这里按照ID判断两个节点的大小关系</span></span><br><span class="line">        <span class="keyword">return</span> GenericEqual;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> m1-&gt;id &gt; m2-&gt;id ? GenericGreaterThan : GenericLessThan;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//节点新建函数</span></span><br><span class="line">VOID NTAPI <span class="title function_">myAllocFunc</span><span class="params">( _In_ <span class="keyword">struct</span> _RTL_GENERIC_TABLE *Table, _In_ CLONG ByteSize )</span> &#123;</span><br><span class="line">    ExAllocatePool(NonPagedPool,ByteSize);<span class="comment">//申请内存</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//节点删除函数</span></span><br><span class="line">VOID NTAPI <span class="title function_">myFreeFunc</span><span class="params">( _In_ <span class="keyword">struct</span> _RTL_GENERIC_TABLE *Table, _In_ __drv_freesMem(Mem) _Post_invalid_ PVOID Buffer )</span> &#123;</span><br><span class="line">    ExFreePool(Buffer);<span class="comment">//释放该节点申请出来的内存</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">Monster m1 = &#123;<span class="number">0</span>,<span class="number">100</span>,<span class="number">10</span>,<span class="string">L&quot;monster 1&quot;</span>&#125;;</span><br><span class="line">Monster m2 = &#123;<span class="number">1</span>,<span class="number">100</span>,<span class="number">10</span>,<span class="string">L&quot;monster 2&quot;</span>&#125;;</span><br><span class="line">Monster m3 = &#123;<span class="number">2</span>,<span class="number">100</span>,<span class="number">10</span>,<span class="string">L&quot;monster 3&quot;</span>&#125;;</span><br><span class="line"> </span><br><span class="line">RTL_GENERIC_TABLE table = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//初始化二叉树</span></span><br><span class="line">RtlInitializeGenericTable(&amp;table, myCmpFunc, myAllocFunc, myFreeFunc,<span class="literal">NULL</span>);</span><br><span class="line">BOOLEAN isNewEle = FALSE;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//插入/更新节点，将节点强转为void*，isNewEle接收该节点是否为新加加点或已存在节点。通过myCmpFunc来判断两个节点是否为同一个节点。    在插入节点时，会调用myAllocFunc为节点重新分配一个内存并将数据拷贝过去。</span></span><br><span class="line">RtlInsertElementGenericTable(&amp;table, (PVOID)&amp;m1,<span class="keyword">sizeof</span>(m1),&amp;isNewEle);</span><br><span class="line">RtlInsertElementGenericTable(&amp;table, (PVOID)&amp;m2,<span class="keyword">sizeof</span>(m1),&amp;isNewEle);</span><br><span class="line">RtlInsertElementGenericTable(&amp;table, (PVOID)&amp;m3,<span class="keyword">sizeof</span>(m1),&amp;isNewEle);</span><br><span class="line"> </span><br><span class="line"><span class="comment">//查找节点，lookupM只需要赋值id属性，查找也会根据这个id去对比是否相同。返回查找到的结点指针</span></span><br><span class="line">Monster lookupM = &#123; <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span> &#125;;</span><br><span class="line">PMonster lookupResult = (PMonster)RtlLookupElementGenericTable(&amp;table,&amp;lookupM);</span><br><span class="line"> </span><br><span class="line"><span class="comment">//删除节点，也是根据id删除。删除后会自动调用myFreeFunc释放内存。</span></span><br><span class="line">RtlDeleteElementGenericTable(&amp;table, &amp;lookupM);</span><br><span class="line"> </span><br><span class="line"><span class="comment">//取节点个数</span></span><br><span class="line">ULONG nodeNum = RtlNumberGenericTableElements(&amp;table);</span><br><span class="line">ULONG nodeNum = RtlNumberGenericTableElementsAvl(&amp;table);<span class="comment">//安全函数，防止一边加节点一边读节点</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//遍历节点，key用于取下一个节点，key为null时，取第一个节点。  返回值为下一个节点，同时自动更新key指向返回值所属节点。返回值为null说明遍历结束。 </span></span><br><span class="line">PVOID key = <span class="literal">NULL</span>;</span><br><span class="line">PMonster pm = (PMonster)RtlEnumerateGenericTableWithoutSplaying(&amp;table, &amp;key);</span><br><span class="line"><span class="keyword">while</span> (pm!=<span class="literal">NULL</span>) &#123;</span><br><span class="line">    DbgPrint(pm-&gt;name.Buffer);</span><br><span class="line">    pm = (PMonster)RtlEnumerateGenericTableWithoutSplaying(&amp;table, &amp;key);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//二叉树用完（如驱动卸载），要将二叉树内所有节点销毁掉，防止内存泄漏。</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="驱动对象-DriverSection"><a href="#驱动对象-DriverSection" class="headerlink" title="驱动对象-DriverSection"></a>驱动对象-DriverSection</h1><p>驱动对象中有一个成员名为DriverSection，其数据类型为未公开类型<code>_KLDR_DATA_TABLE_ENTRY</code>的结构指针。该结构信息可以在WRK源码中搜索到。成员如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">KLDR_DATA_TABLE_ENTRY</span> &#123;</span></span><br><span class="line">    LIST_ENTRY InLoadOrderLinks;</span><br><span class="line">    ULONG __Undefined1;</span><br><span class="line">    ULONG __Undefined2;</span><br><span class="line">    ULONG __Undefined3;</span><br><span class="line">    ULONG NonPagedDebugInfo;</span><br><span class="line">    ULONG DllBase;</span><br><span class="line">    ULONG EntryPoint;</span><br><span class="line">    ULONG SizeOfImage;</span><br><span class="line">    UNICODE_STRING FullDllName;</span><br><span class="line">    UNICODE_STRING BaseDllName;</span><br><span class="line">    ULONG Flags;</span><br><span class="line">    USHORT LoadCount;</span><br><span class="line">    USHORT __Undefined5;</span><br><span class="line">    ULONG  __Undefined6;</span><br><span class="line">    ULONG  CheckSum;</span><br><span class="line">    ULONG  TimeDateStamp;</span><br><span class="line">&#125; KLDR_DATA_TABLE_ENTRY, *PKLDR_DATA_TABLE_ENTRY;</span><br></pre></td></tr></table></figure>
+
+<p>其中第一个成员InLoadOrderLinks是一个链表节点结构。由此可知，_KLDR_DATA_TABLE_ENTRY是一个双向链表。</p>
+<h2 id="驱动模块遍历-手动"><a href="#驱动模块遍历-手动" class="headerlink" title="驱动模块遍历-手动"></a>驱动模块遍历-手动</h2><p>编写如下代码，加载该驱动：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">KLDR_DATA_TABLE_ENTRY</span> &#123;</span></span><br><span class="line">    LIST_ENTRY InLoadOrderLinks;</span><br><span class="line">    ULONG __Undefined1;</span><br><span class="line">    ULONG __Undefined2;</span><br><span class="line">    ULONG __Undefined3;</span><br><span class="line">    ULONG NonPagedDebugInfo;</span><br><span class="line">    ULONG DllBase;</span><br><span class="line">    ULONG EntryPoint;</span><br><span class="line">    ULONG SizeOfImage;</span><br><span class="line">    UNICODE_STRING FullDllName;</span><br><span class="line">    UNICODE_STRING BaseDllName;</span><br><span class="line">    ULONG Flags;</span><br><span class="line">    USHORT LoadCount;</span><br><span class="line">    USHORT __Undefined5;</span><br><span class="line">    ULONG  __Undefined6;</span><br><span class="line">    ULONG  CheckSum;</span><br><span class="line">    ULONG  TimeDateStamp;</span><br><span class="line">&#125; KLDR_DATA_TABLE_ENTRY, *PKLDR_DATA_TABLE_ENTRY;</span><br><span class="line"> </span><br><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)</span> &#123;</span><br><span class="line">    DbgBreakPoint();</span><br><span class="line">    KLDR_DATA_TABLE_ENTRY * ldr = DriverObject-&gt;DriverSection;</span><br><span class="line">    DriverObject-&gt;DriverUnload = UnloadDriver;</span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>还是昨天那个代码  跑起来 下断</p>
+<p>输入命令<code>dt ldr</code>查看自身节点结构：</p>
+<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/12.png"></p>
+<p>输入命令<code>dt _KLDR_DATA_TABLE_ENTRY 0x83f62850</code>查看下一个节点的结构。</p>
+<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/13.png"></p>
+<p>可以发现很多属性都是0。这里我们需要知道一个常识，windows很多链表都喜欢将头部节点成员置位null，从第二个节点开始才是真正的有效数据。</p>
+<p>继续执行命令<code>dt _KLDR_DATA_TABLE_ENTRY 0x86341c98</code>查看下一个节点。</p>
+<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/14.png"></p>
+<p>可以发现找到了ntoskrnl模块。经过多次重复寻找，可以发现这个链表是一个<code>双向循环链表</code></p>
+<h2 id="驱动模块遍历-代码"><a href="#驱动模块遍历-代码" class="headerlink" title="驱动模块遍历-代码"></a>驱动模块遍历-代码</h2><p>将手动遍历的方法写入代码中：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)</span> &#123;</span><br><span class="line">    PKLDR_DATA_TABLE_ENTRY selfNode = DriverObject-&gt;DriverSection;</span><br><span class="line">    PKLDR_DATA_TABLE_ENTRY preNode = selfNode;</span><br><span class="line">    UINT32 index = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        DbgPrint(<span class="string">&quot;[db] %d  driver name = %wZ \r\n&quot;</span>, index++,&amp;preNode-&gt;BaseDllName);</span><br><span class="line">        preNode = preNode-&gt;InLoadOrderLinks.Flink;</span><br><span class="line">    &#125; <span class="keyword">while</span> (preNode != selfNode);</span><br><span class="line">    DriverObject-&gt;DriverUnload = UnloadDriver;</span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>加载驱动，观察输出内容，与PCHUNTER做对比，可以发现已经将全部驱动遍历出来了：（多一个因为吧空节点字符串也打印出来了，理应过滤掉）</p>
+<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/15.png"></p>
+<h1 id="驱动模块隐藏-断链"><a href="#驱动模块隐藏-断链" class="headerlink" title="驱动模块隐藏-断链"></a>驱动模块隐藏-断链</h1><p>完成对驱动模块的遍历后，我们要开始搞事情了。在实际攻防对抗中，无论是外挂开发者或是内核木马开发者，为了让自己的驱动悄悄的运行起来，都会对自身的驱动模块做一些隐藏操作。使其自身无法被检测到。而断链就是一个古老但又有效的一个方法。无论你将来从事攻或防，了解一些老技术都是必不可少的。</p>
+<h2 id="断链1-HTTP-sys"><a href="#断链1-HTTP-sys" class="headerlink" title="断链1-HTTP.sys"></a>断链1-HTTP.sys</h2><p>断链练习不要乱找一个驱动就开始断链， 否则可能对系统造成影响，这里我们拿HTTP.sys做断链练习，理论上如果断链成功，PCHUNTER中应该看不到HTTP.sys驱动。代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)</span> &#123;</span><br><span class="line">    PKLDR_DATA_TABLE_ENTRY selfNode = DriverObject-&gt;DriverSection;</span><br><span class="line">    PKLDR_DATA_TABLE_ENTRY preNode = selfNode;</span><br><span class="line"> </span><br><span class="line">    UNICODE_STRING httpName = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    RtlInitUnicodeString(&amp;httpName,<span class="string">L&quot;HTTP.sys&quot;</span>);</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (preNode-&gt;BaseDllName.Length != <span class="number">0</span>     <span class="comment">//过滤空字符串</span></span><br><span class="line">            &amp;&amp; RtlCompareUnicodeString(&amp;preNode-&gt;BaseDllName,&amp;httpName,TRUE) == <span class="number">0</span>) &#123;</span><br><span class="line">            DbgPrint(<span class="string">&quot;%wZ\r\n&quot;</span>, &amp;preNode-&gt;BaseDllName);</span><br><span class="line">            RemoveEntryList(preNode);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        preNode = preNode-&gt;InLoadOrderLinks.Flink;</span><br><span class="line">    &#125; <span class="keyword">while</span> (preNode != selfNode);</span><br><span class="line">    DriverObject-&gt;DriverUnload = UnloadDriver;</span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>加载驱动后，dbgview成功打印，说明此时已经成功断链了。去PCHUNTER中观察一下效果：</p>
+<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/16.png"></p>
+<p>可以发现HTTP.sys仍然在列表中，但是它变红了。这是因为PCHUNTER的遍历方法更健壮一些，不单单是通过链表遍历。还会涉及特征、文件等。有精力的话可以逆向一下PCHUNTER。</p>
+<p>所以为了达到完美隐藏，我们需要改善一下我们的代码，抹掉驱动对象中的一些特征，在此之前，我们需要了解一下如何通过驱动名来获取驱动对象指针。</p>
+<h2 id="获取驱动对象指针"><a href="#获取驱动对象指针" class="headerlink" title="获取驱动对象指针"></a>获取驱动对象指针</h2><p>微软有一个未公开的导出函数<code>ObReferenceObjectByName</code>。这个函数可以根据驱动名获取驱动对象指针。在WRK源码中可以搜索到。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//NTKERNELAPI是一个宏，用于指定内核模块中的导出函数。</span></span><br><span class="line">NTKERNELAPI NTSTATUS <span class="title function_">ObReferenceObjectByName</span><span class="params">(</span></span><br><span class="line"><span class="params">    __in PUNICODE_STRING ObjectName,    <span class="comment">//驱动对象名，如HTTP.sys的驱动对象名就是\Driver\HTTP</span></span></span><br><span class="line"><span class="params">    __in ULONG Attributes,        <span class="comment">//权限，给一个FILE_ALL_ACCESS即可。</span></span></span><br><span class="line"><span class="params">    __in_opt PACCESS_STATE AccessState,    <span class="comment">//opt为可选参数，直接写NULL</span></span></span><br><span class="line"><span class="params">    __in_opt ACCESS_MASK DesiredAccess,<span class="comment">//opt为可选参数，直接写NULL</span></span></span><br><span class="line"><span class="params">    __in POBJECT_TYPE ObjectType,    <span class="comment">//对象类型</span></span></span><br><span class="line"><span class="params">    __in KPROCESSOR_MODE AccessMode,    <span class="comment">//访问模式，有个枚举是_MODE,里面有个值是KernelMode，填写即可。</span></span></span><br><span class="line"><span class="params">    __inout_opt PVOID ParseContext,    <span class="comment">//opt为可选参数，直接写NULL</span></span></span><br><span class="line"><span class="params">    __out PVOID *Object    <span class="comment">//驱动对象二级指针</span></span></span><br><span class="line"><span class="params">)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中ObjectType对象类型我们通过F12未找到该类型都有哪些值。这些类型是未公开的。同样在WRK中可以找到。此处我们使用一个名为<code>IoDriverObjectType</code>的导出变量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extern POBJECT_TYPE * IoDriverObjectType;</span><br></pre></td></tr></table></figure>
+
+<h2 id="断链2-HTTP-sys增强"><a href="#断链2-HTTP-sys增强" class="headerlink" title="断链2-HTTP.sys增强"></a>断链2-HTTP.sys增强</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> POBJECT_TYPE * IoDriverObjectType;</span><br><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)</span> &#123;</span><br><span class="line">    PKLDR_DATA_TABLE_ENTRY selfNode = DriverObject-&gt;DriverSection;</span><br><span class="line">    PKLDR_DATA_TABLE_ENTRY preNode = selfNode;</span><br><span class="line"> </span><br><span class="line">    UNICODE_STRING httpName = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    RtlInitUnicodeString(&amp;httpName,<span class="string">L&quot;HTTP.sys&quot;</span>);</span><br><span class="line">    UNICODE_STRING httpObjName = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    RtlInitUnicodeString(&amp;httpObjName, <span class="string">L&quot;\\Driver\\HTTP&quot;</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (preNode-&gt;BaseDllName.Length != <span class="number">0</span></span><br><span class="line">            &amp;&amp; RtlCompareUnicodeString(&amp;preNode-&gt;BaseDllName,&amp;httpName,TRUE) == <span class="number">0</span>) &#123;</span><br><span class="line">            DbgPrint(<span class="string">&quot;%wZ\r\n&quot;</span>, &amp;preNode-&gt;BaseDllName);</span><br><span class="line">            PDRIVER_OBJECT pHttpObj = <span class="literal">NULL</span>;</span><br><span class="line">            ObReferenceObjectByName(&amp;httpObjName,FILE_ALL_ACCESS,<span class="literal">NULL</span>,<span class="literal">NULL</span>, *IoDriverObjectType, KernelMode,<span class="literal">NULL</span>, &amp;pHttpObj);    <span class="comment">//取驱动对象指针</span></span><br><span class="line">            pHttpObj-&gt;Flags = <span class="number">0</span>;    <span class="comment">//清除几个属性，防止被搜索到。</span></span><br><span class="line">            pHttpObj-&gt;DriverSection = <span class="number">0</span>;</span><br><span class="line">            pHttpObj-&gt;DriverInit = <span class="number">0</span>;</span><br><span class="line">            RemoveEntryList(preNode);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        preNode = preNode-&gt;InLoadOrderLinks.Flink;</span><br><span class="line">    &#125; <span class="keyword">while</span> (preNode != selfNode);</span><br><span class="line">    DriverObject-&gt;DriverUnload = UnloadDriver;</span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>加载驱动，观察效果（记得重启，刚刚链表已经断掉HTTP了。）：</p>
+<p> <img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/17.png"></p>
+<p>可以看到HTTP已经彻底从PCHUNTER中消失了，也没有了红色HTTP的记录。我们的断链操作成功了。</p>
+<h2 id="断链3-自身驱动"><a href="#断链3-自身驱动" class="headerlink" title="断链3-自身驱动"></a>断链3-自身驱动</h2><p>对自身驱动模块进行断链，省去了遍历和取驱动对象的步骤，理论上是更简单的，我们尝试一下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)</span> &#123;</span><br><span class="line">    PKLDR_DATA_TABLE_ENTRY selfNode = DriverObject-&gt;DriverSection;</span><br><span class="line"> </span><br><span class="line">    DriverObject-&gt;Flags = <span class="number">0</span>;</span><br><span class="line">    DriverObject-&gt;DriverSection = <span class="number">0</span>;</span><br><span class="line">    DriverObject-&gt;DriverInit = <span class="number">0</span>;</span><br><span class="line">    RemoveEntryList(selfNode);</span><br><span class="line"> </span><br><span class="line">    DriverObject-&gt;DriverUnload = UnloadDriver;</span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>加载驱动，观察效果：</p>
+<p> <img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/18.png"></p>
+<p>发现驱动无法被加载。这是因为系统调用完DriverEntry后仍需要做一些处理。而我们吧自己的驱动隐藏掉了，导致系统找不到我们的驱动没办法做后续处理。从而返回驱动加载失败。</p>
+<p>所以我们需要在驱动成功加载后再进行断链操作，这里使用新线程+延迟执行的方法来规避。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">VOID <span class="title function_">hideSelf</span><span class="params">(PVOID pDriverObj)</span> &#123;</span><br><span class="line">    LARGE_INTEGER li = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    li.QuadPart = <span class="number">-10000</span> * <span class="number">10000</span>;</span><br><span class="line">    KeDelayExecutionThread(KernelMode,FALSE,&amp;li);    <span class="comment">//延迟函数，详见 5-延迟</span></span><br><span class="line"> </span><br><span class="line">    PDRIVER_OBJECT DriverObject = (PDRIVER_OBJECT)pDriverObj;</span><br><span class="line">    PKLDR_DATA_TABLE_ENTRY selfNode = DriverObject-&gt;DriverSection;</span><br><span class="line"> </span><br><span class="line">    DriverObject-&gt;Flags = <span class="number">0</span>;</span><br><span class="line">    DriverObject-&gt;DriverSection = <span class="number">0</span>;</span><br><span class="line">    DriverObject-&gt;DriverInit = <span class="number">0</span>;</span><br><span class="line">    RemoveEntryList(selfNode);</span><br><span class="line">&#125;</span><br><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)</span> &#123;</span><br><span class="line">    HANDLE tHandle = <span class="literal">NULL</span>;</span><br><span class="line">    NTSTATUS ret = PsCreateSystemThread(&amp;tHandle,THREAD_ALL_ACCESS,<span class="literal">NULL</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>, hideSelf, DriverObject);</span><br><span class="line">    <span class="keyword">if</span> (NT_SUCCESS(ret)) &#123;</span><br><span class="line">        ZwClose(ret);</span><br><span class="line">    &#125;</span><br><span class="line">    DriverObject-&gt;DriverUnload = UnloadDriver;</span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再次尝试加载驱动，分别观察刚加载驱动时PCHUNTER的列表和延迟10秒后PCHUNTER的列表。</p>
+<p> <img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/19.png"></p>
+<p> <img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/20.png"></p>
+<p>可以看到我们的驱动已经成功被加载了，并在10秒后做了断链隐藏处理。但目前仍有一个BUG，那就是卸载驱动时会提示“请求的控件对此服务无效。”。若想修复这个BUG，需要在卸载之前还原我们的驱动，将节点重新接入链表中并恢复被清空的属性。</p>
+<h1 id="驱动通信-常规"><a href="#驱动通信-常规" class="headerlink" title="驱动通信-常规"></a>驱动通信-常规</h1><p>驱动在实际使用中不可能从入口点一路执行到结束。 将驱动按功能分成模块, 需要时调用才是实际的应用。通过用户层与内核层的通信，可以让用户程序在需要时调用驱动的特定功能。无论是攻击方或是防守方，驱动通信都是一个关键的战场。</p>
+<p>这里的常规通信使用设备交互的方式，其类似与WIN32的消息和回调函数的组合。在内核中，消息被封装为一个结构体IRP（I&#x2F;O Request Packae）。设备对象可以接收IRP数据从而实现通信。</p>
+<h2 id="0环代码-创建设备"><a href="#0环代码-创建设备" class="headerlink" title="0环代码-创建设备"></a>0环代码-创建设备</h2><p>用户应用想要向驱动发起通信，其本质是向驱动所绑定的设备发起通信，再由设备向下分发。所以我们需要首先创建一个设备：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">UNICODE_STRING deviceName = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">RtlInitUnicodeString(&amp;deviceName,<span class="string">L&quot;\\Device\\MyDevice&quot;</span>);</span><br><span class="line">DEVICE_OBJECT devObj = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">NTSTATUS retStatus = IoCreateDevice(pDriverObj,<span class="literal">NULL</span>,&amp;deviceName,FILE_DEVICE_UNKNOWN,FILE_DEVICE_SECURE_OPEN,FALSE,&amp;devObj);</span><br><span class="line"><span class="comment">//参数1：驱动对象指针，用于将创建出来的设备绑定到某个驱动上</span></span><br><span class="line"><span class="comment">//参数2：设备扩展大小，我们这里写NULL就好。不需要扩展。</span></span><br><span class="line"><span class="comment">//参数3：设备名，UNICODE字符串。  固定名字格式： \\Device\\名字   </span></span><br><span class="line"><span class="comment">//参数4：设备类型，按F12可以看到很多类型宏，有鼠标、键盘之类的，我们这里选未知设备。</span></span><br><span class="line"><span class="comment">//参数5：设备权限，为了让3环可以打开我们的设备进行通信，我们这里选择FILE_DEVICE_SECURE_OPEN权限。其他权限可以在MSDN上找到。</span></span><br><span class="line"><span class="comment">//参数6：是否独占，填FALSE。 如果独占的话3环无法打开该设备。</span></span><br><span class="line"><span class="comment">//参数7：设备对象指针，传出创建好的设备对象。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="0环代码-设置数据交互方式"><a href="#0环代码-设置数据交互方式" class="headerlink" title="0环代码-设置数据交互方式"></a>0环代码-设置数据交互方式</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pDeviceObj-&gt;Flags |= DO_BUFFERED_IO;</span><br><span class="line"><span class="comment">//缓冲区方式读写（DO_BUFFERED_IO）：将3环缓冲区内的数据复制一份到0环的缓冲区。  方便，但性能不好。</span></span><br><span class="line"><span class="comment">//直接方式读写（DO_DIRECT_IO）:首先将3环缓冲区锁住，然后在将对应的物理地址映射一份0环的线性地址。适合大量数据传输。两个线性地址对应同一个物理地址。</span></span><br><span class="line"><span class="comment">//其它方式读写（不设置值）：0环直接读取3环的线性地址，不建议。当进程切换,CR3改变，会读取到其他进程的内存数据。</span></span><br><span class="line">pDeviceObj-&gt;Flags &amp;= DO_DEVICE_INITIALIZING;</span><br><span class="line"><span class="comment">//将DO_DEVICE_INITIALIZING初始化标志位清空，如果不清空这个位，那么3环可能无法打开设备。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="0环代码-创建符号链接"><a href="#0环代码-创建符号链接" class="headerlink" title="0环代码-创建符号链接"></a>0环代码-创建符号链接</h2><p>3环想要打开我们的设备无法直接使用<code>\\Device\\XXX</code>这种设备名，我们需要指定一个符号链接（别名）用于3环的访问。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">UNICODE_STRING symName = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">RtlInitUnicodeString(&amp;symName, <span class="string">L&quot;\\??\\MyDeviceSymbol&quot;</span>);   </span><br><span class="line">retStatus = IoCreateSymbolicLink(&amp;symName,&amp;deviceName);</span><br><span class="line"><span class="comment">//参数1：符号链接名。 固定格式：    \\??\\名字</span></span><br><span class="line"><span class="comment">//参数2：想要绑定的设备名。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="IRP消息"><a href="#IRP消息" class="headerlink" title="IRP消息"></a>IRP消息</h2><p>在用户层，我们每次调用CreateFile、OpenFIle、DeleteFile、CloseHandle等API时，都会向0环发送一个消息，这个消息成为IRP数据包。这些API称为<code>设备操作API</code>。如：当调用CreateFile时，会向内核层发送一个名为<code>IRP_MJ_CREATE</code>的打开设备的IRP消息。其他常用IRP类型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CreateFile        -》    IRP_MJ_CREATE</span><br><span class="line">ReadFile        -》    IRP_MJ_READ</span><br><span class="line">WriteFile        -》    IRP_MJ_WRITE</span><br><span class="line">CloseHandle        -》    IRP_MJ_CLOSE</span><br><span class="line">DeviceControl    -》    IRP_MJ_DEVICE_CONTROL        <span class="comment">//此API比上面的API更加灵活方便，因此内核编程中常使用该API进行消息的传递</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="派遣函数"><a href="#派遣函数" class="headerlink" title="派遣函数"></a>派遣函数</h2><p>在用户层我们使用WIN32开发GUI时，通过<code>回调函数</code>来处理<code>窗口消息</code>。 而在内核层，我们通过<code>派遣函数</code>来处理<code>IRP消息</code>。只是换了个名字而已，本质一样。</p>
+<p>在驱动对象中，有个属性名为<code>MajorFunction</code>，这是个数组，每个元素都是一个函数指针，对应了各种类型IRP的派遣函数。</p>
+<p>派遣函数格式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NTSTATUS <span class="title function_">MyDispatchFunction</span><span class="params">(PDEVICE_OBJECT pDevObj,PIRP pIrp)</span>&#123;</span><br><span class="line">    <span class="comment">//业务代码</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">//设置返回状态</span></span><br><span class="line">    pIrp-&gt;IoStatus.Status = STATUS_SUCCESS;   <span class="comment">//3环的GetLastError得到的就是这个值</span></span><br><span class="line">    pIrp-&gt;IoStatus.Information = <span class="number">0</span>;                <span class="comment">//返回数据的字节数  没有写0</span></span><br><span class="line">    IoCompleteRequest(pIrp,IO_NO_INCREMENT);        <span class="comment">//当前处理完成，继续向下传递IRP消息</span></span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="0环代码-处理IRP消息1"><a href="#0环代码-处理IRP消息1" class="headerlink" title="0环代码-处理IRP消息1"></a>0环代码-处理IRP消息1</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">NTSTATUS <span class="title function_">NullFunc</span><span class="params">(DEVICE_OBJECT *DeviceObject, IRP *Irp)</span> &#123;</span><br><span class="line">    Irp-&gt;IoStatus.Status = STATUS_SUCCESS;</span><br><span class="line">    Irp-&gt;IoStatus.Information = <span class="number">0</span>;</span><br><span class="line">    IoCompleteRequest(Irp, IO_NO_INCREMENT);</span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line">NTSTATUS <span class="title function_">DeviceControlFunc</span><span class="params">(DEVICE_OBJECT *DeviceObject, IRP *Irp)</span> &#123;</span><br><span class="line">    <span class="comment">//通信逻辑，后面补充。</span></span><br><span class="line">    Irp-&gt;IoStatus.Status = STATUS_SUCCESS;</span><br><span class="line">    Irp-&gt;IoStatus.Information = <span class="number">0</span>;</span><br><span class="line">    IoCompleteRequest(Irp, IO_NO_INCREMENT);</span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Create和Close如果不想做处理就直接给个空函数，直接返回成功。 如果不设置这两个派遣函数，3环则根本无法打开我们的设备。</span></span><br><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT pDriverObj,PUNICODE_STRING pReg)</span> &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    pDriverObj-&gt;MajorFunction[IRP_MJ_DEVICE_CONTROL] = DeviceControlFunc;</span><br><span class="line">    pDriverObj-&gt;MajorFunction[IRP_MJ_CREATE] = NullFunc;</span><br><span class="line">    pDriverObj-&gt;MajorFunction[IRP_MJ_CLOSE] = NullFunc;</span><br><span class="line">    <span class="comment">//....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3环代码-发送IRP消息"><a href="#3环代码-发送IRP消息" class="headerlink" title="3环代码-发送IRP消息"></a>3环代码-发送IRP消息</h2><p>驱动现在已经可以接收IRP消息了，那么我们在3环中就可以发送一个IRP消息了。使用<code>DeviceIoControl</code>函数来向设备发送一个<code>IRP_MJ_DEVICE_CONTROL</code>类型的IRP消息。（也可以用CreateFile进行通信，此处不做演示。）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;winioctl.h&gt;</span>    <span class="comment">//防止下面的宏识别不到</span></span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//这个宏用于组装IRP控制码，其中用户自定义的控制码从0x800开始。</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> code1 CTL_CODE(FILE_DEVICE_UNKNOWN,0x800,METHOD_BUFFERED,FILE_ANY_ACCESS)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> code2 CTL_CODE(FILE_DEVICE_UNKNOWN,0x900,METHOD_BUFFERED,FILE_ANY_ACCESS)</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    CHAR* devName = (CHAR*)<span class="string">&quot;\\\\.\\MyDeviceSymbol&quot;</span>;</span><br><span class="line">    HANDLE devHandle = CreateFileA(devName,GENERIC_READ|GENERIC_WRITE, FILE_SHARE_READ| FILE_SHARE_WRITE,<span class="literal">NULL</span>, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,<span class="literal">NULL</span>);</span><br><span class="line">    DWORD str = <span class="number">100</span>;</span><br><span class="line">    DWORD back = <span class="number">0</span>;</span><br><span class="line">    DWORD backLen = <span class="number">0</span>;    <span class="comment">//实际返回的数据长度，不接收就会崩溃</span></span><br><span class="line">    DeviceIoControl(devHandle, code1, &amp;str,<span class="number">0x4</span>,&amp;back,<span class="number">0x4</span>,&amp;backLen,<span class="literal">NULL</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;back = %d\r\n&quot;</span>, back);</span><br><span class="line">    str = <span class="number">200</span>;</span><br><span class="line">    DeviceIoControl(devHandle, code2, &amp;str, <span class="number">0x4</span>, &amp;back, <span class="number">0x4</span>, &amp;backLen, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;back = %d\r\n&quot;</span>, back);</span><br><span class="line">    getchar();</span><br><span class="line">    CloseHandle(devHandle);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="0环代码-处理IRP消息-扩展"><a href="#0环代码-处理IRP消息-扩展" class="headerlink" title="0环代码-处理IRP消息-扩展"></a>0环代码-处理IRP消息-扩展</h2><p>3环的代码已经写完了，我们需要对IRP中的控制码再做一个详细的分支处理：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> code1 CTL_CODE(FILE_DEVICE_UNKNOWN,0x800,METHOD_BUFFERED,FILE_ANY_ACCESS)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> code2 CTL_CODE(FILE_DEVICE_UNKNOWN,0x900,METHOD_BUFFERED,FILE_ANY_ACCESS)</span></span><br><span class="line"><span class="comment">//由于3环使用DeviceIoControl进行IRP的发送，所以我们在DeviceControlFunc中补充逻辑。</span></span><br><span class="line">NTSTATUS <span class="title function_">DeviceControlFunc</span><span class="params">(DEVICE_OBJECT *DeviceObject, IRP *Irp)</span> &#123;</span><br><span class="line">    <span class="comment">//取设备堆栈，控制码在设备堆栈里。</span></span><br><span class="line">    PIO_STACK_LOCATION ioStack = IoGetCurrentIrpStackLocation(Irp);</span><br><span class="line">    <span class="comment">//取控制码，Parameters结构内部有很多联合体，我们使用的是DeviceIoControl的方式通信，所以这里使用DeviceIoControl成员取控制码。</span></span><br><span class="line">    ULONG code = ioStack-&gt;Parameters.DeviceIoControl.IoControlCode;</span><br><span class="line">    <span class="comment">//取3环传进来的参数。</span></span><br><span class="line">    PVOID buffer = Irp-&gt;AssociatedIrp.SystemBuffer;</span><br><span class="line">    <span class="comment">//不同的控制码执行不同的分支，使用switch case语句。</span></span><br><span class="line">    <span class="keyword">switch</span> (code)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> code1:</span><br><span class="line">            <span class="comment">//打印3环传进来的值</span></span><br><span class="line">            DbgPrint(<span class="string">&quot;param = %d\r\n&quot;</span>,*(PUINT32)buffer);</span><br><span class="line">            <span class="comment">//返回给3环的值，直接写入到buffer里就行。</span></span><br><span class="line">            *(PUINT32)buffer = <span class="number">800</span>;</span><br><span class="line">            <span class="comment">//设置返回去多少数据，因为我们的数据交互方式是METHOD_BUFFERED，会拷贝buffer里的数据给3环地址，如果不指定Information，就无法拷贝数据，3环得到的就是空的数据。</span></span><br><span class="line">            Irp-&gt;IoStatus.Information = <span class="number">4</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> code2:</span><br><span class="line">            DbgPrint(<span class="string">&quot;param = %d\r\n&quot;</span>, *(PUINT32)buffer);</span><br><span class="line">            *(PUINT32)buffer = <span class="number">900</span>;</span><br><span class="line">            Irp-&gt;IoStatus.Information = <span class="number">4</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Irp-&gt;IoStatus.Status = STATUS_SUCCESS;</span><br><span class="line">    IoCompleteRequest(Irp, IO_NO_INCREMENT);</span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="0环代码-卸载设备和符号链接"><a href="#0环代码-卸载设备和符号链接" class="headerlink" title="0环代码-卸载设备和符号链接"></a>0环代码-卸载设备和符号链接</h2><p>在驱动卸载时要删除设备和符号链接，否则会一直存在内核空间中，并且无法创建同名设备。</p>
+<p>先创建设备，后创建符号链接。所以删除时先删除符号链接，再卸载设备。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">VOID UnloadDriver( DRIVER_OBJECT *DriverObject ) &#123;</span><br><span class="line">    IoDeleteSymbolicLink(&amp;symName);</span><br><span class="line">    IoDeleteDevice(DriverObject-&gt;DeviceObject);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="执行效果"><a href="#执行效果" class="headerlink" title="执行效果"></a>执行效果</h2><p>如果代码没问题，执行后的效果如下：</p>
+<p> <img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/21.png"></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2023 answer77
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 672px;
+    }
+    .nav.fullscreen {
+        margin-left: -672px;
+    }
+    .nav-left {
+        width: 250px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 572px;
+        }
+        .nav.fullscreen {
+            margin-left: -572px;
+        }
+        .nav-left {
+            width: 180px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 572px;
+            margin-left: -572px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/3.png);
+    }
+    
+    
+    #post .index {
+        background: url(/img/3.png);
+    }
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+        background: url("/img/2.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

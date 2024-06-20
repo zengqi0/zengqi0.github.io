@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>win内核与驱动 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="win内核与驱动 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://example.com/categories/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-05-06T07:25:18.000Z">
+<meta property="article:modified_time" content="2023-10-27T02:58:20.693Z">
+<meta property="article:author" content="answer77">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.png"/>
+</a>
+<div class="author">
+    <span>answer77</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(90)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="安全开发">
+                        
+                        安全开发
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="安卓逆向">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        安卓逆向
+                        <small>(9)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="安卓逆向<--->入门手册">
+                                        
+                                        入门手册
+                                        
+                                            <small>(7
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="恶意代码分析">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        恶意代码分析
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="恶意代码分析<--->勒索病毒">
+                                        
+                                        勒索病毒
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="恶意代码分析<--->蠕虫">
+                                        
+                                        蠕虫
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="红队">
+                        
+                        红队
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="技术研究">
+                        
+                        技术研究
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="健身">
+                        
+                        健身
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="漏洞研究">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        漏洞研究
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="漏洞研究<--->漏洞相关知识">
+                                        
+                                        漏洞相关知识
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="软件逆向">
+                        
+                        软件逆向
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="渗透测试">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        渗透测试
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="渗透测试<--->HTB">
+                                        
+                                        HTB
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="思想">
+                        
+                        思想
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="应急响应">
+                        
+                        应急响应
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="游戏逆向">
+                        
+                        游戏逆向
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="APT研究">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        APT研究
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-08(蔓灵花)">
+                                        
+                                        APT-C-08(蔓灵花)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-23(双尾蝎)">
+                                        
+                                        APT-C-23(双尾蝎)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-26（Lazarus）">
+                                        
+                                        APT-C-26（Lazarus）
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-35(肚脑虫)">
+                                        
+                                        APT-C-35(肚脑虫)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-48(CNC)">
+                                        
+                                        APT-C-48(CNC)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-56(透明部落)">
+                                        
+                                        APT-C-56(透明部落)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-Q-31(海莲花)">
+                                        
+                                        APT-Q-31(海莲花)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="HackTheBox">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        HackTheBox
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="HackTheBox<--->Challenge">
+                                        
+                                        Challenge
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="HackTheBox<--->startpointer">
+                                        
+                                        startpointer
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="IOT">
+                        
+                        IOT
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="win内核">
+                        
+                        win内核
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="90">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a id="top" class="All 思想 "
+           href="/2023/06/14/%E5%AF%B9%E4%B8%AD%E5%9B%BD%E6%95%B4%E4%B8%AA%E5%AE%89%E5%85%A8%E8%A1%8C%E4%B8%9A%E7%9A%84%E7%90%86%E8%A7%A3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
+            <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_hard_socnet2">红队打靶之VulnHub_hard_socnet2</span>
+            <span class="post-date" title="2024-06-20 14:31:01">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_AdmX_new">红队打靶之VulnHub_AdmX_new</span>
+            <span class="post-date" title="2024-06-20 08:40:02">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/18/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-CHRONOS-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_CHRONOS_1">红队打靶之VulnHub_CHRONOS_1</span>
+            <span class="post-date" title="2024-06-18 17:16:48">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/18/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-%E4%BA%91-AV/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_BOREDHACKERBLOG_云_AV">红队打靶之VulnHub_BOREDHACKERBLOG_云_AV</span>
+            <span class="post-date" title="2024-06-18 11:18:34">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2024/06/17/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_BOREDHACKERBLOG_SOCIAL_NETWORK">红队打靶之VulnHub_BOREDHACKERBLOG_SOCIAL_NETWORK</span>
+            <span class="post-date" title="2024-06-17 21:52:00">2024/06/17</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/09/07/Apache%20HTTP%20Server%20%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E%20CVE-2023-25690/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Apache HTTP Server 请求走私漏洞 CVE-2023-25690">Apache HTTP Server 请求走私漏洞 CVE-2023-25690</span>
+            <span class="post-date" title="2023-09-07 16:12:59">2023/09/07</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/09/06/BurpSuite%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="BurpSuite学习">BurpSuite学习</span>
+            <span class="post-date" title="2023-09-06 15:34:11">2023/09/06</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/12/%E6%8B%8D%E7%85%A7%E6%8A%80%E5%B7%A7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="拍照技巧">拍照技巧</span>
+            <span class="post-date" title="2023-08-12 03:14:34">2023/08/12</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/11/%E7%A9%BF%E6%90%AD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="穿搭">穿搭</span>
+            <span class="post-date" title="2023-08-11 23:47:23">2023/08/11</span>
+        </a>
+        
+        
+        <a  class="All 健身 "
+           href="/2023/08/10/%E8%85%B0%E9%83%A8%E7%A0%94%E7%A9%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="腰部研究">腰部研究</span>
+            <span class="post-date" title="2023-08-10 01:04:12">2023/08/10</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/01/DVWA%E4%B9%8BSQL%20Injection%20Snort%E8%A7%84%E5%88%99%E6%8F%90%E5%8F%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-08-01 09:43:02">2023/08/01</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/31/%E8%AF%9D%E6%9C%AF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="话术">话术</span>
+            <span class="post-date" title="2023-07-31 14:46:46">2023/07/31</span>
+        </a>
+        
+        
+        <a  class="All 安全开发 "
+           href="/2023/07/24/%E6%81%B6%E6%84%8F%E6%B5%81%E9%87%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="恶意流量系统开发">恶意流量系统开发</span>
+            <span class="post-date" title="2023-07-24 16:46:05">2023/07/24</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/24/%E5%90%8E%E9%97%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="后门开发">后门开发</span>
+            <span class="post-date" title="2023-07-24 10:15:44">2023/07/24</span>
+        </a>
+        
+        
+        <a  class="All 安全开发 "
+           href="/2023/07/21/%E6%89%AB%E6%8F%8F%E5%99%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="tcp端口扫描器">tcp端口扫描器</span>
+            <span class="post-date" title="2023-07-21 09:25:02">2023/07/21</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/19/%E6%8C%81%E4%B9%85%E5%8C%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="持久化">持久化</span>
+            <span class="post-date" title="2023-07-19 16:46:54">2023/07/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/17/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Mysql数据库完整学习">Mysql数据库完整学习</span>
+            <span class="post-date" title="2023-07-17 16:03:05">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/17/%E9%98%B2%E5%BE%A1%E8%A7%84%E9%81%BF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="防御规避">防御规避</span>
+            <span class="post-date" title="2023-07-17 14:22:21">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/17/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="代码执行">代码执行</span>
+            <span class="post-date" title="2023-07-17 10:27:01">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/14/%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初始访问">初始访问</span>
+            <span class="post-date" title="2023-07-14 16:10:59">2023/07/14</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/14/%E4%BB%A3%E7%A0%81%E4%B8%8E%E8%BF%9B%E7%A8%8B%E6%B3%A8%E5%85%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="代码与进程注入">代码与进程注入</span>
+            <span class="post-date" title="2023-07-14 09:41:04">2023/07/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/11/python%E9%BB%91%E5%AE%A2%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BC%96%E7%A8%8B%E4%B9%8B%E9%81%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="python黑客渗透测试编程之道">python黑客渗透测试编程之道</span>
+            <span class="post-date" title="2023-07-11 10:54:54">2023/07/11</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/11/%E7%BA%A2%E9%98%9F%E6%80%9D%E8%B7%AF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队思路">红队思路</span>
+            <span class="post-date" title="2023-07-11 10:43:16">2023/07/11</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/30/go%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go语言入门">go语言入门</span>
+            <span class="post-date" title="2023-06-30 16:46:48">2023/06/30</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院文件包含">htb学院文件包含</span>
+            <span class="post-date" title="2023-06-28 16:17:24">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2%E4%BD%BF%E7%94%A8%20FFUF%20%E6%94%BB%E5%87%BB%20WEB%20%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应用程序">应用程序</span>
+            <span class="post-date" title="2023-06-28 16:14:55">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2linux%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院 htb学院linux基础">htb学院 htb学院linux基础</span>
+            <span class="post-date" title="2023-06-28 16:13:26">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院htb学院sql注入基础">htb学院htb学院sql注入基础</span>
+            <span class="post-date" title="2023-06-28 16:11:22">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-Q-31(海莲花) "
+           href="/2023/06/14/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-Q-31(海莲花)时间线及攻击手法总结">APT-Q-31(海莲花)时间线及攻击手法总结</span>
+            <span class="post-date" title="2023-06-14 17:00:06">2023/06/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/08/Gophish%E9%92%93%E9%B1%BC%E5%B9%B3%E5%8F%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Gophish钓鱼平台">Gophish钓鱼平台</span>
+            <span class="post-date" title="2023-06-08 15:05:05">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/08/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%A5%E9%97%A8-%E5%85%A5%E4%BE%B5%E6%8E%92%E6%9F%A5%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应入门-入侵排查篇">应急响应入门-入侵排查篇</span>
+            <span class="post-date" title="2023-06-08 15:05:05">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All 思想 "
+           href="/2023/06/05/%E8%AE%BA%E6%96%B0%E4%B8%AD%E5%9B%BD%E6%88%90%E7%AB%8B%E4%BB%A5%E6%9D%A5%E7%BB%8F%E6%B5%8E%E5%8D%B1%E6%9C%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="论新中国成立以来经济危机">论新中国成立以来经济危机</span>
+            <span class="post-date" title="2023-06-05 15:27:21">2023/06/05</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试 HTB "
+           href="/2023/04/25/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="windows基础知识">windows基础知识</span>
+            <span class="post-date" title="2023-04-25 15:08:28">2023/04/25</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试 HTB "
+           href="/2023/04/23/%E4%BD%BF%E7%94%A8METASPLOIT%E6%A1%86%E6%9E%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="使用METASPLOIT框架">使用METASPLOIT框架</span>
+            <span class="post-date" title="2023-04-23 16:53:53">2023/04/23</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/13/Crypto/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Crypto">Crypto</span>
+            <span class="post-date" title="2023-03-13 17:04:01">2023/03/13</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/11/machine/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="machine">machine</span>
+            <span class="post-date" title="2023-03-11 17:47:30">2023/03/11</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox Challenge "
+           href="/2023/03/10/Forensics%20Collection/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Forensics Collection">Forensics Collection</span>
+            <span class="post-date" title="2023-03-10 15:15:04">2023/03/10</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/09/Reminiscent/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Reminiscent">Reminiscent</span>
+            <span class="post-date" title="2023-03-09 09:41:42">2023/03/09</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox startpointer "
+           href="/2023/03/08/HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HackTheBox上分锦囊(一)">HackTheBox上分锦囊(一)</span>
+            <span class="post-date" title="2023-03-08 13:55:09">2023/03/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/27/%E8%AE%B0%E4%B8%80%E6%AC%A1Kaiji%E5%83%B5%E5%B0%B8%E7%BD%91%E7%BB%9C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="记一次Kaiji僵尸网络">记一次Kaiji僵尸网络</span>
+            <span class="post-date" title="2023-02-27 17:16:34">2023/02/27</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 "
+           href="/2023/02/24/cve2012-0158%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="cve2012-0158漏洞复现">cve2012-0158漏洞复现</span>
+            <span class="post-date" title="2023-02-24 16:43:56">2023/02/24</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2023/02/22/PowerShell%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PowerShell基础">PowerShell基础</span>
+            <span class="post-date" title="2023-02-22 11:46:25">2023/02/22</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-48(CNC) "
+           href="/2023/02/20/APT-C-48-CNC%E7%BB%84%E7%BB%87%E6%94%BB%E5%87%BB%E5%88%A9%E7%94%A8pub%E6%96%87%E4%BB%B6%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-48-CNC组织攻击利用pub文件攻击活动分析">APT-C-48-CNC组织攻击利用pub文件攻击活动分析</span>
+            <span class="post-date" title="2023-02-20 14:10:47">2023/02/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/14/APT-C-56-%E9%80%8F%E6%98%8E%E9%83%A8%E8%90%BD%E4%BC%AA%E8%A3%85%E7%AE%80%E5%8E%86%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-56-透明部落伪装简历攻击活动分析">APT-C-56-透明部落伪装简历攻击活动分析</span>
+            <span class="post-date" title="2023-02-14 16:08:03">2023/02/14</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-35(肚脑虫) "
+           href="/2023/02/11/APT-C-35%E8%82%9A%E8%84%91%E8%99%AB%E6%9F%90%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E4%B8%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-35肚脑虫某样本分析(一)">APT-C-35肚脑虫某样本分析(一)</span>
+            <span class="post-date" title="2023-02-11 18:13:48">2023/02/11</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2023/02/09/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应入门指南">应急响应入门指南</span>
+            <span class="post-date" title="2023-02-09 13:37:00">2023/02/09</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-56(透明部落) "
+           href="/2023/02/06/APT-C-56%EF%BC%88%E9%80%8F%E6%98%8E%E9%83%A8%E8%90%BD%EF%BC%89%E5%88%A9%E7%94%A8%E5%A4%96%E8%B4%B8%E9%93%BE%E6%8E%A5%E4%BC%AA%E8%A3%85%E6%96%87%E6%A1%A3%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-56（透明部落）利用外贸链接伪装文档攻击分析">APT-C-56（透明部落）利用外贸链接伪装文档攻击分析</span>
+            <span class="post-date" title="2023-02-06 18:13:48">2023/02/06</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/11/27/%E5%A4%A7%E7%81%B0%E7%8B%BC%E8%BF%9C%E6%8E%A7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大灰狼远控">大灰狼远控</span>
+            <span class="post-date" title="2022-11-27 21:35:19">2022/11/27</span>
+        </a>
+        
+        
+        <a  class="All 软件逆向 "
+           href="/2022/11/27/peid%E9%80%86%E5%90%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="peid逆向">peid逆向</span>
+            <span class="post-date" title="2022-11-27 10:15:30">2022/11/27</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/19/windbg%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="windbg命令学习">windbg命令学习</span>
+            <span class="post-date" title="2022-11-19 22:31:27">2022/11/19</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/19/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="进程和线程">进程和线程</span>
+            <span class="post-date" title="2022-11-19 20:42:28">2022/11/19</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/15/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="保护模式">保护模式</span>
+            <span class="post-date" title="2022-11-15 15:35:26">2022/11/15</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/14/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="winX86内核驱动开发">winX86内核驱动开发</span>
+            <span class="post-date" title="2022-11-14 16:22:58">2022/11/14</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/13/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="内核环境搭建学习">内核环境搭建学习</span>
+            <span class="post-date" title="2022-11-13 15:05:11">2022/11/13</span>
+        </a>
+        
+        
+        <a  class="All 游戏逆向 "
+           href="/2022/11/07/%E7%83%AD%E8%A1%80%E6%B1%9F%E6%B9%96%E6%B8%B8%E6%88%8F%E5%AE%89%E5%85%A8%E7%AD%91%E5%9F%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="热血江湖游戏安全筑基">热血江湖游戏安全筑基</span>
+            <span class="post-date" title="2022-11-07 21:27:59">2022/11/07</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BAPK%E4%BF%9D%E6%8A%A4%E7%AD%96%E7%95%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APK反破解技术">APK反破解技术</span>
+            <span class="post-date" title="2022-09-29 16:55:42">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BXposed%E6%A1%86%E6%9E%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之Xposed框架">安卓逆向之Xposed框架</span>
+            <span class="post-date" title="2022-09-29 14:53:11">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BNDK%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="NDK开发">NDK开发</span>
+            <span class="post-date" title="2022-09-29 14:42:34">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 "
+           href="/2022/09/27/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%AE%9E%E6%88%98%E4%BF%AE%E6%94%B9%E8%B5%84%E6%BA%90%E5%8E%BB%E5%B9%BF%E5%91%8A01/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向实战修改资源去广告01">安卓逆向实战修改资源去广告01</span>
+            <span class="post-date" title="2022-09-27 19:46:34">2022/09/27</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/26/%E9%80%9A%E8%BF%87%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0smali%E6%B1%87%E7%BC%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="smali与dalvik指令">smali与dalvik指令</span>
+            <span class="post-date" title="2022-09-26 15:50:15">2022/09/26</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/23/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="基于Android的ARM汇编">基于Android的ARM汇编</span>
+            <span class="post-date" title="2022-09-23 15:17:52">2022/09/23</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/21/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BAPK%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之APK打包流程">安卓逆向之APK打包流程</span>
+            <span class="post-date" title="2022-09-21 10:17:44">2022/09/21</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/19/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8B%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之安卓开发">安卓逆向之安卓开发</span>
+            <span class="post-date" title="2022-09-19 17:18:12">2022/09/19</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/16/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8Bjava%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之java基础">安卓逆向之java基础</span>
+            <span class="post-date" title="2022-09-16 18:02:04">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All IOT "
+           href="/2022/09/01/IOT%E5%88%9D%E6%8E%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="iot初探">iot初探</span>
+            <span class="post-date" title="2022-09-01 14:51:06">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 漏洞相关知识 "
+           href="/2022/09/01/win%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%8E%9F%E7%90%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="漏洞利用原理">漏洞利用原理</span>
+            <span class="post-date" title="2022-09-01 11:16:25">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 "
+           href="/2022/08/31/CVE-2010-2883%E5%A4%8D%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CVE-2010-2883_Adobe Reader TTF字体SING表栈溢出漏洞复现">CVE-2010-2883_Adobe Reader TTF字体SING表栈溢出漏洞复现</span>
+            <span class="post-date" title="2022-08-31 17:35:30">2022/08/31</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/08/23/APT_Shamoon/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="关于Shamoon.APT组织的一次完整攻击链分析">关于Shamoon.APT组织的一次完整攻击链分析</span>
+            <span class="post-date" title="2022-08-23 10:12:17">2022/08/23</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/08/16/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="日志分析">日志分析</span>
+            <span class="post-date" title="2022-08-16 17:04:55">2022/08/16</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/08/16/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94everything%E6%96%87%E4%BB%B6%E8%BF%87%E6%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="everything文件过滤">everything文件过滤</span>
+            <span class="post-date" title="2022-08-16 16:22:03">2022/08/16</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-26（Lazarus） "
+           href="/2022/08/12/Lazarus%E4%B8%80%E6%AC%A1%E9%92%88%E5%AF%B9%E8%88%AA%E7%A9%BA%E8%88%AA%E5%A4%A9%E8%A1%8C%E4%B8%9A%E7%9A%84%E6%94%BB%E5%87%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Lazarus一次针对航空航天行业的攻击">Lazarus一次针对航空航天行业的攻击</span>
+            <span class="post-date" title="2022-08-12 15:02:59">2022/08/12</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-08(蔓灵花) "
+           href="/2022/08/11/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="BITTER组织样本分析1">BITTER组织样本分析1</span>
+            <span class="post-date" title="2022-08-11 16:06:21">2022/08/11</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/07/19/%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="爬虫">爬虫</span>
+            <span class="post-date" title="2022-07-19 16:12:19">2022/07/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/07/15/Google_Hacking_%E8%B0%B7%E6%AD%8C%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Google_Hacking_谷歌搜索引擎">Google_Hacking_谷歌搜索引擎</span>
+            <span class="post-date" title="2022-07-15 09:56:40">2022/07/15</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/07/13/2022-7-13-exe/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="个人简历.exe">个人简历.exe</span>
+            <span class="post-date" title="2022-07-13 09:12:38">2022/07/13</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/07/06/%E5%88%9D%E5%85%A5Yara/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Yara入门">Yara入门</span>
+            <span class="post-date" title="2022-07-06 16:14:17">2022/07/06</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 蠕虫 "
+           href="/2022/06/28/2022-06-25_Scar%E6%84%9F%E6%9F%93%E5%BC%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2022.06.25_Scar感染式样本分析">2022.06.25_Scar感染式样本分析</span>
+            <span class="post-date" title="2022-06-28 09:25:02">2022/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/06/27/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应手册">应急响应手册</span>
+            <span class="post-date" title="2022-06-27 15:20:12">2022/06/27</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/03/08/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="宏病毒基础入门">宏病毒基础入门</span>
+            <span class="post-date" title="2022-03-08 09:23:03">2022/03/08</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 勒索病毒 "
+           href="/2022/03/07/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WannaCry病毒分析">WannaCry病毒分析</span>
+            <span class="post-date" title="2022-03-07 11:40:13">2022/03/07</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/03/03/wireshark/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="wireshark">wireshark</span>
+            <span class="post-date" title="2022-03-03 12:18:53">2022/03/03</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-23(双尾蝎) "
+           href="/2022/02/27/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-23境外双尾蝎组织样本分析">APT-C-23境外双尾蝎组织样本分析</span>
+            <span class="post-date" title="2022-02-27 16:00:07">2022/02/27</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/02/24/%E8%AE%B0%E5%BD%95%E6%A0%A1%E5%9B%ADMAC%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="记录校园MAC挖矿病毒">记录校园MAC挖矿病毒</span>
+            <span class="post-date" title="2022-02-24 20:04:18">2022/02/24</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 蠕虫 "
+           href="/2022/02/24/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="熊猫烧香分析">熊猫烧香分析</span>
+            <span class="post-date" title="2022-02-24 18:09:42">2022/02/24</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/02/20/win%E5%86%85%E6%A0%B8%E4%B8%8E%E9%A9%B1%E5%8A%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="win内核与驱动">win内核与驱动</span>
+            <span class="post-date" title="2022-02-20 08:23:51">2022/02/20</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/01/28/PE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PE">PE</span>
+            <span class="post-date" title="2022-01-28 21:26:29">2022/01/28</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2021/04/10/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="unix环境高级编程">unix环境高级编程</span>
+            <span class="post-date" title="2021-04-10 14:54:25">2021/04/10</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2021/03/29/codeql%E5%88%9D%E5%85%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="codeql初入">codeql初入</span>
+            <span class="post-date" title="2021-03-29 14:14:01">2021/03/29</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-win内核与驱动" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">win内核与驱动</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="win内核">win内核</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-10-27 10:58:34'>2022-02-20 08:23</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#win%E5%86%85%E6%A0%B8%E4%B8%8E%E9%A9%B1%E5%8A%A8"><span class="toc-text">win内核与驱动</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%AE%9E%E6%A8%A1%E5%BC%8F%E7%AE%80%E4%BB%8B"><span class="toc-text">保护模式与实模式简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%E5%88%B0%E5%BA%95%E4%BF%9D%E6%8A%A4%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-text">保护模式到底保护了什么</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E5%AD%A6%E4%B9%A0"><span class="toc-text">驱动学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">驱动的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6%E8%AE%B2%E8%A7%A3"><span class="toc-text">编写驱动框架讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E9%A9%B1%E5%8A%A8%E5%85%A5%E5%8F%A3%E5%87%BD%E6%95%B0"><span class="toc-text">1.驱动入口函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%B3%A8%E5%86%8C%E8%AE%BE%E5%A4%87%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="toc-text">2.注册设备回调函数.</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BA%E8%AE%BE%E5%A4%87"><span class="toc-text">3.创建设备.</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E6%8C%87%E5%AE%9A%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F"><span class="toc-text">4.指定通讯方式.</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E5%88%9B%E5%BB%BA%E7%AC%A6%E5%8F%B7%E8%BF%9E%E6%8E%A5"><span class="toc-text">5.创建符号连接.</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A0%81"><span class="toc-text">驱动框架源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E7%8E%AF%E7%A8%8B%E5%BA%8F%E5%AF%B9%E9%A9%B1%E5%8A%A8%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C"><span class="toc-text">3环程序对驱动进行操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="toc-text">分层驱动程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ring3%E6%BA%90%E7%A0%81"><span class="toc-text">Ring3源码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80"><span class="toc-text">内核编程基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E7%8E%AF%E5%A2%83"><span class="toc-text">上下文环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E8%AF%B7%E6%B1%82%E7%BA%A7%E5%88%AB"><span class="toc-text">中断请求级别</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-6 i,
+    .toc-level-6 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="win内核与驱动"><a href="#win内核与驱动" class="headerlink" title="win内核与驱动"></a>win内核与驱动</h1><h2 id="保护模式与实模式简介"><a href="#保护模式与实模式简介" class="headerlink" title="保护模式与实模式简介"></a>保护模式与实模式简介</h2><p>从32位cpu开始 设置，16位一般是实模式</p>
+<p>cpu是32位的 但是我们要执行16位的代码，cpu会进入实模式，把一个32位的cpu当16位用</p>
+<p>32位cpu主要运行在保护模式，那为什么会有模式一说呢 ？ 就是安全出问题了</p>
+<p>所以我们分配了权限 主要是用户权限和系统权限</p>
+<p>intel设计了 4环 权限，是ring0到ring3 数字越高 权限越高 但1和2 不会用</p>
+<p>应用程序运行在3环  系统权限运行在0环 </p>
+<p> cpu刚通电是实模式</p>
+<p>cpu专门给指令可以切换 使用iret 实模式切为保护模式</p>
+<p>启用保护模式，我们运行16位程序就运行不了 无法兼容16位汇编</p>
+<p>此时切回实模式 那保护模式的东西全没有了</p>
+<p>还有一种是虚拟8086模式 运行16位在这里运行 就是cmd 命令行模式</p>
+<h3 id="保护模式到底保护了什么"><a href="#保护模式到底保护了什么" class="headerlink" title="保护模式到底保护了什么"></a>保护模式到底保护了什么</h3><p>保护的是硬件访问权限，一切的软件没有资格访问硬件，只有硬件访问 （系统）权限才能访问硬件</p>
+<p>  应用程序通过API（ring3切换到ring0）向系统申请访问硬件 进入ring0 操作磁盘</p>
+<p>比如说readfile 操作了磁盘 磁盘此时是被保护起来的，那么他就会切换权限,就是说api内部要负责权限的切换</p>
+<p> 切换到0环是需要很多参数的初始化， 不是想进就进的</p>
+<p>切换权限只是一个请求</p>
+<p>保护模式下80386支持多任务内存隔离，60年代我们运行一个程序崩了，整台电脑就关机了 </p>
+<p>dos操作系统存在于实模式下，windows操作系统运行与保护模式下</p>
+<h2 id="驱动学习"><a href="#驱动学习" class="headerlink" title="驱动学习"></a>驱动学习</h2><h3 id="驱动的概念"><a href="#驱动的概念" class="headerlink" title="驱动的概念"></a>驱动的概念</h3><p>硬件有很多，比如屏幕 鼠标 这些都不是操作系统商家出售的， 所以有些硬件操作系统不知道怎么通讯，  </p>
+<p>操作系统可以留一个接口 使厂家 有机会写代码加载到操作系统去，让厂家做dll，用pe格式，</p>
+<p>我们在操作系统和硬件 之间加一层，叫驱动，厂家可以为他的硬件开发一个驱动出来，操作系统想操作这个键盘 ，这个驱动的规范我们一般叫框架，每个硬件都需要给驱动给操作系统，</p>
+<p>驱动安装完以后  操作系统问驱动 驱动问硬件 硬件回驱动 再回操作系统，</p>
+<p>驱动的设计影响硬件的功能有一些普通的键盘和鼠标 微软自己有那种驱动，但是如果扩展功能的话 要自己安装驱动，比如罗技经常会扩展自己鼠标的功能</p>
+<p>驱动和设备之间的关系是一对多的关系.一个驱动可以操作很多设备.比如我们的键盘驱动有一个. 但是可以操作的键盘则有很多个. 你键盘坏了.换了很多.但是驱动则没换过.</p>
+<p>所以如果是数据关系的时候.  驱动作为外键放到设备表中</p>
+<p> 驱动只能在0环开发，用微软提供的开发包 ，驱动后缀一般xxx.sys， 操作系统吧sys当作操作系统代码的一个模块 会动态加载到操作系统里面，如果你把操作系统当作exe，驱动就是dll</p>
+<p>开发驱动现在有两种方式，第一种是硬件驱动，第二种是内核驱动，  此时不得不说rootkit_hook 可以自己百度</p>
+<p>还有一种是虚拟光驱，可以通过驱动模拟硬件，游戏读数据要找这个驱动，这个驱动从内存读数据返回给它，</p>
+<p>如果从内核层搞事情怎么防控呢，从win7开始 驱动要签名   那签名可以注册公司申请，也容易破</p>
+<p>win10 驱动文件会检查里面是否有恶意代码， 比如编译的时候先上传，提供源码 过了就签上去，企业来说不可能那么准时，所以提供了离线版的签名，可以直接签 </p>
+<p>但是签名过期也能用，没验证时间  </p>
+<p>那么我们在编写驱动的时候 总不能买个签名吧，所以有一个测试模式，</p>
+<p>苹果的是厂家写驱动直接链接进操作系统</p>
+<p>ring0 内核权限这个权限的检测是cpu完成的</p>
+<h3 id="编写驱动框架讲解"><a href="#编写驱动框架讲解" class="headerlink" title="编写驱动框架讲解"></a>编写驱动框架讲解</h3><p>上面我们已经简单的了解了驱动对象.设备对象是什么了.那么现在开始编写驱动框架</p>
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><h5 id="1-驱动入口函数"><a href="#1-驱动入口函数" class="headerlink" title="1.驱动入口函数"></a>1.驱动入口函数</h5><p> <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F&spm=1001.2101.3001.7020">操作系统</a>在初始化驱动程序的时候会调用DriverEntry，通常会用这个函数来填充dispatch例程的指针，这就象注册回调函数一样。有的设备要创建设备的对象，或者还要创建一个设备名字，以及其他的初始化操作。它的原型： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NTSTATUS DriverEntry(</span><br><span class="line">    IN PDRIVER_OBJECT DriverObject,</span><br><span class="line">    IN PUNICODE_STRING RegistryPath</span><br><span class="line">    )&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> IN，OUT，INOUT是一个空的宏，只是用来说明这个参数是用于输入参数，还是输出的参数。NTSTATUS实际是个长整型可以在DDK头文件NTSTATUS.H中找到NTSTATUS的代码列表。函数的第一个参数DriverObject是刚被<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%88%9D%E5%A7%8B%E5%8C%96&spm=1001.2101.3001.7020">初始化</a>的驱动对象，就是操作系统为这个驱动分配的空间的指针。函数的第二 </p>
+<h5 id="2-注册设备回调函数"><a href="#2-注册设备回调函数" class="headerlink" title="2.注册设备回调函数."></a>2.注册设备回调函数.</h5><p>当用户对设备进行操作的是否.驱动会调用这个回调函数进行操作.注册回调函数.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">pDriverObject-&gt;MajorFunction[IRP_MJ_CREATE] = 创建的回调函数指针;</span><br><span class="line">pDriverObject-&gt;MajorFunction[IRP_MJ_CLOSE] =  关闭的回调函数指针;</span><br><span class="line">pDriverObject-&gt;MajorFunction[IRP_MJ_READ] =   读取的回调函数指针;</span><br><span class="line">pDriverObject-&gt;MajorFunction[IRP_MJ_WRITE] =  写入的回调函数指针;</span><br><span class="line">pDriverObject-&gt;MajorFunction[IRP_MJ_DEVICE_CONTROL] = 控制的回调函数指针;</span><br><span class="line"><span class="comment">//如果你的回调被调了 说明硬件进行了什么操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//回调函数的写法.</span></span><br><span class="line">NTSTATUS 自定义的函数名(__in <span class="keyword">struct</span> _DEVICE_OBJECT *DeviceObject,</span><br><span class="line">                      __inout <span class="keyword">struct</span> _IRP *Irp)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  .........</span><br><span class="line">  <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//注意</span></span><br><span class="line"></span><br><span class="line">对pDriverObject-&gt;MajorFunction[]进行F12</span><br><span class="line">来到这</span><br><span class="line">PDRIVER_DISPATCH MajorFunction[IRP_MJ_MAXIMUM_FUNCTION + <span class="number">1</span>];</span><br><span class="line"><span class="comment">//提供的公共方法的接口. 创建.打开,关闭.读写控制... 里面存放的是函数指针.单用户操作设备的是否.则会调用这些回调函数指针.</span></span><br><span class="line">下面是IRP_MJ_MAXIMUM_FUNCTION 这个宏的内容 </span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_CREATE                   0x00  </span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_CREATE_NAMED_PIPE        0x01</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_CLOSE                    0x02</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_READ                     0x03</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_WRITE                    0x04</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_QUERY_INFORMATION        0x05</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_SET_INFORMATION          0x06</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_QUERY_EA                 0x07</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_SET_EA                   0x08</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_FLUSH_BUFFERS            0x09</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_QUERY_VOLUME_INFORMATION 0x0a</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_SET_VOLUME_INFORMATION   0x0b</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_DIRECTORY_CONTROL        0x0c</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_FILE_SYSTEM_CONTROL      0x0d</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_DEVICE_CONTROL           0x0e</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_INTERNAL_DEVICE_CONTROL  0x0f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_SHUTDOWN                 0x10</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_LOCK_CONTROL             0x11</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_CLEANUP                  0x12</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_CREATE_MAILSLOT          0x13</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_QUERY_SECURITY           0x14</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_SET_SECURITY             0x15</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_POWER                    0x16</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_SYSTEM_CONTROL           0x17</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_DEVICE_CHANGE            0x18</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_QUERY_QUOTA              0x19</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_SET_QUOTA                0x1a</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_PNP                      0x1b</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_PNP_POWER                IRP_MJ_PNP      <span class="comment">// Obsolete....</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRP_MJ_MAXIMUM_FUNCTION         0x1b <span class="comment">//回调函数的总数量</span></span></span><br></pre></td></tr></table></figure>
+
+<h5 id="3-创建设备"><a href="#3-创建设备" class="headerlink" title="3.创建设备."></a>3.创建设备.</h5><p>创建虚拟的设备给用户使用. 但是也可以绑定真实的设备，如果不创造或者绑定，那读写就没有任何意义</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建设备等等.都属于IO操作.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//IO操作创建设备的API</span></span><br><span class="line"></span><br><span class="line">NTSTATUS </span><br><span class="line">  <span class="title function_">IoCreateDevice</span><span class="params">(</span></span><br><span class="line"><span class="params">    IN PDRIVER_OBJECT  DriverObject,　　　　　　<span class="comment">//调用者驱动对象的指针.一般是驱动入口的参数</span></span></span><br><span class="line"><span class="params">    IN ULONG  DeviceExtensionSize,         　　<span class="comment">//设备扩展大小</span></span></span><br><span class="line"><span class="params">    IN PUNICODE_STRING  DeviceName  OPTIONAL, <span class="comment">//设备对象名称,注意不是我们ring3下的路径.</span></span></span><br><span class="line"><span class="params">    IN DEVICE_TYPE  DeviceType,　　　　　　　　　<span class="comment">//我们的设备类型</span></span></span><br><span class="line"><span class="params">    IN ULONG  DeviceCharacteristics,　　　　　　<span class="comment">//驱动的附加信息.</span></span></span><br><span class="line"><span class="params">    IN BOOLEAN  Exclusive,　　　　　　　　　　　　<span class="comment">//创建的设备是否其余的可以使用,是否独占</span></span></span><br><span class="line"><span class="params">    OUT PDEVICE_OBJECT  *DeviceObject　　      <span class="comment">//传出参数,设备的信息.</span></span></span><br><span class="line"><span class="params">    )</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//注意:</span></span><br><span class="line">在内核中并没有路径一说.所以这个路径是特殊的.</span><br><span class="line"></span><br><span class="line">UNICODE_STRING 内核中新的字符串格式.其实是一个结构体.系统提供了操作这种结构体的API</span><br><span class="line"></span><br><span class="line">我们拼接一个路径</span><br><span class="line"></span><br><span class="line">UNICODE_STRING  uStrDeviceName;</span><br><span class="line"></span><br><span class="line">RtlInitUnicodeString(&amp;uStrDeviceName,<span class="string">L&quot;\\Device\\xxx名字即可&quot;</span>);</span><br><span class="line"></span><br><span class="line">注意,创建设备的时候.我们前边需要加上 \Device.  这里因为是转义字符.所以加了好多\\</span><br><span class="line"></span><br><span class="line">拼接好则可以给了.</span><br><span class="line"></span><br><span class="line">status = IoCreateDevice(pDriverObject, </span><br><span class="line">                          <span class="number">0</span>, </span><br><span class="line">                          &amp;ustrDeviceName,          <span class="comment">//设备路径</span></span><br><span class="line">                          FILE_DEVICE_UNKNOWN,<span class="comment">//设备类型设置为不知道</span></span><br><span class="line">                          FILE_DEVICE_SECURE_OPEN, </span><br><span class="line">                          FALSE,                           <span class="comment">//是否独占</span></span><br><span class="line">                          &amp;pDevObj);</span><br><span class="line">  <span class="keyword">if</span> (status != STATUS_SUCCESS)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> status;</span><br><span class="line">  &#125;        </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="4-指定通讯方式"><a href="#4-指定通讯方式" class="headerlink" title="4.指定通讯方式."></a>4.指定通讯方式.</h5><p> 什么意思?比如ring3中操作设备进行读写的时候 如果用ReadFile读取.那么你们的通讯方式是否是字符串 </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pDevObj-&gt;Flags |= DO_BUFFERED_IO; <span class="comment">//指定通讯方式,为缓冲区</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="5-创建符号连接"><a href="#5-创建符号连接" class="headerlink" title="5.创建符号连接."></a>5.创建符号连接.</h5><p>符号连接: 我们知道.在操作系统下有C盘.D盘一说.但是在驱动下面.则没有怎么一说.只有卷一说.所以我们要绑定一下.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">我们创建的符号连接.可以通过 Win0bj工具进行查看. 这个工具可以查看所有设备.但是只有<span class="number">0</span>环才可以操作.</span><br><span class="line"> status = IoCreateSymbolicLink(&amp;g_ustrSymbolName, &amp;ustrDeviceName);</span><br><span class="line">  <span class="keyword">if</span> (status != STATUS_SUCCESS)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">//删除设备</span></span><br><span class="line">    IoDeleteDevice(pDevObj);</span><br><span class="line">    <span class="keyword">return</span> status;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">注意符号连接名字.我们也是初始化得出的.</span><br><span class="line"></span><br><span class="line">RtlInitUnicodeString(&amp;g_ustrSymbolName, <span class="string">L&quot;\\DosDevices\\xxxx名字&quot;</span>);</span><br><span class="line"></span><br><span class="line">完整的框架已经写完.剩下的就是 三环和<span class="number">0</span>环驱动通讯. 依赖我们写的框架.</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="驱动框架源码"><a href="#驱动框架源码" class="headerlink" title="驱动框架源码"></a>驱动框架源码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Hello.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Ntstrsafe.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span> g_Buf[<span class="number">0x1000</span>];</span><br><span class="line"><span class="type">int</span> g_nOffset = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">VOID <span class="title function_">Unload</span><span class="params">(_In_ <span class="keyword">struct</span> _DRIVER_OBJECT* DriverObject)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">//删除符号链接  符号链接和设备是绑在一起的</span></span><br><span class="line">  UNICODE_STRING DosDeviceName;</span><br><span class="line">  RtlInitUnicodeString(&amp;DosDeviceName, SYMBOL_LINK_NAME);</span><br><span class="line">  IoDeleteSymbolicLink(&amp;DosDeviceName);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">//删除设备  如果驱动被卸载了，操作系统还是要操作这个设备就要蓝屏</span></span><br><span class="line">  PDEVICE_OBJECT pDevObj = DriverObject-&gt;DeviceObject;</span><br><span class="line">  <span class="keyword">while</span> (pDevObj != nullptr) &#123;</span><br><span class="line">    IoDeleteDevice(pDevObj);</span><br><span class="line">    pDevObj = pDevObj-&gt;NextDevice;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  DbgPrint(<span class="string">&quot;[51asm] Unload DriverObject=%p\n&quot;</span>, DriverObject);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(__in <span class="keyword">struct</span> _DRIVER_OBJECT* DriverObject,</span></span><br><span class="line"><span class="params">                     __in PUNICODE_STRING  RegistryPath)</span></span><br><span class="line">&#123;</span><br><span class="line">  UNREFERENCED_PARAMETER(RegistryPath);</span><br><span class="line">  UNREFERENCED_PARAMETER(DriverObject);</span><br><span class="line"></span><br><span class="line">  DbgBreakPoint();</span><br><span class="line"></span><br><span class="line">  DbgPrint(<span class="string">&quot;[51asm] DriverObject:%p RegistryPath:%wZ PID:%d\n&quot;</span>, </span><br><span class="line">           DriverObject, RegistryPath, PsGetCurrentProcessId());</span><br><span class="line"></span><br><span class="line">  DriverObject-&gt;DriverUnload = Unload;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">//注册派遣函数</span></span><br><span class="line">  DriverObject-&gt;MajorFunction[IRP_MJ_CREATE] = DiaptchCreate;</span><br><span class="line">  DriverObject-&gt;MajorFunction[IRP_MJ_CLOSE] = DiaptchClose;</span><br><span class="line">  DriverObject-&gt;MajorFunction[IRP_MJ_READ] = DiaptchRead;</span><br><span class="line">  DriverObject-&gt;MajorFunction[IRP_MJ_WRITE] = DiaptchWrite;</span><br><span class="line">  DriverObject-&gt;MajorFunction[IRP_MJ_DEVICE_CONTROL] = DiaptchControl;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">//创建设备</span></span><br><span class="line">  UNICODE_STRING ustrDevName;</span><br><span class="line">  <span class="comment">//ustrDevName.Length = 12;</span></span><br><span class="line">  <span class="comment">//ustrDevName.MaximumLength = 12;</span></span><br><span class="line">  <span class="comment">//ustrDevName.Buffer = L&quot;Hello&quot;;</span></span><br><span class="line"></span><br><span class="line">  NTSTATUS Status;</span><br><span class="line">  RtlInitUnicodeString(&amp;ustrDevName, DEVICE_NAME);</span><br><span class="line">  PDEVICE_OBJECT pDevObj = nullptr;</span><br><span class="line">  Status = IoCreateDevice(DriverObject,</span><br><span class="line">                          <span class="number">0</span>, </span><br><span class="line">                          &amp;ustrDevName,</span><br><span class="line">                          FILE_DEVICE_UNKNOWN,</span><br><span class="line">                          FILE_DEVICE_SECURE_OPEN,</span><br><span class="line">                          FALSE,</span><br><span class="line">                          &amp;pDevObj);</span><br><span class="line">  <span class="keyword">if</span> (!NT_SUCCESS(Status)) &#123;</span><br><span class="line">    DbgPrint(<span class="string">&quot;[51asm] IoCreateDevice Error Status:%p\n&quot;</span>, Status);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    DbgPrint(<span class="string">&quot;[51asm] IoCreateDevice OK pDevObj:%p\n&quot;</span>, pDevObj);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//缓冲区方式</span></span><br><span class="line">  pDevObj-&gt;Flags |= DO_BUFFERED_IO;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//直接方式</span></span><br><span class="line">  <span class="comment">//pDevObj-&gt;Flags |= DO_DIRECT_IO;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//创建符号链接</span></span><br><span class="line">  UNICODE_STRING DosDeviceName;</span><br><span class="line">  RtlInitUnicodeString(&amp;DosDeviceName, SYMBOL_LINK_NAME);</span><br><span class="line">  Status = IoCreateSymbolicLink(&amp;DosDeviceName, &amp;ustrDevName);</span><br><span class="line">  <span class="keyword">if</span> (!NT_SUCCESS(Status)) &#123;</span><br><span class="line">    DbgPrint(<span class="string">&quot;[51asm] IoCreateSymbolicLink Error Status:%p\n&quot;</span>, Status);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    DbgPrint(<span class="string">&quot;[51asm] IoCreateSymbolicLink OK\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> Status;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">NTSTATUS <span class="title function_">DiaptchCreate</span><span class="params">( _In_ <span class="keyword">struct</span> _DEVICE_OBJECT* DeviceObject,</span></span><br><span class="line"><span class="params">                       _Inout_ <span class="keyword">struct</span> _IRP* Irp</span></span><br><span class="line"><span class="params">)</span> </span><br><span class="line">&#123;</span><br><span class="line">  UNREFERENCED_PARAMETER(DeviceObject);</span><br><span class="line">  UNREFERENCED_PARAMETER(Irp);</span><br><span class="line">  DbgPrint(<span class="string">&quot;[51asm] DiaptchCreate PID:%d\n&quot;</span>, PsGetCurrentProcessId());</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">NTSTATUS <span class="title function_">DiaptchClose</span><span class="params">(</span></span><br><span class="line"><span class="params">  _In_ <span class="keyword">struct</span> _DEVICE_OBJECT* DeviceObject,</span></span><br><span class="line"><span class="params">  _Inout_ <span class="keyword">struct</span> _IRP* Irp</span></span><br><span class="line"><span class="params">)</span></span><br><span class="line">&#123;</span><br><span class="line">  PVOID lpBuf = Irp-&gt;AssociatedIrp.SystemBuffer;</span><br><span class="line"></span><br><span class="line">  UNREFERENCED_PARAMETER(DeviceObject);</span><br><span class="line">  UNREFERENCED_PARAMETER(Irp);</span><br><span class="line">  DbgPrint(<span class="string">&quot;[51asm] DiaptchClose lpBuf=%p PID:%d\n&quot;</span>, lpBuf, PsGetCurrentProcessId());</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">NTSTATUS <span class="title function_">DiaptchRead</span><span class="params">(</span></span><br><span class="line"><span class="params">  _In_ <span class="keyword">struct</span> _DEVICE_OBJECT* DeviceObject,</span></span><br><span class="line"><span class="params">  _Inout_ <span class="keyword">struct</span> _IRP* Irp</span></span><br><span class="line"><span class="params">)</span> </span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">//I/O Requst Packet</span></span><br><span class="line">  <span class="comment">// </span></span><br><span class="line">  <span class="comment">//获取当前IRP堆栈</span></span><br><span class="line">  PIO_STACK_LOCATION  pIrpStack = IoGetCurrentIrpStackLocation(Irp);</span><br><span class="line">  PVOID lpBuf = Irp-&gt;AssociatedIrp.SystemBuffer;</span><br><span class="line">  <span class="comment">//PVOID lpBuf = MmGetSystemAddressForMdlSafe(Irp-&gt;MdlAddress, NormalPagePriority);</span></span><br><span class="line">  ULONG nBufLength = pIrpStack-&gt;Parameters.Read.Length;</span><br><span class="line"></span><br><span class="line">  DbgPrint(<span class="string">&quot;[51asm] DiaptchRead lpBuf:%p nBufLength:%d\n&quot;</span>, lpBuf, nBufLength);</span><br><span class="line"></span><br><span class="line">  DbgPrint(<span class="string">&quot;[51asm] DiaptchRead PID:%d\n&quot;</span>, PsGetCurrentProcessId());</span><br><span class="line"></span><br><span class="line">  UNREFERENCED_PARAMETER(DeviceObject);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">//拷贝数据</span></span><br><span class="line">  RtlCopyMemory(lpBuf, g_Buf, nBufLength);</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  <span class="comment">//完成请求</span></span><br><span class="line">  Irp-&gt;IoStatus.Status = STATUS_SUCCESS;</span><br><span class="line">  Irp-&gt;IoStatus.Information = nBufLength;</span><br><span class="line">  IoCompleteRequest(Irp, IO_NO_INCREMENT);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//IoCallDriver 调用下一层驱动</span></span><br><span class="line">  <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">NTSTATUS <span class="title function_">DiaptchWrite</span><span class="params">(</span></span><br><span class="line"><span class="params">  _In_ <span class="keyword">struct</span> _DEVICE_OBJECT* DeviceObject,</span></span><br><span class="line"><span class="params">  _Inout_ <span class="keyword">struct</span> _IRP* Irp</span></span><br><span class="line"><span class="params">)</span></span><br><span class="line">&#123;</span><br><span class="line">  UNREFERENCED_PARAMETER(DeviceObject);</span><br><span class="line"></span><br><span class="line">  DbgPrint(<span class="string">&quot;[51asm] DiaptchWrite PID:%d\n&quot;</span>, PsGetCurrentProcessId());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="comment">//获取当前IRP堆栈</span></span><br><span class="line">  PIO_STACK_LOCATION  pIrpStack = IoGetCurrentIrpStackLocation(Irp);</span><br><span class="line">  PVOID lpBuf = Irp-&gt;AssociatedIrp.SystemBuffer;</span><br><span class="line">  <span class="comment">//PVOID lpBuf = MmGetSystemAddressForMdlSafe(Irp-&gt;MdlAddress, NormalPagePriority);</span></span><br><span class="line">  ULONG nBufLength = pIrpStack-&gt;Parameters.Write.Length;</span><br><span class="line"></span><br><span class="line">  DbgPrint(<span class="string">&quot;[51asm] DiaptchWrite lpBuf:%p nBufLength:%d\n&quot;</span>, lpBuf, nBufLength);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//拷贝数据</span></span><br><span class="line">  RtlCopyMemory(g_Buf + g_nOffset, lpBuf, nBufLength);</span><br><span class="line">  g_nOffset += nBufLength;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//完成请求</span></span><br><span class="line">  Irp-&gt;IoStatus.Status = STATUS_SUCCESS;</span><br><span class="line">  Irp-&gt;IoStatus.Information = nBufLength;</span><br><span class="line">  IoCompleteRequest(Irp, IO_NO_INCREMENT);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//IoCallDriver 调用下一层驱动</span></span><br><span class="line">  <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">NTSTATUS <span class="title function_">DiaptchControl</span><span class="params">(</span></span><br><span class="line"><span class="params">  _In_ <span class="keyword">struct</span> _DEVICE_OBJECT* DeviceObject,</span></span><br><span class="line"><span class="params">  _Inout_ <span class="keyword">struct</span> _IRP* Irp)</span></span><br><span class="line">&#123;</span><br><span class="line">  UNREFERENCED_PARAMETER(DeviceObject);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">//获取当前IRP堆栈</span></span><br><span class="line">  PIO_STACK_LOCATION  pIrpStack = IoGetCurrentIrpStackLocation(Irp);</span><br><span class="line">  PVOID lpInBuf = Irp-&gt;AssociatedIrp.SystemBuffer;</span><br><span class="line">  PVOID lpOutBuf = Irp-&gt;AssociatedIrp.SystemBuffer;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//获取控制的参数信息</span></span><br><span class="line">  ULONG nInLen = pIrpStack-&gt;Parameters.DeviceIoControl.InputBufferLength;</span><br><span class="line">  ULONG nOutLen = pIrpStack-&gt;Parameters.DeviceIoControl.OutputBufferLength;</span><br><span class="line">  ULONG nIoControlCode = pIrpStack-&gt;Parameters.DeviceIoControl.IoControlCode;</span><br><span class="line">  ULONG nLen = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">  DbgPrint(<span class="string">&quot;[51asm] DiaptchControl PID:%d\n&quot;</span>, PsGetCurrentProcessId());</span><br><span class="line"></span><br><span class="line">  DbgPrint(<span class="string">&quot;[51asm] DiaptchControl nIoControlCode:%p lpInBuf:%p lpOutBuf:%p nInLen:%d nOutLen:%d\n&quot;</span>, </span><br><span class="line">    nIoControlCode, lpInBuf, lpOutBuf, nInLen, nOutLen);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (nIoControlCode) &#123;</span><br><span class="line">  <span class="keyword">case</span> CTL_ENUM_PROCESS: &#123;</span><br><span class="line">    ULONG nGroupID = *(ULONG*)lpInBuf;</span><br><span class="line">    stEnumProcess Process;</span><br><span class="line">    Process.nCount = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">      Process.Process[i].nProcessID = i;</span><br><span class="line">      Process.Process[i].nThreadID = i;</span><br><span class="line">    &#125;</span><br><span class="line">    DbgPrint(<span class="string">&quot;[51asm] EnumProcess nGroupID:%d\n&quot;</span>, nGroupID);</span><br><span class="line">    RtlCopyMemory(lpOutBuf, &amp;Process, <span class="keyword">sizeof</span>(Process));</span><br><span class="line">    nLen = <span class="keyword">sizeof</span>(Process);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">case</span> CTL_KILL_PROCESS: &#123;</span><br><span class="line">    <span class="comment">//ULONG nPID = *(ULONG*)lpInBuf;</span></span><br><span class="line">    <span class="comment">//HANDLE  ProcessHandle;</span></span><br><span class="line">    <span class="comment">//CLIENT_ID cid = &#123; 0 &#125;;</span></span><br><span class="line">    <span class="comment">//cid.UniqueProcess = (HANDLE)684;</span></span><br><span class="line">    <span class="comment">//OBJECT_ATTRIBUTES oa;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//InitializeObjectAttributes(&amp;oa, nullptr, OBJ_KERNEL_HANDLE, nullptr, nullptr);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//NTSTATUS Status = ZwOpenProcess(&amp;ProcessHandle, PROCESS_ALL_ACCESS, &amp;oa, &amp;cid);</span></span><br><span class="line">   </span><br><span class="line">    <span class="comment">//if (NT_SUCCESS(Status)) &#123;</span></span><br><span class="line">    <span class="comment">//  Status = ZwTerminateProcess(ProcessHandle, 0);</span></span><br><span class="line">    <span class="comment">//  ZwClose(ProcessHandle);</span></span><br><span class="line">    <span class="comment">//  DbgPrint(&quot;[51asm] KillProcess pid:%d Status:%p ProcessHandle:%p\n&quot;, nPID, Status, ProcessHandle);</span></span><br><span class="line">    <span class="comment">//&#125;</span></span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//完成请求</span></span><br><span class="line">  Irp-&gt;IoStatus.Status = STATUS_SUCCESS;</span><br><span class="line">  Irp-&gt;IoStatus.Information = nLen;</span><br><span class="line">  IoCompleteRequest(Irp, IO_NO_INCREMENT);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">hello.h     </span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 服务</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line">  <span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Ntddk.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">  VOID <span class="title function_">Unload</span><span class="params">(_In_ <span class="keyword">struct</span> _DRIVER_OBJECT* DriverObject)</span>;</span><br><span class="line"></span><br><span class="line">  NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(__in <span class="keyword">struct</span> _DRIVER_OBJECT* DriverObject,</span></span><br><span class="line"><span class="params">    __in PUNICODE_STRING  RegistryPath)</span>;</span><br><span class="line"></span><br><span class="line">  NTSTATUS <span class="title function_">DiaptchCreate</span><span class="params">(</span></span><br><span class="line"><span class="params">      _In_ <span class="keyword">struct</span> _DEVICE_OBJECT* DeviceObject,</span></span><br><span class="line"><span class="params">      _Inout_ <span class="keyword">struct</span> _IRP* Irp</span></span><br><span class="line"><span class="params">    )</span>;</span><br><span class="line"></span><br><span class="line">  NTSTATUS <span class="title function_">DiaptchClose</span><span class="params">(</span></span><br><span class="line"><span class="params">    _In_ <span class="keyword">struct</span> _DEVICE_OBJECT* DeviceObject,</span></span><br><span class="line"><span class="params">    _Inout_ <span class="keyword">struct</span> _IRP* Irp</span></span><br><span class="line"><span class="params">  )</span>;</span><br><span class="line"></span><br><span class="line">  NTSTATUS <span class="title function_">DiaptchRead</span><span class="params">(</span></span><br><span class="line"><span class="params">    _In_ <span class="keyword">struct</span> _DEVICE_OBJECT* DeviceObject,</span></span><br><span class="line"><span class="params">    _Inout_ <span class="keyword">struct</span> _IRP* Irp</span></span><br><span class="line"><span class="params">  )</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  NTSTATUS <span class="title function_">DiaptchWrite</span><span class="params">(</span></span><br><span class="line"><span class="params">    _In_ <span class="keyword">struct</span> _DEVICE_OBJECT* DeviceObject,</span></span><br><span class="line"><span class="params">    _Inout_ <span class="keyword">struct</span> _IRP* Irp</span></span><br><span class="line"><span class="params">  )</span>;</span><br><span class="line"></span><br><span class="line">  NTSTATUS <span class="title function_">DiaptchControl</span><span class="params">(</span></span><br><span class="line"><span class="params">    _In_ <span class="keyword">struct</span> _DEVICE_OBJECT* DeviceObject,</span></span><br><span class="line"><span class="params">    _Inout_ <span class="keyword">struct</span> _IRP* Irp</span></span><br><span class="line"><span class="params">  )</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEVICE_NAME <span class="string">L&quot;\\Device\\Hello&quot;</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>   SYMBOL_LINK_NAME <span class="string">L&quot;\\DosDevices\\Hello&quot;</span> </span></span><br><span class="line"><span class="comment">//#define   SYMBOL_LINK_NAME L&quot;\\??\\Hello&quot; </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义控制码</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CTL_ENUM_PROCESS   CTL_CODE(FILE_DEVICE_UNKNOWN, 0x800, METHOD_BUFFERED , FILE_ANY_ACCESS)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CTL_KILL_PROCESS   CTL_CODE(FILE_DEVICE_UNKNOWN, 0x801, METHOD_BUFFERED , FILE_ANY_ACCESS)</span></span><br><span class="line"><span class="comment">//可以搜CTL_CODE宏</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stKillProcess</span> &#123;</span></span><br><span class="line">  ULONG nPID;</span><br><span class="line">  CHAR  szProcName[<span class="number">0xff</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stProcessInfo</span> &#123;</span></span><br><span class="line">  ULONG nProcessID;</span><br><span class="line">  ULONG nThreadID;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stEnumProcess</span> &#123;</span></span><br><span class="line">  ULONG nCount;</span><br><span class="line">  stProcessInfo  Process[<span class="number">3</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>写完我们去下载一个WinOb j可以看到我们加载的设备</p>
+<h3 id="3环程序对驱动进行操作"><a href="#3环程序对驱动进行操作" class="headerlink" title="3环程序对驱动进行操作"></a>3环程序对驱动进行操作</h3><p>我们可以利用3环程序操作这个设备，我们3环程序跟驱动通讯中间介质就是驱动对象</p>
+<p>3环操作设备的API就是 CreateFile ReadFile…..等等.利用三环程序.操作我们的设备.从中读取内容.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HANDLE hFile = CreateFile(&quot;\\\\?\\符号连接名称&quot;, </span><br><span class="line">             GENERIC_WRITE | GENERIC_READ, </span><br><span class="line">             0, </span><br><span class="line">             NULL, </span><br><span class="line">             OPEN_EXISTING, </span><br><span class="line">             FILE_ATTRIBUTE_NORMAL, </span><br><span class="line">             NULL);</span><br></pre></td></tr></table></figure>
+
+<p>打开我们的设备.注意文件名并不是路径.而是我们绑定的符号连接. 这里我们可以写成\?</p>
+<p>读取内容.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char szBuf[10];</span><br><span class="line">ReadFile(hFile, szBuff, sizeof(szBuff), &amp;dwBytes, NULL)</span><br></pre></td></tr></table></figure>
+
+<p>请注意,当读取设备的是否.我们一开始注册的回调函数就会来. 这时候我们给它什么都可以了.</p>
+<p>但是此时需要讲解一下通讯协议.</p>
+<p>当读取的是否,回调函数会来. 然后操作系统会填写 struct _IRP 结构体.用来和我们的零环通信.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _IRP &#123;</span><br><span class="line">  .　　　　　　　　　　　　//省略了两个成员,这两个成员一个是类型.一个是大小.</span><br><span class="line">  .</span><br><span class="line">  PMDL  MdlAddress;</span><br><span class="line">  ULONG  Flags;</span><br><span class="line">  union &#123;</span><br><span class="line">    struct _IRP  *MasterIrp;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    PVOID  SystemBuffer;//ring3下的缓冲区.操作系统会填写.我们给里面填写什么内容.那么ring3就读取到什么.</span><br><span class="line">  &#125; AssociatedIrp;</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  IO_STATUS_BLOCK  IoStatus;</span><br><span class="line">  KPROCESSOR_MODE  RequestorMode;</span><br><span class="line">  BOOLEAN PendingReturned;</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  BOOLEAN  Cancel;</span><br><span class="line">  KIRQL  CancelIrql;</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  PDRIVER_CANCEL  CancelRoutine;</span><br><span class="line">  PVOID UserBuffer;</span><br><span class="line">  union &#123;</span><br><span class="line">    struct &#123;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    union &#123;</span><br><span class="line">      KDEVICE_QUEUE_ENTRY DeviceQueueEntry;</span><br><span class="line">      struct &#123;</span><br><span class="line">        PVOID  DriverContext[4];</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    PETHREAD  Thread;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    LIST_ENTRY  ListEntry;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    &#125; Overlay;</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  &#125; Tail;</span><br><span class="line">&#125; IRP, *PIRP;</span><br></pre></td></tr></table></figure>
+
+<p>我们有了缓冲区,但是不知道缓冲区的大小.这个是否需要通过IO函数.从当前栈中获取参数.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IoGetCurrentIrpStackLocation(pIrp)</span><br></pre></td></tr></table></figure>
+
+<p>返回当前IRP的栈.我们从返回值中获取参数即可.</p>
+<p>操作完成之后,我们完成IRP请求即可.这个IRP请求主要是为了多线程使用.有的时候可能在读取的是否.线程就切换了.</p>
+<h4 id="分层驱动程序"><a href="#分层驱动程序" class="headerlink" title="分层驱动程序"></a>分层驱动程序</h4><p>比如说我键盘接口不一样，我不得不为每个接口写个驱动 ，8042芯片的键盘写个驱动，usb键盘写个驱动，这两个驱动逻辑上是一样的，只有某个地方不一样，</p>
+<p>那么 分层的好处就是，抽象出来两个芯片，逻辑是一样的，当你键盘插到电脑上，我发现他说8042芯片的，我们下一层就加载8042.sys，那插的是usb键盘怎么办？直接把8042删除</p>
+<p>一个请求产生，分层就代表每一次需要不同的参数，比如说操作系统给对顶层传了一个参数，那么最顶层可能给最底层传参数，所以操作系统给每一层驱动都建立了堆栈，每调用一层他就会产生一个堆栈，额外的参数都会在这个堆栈里面 这个就叫irp堆栈</p>
+<h4 id="Ring3源码"><a href="#Ring3源码" class="headerlink" title="Ring3源码"></a>Ring3源码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Ring3.cpp : 此文件包含 &quot;main&quot; 函数。程序执行将在此处开始并结束。</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;winioctl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义控制码</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CTL_ENUM_PROCESS   CTL_CODE(FILE_DEVICE_UNKNOWN, 0x800, METHOD_BUFFERED , FILE_ANY_ACCESS)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CTL_KILL_PROCESS   CTL_CODE(FILE_DEVICE_UNKNOWN, 0x801, METHOD_BUFFERED , FILE_ANY_ACCESS)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stKillProcess</span> &#123;</span></span><br><span class="line">  ULONG nPID;</span><br><span class="line">  CHAR  szProcName[MAXBYTE];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stProcessInfo</span> &#123;</span></span><br><span class="line">  ULONG nProcessID;</span><br><span class="line">  ULONG nThreadID;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stEnumProcess</span> &#123;</span></span><br><span class="line">  ULONG nCount;</span><br><span class="line">  stProcessInfo  Process[<span class="number">3</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  HANDLE hFile = CreateFile(<span class="string">&quot;\\\\.\\Hello&quot;</span>, </span><br><span class="line">    GENERIC_READ | GENERIC_WRITE,</span><br><span class="line">    <span class="number">0</span>, <span class="literal">NULL</span>, OPEN_EXISTING,</span><br><span class="line">    FILE_ATTRIBUTE_NORMAL, nullptr);</span><br><span class="line">  <span class="keyword">if</span> (hFile == INVALID_HANDLE_VALUE) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;CreateFileA Error:%d\n&quot;</span>, GetLastError());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;CreateFileA OK hFile:%d\n&quot;</span>, hFile);</span><br><span class="line"></span><br><span class="line">  <span class="type">char</span> szBuf[<span class="number">260</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">  DWORD dwBytes = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  strcpy_s(szBuf, <span class="keyword">sizeof</span>(szBuf), <span class="string">&quot;51asm&quot;</span>);</span><br><span class="line">  BOOL bResult = WriteFile(hFile, szBuf, <span class="built_in">strlen</span>(szBuf), &amp;dwBytes, <span class="literal">NULL</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;WriteFile bResult:%d szBuf:%s dwBytes:%d\n&quot;</span>, bResult, szBuf, dwBytes);</span><br><span class="line">  bResult = WriteFile(hFile, szBuf, <span class="built_in">strlen</span>(szBuf), &amp;dwBytes, <span class="literal">NULL</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;WriteFile bResult:%d szBuf:%s dwBytes:%d\n&quot;</span>, bResult, szBuf, dwBytes);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="type">char</span> szBuf2[<span class="number">260</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">  bResult = ReadFile(hFile, szBuf2, <span class="keyword">sizeof</span>(szBuf2), &amp;dwBytes, <span class="literal">NULL</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;ReadFile bResult:%d szBuf2:%s dwBytes:%d\n&quot;</span>, bResult, szBuf2, dwBytes);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//控制</span></span><br><span class="line">  ULONG nGroupID;</span><br><span class="line">  stEnumProcess Process = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">  bResult = DeviceIoControl(hFile, CTL_ENUM_PROCESS, &amp;nGroupID, <span class="keyword">sizeof</span>(nGroupID), &amp;Process, <span class="keyword">sizeof</span>(Process),</span><br><span class="line">            &amp;dwBytes, <span class="literal">NULL</span>);</span><br><span class="line">  <span class="comment">//循环显示</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; Process.nCount; i++) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;nProcessID:%d nThreadID:%d\n&quot;</span>, Process.Process[i].nProcessID, Process.Process[i].nThreadID); </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;DeviceIoControl bResult:%d nGroupID:%p Process:%p\n&quot;</span>, bResult, &amp;nGroupID, &amp;Process);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* bResult = DeviceIoControl(hFile, CTL_KILL_PROCESS, szInBuf, sizeof(szInBuf), szOutBuf, sizeof(szOutBuf),</span></span><br><span class="line"><span class="comment">     &amp;dwBytes, NULL);</span></span><br><span class="line"><span class="comment">   printf(&quot;DeviceIoControl bResult:%d szInBuf:%sszOutBuf:%s dwBytes:%d\n&quot;,</span></span><br><span class="line"><span class="comment">     bResult, szInBuf, szOutBuf, dwBytes);*/</span></span><br><span class="line"></span><br><span class="line">  ULONG nPID = <span class="number">4</span>;</span><br><span class="line">  bResult = DeviceIoControl(hFile, CTL_KILL_PROCESS, &amp;nPID, <span class="keyword">sizeof</span>(nPID), <span class="literal">NULL</span>, <span class="number">0</span>,</span><br><span class="line">    &amp;dwBytes, <span class="literal">NULL</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;DeviceIoControl bResult:%d nPID:%p\n&quot;</span>, bResult, &amp;nPID);</span><br><span class="line">  CloseHandle(hFile);</span><br><span class="line">  system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/iBinary/p/8264251.html">https://www.cnblogs.com/iBinary/p/8264251.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/iBinary/p/8260969.html">https://www.cnblogs.com/iBinary/p/8260969.html</a><br><a target="_blank" rel="noopener" href="https://bbs.huorong.cn/thread-65355-1-1.html">https://bbs.huorong.cn/thread-65355-1-1.html</a></p>
+<h2 id="内核编程基础"><a href="#内核编程基础" class="headerlink" title="内核编程基础"></a>内核编程基础</h2><h3 id="上下文环境"><a href="#上下文环境" class="headerlink" title="上下文环境"></a>上下文环境</h3><p>应用层EXE有独立进程的概念，比如开发者开发一个EXE程序，当这个EXE运行的时候，开发者可以很清楚地知道程序的代码运行在哪一个线程中。</p>
+<p>对于内核驱动开发来说，进程的概念显得相当模糊，初学者往往不清楚自己的驱动代码具体运行在什么进程或线程中，但搞清楚这些细节是驱动入门的重要途径。这就是后面需要介绍的上下文（Context）概念，上下文</p>
+<p>（Context）泛指CPU在执行代码时，该代码所处的环境与状态。通俗来讲，这些环境状态包括（不仅限）：当前代码所属线程、中断请求级别、CPU寄存器各状态等。</p>
+<p>还记得第1章与第2章介绍的FirstDriver工程吗？这个工程里面有两个函数，一个是驱动的入口函数DriverEntry，另一个是响应驱动停止的DriverUnload函数，这两个函数都是由系统调用的，</p>
+<p>那么这两个函数被调用时处于哪一个进程中呢？笔者通过在这两个函数中调用PsGetCurrentProcessId，获取当前进程的ID，并且打印出来，具体代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//打印函数</span></span><br><span class="line">DbgPrint(<span class="string">&quot;CurrentProcessId=0x%p\n&quot;</span>, PsGetCurrentProcessId());</span><br></pre></td></tr></table></figure>
+
+<p>从日志可以看出，无论是驱动入口函数，还是驱动卸载函数，都隶属于进程ID为4的进程，在笔者的Windows 10测试环境中，进程ID为4的进程为SYSTEM进程</p>
+<p><img src="/win%E5%86%85%E6%A0%B8%E4%B8%8E%E9%A9%B1%E5%8A%A8/8.png"></p>
+<p>SYSTEM进程其实是操作系统虚拟出来的一个进程，代表系统内核。一般来说，内核代码都处于SYSTEM进程空间中，但是驱动对象（DRIVER_OBJECT）的派遣例程一般工作在发起请求的进程中，</p>
+<p>与上下文概念相关联的是地址空间，对32位系统来说，应用层程序有独立的2GB低地址空间，这2GB地址是虚拟地址，不同进程之间相互独立，互不影响，而高地址的2GB是内核共享的地址空间。64位系统与32位系统类似，在 64 位 Windows 中，虚拟地址空间的理论大小为2字节，但实际上仅使用2字节范围的一小部分，范围从0x000’00000000 至 0x7FF’FFFFFFFF 的 8 TB 用于应用层空间，范围从0xFFFF0800’00000000 至 0xFFFFFFFF’FFFFFFFF 的 248 TB 用于内核空间。</p>
+<p>关于独立的应用层地址空间与共享的内核地址空间的区别，举一个通俗的例子来说明：比如进程P1与P2，在各自进程空间内修改0x6abb0000地址处的内容，那么P1只能看到自己修改后的内容，P2也只能看到自己修改后的内容，相互不影响；而对于内核空间来说，由于内核空间是共享的（提醒一下，并非全部内核地址空间都是共享的，但读者初期可以暂时认为是全部），所以对于两个驱动程序来说，</p>
+<p>驱动D1修改内核某个地址的内容，驱动D2可以读取到驱动D1修改后的内容。一名合格的驱动开发者，必须清楚自己的代码在运行时所对应的上下文，以免造成驱动异常。下面是一个由上下文不正确导致出现错误的例子：驱动程序需要访问P1进程的应用层地址空间A，但当前驱动代码工作在进程P2，当驱动访问A时，实际上访问到的却是P2进程的A，这个后果是不可预料的。</p>
+<h3 id="中断请求级别"><a href="#中断请求级别" class="headerlink" title="中断请求级别"></a>中断请求级别</h3><p>在应用层开发中，线程有“优先级”的概念，系统调度器以时间片作为粒度，根据线程的优先级来调度线程，线程优先级越高，获得调度的机会越大。与线程优先级概念类似，CPU提供了一个被称为IRQL（中断请求级别）的概念，</p>
+<p>并且规定，高IRQL的代码，可以中断（抢占）低IRQL的代码的执行过程，从而得到执行机会。不同级别的IRQL对应不同的数值，软件驱动常见的IRQL及其数值如表3-1所示，数值越大，表示级别越高。</p>
+<p><img src="/win%E5%86%85%E6%A0%B8%E4%B8%8E%E9%A9%B1%E5%8A%A8/9.png"></p>
+<p>上表中只列出了软件驱动所需要使用到的IRQL，并不代表IRQL只有这三个值。不同体系CPU对IRQL的分级大同小异，为了简单起见，下面的描述中不额外区分CPU体系。</p>
+<p>不同IRQL的限制不同：</p>
+<p>对于PASSIVE_LEVEL来说，作为级别最低的IRQL，在这个IRQL中可以无限制使用系统提供的API（每个内核API对IRQL有不同的要求），并且可以访问分页内存（Paged）和非分页（NonPaged）内存；对于APC_LEVEL来说，这个中断级别可以中断PASSIVE_LEVEL的代码，主要用于APC（异步方法调用），在使用系统API时有一定的限制，在内存访问方面，处于APC级别的代码可以访问分页以及非分页内存；</p>
+<p>对于DISPATCH_LEVEL来说，存在的限制更多，只有很少一部分API函数可以在这个级别下使用，在内存访问方面，只能使用非分页内存。读者可能对分页和非分页内存不太了解，在CPU保护模式分页机制开启的情况下，驱动所面对的内存地址都是虚拟地址（指常态下），虚拟地址需要通过页表转换得到实际的物理地址，这个地址转换过程即由CPU完成。这看上去非常简单，虚拟地址对应着物理地址，似乎是一一对应的关系，但事实上虚拟地址与物理地址是多对一的关系，不同的虚拟地址可以对应着某一个相同的物理地址，当这个情况发生的时候，这个物理地址所存的内容会被操作系统置换到磁盘上。</p>
+<p>举一个简单的例子，虚拟地址A1与A2均指向物理地址P，目前P存放的是A1地址要求存放的内容，由于P没有存放A2的内容（已经置换到硬盘），A2地址在页表中的信息被标记为“缺页”，当程序通过A2地址访问内容的时候会触发缺页异常，系统捕获该异常后，首先会从磁盘中把原来A2地址的内容重新放置回P中，然后恢复程序对A2地址的访问，这个过程对程序来说是透明的，程序也不需要知道这个置换过程。</p>
+<p>再次提醒读者，在DISPATCH_LEVEL的代码不能访问分页内存。既然不同IRQL的限制不同，作为开发者来说，就必须清楚地了解</p>
+<p>自己的代码所处于的IRQL，并且保证代码行为逻辑符合当前IRQL的要求。判断代码所在的IRQL有两种方法，一种为静态方法，这种方法更多是根据微软WDK帮助文档来判断，比如说驱动的入口函数</p>
+<p>DriverEntry，系统在调用这个入口函数时，IRQL为PASSIVE_LEVEL，这个是由系统保证的，WDK对这点也有明确的说明；</p>
+<p>另外一种方法为动态判断方法，如某些回调函数（文件微过滤驱动的回调函数，将在后面章节中介绍）在被系统调用时，IRQL可能是PASSIVE_LEVEL至DISPATCH_LEVEL级别范围，对于这种情况，开发者可以在该回调函数中，通过调用KeGetCurrentIrql函数来获取当前的IRQL，下面给出了一个使用该方法的例子，这个例子依然是基于FirstDriver的：</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2023 answer77
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 672px;
+    }
+    .nav.fullscreen {
+        margin-left: -672px;
+    }
+    .nav-left {
+        width: 250px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 572px;
+        }
+        .nav.fullscreen {
+            margin-left: -572px;
+        }
+        .nav-left {
+            width: 180px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 572px;
+            margin-left: -572px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/3.png);
+    }
+    
+    
+    #post .index {
+        background: url(/img/3.png);
+    }
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+        background: url("/img/2.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

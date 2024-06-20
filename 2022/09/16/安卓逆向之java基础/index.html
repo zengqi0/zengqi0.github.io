@@ -1,0 +1,1936 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>安卓逆向之java基础 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="安卓逆向之java基础 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://example.com/categories/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-05-06T07:25:18.000Z">
+<meta property="article:modified_time" content="2023-10-27T02:58:20.693Z">
+<meta property="article:author" content="answer77">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.png"/>
+</a>
+<div class="author">
+    <span>answer77</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(90)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="安全开发">
+                        
+                        安全开发
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="安卓逆向">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        安卓逆向
+                        <small>(9)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="安卓逆向<--->入门手册">
+                                        
+                                        入门手册
+                                        
+                                            <small>(7
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="恶意代码分析">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        恶意代码分析
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="恶意代码分析<--->勒索病毒">
+                                        
+                                        勒索病毒
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="恶意代码分析<--->蠕虫">
+                                        
+                                        蠕虫
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="红队">
+                        
+                        红队
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="技术研究">
+                        
+                        技术研究
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="健身">
+                        
+                        健身
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="漏洞研究">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        漏洞研究
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="漏洞研究<--->漏洞相关知识">
+                                        
+                                        漏洞相关知识
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="软件逆向">
+                        
+                        软件逆向
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="渗透测试">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        渗透测试
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="渗透测试<--->HTB">
+                                        
+                                        HTB
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="思想">
+                        
+                        思想
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="应急响应">
+                        
+                        应急响应
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="游戏逆向">
+                        
+                        游戏逆向
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="APT研究">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        APT研究
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-08(蔓灵花)">
+                                        
+                                        APT-C-08(蔓灵花)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-23(双尾蝎)">
+                                        
+                                        APT-C-23(双尾蝎)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-26（Lazarus）">
+                                        
+                                        APT-C-26（Lazarus）
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-35(肚脑虫)">
+                                        
+                                        APT-C-35(肚脑虫)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-48(CNC)">
+                                        
+                                        APT-C-48(CNC)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-56(透明部落)">
+                                        
+                                        APT-C-56(透明部落)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-Q-31(海莲花)">
+                                        
+                                        APT-Q-31(海莲花)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="HackTheBox">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        HackTheBox
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="HackTheBox<--->Challenge">
+                                        
+                                        Challenge
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="HackTheBox<--->startpointer">
+                                        
+                                        startpointer
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="IOT">
+                        
+                        IOT
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="win内核">
+                        
+                        win内核
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="90">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a id="top" class="All 思想 "
+           href="/2023/06/14/%E5%AF%B9%E4%B8%AD%E5%9B%BD%E6%95%B4%E4%B8%AA%E5%AE%89%E5%85%A8%E8%A1%8C%E4%B8%9A%E7%9A%84%E7%90%86%E8%A7%A3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
+            <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_hard_socnet2">红队打靶之VulnHub_hard_socnet2</span>
+            <span class="post-date" title="2024-06-20 14:31:01">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_AdmX_new">红队打靶之VulnHub_AdmX_new</span>
+            <span class="post-date" title="2024-06-20 08:40:02">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/18/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-CHRONOS-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_CHRONOS_1">红队打靶之VulnHub_CHRONOS_1</span>
+            <span class="post-date" title="2024-06-18 17:16:48">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/18/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-%E4%BA%91-AV/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_BOREDHACKERBLOG_云_AV">红队打靶之VulnHub_BOREDHACKERBLOG_云_AV</span>
+            <span class="post-date" title="2024-06-18 11:18:34">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2024/06/17/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_BOREDHACKERBLOG_SOCIAL_NETWORK">红队打靶之VulnHub_BOREDHACKERBLOG_SOCIAL_NETWORK</span>
+            <span class="post-date" title="2024-06-17 21:52:00">2024/06/17</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/09/07/Apache%20HTTP%20Server%20%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E%20CVE-2023-25690/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Apache HTTP Server 请求走私漏洞 CVE-2023-25690">Apache HTTP Server 请求走私漏洞 CVE-2023-25690</span>
+            <span class="post-date" title="2023-09-07 16:12:59">2023/09/07</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/09/06/BurpSuite%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="BurpSuite学习">BurpSuite学习</span>
+            <span class="post-date" title="2023-09-06 15:34:11">2023/09/06</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/12/%E6%8B%8D%E7%85%A7%E6%8A%80%E5%B7%A7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="拍照技巧">拍照技巧</span>
+            <span class="post-date" title="2023-08-12 03:14:34">2023/08/12</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/11/%E7%A9%BF%E6%90%AD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="穿搭">穿搭</span>
+            <span class="post-date" title="2023-08-11 23:47:23">2023/08/11</span>
+        </a>
+        
+        
+        <a  class="All 健身 "
+           href="/2023/08/10/%E8%85%B0%E9%83%A8%E7%A0%94%E7%A9%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="腰部研究">腰部研究</span>
+            <span class="post-date" title="2023-08-10 01:04:12">2023/08/10</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/01/DVWA%E4%B9%8BSQL%20Injection%20Snort%E8%A7%84%E5%88%99%E6%8F%90%E5%8F%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-08-01 09:43:02">2023/08/01</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/31/%E8%AF%9D%E6%9C%AF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="话术">话术</span>
+            <span class="post-date" title="2023-07-31 14:46:46">2023/07/31</span>
+        </a>
+        
+        
+        <a  class="All 安全开发 "
+           href="/2023/07/24/%E6%81%B6%E6%84%8F%E6%B5%81%E9%87%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="恶意流量系统开发">恶意流量系统开发</span>
+            <span class="post-date" title="2023-07-24 16:46:05">2023/07/24</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/24/%E5%90%8E%E9%97%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="后门开发">后门开发</span>
+            <span class="post-date" title="2023-07-24 10:15:44">2023/07/24</span>
+        </a>
+        
+        
+        <a  class="All 安全开发 "
+           href="/2023/07/21/%E6%89%AB%E6%8F%8F%E5%99%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="tcp端口扫描器">tcp端口扫描器</span>
+            <span class="post-date" title="2023-07-21 09:25:02">2023/07/21</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/19/%E6%8C%81%E4%B9%85%E5%8C%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="持久化">持久化</span>
+            <span class="post-date" title="2023-07-19 16:46:54">2023/07/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/17/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Mysql数据库完整学习">Mysql数据库完整学习</span>
+            <span class="post-date" title="2023-07-17 16:03:05">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/17/%E9%98%B2%E5%BE%A1%E8%A7%84%E9%81%BF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="防御规避">防御规避</span>
+            <span class="post-date" title="2023-07-17 14:22:21">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/17/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="代码执行">代码执行</span>
+            <span class="post-date" title="2023-07-17 10:27:01">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/14/%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初始访问">初始访问</span>
+            <span class="post-date" title="2023-07-14 16:10:59">2023/07/14</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/14/%E4%BB%A3%E7%A0%81%E4%B8%8E%E8%BF%9B%E7%A8%8B%E6%B3%A8%E5%85%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="代码与进程注入">代码与进程注入</span>
+            <span class="post-date" title="2023-07-14 09:41:04">2023/07/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/11/python%E9%BB%91%E5%AE%A2%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BC%96%E7%A8%8B%E4%B9%8B%E9%81%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="python黑客渗透测试编程之道">python黑客渗透测试编程之道</span>
+            <span class="post-date" title="2023-07-11 10:54:54">2023/07/11</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/11/%E7%BA%A2%E9%98%9F%E6%80%9D%E8%B7%AF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队思路">红队思路</span>
+            <span class="post-date" title="2023-07-11 10:43:16">2023/07/11</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/30/go%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go语言入门">go语言入门</span>
+            <span class="post-date" title="2023-06-30 16:46:48">2023/06/30</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院文件包含">htb学院文件包含</span>
+            <span class="post-date" title="2023-06-28 16:17:24">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2%E4%BD%BF%E7%94%A8%20FFUF%20%E6%94%BB%E5%87%BB%20WEB%20%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应用程序">应用程序</span>
+            <span class="post-date" title="2023-06-28 16:14:55">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2linux%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院 htb学院linux基础">htb学院 htb学院linux基础</span>
+            <span class="post-date" title="2023-06-28 16:13:26">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院htb学院sql注入基础">htb学院htb学院sql注入基础</span>
+            <span class="post-date" title="2023-06-28 16:11:22">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-Q-31(海莲花) "
+           href="/2023/06/14/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-Q-31(海莲花)时间线及攻击手法总结">APT-Q-31(海莲花)时间线及攻击手法总结</span>
+            <span class="post-date" title="2023-06-14 17:00:06">2023/06/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/08/Gophish%E9%92%93%E9%B1%BC%E5%B9%B3%E5%8F%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Gophish钓鱼平台">Gophish钓鱼平台</span>
+            <span class="post-date" title="2023-06-08 15:05:05">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/08/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%A5%E9%97%A8-%E5%85%A5%E4%BE%B5%E6%8E%92%E6%9F%A5%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应入门-入侵排查篇">应急响应入门-入侵排查篇</span>
+            <span class="post-date" title="2023-06-08 15:05:05">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All 思想 "
+           href="/2023/06/05/%E8%AE%BA%E6%96%B0%E4%B8%AD%E5%9B%BD%E6%88%90%E7%AB%8B%E4%BB%A5%E6%9D%A5%E7%BB%8F%E6%B5%8E%E5%8D%B1%E6%9C%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="论新中国成立以来经济危机">论新中国成立以来经济危机</span>
+            <span class="post-date" title="2023-06-05 15:27:21">2023/06/05</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试 HTB "
+           href="/2023/04/25/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="windows基础知识">windows基础知识</span>
+            <span class="post-date" title="2023-04-25 15:08:28">2023/04/25</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试 HTB "
+           href="/2023/04/23/%E4%BD%BF%E7%94%A8METASPLOIT%E6%A1%86%E6%9E%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="使用METASPLOIT框架">使用METASPLOIT框架</span>
+            <span class="post-date" title="2023-04-23 16:53:53">2023/04/23</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/13/Crypto/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Crypto">Crypto</span>
+            <span class="post-date" title="2023-03-13 17:04:01">2023/03/13</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/11/machine/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="machine">machine</span>
+            <span class="post-date" title="2023-03-11 17:47:30">2023/03/11</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox Challenge "
+           href="/2023/03/10/Forensics%20Collection/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Forensics Collection">Forensics Collection</span>
+            <span class="post-date" title="2023-03-10 15:15:04">2023/03/10</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/09/Reminiscent/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Reminiscent">Reminiscent</span>
+            <span class="post-date" title="2023-03-09 09:41:42">2023/03/09</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox startpointer "
+           href="/2023/03/08/HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HackTheBox上分锦囊(一)">HackTheBox上分锦囊(一)</span>
+            <span class="post-date" title="2023-03-08 13:55:09">2023/03/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/27/%E8%AE%B0%E4%B8%80%E6%AC%A1Kaiji%E5%83%B5%E5%B0%B8%E7%BD%91%E7%BB%9C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="记一次Kaiji僵尸网络">记一次Kaiji僵尸网络</span>
+            <span class="post-date" title="2023-02-27 17:16:34">2023/02/27</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 "
+           href="/2023/02/24/cve2012-0158%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="cve2012-0158漏洞复现">cve2012-0158漏洞复现</span>
+            <span class="post-date" title="2023-02-24 16:43:56">2023/02/24</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2023/02/22/PowerShell%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PowerShell基础">PowerShell基础</span>
+            <span class="post-date" title="2023-02-22 11:46:25">2023/02/22</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-48(CNC) "
+           href="/2023/02/20/APT-C-48-CNC%E7%BB%84%E7%BB%87%E6%94%BB%E5%87%BB%E5%88%A9%E7%94%A8pub%E6%96%87%E4%BB%B6%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-48-CNC组织攻击利用pub文件攻击活动分析">APT-C-48-CNC组织攻击利用pub文件攻击活动分析</span>
+            <span class="post-date" title="2023-02-20 14:10:47">2023/02/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/14/APT-C-56-%E9%80%8F%E6%98%8E%E9%83%A8%E8%90%BD%E4%BC%AA%E8%A3%85%E7%AE%80%E5%8E%86%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-56-透明部落伪装简历攻击活动分析">APT-C-56-透明部落伪装简历攻击活动分析</span>
+            <span class="post-date" title="2023-02-14 16:08:03">2023/02/14</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-35(肚脑虫) "
+           href="/2023/02/11/APT-C-35%E8%82%9A%E8%84%91%E8%99%AB%E6%9F%90%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E4%B8%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-35肚脑虫某样本分析(一)">APT-C-35肚脑虫某样本分析(一)</span>
+            <span class="post-date" title="2023-02-11 18:13:48">2023/02/11</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2023/02/09/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应入门指南">应急响应入门指南</span>
+            <span class="post-date" title="2023-02-09 13:37:00">2023/02/09</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-56(透明部落) "
+           href="/2023/02/06/APT-C-56%EF%BC%88%E9%80%8F%E6%98%8E%E9%83%A8%E8%90%BD%EF%BC%89%E5%88%A9%E7%94%A8%E5%A4%96%E8%B4%B8%E9%93%BE%E6%8E%A5%E4%BC%AA%E8%A3%85%E6%96%87%E6%A1%A3%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-56（透明部落）利用外贸链接伪装文档攻击分析">APT-C-56（透明部落）利用外贸链接伪装文档攻击分析</span>
+            <span class="post-date" title="2023-02-06 18:13:48">2023/02/06</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/11/27/%E5%A4%A7%E7%81%B0%E7%8B%BC%E8%BF%9C%E6%8E%A7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大灰狼远控">大灰狼远控</span>
+            <span class="post-date" title="2022-11-27 21:35:19">2022/11/27</span>
+        </a>
+        
+        
+        <a  class="All 软件逆向 "
+           href="/2022/11/27/peid%E9%80%86%E5%90%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="peid逆向">peid逆向</span>
+            <span class="post-date" title="2022-11-27 10:15:30">2022/11/27</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/19/windbg%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="windbg命令学习">windbg命令学习</span>
+            <span class="post-date" title="2022-11-19 22:31:27">2022/11/19</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/19/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="进程和线程">进程和线程</span>
+            <span class="post-date" title="2022-11-19 20:42:28">2022/11/19</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/15/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="保护模式">保护模式</span>
+            <span class="post-date" title="2022-11-15 15:35:26">2022/11/15</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/14/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="winX86内核驱动开发">winX86内核驱动开发</span>
+            <span class="post-date" title="2022-11-14 16:22:58">2022/11/14</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/13/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="内核环境搭建学习">内核环境搭建学习</span>
+            <span class="post-date" title="2022-11-13 15:05:11">2022/11/13</span>
+        </a>
+        
+        
+        <a  class="All 游戏逆向 "
+           href="/2022/11/07/%E7%83%AD%E8%A1%80%E6%B1%9F%E6%B9%96%E6%B8%B8%E6%88%8F%E5%AE%89%E5%85%A8%E7%AD%91%E5%9F%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="热血江湖游戏安全筑基">热血江湖游戏安全筑基</span>
+            <span class="post-date" title="2022-11-07 21:27:59">2022/11/07</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BAPK%E4%BF%9D%E6%8A%A4%E7%AD%96%E7%95%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APK反破解技术">APK反破解技术</span>
+            <span class="post-date" title="2022-09-29 16:55:42">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BXposed%E6%A1%86%E6%9E%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之Xposed框架">安卓逆向之Xposed框架</span>
+            <span class="post-date" title="2022-09-29 14:53:11">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BNDK%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="NDK开发">NDK开发</span>
+            <span class="post-date" title="2022-09-29 14:42:34">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 "
+           href="/2022/09/27/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%AE%9E%E6%88%98%E4%BF%AE%E6%94%B9%E8%B5%84%E6%BA%90%E5%8E%BB%E5%B9%BF%E5%91%8A01/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向实战修改资源去广告01">安卓逆向实战修改资源去广告01</span>
+            <span class="post-date" title="2022-09-27 19:46:34">2022/09/27</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/26/%E9%80%9A%E8%BF%87%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0smali%E6%B1%87%E7%BC%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="smali与dalvik指令">smali与dalvik指令</span>
+            <span class="post-date" title="2022-09-26 15:50:15">2022/09/26</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/23/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="基于Android的ARM汇编">基于Android的ARM汇编</span>
+            <span class="post-date" title="2022-09-23 15:17:52">2022/09/23</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/21/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BAPK%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之APK打包流程">安卓逆向之APK打包流程</span>
+            <span class="post-date" title="2022-09-21 10:17:44">2022/09/21</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/19/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8B%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之安卓开发">安卓逆向之安卓开发</span>
+            <span class="post-date" title="2022-09-19 17:18:12">2022/09/19</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/16/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8Bjava%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之java基础">安卓逆向之java基础</span>
+            <span class="post-date" title="2022-09-16 18:02:04">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All IOT "
+           href="/2022/09/01/IOT%E5%88%9D%E6%8E%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="iot初探">iot初探</span>
+            <span class="post-date" title="2022-09-01 14:51:06">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 漏洞相关知识 "
+           href="/2022/09/01/win%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%8E%9F%E7%90%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="漏洞利用原理">漏洞利用原理</span>
+            <span class="post-date" title="2022-09-01 11:16:25">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 "
+           href="/2022/08/31/CVE-2010-2883%E5%A4%8D%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CVE-2010-2883_Adobe Reader TTF字体SING表栈溢出漏洞复现">CVE-2010-2883_Adobe Reader TTF字体SING表栈溢出漏洞复现</span>
+            <span class="post-date" title="2022-08-31 17:35:30">2022/08/31</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/08/23/APT_Shamoon/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="关于Shamoon.APT组织的一次完整攻击链分析">关于Shamoon.APT组织的一次完整攻击链分析</span>
+            <span class="post-date" title="2022-08-23 10:12:17">2022/08/23</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/08/16/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="日志分析">日志分析</span>
+            <span class="post-date" title="2022-08-16 17:04:55">2022/08/16</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/08/16/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94everything%E6%96%87%E4%BB%B6%E8%BF%87%E6%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="everything文件过滤">everything文件过滤</span>
+            <span class="post-date" title="2022-08-16 16:22:03">2022/08/16</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-26（Lazarus） "
+           href="/2022/08/12/Lazarus%E4%B8%80%E6%AC%A1%E9%92%88%E5%AF%B9%E8%88%AA%E7%A9%BA%E8%88%AA%E5%A4%A9%E8%A1%8C%E4%B8%9A%E7%9A%84%E6%94%BB%E5%87%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Lazarus一次针对航空航天行业的攻击">Lazarus一次针对航空航天行业的攻击</span>
+            <span class="post-date" title="2022-08-12 15:02:59">2022/08/12</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-08(蔓灵花) "
+           href="/2022/08/11/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="BITTER组织样本分析1">BITTER组织样本分析1</span>
+            <span class="post-date" title="2022-08-11 16:06:21">2022/08/11</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/07/19/%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="爬虫">爬虫</span>
+            <span class="post-date" title="2022-07-19 16:12:19">2022/07/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/07/15/Google_Hacking_%E8%B0%B7%E6%AD%8C%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Google_Hacking_谷歌搜索引擎">Google_Hacking_谷歌搜索引擎</span>
+            <span class="post-date" title="2022-07-15 09:56:40">2022/07/15</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/07/13/2022-7-13-exe/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="个人简历.exe">个人简历.exe</span>
+            <span class="post-date" title="2022-07-13 09:12:38">2022/07/13</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/07/06/%E5%88%9D%E5%85%A5Yara/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Yara入门">Yara入门</span>
+            <span class="post-date" title="2022-07-06 16:14:17">2022/07/06</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 蠕虫 "
+           href="/2022/06/28/2022-06-25_Scar%E6%84%9F%E6%9F%93%E5%BC%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2022.06.25_Scar感染式样本分析">2022.06.25_Scar感染式样本分析</span>
+            <span class="post-date" title="2022-06-28 09:25:02">2022/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/06/27/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应手册">应急响应手册</span>
+            <span class="post-date" title="2022-06-27 15:20:12">2022/06/27</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/03/08/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="宏病毒基础入门">宏病毒基础入门</span>
+            <span class="post-date" title="2022-03-08 09:23:03">2022/03/08</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 勒索病毒 "
+           href="/2022/03/07/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WannaCry病毒分析">WannaCry病毒分析</span>
+            <span class="post-date" title="2022-03-07 11:40:13">2022/03/07</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/03/03/wireshark/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="wireshark">wireshark</span>
+            <span class="post-date" title="2022-03-03 12:18:53">2022/03/03</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-23(双尾蝎) "
+           href="/2022/02/27/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-23境外双尾蝎组织样本分析">APT-C-23境外双尾蝎组织样本分析</span>
+            <span class="post-date" title="2022-02-27 16:00:07">2022/02/27</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/02/24/%E8%AE%B0%E5%BD%95%E6%A0%A1%E5%9B%ADMAC%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="记录校园MAC挖矿病毒">记录校园MAC挖矿病毒</span>
+            <span class="post-date" title="2022-02-24 20:04:18">2022/02/24</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 蠕虫 "
+           href="/2022/02/24/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="熊猫烧香分析">熊猫烧香分析</span>
+            <span class="post-date" title="2022-02-24 18:09:42">2022/02/24</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/02/20/win%E5%86%85%E6%A0%B8%E4%B8%8E%E9%A9%B1%E5%8A%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="win内核与驱动">win内核与驱动</span>
+            <span class="post-date" title="2022-02-20 08:23:51">2022/02/20</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/01/28/PE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PE">PE</span>
+            <span class="post-date" title="2022-01-28 21:26:29">2022/01/28</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2021/04/10/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="unix环境高级编程">unix环境高级编程</span>
+            <span class="post-date" title="2021-04-10 14:54:25">2021/04/10</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2021/03/29/codeql%E5%88%9D%E5%85%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="codeql初入">codeql初入</span>
+            <span class="post-date" title="2021-03-29 14:14:01">2021/03/29</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-安卓逆向之java基础" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">安卓逆向之java基础</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="安卓逆向">安卓逆向</a> > 
+            
+            <a  data-rel="安卓逆向&lt;---&gt;入门手册">入门手册</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-10-27 10:58:29'>2022-09-16 18:02</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JAVA%E7%8E%AF%E5%A2%83"><span class="toc-text">JAVA环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E5%92%8C%E6%99%AE%E9%80%9A%E6%96%B9%E6%B3%95%E5%8C%BA%E5%88%AB"><span class="toc-text">静态方法和普通方法区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E7%9A%84%E7%89%B9%E6%80%A7"><span class="toc-text">继承的特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">继承关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#extends%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">extends关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#implements%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">implements关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#super-%E4%B8%8E-this-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">super 与 this 关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#final-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">final 关键字</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%87%8D%E5%86%99-Override"><span class="toc-text">重写(Override)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-text">抽象类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-text">接口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E7%89%B9%E6%80%A7"><span class="toc-text">接口特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">抽象类和接口的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="toc-text">接口的声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">接口的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="toc-text">接口的继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%A4%9A%E7%BB%A7%E6%89%BF"><span class="toc-text">接口的多继承</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#java%E5%8C%85package"><span class="toc-text">java包package</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%85%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">包的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%8C%85"><span class="toc-text">创建包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#import-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">import 关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90-1"><span class="toc-text">例子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-text">内部类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6"><span class="toc-text">反射机制</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-6 i,
+    .toc-level-6 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JAVA环境"><a href="#JAVA环境" class="headerlink" title="JAVA环境"></a>JAVA环境</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xhmico/article/details/122390181">https://blog.csdn.net/xhmico/article/details/122390181</a></p>
+<p>这里面很全 我建议下载jdk8 也就是1.8</p>
+<p>去官网下载idae 用来写java</p>
+<p><em>java后缀去编译生成class后缀</em></p>
+<p><img src="/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8Bjava%E5%9F%BA%E7%A1%80/1.png"></p>
+<p><img src="/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8Bjava%E5%9F%BA%E7%A1%80/2.png"></p>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>方法的命名规则</p>
+<ul>
+<li>1.方法的名字的第一个单词应以小写字母作为开头，后面的单词则用大写字母开头写，不使用连接符。例如：addPerson。</li>
+<li>2.下划线可能出现在 JUnit 测试方法名称中用以分隔名称的逻辑组件。一个典型的模式是：test<MethodUnderTest>_<state>，例如 testPop_emptyStack。</li>
+</ul>
+<p>方法的定义</p>
+<p><img src="/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8Bjava%E5%9F%BA%E7%A1%80/3.png"></p>
+<h2 id="静态方法和普通方法区别"><a href="#静态方法和普通方法区别" class="headerlink" title="静态方法和普通方法区别"></a>静态方法和普通方法区别</h2><p>静态方法就是static 修饰的 没有static修饰的就是普通方法</p>
+<p>普通方法都是需要new进行调用 再 类名.方法名()</p>
+<p>静态方法调用方式 类名.方法名()</p>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>在 Java 中通过 extends 关键字可以申明一个类是从另外一个类继承而来的，一般形式如下：</p>
+<p>企鹅：属性（姓名，id），方法（吃，睡，自我介绍）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">公共父类：</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Animal</span> &#123; </span><br><span class="line">    <span class="keyword">private</span> String name;  </span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> id; </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Animal</span><span class="params">(String myName, <span class="type">int</span> myid)</span> &#123; </span><br><span class="line">        name = myName; </span><br><span class="line">        id = myid;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>&#123; </span><br><span class="line">        System.out.println(name+<span class="string">&quot;正在吃&quot;</span>); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sleep</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(name+<span class="string">&quot;正在睡&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">introduction</span><span class="params">()</span> &#123; </span><br><span class="line">        System.out.println(<span class="string">&quot;大家好！我是&quot;</span>         + id + <span class="string">&quot;号&quot;</span> + name + <span class="string">&quot;.&quot;</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">企鹅类：</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Penguin</span> <span class="keyword">extends</span> <span class="title class_">Animal</span> &#123; </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Penguin</span><span class="params">(String myName, <span class="type">int</span> myid)</span> &#123; </span><br><span class="line">        <span class="built_in">super</span>(myName, myid); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">老鼠类：</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Mouse</span> <span class="keyword">extends</span> <span class="title class_">Animal</span> &#123; </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Mouse</span><span class="params">(String myName, <span class="type">int</span> myid)</span> &#123; </span><br><span class="line">        <span class="built_in">super</span>(myName, myid); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是 Java 不支持多继承，但支持多重继承。</p>
+<p>多重继承就是一个子类有多个父类，多重继承就是一个父类有多个子类</p>
+<h2 id="继承的特性"><a href="#继承的特性" class="headerlink" title="继承的特性"></a>继承的特性</h2><ul>
+<li>子类拥有父类非 private 的属性、方法。</li>
+<li>子类可以拥有自己的属性和方法，即子类可以对父类进行扩展。</li>
+<li>子类可以用自己的方式实现父类的方法。</li>
+<li>Java 的继承是单继承，但是可以多重继承，单继承就是一个子类只能继承一个父类，多重继承就是，例如 B 类继承 A 类，C 类继承 B  类，所以按照关系就是 B 类是 C 类的父类，A 类是 B 类的父类，这是 Java 继承区别于 C++ 继承的一个特性。</li>
+<li>提高了类之间的耦合性（继承的缺点，耦合度高就会造成代码之间的联系越紧密，代码独立性越差）。</li>
+</ul>
+<h2 id="继承关键字"><a href="#继承关键字" class="headerlink" title="继承关键字"></a>继承关键字</h2><p>继承可以使用 extends 和 implements 这两个关键字来实现继承，而且所有的类都是继承于 java.lang.Object，当一个类没有继承的两个关键字，则默认继承 Object（这个类在 <strong>java.lang</strong> 包中，所以不需要 <strong>import</strong>）祖先类。</p>
+<h3 id="extends关键字"><a href="#extends关键字" class="headerlink" title="extends关键字"></a>extends关键字</h3><p>在 Java 中，类的继承是单一继承，也就是说，一个子类只能拥有一个父类，所以 extends 只能继承一个类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Animal</span> &#123; </span><br><span class="line">    <span class="keyword">private</span> String name;   </span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> id; </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Animal</span><span class="params">(String myName, <span class="type">int</span> myid)</span> &#123; </span><br><span class="line">        <span class="comment">//初始化属性值</span></span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span> &#123;  <span class="comment">//吃东西方法的具体实现  &#125; </span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sleep</span><span class="params">()</span> &#123; <span class="comment">//睡觉方法的具体实现  &#125; </span></span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Penguin</span>  <span class="keyword">extends</span>  <span class="title class_">Animal</span>&#123; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="implements关键字"><a href="#implements关键字" class="headerlink" title="implements关键字"></a>implements关键字</h3><p>使用 implements 关键字可以变相的使java具有多继承的特性，使用范围为类继承接口的情况，可以同时继承多个接口（接口跟接口之间采用逗号分隔）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sleep</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">B</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">C</span> <span class="keyword">implements</span> <span class="title class_">A</span>,B &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="super-与-this-关键字"><a href="#super-与-this-关键字" class="headerlink" title="super 与 this 关键字"></a>super 与 this 关键字</h3><p>super是父类的意思 指向父类的引用</p>
+<p>this 指向当前类的引用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">  <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;animal : eat&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> <span class="keyword">extends</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">  <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;dog : eat&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">void</span> <span class="title function_">eatTest</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.eat();   <span class="comment">// this 调用自己的方法</span></span><br><span class="line">    <span class="built_in">super</span>.eat();  <span class="comment">// super 调用父类方法</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Animal</span>();</span><br><span class="line">    a.eat();</span><br><span class="line">    <span class="type">Dog</span> <span class="variable">d</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">    d.eatTest();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="final-关键字"><a href="#final-关键字" class="headerlink" title="final 关键字"></a>final 关键字</h3><p>final 可以用来修饰变量（包括类属性、对象属性、局部变量和形参）、方法（包括类方法和对象方法）和类。</p>
+<p>用final修饰的变量 是不可变的，所以用final时，必须进行初始化</p>
+<p>使用 final 关键字声明类，就是把类定义定义为最终类，<em>不能被继承</em>，或者用于修饰方法，该方法不能被子类重写：</p>
+<ul>
+<li><p>声明类：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">final class 类名 &#123;</span><br><span class="line">//类体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>声明方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">修饰符(public/private/default/protected) final 返回值类型 方法名()&#123;//方法体&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>注：</strong> final 定义的类，其中的属性、方法不是 final 的。</p>
+<h1 id="重写-Override"><a href="#重写-Override" class="headerlink" title="重写(Override)"></a>重写(Override)</h1><p> 重写是子类对父类的允许访问的方法的实现过程进行重新编写, 返回值和形参都不能改变。<strong>即外壳不变，核心重写！</strong></p>
+<p>重写的好处在于子类可以根据需要，定义特定于自己的行为。 也就是说子类能够根据需要实现父类的方法。重写方法不能抛出新的检查异常或者比被重写方法申明更加宽泛的异常。例如： 父类的一个方法申明了一个检查异常 IOException，但是在重写这个方法的时候不能抛出 Exception 异常，因为 Exception 是 IOException 的父类，抛出 IOException 异常或者 IOException 的子类异常。</p>
+<p>在面向对象原则里，重写意味着可以重写任何现有方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">move</span><span class="params">()</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;动物可以移动&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> <span class="keyword">extends</span> <span class="title class_">Animal</span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">move</span><span class="params">()</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;狗可以跑和走&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestDog</span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span>&#123;</span><br><span class="line">      <span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Animal</span>(); <span class="comment">// Animal 对象</span></span><br><span class="line">      <span class="type">Animal</span> <span class="variable">b</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>(); <span class="comment">// Dog 对象</span></span><br><span class="line"> </span><br><span class="line">      a.move();<span class="comment">// 执行 Animal 类的方法</span></span><br><span class="line"> </span><br><span class="line">      b.move();<span class="comment">//执行 Dog 类的方法</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上实例编译运行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">动物可以移动</span><br><span class="line">狗可以跑和走</span><br></pre></td></tr></table></figure>
+
+<h1 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h1><p>面向对象的概念中，所有的对象都是通过类来描绘的，</p>
+<p>但是反过来，并不是所有的类都是用来描绘对象的，如果一个类中没有包含足够的信息来描绘一个具体的对象，这样的类就是抽象类。</p>
+<p>抽象类除了不能实例化对象之外，类的其它功能依然存在，成员变量、成员方法和构造方法的访问方式和普通类一样。</p>
+<p>由于抽象类不能实例化对象，所以抽象类必须被继承，才能被使用。</p>
+<p>也是因为这个原因，通常在设计阶段决定要不要设计抽象类。父类包含了子类集合的常见的方法，</p>
+<p>但是由于父类本身是抽象的，所以不能使用这些方法。</p>
+<p>在 Java 中抽象类表示的是一种继承关系，一个类只能继承一个抽象类，而一个类却可以实现多个接口。</p>
+<p>在 Java 语言中使用 abstract class 来定义抽象类</p>
+<ul>
+<li>类里面如果有抽象方法 ，该类必须定义为抽象类</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class cat&#123;</span><br><span class="line">     public void text();  /* 此方法为抽象方法，但是该类不是，因此这里报错*/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>抽象方法不能用final进行修饰，抽象方法不能用final进行修饰，抽象类不能用static进行修饰，抽象方法也不能</p>
+<h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><p>接口，在JAVA编程语言中是一个抽象类型，是抽象方法的集合，接口通常以interface来声明。一个类通过继承接口的方式，从而来继承接口的抽象方法。</p>
+<p>接口并不是类，编写接口的方式和类很相似，但是它们属于不同的概念。类描述对象的属性和方法。接口则包含类要实现的方法。</p>
+<p>除非实现接口的类是抽象类，否则该类要定义接口中的所有方法。</p>
+<p>接口无法被实例化，但是可以被实现。一个实现接口的类，必须实现接口内所描述的所有方法，否则就必须声明为抽象类，  就是需要定义的类被abstract关键词修饰</p>
+<p>接口实现时，不能使用extends关键字，只能使用implements关键字</p>
+<p>接口里默认你声明的变量、方法都是public的</p>
+<p>接口里面可以定义静态方法，但必须要实现，要有花括号</p>
+<h2 id="接口特性"><a href="#接口特性" class="headerlink" title="接口特性"></a>接口特性</h2><ul>
+<li>接口中每一个方法也是隐式抽象的,接口中的方法会被隐式的指定为 <strong>public abstract</strong>（只能是  public abstract，其他修饰符都会报错）。</li>
+<li>接口中可以含有变量，但是接口中的变量会被隐式的指定为 <strong>public static final</strong> 变量（并且只能是 public，用 private 修饰会报编译错误）。</li>
+<li>接口中的方法是不能在接口中实现的，只能由实现接口的类来实现接口中的方法。</li>
+</ul>
+<h2 id="抽象类和接口的区别"><a href="#抽象类和接口的区别" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h2><ul>
+<li>抽象类中的方法可以有方法体，就是能实现方法的具体功能，但是接口中的方法不行。</li>
+<li>抽象类中的成员变量可以是各种类型的，而接口中的成员变量只能是 <strong>public static final</strong> 类型的。</li>
+<li>接口中不能含有静态代码块以及静态方法(用 static 修饰的方法)，而抽象类是可以有静态代码块和静态方法。</li>
+<li>一个类只能继承一个抽象类，而一个类却可以实现多个接口。</li>
+</ul>
+<h2 id="接口的声明"><a href="#接口的声明" class="headerlink" title="接口的声明"></a>接口的声明</h2><p>[可见度] interface 接口名称 [extends 其他的接口名] {        &#x2F;&#x2F; 声明变量        &#x2F;&#x2F; 抽象方法 }</p>
+<p>Interface关键字用来声明一个接口。下面是接口声明的一个简单例子。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface Animal &#123;</span><br><span class="line">   public void eat();</span><br><span class="line">   public void travel();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接口有以下特性：</p>
+<ul>
+<li>接口是隐式抽象的，当声明一个接口的时候，不必使用<strong>abstract</strong>关键字。</li>
+<li>接口中每一个方法也是隐式抽象的，声明时同样不需要<strong>abstract</strong>关键字。</li>
+<li>接口中的方法都是公有的。</li>
+</ul>
+<p>接口里面可以定义变量，必须进行初始化，但是不能用private修饰，默认是 public final</p>
+<h2 id="接口的实现"><a href="#接口的实现" class="headerlink" title="接口的实现"></a>接口的实现</h2><p>当类实现接口的时候，类要实现接口中所有的方法。否则，类必须声明为抽象的类。</p>
+<p>类使用implements关键字实现接口。在类声明中，Implements关键字放在class声明后面。</p>
+<p>实现一个接口的语法，可以使用这个公式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...implements 接口名称[, 其他接口名称, 其他接口名称..., ...] .</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">## 实现</span><br><span class="line">public class MammalInt implements Animal&#123;</span><br><span class="line"> </span><br><span class="line">   public void eat()&#123;</span><br><span class="line">      System.out.println(&quot;Mammal eats&quot;);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   public void travel()&#123;</span><br><span class="line">      System.out.println(&quot;Mammal travels&quot;);</span><br><span class="line">   &#125; </span><br><span class="line"> </span><br><span class="line">   public int noOfLegs()&#123;</span><br><span class="line">      return 0;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   public static void main(String args[])&#123;</span><br><span class="line">      MammalInt m = new MammalInt();</span><br><span class="line">      m.eat();</span><br><span class="line">      m.travel();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">以上实例编译运行结果如下:</span><br><span class="line"></span><br><span class="line">Mammal eats</span><br><span class="line">Mammal travels</span><br></pre></td></tr></table></figure>
+
+<h2 id="接口的继承"><a href="#接口的继承" class="headerlink" title="接口的继承"></a>接口的继承</h2><p>一个接口能继承另一个接口，和类之间的继承方式比较相似。接口的继承使用extends关键字，子接口继承父接口的方法。</p>
+<p>下面的Sports接口被Hockey和Football接口继承：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名: Sports.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Sports</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setHomeTeam</span><span class="params">(String name)</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setVisitingTeam</span><span class="params">(String name)</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 文件名: Football.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Football</span> <span class="keyword">extends</span> <span class="title class_">Sports</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">homeTeamScored</span><span class="params">(<span class="type">int</span> points)</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">visitingTeamScored</span><span class="params">(<span class="type">int</span> points)</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">endOfQuarter</span><span class="params">(<span class="type">int</span> quarter)</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 文件名: Hockey.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Hockey</span> <span class="keyword">extends</span> <span class="title class_">Sports</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">homeGoalScored</span><span class="params">()</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">visitingGoalScored</span><span class="params">()</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">endOfPeriod</span><span class="params">(<span class="type">int</span> period)</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">overtimePeriod</span><span class="params">(<span class="type">int</span> ot)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Hockey接口自己声明了四个方法，从Sports接口继承了两个方法，这样，实现Hockey接口的类需要实现六个方法。</p>
+<p>相似的，实现Football接口的类需要实现五个方法，其中两个来自于Sports接口。</p>
+<h2 id="接口的多继承"><a href="#接口的多继承" class="headerlink" title="接口的多继承"></a>接口的多继承</h2><p>在Java中，类的多继承是不合法，但接口允许多继承。</p>
+<p>在接口的多继承中extends关键字只需要使用一次，在其后跟着继承接口。 如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public interface Hockey extends Sports, Event</span><br></pre></td></tr></table></figure>
+
+<p>以上的程序片段是合法定义的子接口，与类不同的是，接口允许多继承，而 Sports及  Event 可以定义或是继承相同的方法</p>
+<h1 id="java包package"><a href="#java包package" class="headerlink" title="java包package"></a>java包package</h1><p>为了更好地组织类，Java 提供了包机制，用于区别类名的命名空间。</p>
+<h2 id="包的作用"><a href="#包的作用" class="headerlink" title="包的作用"></a>包的作用</h2><pre><code>1、把功能相似或相关的类或接口组织在同一个包中，方便类的查找和使用。
+
+2、如同文件夹一样，包也采用了树形目录的存储方式。同一个包中的类名字是不同的，不同的包中的类的名字是可以相同的，当同时调用两个不同包中相同类名的类时，应该加上包名加以区别。因此，包可以避免名字冲突。
+
+3、包也限定了访问权限，拥有包访问权限的类才能访问某个包中的类。
+</code></pre>
+<p>Java 使用包（package）这种机制是为了防止命名冲突，访问控制，提供搜索和定位类（class）、接口、枚举（enumerations）和注释（annotation）等。</p>
+<p>包语句的语法格式为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package pkg1[．pkg2[．pkg3…]];</span><br></pre></td></tr></table></figure>
+
+<p>例如,一个Something.java 文件它的内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package net.java.util; public class Something&#123;   ... &#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么它的路径应该是 <strong>net&#x2F;java&#x2F;util&#x2F;Something.java</strong> 这样保存的。 package(包) 的作用是把不同的 java 程序分类保存，更方便的被其他 java 程序调用。</p>
+<p>一个包（package）可以定义为一组相互联系的类型（类、接口、枚举和注释），为这些类型提供访问保护和命名空间管理的功能。</p>
+<p>以下是一些 Java 中的包：</p>
+<ul>
+<li><strong>java.lang</strong>-打包基础的类</li>
+<li><strong>java.io</strong>-包含输入输出功能的函数</li>
+</ul>
+<p>开发者可以自己把一组类和接口等打包，并定义自己的包。而且在实际开发中这样做是值得提倡的，当你自己完成类的实现之后，将相关的类分组，可以让其他的编程者更容易地确定哪些类、接口、枚举和注释等是相关的。</p>
+<p>由于包创建了新的命名空间（namespace），所以不会跟其他包中的任何名字产生命名冲突。使用包这种机制，更容易实现访问控制，并且让定位相关类更加简单。</p>
+<h2 id="创建包"><a href="#创建包" class="headerlink" title="创建包"></a>创建包</h2><p>创建包的时候，你需要为这个包取一个合适的名字。之后，如果其他的一个源文件包含了这个包提供的类、接口、枚举或者注释类型的时候，都必须将这个包的声明放在这个源文件的开头。</p>
+<p>包声明应该在源文件的第一行，每个源文件只能有一个包声明，这个文件中的每个类型都应用于它。</p>
+<p>如果一个源文件中没有使用包声明，那么其中的类，函数，枚举，注释等将被放在一个无名的包（unnamed package）中。</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>让我们来看一个例子，这个例子创建了一个叫做animals的包。通常使用小写的字母来命名避免与类、接口名字的冲突。</p>
+<p>在 animals 包中加入一个接口（interface）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/* 文件名: Animal.java */</span><br><span class="line">package animals;</span><br><span class="line"> </span><br><span class="line">interface Animal &#123;</span><br><span class="line">   public void eat();</span><br><span class="line">   public void travel();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">接下来，在同一个包中加入该接口的实现：</span><br><span class="line">MammalInt.java 文件代码：</span><br><span class="line"><span class="keyword">package</span> animals;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/* 文件名 : MammalInt.java */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MammalInt</span> <span class="keyword">implements</span> <span class="title class_">Animal</span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Mammal eats&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">travel</span><span class="params">()</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Mammal travels&quot;</span>);</span><br><span class="line">   &#125; </span><br><span class="line"> </span><br><span class="line">   <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">noOfLegs</span><span class="params">()</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span>&#123;</span><br><span class="line">      <span class="type">MammalInt</span> <span class="variable">m</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MammalInt</span>();</span><br><span class="line">      m.eat();</span><br><span class="line">      m.travel();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后，编译这两个文件，并把他们放在一个叫做animals的子目录中。 用下面的命令来运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir animals</span><br><span class="line">$ cp Animal.class  MammalInt.class animals</span><br><span class="line">$ java animals/MammalInt</span><br><span class="line">Mammal eats</span><br><span class="line">Mammal travel</span><br></pre></td></tr></table></figure>
+
+<h2 id="import-关键字"><a href="#import-关键字" class="headerlink" title="import 关键字"></a>import 关键字</h2><p>为了能够使用某一个包的成员，我们需要在 Java 程序中明确导入该包。使用 “import” 语句可完成此功能。</p>
+<p>在 java 源文件中 import 语句应位于 package 语句之后，所有类的定义之前，可以没有，也可以有多条，其语法格式为：</p>
+<p>import package1[.package2…].(classname|*);</p>
+<p>如果在一个包中，一个类想要使用本包中的另一个类，那么该包名可以省略。</p>
+<h3 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h3><p>下面的 payroll 包已经包含了 Employee 类，接下来向 payroll 包中添加一个 Boss 类。Boss 类引用 Employee 类的时候可以不用使用 payroll 前缀，Boss 类的实例如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">## Boss.java 文件代码：</span><br><span class="line"></span><br><span class="line">package payroll;  </span><br><span class="line">public class Boss &#123;  </span><br><span class="line">public void payEmployee(Employee e)  &#123;    </span><br><span class="line">e.mailCheck();   </span><br><span class="line">&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果 Boss 类不在 payroll 包中又会怎样？Boss 类必须使用下面几种方法之一来引用其他包中的类。</p>
+<p>使用类全名描述，例如：</p>
+<p>payroll.Employee</p>
+<p>用 <strong>import</strong> 关键字引入，使用通配符 *：</p>
+<p>import payroll.*;</p>
+<p>使用 <strong>import</strong> 关键字引入 Employee 类：</p>
+<p>import payroll.Employee;</p>
+<p><strong>注意：</strong></p>
+<p>类文件中可以包含任意数量的 import 声明。import 声明必须在包声明之后，类声明之前。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">zeng</span> <span class="keyword">extends</span> <span class="title class_">Object</span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>object是所有类的根节点，</p>
+<p>我们这里创建的每一个类默认继承object</p>
+<p>怎么访问其他类  首先在我们这个类开头 import 需要导入的类</p>
+<p>比如导入zengqi这个类里面的 z方法</p>
+<p>调用就是zengqi.z()</p>
+<p>java.lang下的类，默认自动导入</p>
+<h1 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h1><p>类里面定义类 叫内部类</p>
+<p>静态内部类 就是前面加个static关键字</p>
+<p>还有一种类叫方法里面定义的类 叫局部类，不能被静态关键字修饰</p>
+<p>new一个接口 我们叫做匿名内部类  new就是实例化嘛</p>
+<h1 id="反射机制"><a href="#反射机制" class="headerlink" title="反射机制"></a>反射机制</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_52533007/article/details/123312217">https://blog.csdn.net/weixin_52533007/article/details/123312217</a></p>
+<p><a target="_blank" rel="noopener" href="http://c.biancheng.net/java/100/">http://c.biancheng.net/java/100/</a></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2023 answer77
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 672px;
+    }
+    .nav.fullscreen {
+        margin-left: -672px;
+    }
+    .nav-left {
+        width: 250px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 572px;
+        }
+        .nav.fullscreen {
+            margin-left: -572px;
+        }
+        .nav-left {
+            width: 180px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 572px;
+            margin-left: -572px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/3.png);
+    }
+    
+    
+    #post .index {
+        background: url(/img/3.png);
+    }
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+        background: url("/img/2.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

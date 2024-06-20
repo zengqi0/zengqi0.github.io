@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>基于Android的ARM汇编 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="基于Android的ARM汇编 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://example.com/categories/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-05-06T07:25:18.000Z">
+<meta property="article:modified_time" content="2023-10-27T02:58:20.693Z">
+<meta property="article:author" content="answer77">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.png"/>
+</a>
+<div class="author">
+    <span>answer77</span>
+</div>
+
+<div class="icon">
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(90)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="安全开发">
+                        
+                        安全开发
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="安卓逆向">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        安卓逆向
+                        <small>(9)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="安卓逆向<--->入门手册">
+                                        
+                                        入门手册
+                                        
+                                            <small>(7
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="恶意代码分析">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        恶意代码分析
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="恶意代码分析<--->勒索病毒">
+                                        
+                                        勒索病毒
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="恶意代码分析<--->蠕虫">
+                                        
+                                        蠕虫
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="红队">
+                        
+                        红队
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="技术研究">
+                        
+                        技术研究
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="健身">
+                        
+                        健身
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="漏洞研究">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        漏洞研究
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="漏洞研究<--->漏洞相关知识">
+                                        
+                                        漏洞相关知识
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="软件逆向">
+                        
+                        软件逆向
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="渗透测试">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        渗透测试
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="渗透测试<--->HTB">
+                                        
+                                        HTB
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="思想">
+                        
+                        思想
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="应急响应">
+                        
+                        应急响应
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="游戏逆向">
+                        
+                        游戏逆向
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="APT研究">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        APT研究
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-08(蔓灵花)">
+                                        
+                                        APT-C-08(蔓灵花)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-23(双尾蝎)">
+                                        
+                                        APT-C-23(双尾蝎)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-26（Lazarus）">
+                                        
+                                        APT-C-26（Lazarus）
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-35(肚脑虫)">
+                                        
+                                        APT-C-35(肚脑虫)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-48(CNC)">
+                                        
+                                        APT-C-48(CNC)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-C-56(透明部落)">
+                                        
+                                        APT-C-56(透明部落)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="APT研究<--->APT-Q-31(海莲花)">
+                                        
+                                        APT-Q-31(海莲花)
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="HackTheBox">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        HackTheBox
+                        <small>(7)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="HackTheBox<--->Challenge">
+                                        
+                                        Challenge
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="HackTheBox<--->startpointer">
+                                        
+                                        startpointer
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="IOT">
+                        
+                        IOT
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="win内核">
+                        
+                        win内核
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="90">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a id="top" class="All 思想 "
+           href="/2023/06/14/%E5%AF%B9%E4%B8%AD%E5%9B%BD%E6%95%B4%E4%B8%AA%E5%AE%89%E5%85%A8%E8%A1%8C%E4%B8%9A%E7%9A%84%E7%90%86%E8%A7%A3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
+            <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_hard_socnet2">红队打靶之VulnHub_hard_socnet2</span>
+            <span class="post-date" title="2024-06-20 14:31:01">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/20/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_AdmX_new">红队打靶之VulnHub_AdmX_new</span>
+            <span class="post-date" title="2024-06-20 08:40:02">2024/06/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/18/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-CHRONOS-1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_CHRONOS_1">红队打靶之VulnHub_CHRONOS_1</span>
+            <span class="post-date" title="2024-06-18 17:16:48">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/18/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-%E4%BA%91-AV/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_BOREDHACKERBLOG_云_AV">红队打靶之VulnHub_BOREDHACKERBLOG_云_AV</span>
+            <span class="post-date" title="2024-06-18 11:18:34">2024/06/18</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2024/06/17/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-BOREDHACKERBLOG-SOCIAL-NETWORK/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_BOREDHACKERBLOG_SOCIAL_NETWORK">红队打靶之VulnHub_BOREDHACKERBLOG_SOCIAL_NETWORK</span>
+            <span class="post-date" title="2024-06-17 21:52:00">2024/06/17</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/09/07/Apache%20HTTP%20Server%20%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E%20CVE-2023-25690/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Apache HTTP Server 请求走私漏洞 CVE-2023-25690">Apache HTTP Server 请求走私漏洞 CVE-2023-25690</span>
+            <span class="post-date" title="2023-09-07 16:12:59">2023/09/07</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/09/06/BurpSuite%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="BurpSuite学习">BurpSuite学习</span>
+            <span class="post-date" title="2023-09-06 15:34:11">2023/09/06</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/12/%E6%8B%8D%E7%85%A7%E6%8A%80%E5%B7%A7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="拍照技巧">拍照技巧</span>
+            <span class="post-date" title="2023-08-12 03:14:34">2023/08/12</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/11/%E7%A9%BF%E6%90%AD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="穿搭">穿搭</span>
+            <span class="post-date" title="2023-08-11 23:47:23">2023/08/11</span>
+        </a>
+        
+        
+        <a  class="All 健身 "
+           href="/2023/08/10/%E8%85%B0%E9%83%A8%E7%A0%94%E7%A9%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="腰部研究">腰部研究</span>
+            <span class="post-date" title="2023-08-10 01:04:12">2023/08/10</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/08/01/DVWA%E4%B9%8BSQL%20Injection%20Snort%E8%A7%84%E5%88%99%E6%8F%90%E5%8F%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-08-01 09:43:02">2023/08/01</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/31/%E8%AF%9D%E6%9C%AF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="话术">话术</span>
+            <span class="post-date" title="2023-07-31 14:46:46">2023/07/31</span>
+        </a>
+        
+        
+        <a  class="All 安全开发 "
+           href="/2023/07/24/%E6%81%B6%E6%84%8F%E6%B5%81%E9%87%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="恶意流量系统开发">恶意流量系统开发</span>
+            <span class="post-date" title="2023-07-24 16:46:05">2023/07/24</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/24/%E5%90%8E%E9%97%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="后门开发">后门开发</span>
+            <span class="post-date" title="2023-07-24 10:15:44">2023/07/24</span>
+        </a>
+        
+        
+        <a  class="All 安全开发 "
+           href="/2023/07/21/%E6%89%AB%E6%8F%8F%E5%99%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="tcp端口扫描器">tcp端口扫描器</span>
+            <span class="post-date" title="2023-07-21 09:25:02">2023/07/21</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/19/%E6%8C%81%E4%B9%85%E5%8C%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="持久化">持久化</span>
+            <span class="post-date" title="2023-07-19 16:46:54">2023/07/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/17/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Mysql数据库完整学习">Mysql数据库完整学习</span>
+            <span class="post-date" title="2023-07-17 16:03:05">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/17/%E9%98%B2%E5%BE%A1%E8%A7%84%E9%81%BF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="防御规避">防御规避</span>
+            <span class="post-date" title="2023-07-17 14:22:21">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/17/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="代码执行">代码执行</span>
+            <span class="post-date" title="2023-07-17 10:27:01">2023/07/17</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/14/%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初始访问">初始访问</span>
+            <span class="post-date" title="2023-07-14 16:10:59">2023/07/14</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/14/%E4%BB%A3%E7%A0%81%E4%B8%8E%E8%BF%9B%E7%A8%8B%E6%B3%A8%E5%85%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="代码与进程注入">代码与进程注入</span>
+            <span class="post-date" title="2023-07-14 09:41:04">2023/07/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/07/11/python%E9%BB%91%E5%AE%A2%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BC%96%E7%A8%8B%E4%B9%8B%E9%81%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="python黑客渗透测试编程之道">python黑客渗透测试编程之道</span>
+            <span class="post-date" title="2023-07-11 10:54:54">2023/07/11</span>
+        </a>
+        
+        
+        <a  class="All 红队 "
+           href="/2023/07/11/%E7%BA%A2%E9%98%9F%E6%80%9D%E8%B7%AF/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队思路">红队思路</span>
+            <span class="post-date" title="2023-07-11 10:43:16">2023/07/11</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/30/go%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go语言入门">go语言入门</span>
+            <span class="post-date" title="2023-06-30 16:46:48">2023/06/30</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院文件包含">htb学院文件包含</span>
+            <span class="post-date" title="2023-06-28 16:17:24">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2%E4%BD%BF%E7%94%A8%20FFUF%20%E6%94%BB%E5%87%BB%20WEB%20%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应用程序">应用程序</span>
+            <span class="post-date" title="2023-06-28 16:14:55">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2linux%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院 htb学院linux基础">htb学院 htb学院linux基础</span>
+            <span class="post-date" title="2023-06-28 16:13:26">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/28/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="htb学院htb学院sql注入基础">htb学院htb学院sql注入基础</span>
+            <span class="post-date" title="2023-06-28 16:11:22">2023/06/28</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-Q-31(海莲花) "
+           href="/2023/06/14/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-Q-31(海莲花)时间线及攻击手法总结">APT-Q-31(海莲花)时间线及攻击手法总结</span>
+            <span class="post-date" title="2023-06-14 17:00:06">2023/06/14</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/08/Gophish%E9%92%93%E9%B1%BC%E5%B9%B3%E5%8F%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Gophish钓鱼平台">Gophish钓鱼平台</span>
+            <span class="post-date" title="2023-06-08 15:05:05">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/06/08/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%A5%E9%97%A8-%E5%85%A5%E4%BE%B5%E6%8E%92%E6%9F%A5%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应入门-入侵排查篇">应急响应入门-入侵排查篇</span>
+            <span class="post-date" title="2023-06-08 15:05:05">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All 思想 "
+           href="/2023/06/05/%E8%AE%BA%E6%96%B0%E4%B8%AD%E5%9B%BD%E6%88%90%E7%AB%8B%E4%BB%A5%E6%9D%A5%E7%BB%8F%E6%B5%8E%E5%8D%B1%E6%9C%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="论新中国成立以来经济危机">论新中国成立以来经济危机</span>
+            <span class="post-date" title="2023-06-05 15:27:21">2023/06/05</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试 HTB "
+           href="/2023/04/25/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="windows基础知识">windows基础知识</span>
+            <span class="post-date" title="2023-04-25 15:08:28">2023/04/25</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试 HTB "
+           href="/2023/04/23/%E4%BD%BF%E7%94%A8METASPLOIT%E6%A1%86%E6%9E%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="使用METASPLOIT框架">使用METASPLOIT框架</span>
+            <span class="post-date" title="2023-04-23 16:53:53">2023/04/23</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/13/Crypto/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Crypto">Crypto</span>
+            <span class="post-date" title="2023-03-13 17:04:01">2023/03/13</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/11/machine/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="machine">machine</span>
+            <span class="post-date" title="2023-03-11 17:47:30">2023/03/11</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox Challenge "
+           href="/2023/03/10/Forensics%20Collection/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Forensics Collection">Forensics Collection</span>
+            <span class="post-date" title="2023-03-10 15:15:04">2023/03/10</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox "
+           href="/2023/03/09/Reminiscent/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Reminiscent">Reminiscent</span>
+            <span class="post-date" title="2023-03-09 09:41:42">2023/03/09</span>
+        </a>
+        
+        
+        <a  class="All HackTheBox startpointer "
+           href="/2023/03/08/HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HackTheBox上分锦囊(一)">HackTheBox上分锦囊(一)</span>
+            <span class="post-date" title="2023-03-08 13:55:09">2023/03/08</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/27/%E8%AE%B0%E4%B8%80%E6%AC%A1Kaiji%E5%83%B5%E5%B0%B8%E7%BD%91%E7%BB%9C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="记一次Kaiji僵尸网络">记一次Kaiji僵尸网络</span>
+            <span class="post-date" title="2023-02-27 17:16:34">2023/02/27</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 "
+           href="/2023/02/24/cve2012-0158%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="cve2012-0158漏洞复现">cve2012-0158漏洞复现</span>
+            <span class="post-date" title="2023-02-24 16:43:56">2023/02/24</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2023/02/22/PowerShell%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PowerShell基础">PowerShell基础</span>
+            <span class="post-date" title="2023-02-22 11:46:25">2023/02/22</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-48(CNC) "
+           href="/2023/02/20/APT-C-48-CNC%E7%BB%84%E7%BB%87%E6%94%BB%E5%87%BB%E5%88%A9%E7%94%A8pub%E6%96%87%E4%BB%B6%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-48-CNC组织攻击利用pub文件攻击活动分析">APT-C-48-CNC组织攻击利用pub文件攻击活动分析</span>
+            <span class="post-date" title="2023-02-20 14:10:47">2023/02/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/02/14/APT-C-56-%E9%80%8F%E6%98%8E%E9%83%A8%E8%90%BD%E4%BC%AA%E8%A3%85%E7%AE%80%E5%8E%86%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-56-透明部落伪装简历攻击活动分析">APT-C-56-透明部落伪装简历攻击活动分析</span>
+            <span class="post-date" title="2023-02-14 16:08:03">2023/02/14</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-35(肚脑虫) "
+           href="/2023/02/11/APT-C-35%E8%82%9A%E8%84%91%E8%99%AB%E6%9F%90%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E4%B8%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-35肚脑虫某样本分析(一)">APT-C-35肚脑虫某样本分析(一)</span>
+            <span class="post-date" title="2023-02-11 18:13:48">2023/02/11</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2023/02/09/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应入门指南">应急响应入门指南</span>
+            <span class="post-date" title="2023-02-09 13:37:00">2023/02/09</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-56(透明部落) "
+           href="/2023/02/06/APT-C-56%EF%BC%88%E9%80%8F%E6%98%8E%E9%83%A8%E8%90%BD%EF%BC%89%E5%88%A9%E7%94%A8%E5%A4%96%E8%B4%B8%E9%93%BE%E6%8E%A5%E4%BC%AA%E8%A3%85%E6%96%87%E6%A1%A3%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-56（透明部落）利用外贸链接伪装文档攻击分析">APT-C-56（透明部落）利用外贸链接伪装文档攻击分析</span>
+            <span class="post-date" title="2023-02-06 18:13:48">2023/02/06</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/11/27/%E5%A4%A7%E7%81%B0%E7%8B%BC%E8%BF%9C%E6%8E%A7/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大灰狼远控">大灰狼远控</span>
+            <span class="post-date" title="2022-11-27 21:35:19">2022/11/27</span>
+        </a>
+        
+        
+        <a  class="All 软件逆向 "
+           href="/2022/11/27/peid%E9%80%86%E5%90%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="peid逆向">peid逆向</span>
+            <span class="post-date" title="2022-11-27 10:15:30">2022/11/27</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/19/windbg%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="windbg命令学习">windbg命令学习</span>
+            <span class="post-date" title="2022-11-19 22:31:27">2022/11/19</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/19/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="进程和线程">进程和线程</span>
+            <span class="post-date" title="2022-11-19 20:42:28">2022/11/19</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/15/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="保护模式">保护模式</span>
+            <span class="post-date" title="2022-11-15 15:35:26">2022/11/15</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/14/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="winX86内核驱动开发">winX86内核驱动开发</span>
+            <span class="post-date" title="2022-11-14 16:22:58">2022/11/14</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/11/13/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="内核环境搭建学习">内核环境搭建学习</span>
+            <span class="post-date" title="2022-11-13 15:05:11">2022/11/13</span>
+        </a>
+        
+        
+        <a  class="All 游戏逆向 "
+           href="/2022/11/07/%E7%83%AD%E8%A1%80%E6%B1%9F%E6%B9%96%E6%B8%B8%E6%88%8F%E5%AE%89%E5%85%A8%E7%AD%91%E5%9F%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="热血江湖游戏安全筑基">热血江湖游戏安全筑基</span>
+            <span class="post-date" title="2022-11-07 21:27:59">2022/11/07</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BAPK%E4%BF%9D%E6%8A%A4%E7%AD%96%E7%95%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APK反破解技术">APK反破解技术</span>
+            <span class="post-date" title="2022-09-29 16:55:42">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BXposed%E6%A1%86%E6%9E%B6/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之Xposed框架">安卓逆向之Xposed框架</span>
+            <span class="post-date" title="2022-09-29 14:53:11">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/29/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BNDK%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="NDK开发">NDK开发</span>
+            <span class="post-date" title="2022-09-29 14:42:34">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 "
+           href="/2022/09/27/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%AE%9E%E6%88%98%E4%BF%AE%E6%94%B9%E8%B5%84%E6%BA%90%E5%8E%BB%E5%B9%BF%E5%91%8A01/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向实战修改资源去广告01">安卓逆向实战修改资源去广告01</span>
+            <span class="post-date" title="2022-09-27 19:46:34">2022/09/27</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/26/%E9%80%9A%E8%BF%87%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0smali%E6%B1%87%E7%BC%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="smali与dalvik指令">smali与dalvik指令</span>
+            <span class="post-date" title="2022-09-26 15:50:15">2022/09/26</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/23/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="基于Android的ARM汇编">基于Android的ARM汇编</span>
+            <span class="post-date" title="2022-09-23 15:17:52">2022/09/23</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/21/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BAPK%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之APK打包流程">安卓逆向之APK打包流程</span>
+            <span class="post-date" title="2022-09-21 10:17:44">2022/09/21</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/19/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8B%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之安卓开发">安卓逆向之安卓开发</span>
+            <span class="post-date" title="2022-09-19 17:18:12">2022/09/19</span>
+        </a>
+        
+        
+        <a  class="All 安卓逆向 入门手册 "
+           href="/2022/09/16/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8Bjava%E5%9F%BA%E7%A1%80/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安卓逆向之java基础">安卓逆向之java基础</span>
+            <span class="post-date" title="2022-09-16 18:02:04">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All IOT "
+           href="/2022/09/01/IOT%E5%88%9D%E6%8E%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="iot初探">iot初探</span>
+            <span class="post-date" title="2022-09-01 14:51:06">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 漏洞相关知识 "
+           href="/2022/09/01/win%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%8E%9F%E7%90%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="漏洞利用原理">漏洞利用原理</span>
+            <span class="post-date" title="2022-09-01 11:16:25">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All 漏洞研究 "
+           href="/2022/08/31/CVE-2010-2883%E5%A4%8D%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CVE-2010-2883_Adobe Reader TTF字体SING表栈溢出漏洞复现">CVE-2010-2883_Adobe Reader TTF字体SING表栈溢出漏洞复现</span>
+            <span class="post-date" title="2022-08-31 17:35:30">2022/08/31</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/08/23/APT_Shamoon/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="关于Shamoon.APT组织的一次完整攻击链分析">关于Shamoon.APT组织的一次完整攻击链分析</span>
+            <span class="post-date" title="2022-08-23 10:12:17">2022/08/23</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/08/16/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="日志分析">日志分析</span>
+            <span class="post-date" title="2022-08-16 17:04:55">2022/08/16</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/08/16/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94everything%E6%96%87%E4%BB%B6%E8%BF%87%E6%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="everything文件过滤">everything文件过滤</span>
+            <span class="post-date" title="2022-08-16 16:22:03">2022/08/16</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-26（Lazarus） "
+           href="/2022/08/12/Lazarus%E4%B8%80%E6%AC%A1%E9%92%88%E5%AF%B9%E8%88%AA%E7%A9%BA%E8%88%AA%E5%A4%A9%E8%A1%8C%E4%B8%9A%E7%9A%84%E6%94%BB%E5%87%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Lazarus一次针对航空航天行业的攻击">Lazarus一次针对航空航天行业的攻击</span>
+            <span class="post-date" title="2022-08-12 15:02:59">2022/08/12</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-08(蔓灵花) "
+           href="/2022/08/11/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="BITTER组织样本分析1">BITTER组织样本分析1</span>
+            <span class="post-date" title="2022-08-11 16:06:21">2022/08/11</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/07/19/%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="爬虫">爬虫</span>
+            <span class="post-date" title="2022-07-19 16:12:19">2022/07/19</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/07/15/Google_Hacking_%E8%B0%B7%E6%AD%8C%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Google_Hacking_谷歌搜索引擎">Google_Hacking_谷歌搜索引擎</span>
+            <span class="post-date" title="2022-07-15 09:56:40">2022/07/15</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/07/13/2022-7-13-exe/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="个人简历.exe">个人简历.exe</span>
+            <span class="post-date" title="2022-07-13 09:12:38">2022/07/13</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/07/06/%E5%88%9D%E5%85%A5Yara/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Yara入门">Yara入门</span>
+            <span class="post-date" title="2022-07-06 16:14:17">2022/07/06</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 蠕虫 "
+           href="/2022/06/28/2022-06-25_Scar%E6%84%9F%E6%9F%93%E5%BC%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2022.06.25_Scar感染式样本分析">2022.06.25_Scar感染式样本分析</span>
+            <span class="post-date" title="2022-06-28 09:25:02">2022/06/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/06/27/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="应急响应手册">应急响应手册</span>
+            <span class="post-date" title="2022-06-27 15:20:12">2022/06/27</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 "
+           href="/2022/03/08/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="宏病毒基础入门">宏病毒基础入门</span>
+            <span class="post-date" title="2022-03-08 09:23:03">2022/03/08</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 勒索病毒 "
+           href="/2022/03/07/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WannaCry病毒分析">WannaCry病毒分析</span>
+            <span class="post-date" title="2022-03-07 11:40:13">2022/03/07</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/03/03/wireshark/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="wireshark">wireshark</span>
+            <span class="post-date" title="2022-03-03 12:18:53">2022/03/03</span>
+        </a>
+        
+        
+        <a  class="All APT研究 APT-C-23(双尾蝎) "
+           href="/2022/02/27/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="APT-C-23境外双尾蝎组织样本分析">APT-C-23境外双尾蝎组织样本分析</span>
+            <span class="post-date" title="2022-02-27 16:00:07">2022/02/27</span>
+        </a>
+        
+        
+        <a  class="All 应急响应 "
+           href="/2022/02/24/%E8%AE%B0%E5%BD%95%E6%A0%A1%E5%9B%ADMAC%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="记录校园MAC挖矿病毒">记录校园MAC挖矿病毒</span>
+            <span class="post-date" title="2022-02-24 20:04:18">2022/02/24</span>
+        </a>
+        
+        
+        <a  class="All 恶意代码分析 蠕虫 "
+           href="/2022/02/24/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="熊猫烧香分析">熊猫烧香分析</span>
+            <span class="post-date" title="2022-02-24 18:09:42">2022/02/24</span>
+        </a>
+        
+        
+        <a  class="All win内核 "
+           href="/2022/02/20/win%E5%86%85%E6%A0%B8%E4%B8%8E%E9%A9%B1%E5%8A%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="win内核与驱动">win内核与驱动</span>
+            <span class="post-date" title="2022-02-20 08:23:51">2022/02/20</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2022/01/28/PE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="PE">PE</span>
+            <span class="post-date" title="2022-01-28 21:26:29">2022/01/28</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2021/04/10/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="unix环境高级编程">unix环境高级编程</span>
+            <span class="post-date" title="2021-04-10 14:54:25">2021/04/10</span>
+        </a>
+        
+        
+        <a  class="All 技术研究 "
+           href="/2021/03/29/codeql%E5%88%9D%E5%85%A5/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="codeql初入">codeql初入</span>
+            <span class="post-date" title="2021-03-29 14:14:01">2021/03/29</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-基于Android的ARM汇编" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">基于Android的ARM汇编</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="安卓逆向">安卓逆向</a> > 
+            
+            <a  data-rel="安卓逆向&lt;---&gt;入门手册">入门手册</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-10-27 10:58:31'>2022-09-23 15:17</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ARM%E5%8F%8D%E6%B1%87%E7%BC%96"><span class="toc-text">ARM反汇编</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B"><span class="toc-text">原生程序生成过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">1. 预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BC%96%E8%AF%91"><span class="toc-text">2.编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%B1%87%E7%BC%96"><span class="toc-text">3.汇编</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%93%BE%E6%8E%A5"><span class="toc-text">4.链接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Earm%E7%9F%A5%E8%AF%86"><span class="toc-text">关于arm知识</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#arm%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="toc-text">arm汇编语言程序结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-text">例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AE%B5%E5%AE%9A%E4%B9%89"><span class="toc-text">段定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A%E4%B8%8E%E6%A0%87%E5%8F%B7"><span class="toc-text">注释与标号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E5%99%A8%E6%8C%87%E4%BB%A4"><span class="toc-text">汇编器指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%A8%8B%E5%BA%8F%E4%B8%8E%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="toc-text">子程序与参数传递</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARM%E5%A4%84%E7%90%86%E5%99%A8%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="toc-text">ARM处理器寻址方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%8B%E5%8D%B3%E5%AF%BB%E5%9D%80"><span class="toc-text">立即寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80"><span class="toc-text">寄存器寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E7%A7%BB%E4%BD%8D%E5%AF%BB%E5%9D%80"><span class="toc-text">寄存器移位寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="toc-text">寄存器间接寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E5%9D%80%E5%AF%BB%E5%9D%80"><span class="toc-text">基址寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80"><span class="toc-text">多寄存器寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E6%A0%88%E5%AF%BB%E5%9D%80"><span class="toc-text">堆栈寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%97%E6%8B%B7%E8%B4%9D%E5%AF%BB%E5%9D%80"><span class="toc-text">块拷贝寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80"><span class="toc-text">相对寻址</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARM%E4%B8%8EThumb%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="toc-text">ARM与Thumb指令集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="toc-text">指令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-text">跳转指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#B%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-text">B跳转指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BL%E5%B8%A6%E9%93%BE%E6%8E%A5%E7%9A%84%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-text">BL带链接的跳转指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BX-%E5%B8%A6%E7%8A%B6%E6%80%81%E5%88%87%E6%8D%A2%E7%9A%84%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-text">BX 带状态切换的跳转指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BL-X%E5%B8%A6%E9%93%BE%E6%8E%A5%E5%92%8C%E7%8A%B6%E6%80%81%E5%88%87%E6%8D%A2%E7%9A%84%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-text">BL X带链接和状态切换的跳转指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E8%AE%BF%E9%97%AE%E6%8C%87%E4%BB%A4"><span class="toc-text">存储器访问指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LDR"><span class="toc-text">LDR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#STR"><span class="toc-text">STR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LDM"><span class="toc-text">LDM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#STM"><span class="toc-text">STM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PUSH"><span class="toc-text">PUSH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POP"><span class="toc-text">POP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SWP"><span class="toc-text">SWP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%8C%87%E4%BB%A4"><span class="toc-text">数据处理指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MOV"><span class="toc-text">MOV</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MVN"><span class="toc-text">MVN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ADD"><span class="toc-text">ADD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ADC"><span class="toc-text">ADC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SUB"><span class="toc-text">SUB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RSB"><span class="toc-text">RSB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SBC"><span class="toc-text">SBC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RSC"><span class="toc-text">RSC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MUL"><span class="toc-text">MUL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MLS"><span class="toc-text">MLS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MLA"><span class="toc-text">MLA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UMULL"><span class="toc-text">UMULL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UMLAL"><span class="toc-text">UMLAL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SMULL"><span class="toc-text">SMULL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SMLAL"><span class="toc-text">SMLAL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SMLAD"><span class="toc-text">SMLAD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SMLSD"><span class="toc-text">SMLSD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SDIV"><span class="toc-text">SDIV</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UDIV"><span class="toc-text">UDIV</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASR"><span class="toc-text">ASR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AND"><span class="toc-text">AND</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ORR"><span class="toc-text">ORR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EOR"><span class="toc-text">EOR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BIC"><span class="toc-text">BIC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LSL"><span class="toc-text">LSL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LSR"><span class="toc-text">LSR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ROR"><span class="toc-text">ROR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RRX"><span class="toc-text">RRX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMP"><span class="toc-text">CMP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMN"><span class="toc-text">CMN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TST"><span class="toc-text">TST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TEQ"><span class="toc-text">TEQ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SWI"><span class="toc-text">SWI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NOP"><span class="toc-text">NOP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MRS"><span class="toc-text">MRS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MSR"><span class="toc-text">MSR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#psr"><span class="toc-text">psr</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E4%BA%8E%E5%A4%9A%E5%AA%92%E4%BD%93%E7%BC%96%E7%A8%8B%E4%B8%8E%E6%B5%AE%E7%82%B9%E8%AE%A1%E7%AE%97%E7%9A%84NEON%E4%B8%8EVFP%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="toc-text">用于多媒体编程与浮点计算的NEON与VFP指令集</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-6 i,
+    .toc-level-6 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ARM反汇编"><a href="#ARM反汇编" class="headerlink" title="ARM反汇编"></a>ARM反汇编</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int main(int argc, char* argv[])&#123;</span><br><span class="line"></span><br><span class="line">  printf(&quot;Hello ARM!\n&quot;);</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/1.png"></p>
+<p>第一行的 EXPORT main 表明这个main函数是被程序导出的</p>
+<p>sub SP,SP,#8的涵义是sp寄存器的值减去8重新赋值给sp</p>
+<p>STMFD指令用于把寄存器值压入堆栈，在本例中保护原始寄存器的值，LDMFD指令用于从堆栈中回复寄存器的值，作用与STMFD恰恰相反</p>
+<p>STR 与LDR是存储器访问指令，存储器值的就是内存地址，通常被称为内存单元或存储单元，存储器的访问包含从存储器中读数据与写入数据到存储器中，ARM指令中将存储器使用一对中括号[]表示</p>
+<p>，STR是写存储器指令，STR,R0,[R11,#VAR_8]就是将R0寄存器的值保存在栈变量VAR_8中</p>
+<p>BL为带链接的跳转指令，完成类似其它编程语言中子程序调用的功能，BL puts 就说调用puts函数</p>
+<h2 id="原生程序生成过程"><a href="#原生程序生成过程" class="headerlink" title="原生程序生成过程"></a>原生程序生成过程</h2><p>原生程序采用C&#x2F;C+ +语言来编写,为什么到了逆向分析的时候却变成了ARM汇编代码呢?<br>这还得从原生程序的生成过程说起。原生程序的代码是由Android NDK中提供的交叉编<br>译工具链中的gcc编译器来编译的(所谓交叉编译I具链,指的是能在一种平台. 上编译出另- -<br>种平台.上运行的程序的工具集合)。在Windows或Linux.上使用Android NDK中的gcc编译的<br>原生程序可以直接在Android手机中运行,它与本地编译是相对的,本地编译即当前平台编译,<br>编译所得的程序只能在当前平台上运行，通常，我们也可以将交叉编译称为跨平台编译。<br>gcc编译原生C代码的步骤分为以下四步(C++代码由g++来编译)。</p>
+<h3 id="1-预处理"><a href="#1-预处理" class="headerlink" title="1. 预处理"></a>1. 预处理</h3><p>在这个阶段中，编译器将处理C代码中的预处理指令，如“#include”包含的头文件会<br>全部被编译进来，还有“#define”预定义、“#if”预条件处理等也都会在这里被编译器处理。<br>详细的输出可以给gcc编译器传递“-E”选项查看。以上一-小节的hello 为例，执行“gcc -E<br>hello.c -o hello.i”后hello.i文件内容如下(执行以上命令必须确保gcc能搜索到Android NDK<br>头文件路径，本例实际采用make工具的编译脚本来进行编译，</p>
+<h3 id="2-编译"><a href="#2-编译" class="headerlink" title="2.编译"></a>2.编译</h3><p>在这个阶段中，gcc 编译器首先要检查代码的规范性，以及是否有语法错误等，以确定<br>代码的实际要做的工作，在检查无误后，gcc 编译器把代码翻译成ARM汇编语言的代码,<br>可以为gcc编译器传递“-S”选项查看输出。执行“</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc - S hello.i -o hello.s&quot;后会生成hello.s汇编文件</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-汇编"><a href="#3-汇编" class="headerlink" title="3.汇编"></a>3.汇编</h3><p>gcc编译器会调用汇编器将汇编代码汇编成二进制目标文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -c hello.s -0 hello.o</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-链接"><a href="#4-链接" class="headerlink" title="4.链接"></a>4.链接</h3><p>这个阶段编译器会调用链接器将二进制的目标文件链接成Android平台可执行的ARM<br>原生程序。以上一小节的hello为例，执行“gcc hello.o - o hello”后会生成hello可执行文件<br>通过.上面4个阶段的分析可以发现,经过第2步编译后C代码就变成了ARM汇编代码。<br>既然C代码最终都会变成汇编代码，那可以直接编写汇编代码来开发ARM原生程序吗?<br>答案是肯定的，Android NDK支持直接使用ARM汇编语言编写的以“.s”结尾的文件<br>作为程序的源文件。另外，开发人员还可以使用C代码与ARM汇编代码混合的方式来编写<br>原生程序,这与Windows平台或Linux平台的汇编程序开发是相同的，具体的实现细节此处<br>不再展开。</p>
+<h1 id="关于arm知识"><a href="#关于arm知识" class="headerlink" title="关于arm知识"></a>关于arm知识</h1><p>在开始讲解ARM指令集之前，我们先来看看ARM汇编语言的一-些特点。<br>首先是ARM汇编语言与Java语言的区别。</p>
+<p>ARM汇编语言是一门“低级”语言，它能够与系统的底层打交道，直接访问底层硬件资源，而Java 语言为高级语言，它只存在于框架层面，能访问的资源都是由框架提供;</p>
+<p>其次，ARM汇编语言编写的程序运行速度快，占用内存少，缺点是编写的代码难懂，也难以维护，而Java语言开发的程序运行速度相对较慢，占用内存多，好处是编写的代码容易理解，开发效率高;最后，ARM汇编语言编写的程序几乎不需要其它代码的转换就能直接运行，源码与反编译出来的代码基本相似，而Java语言编写的程序需要将其转换成特定的字节码才能在Android虚拟机中运行。<br>其次是ARM汇编语言能实现什么功能。</p>
+<p>ARM汇编语言与C语言共用同- -套原生程序开发的API接口，而且两者都是基于模块化的面向过程的编程思想。因为C语言编写的代码在编译时有一个过程是将其转换成ARM汇编代码</p>
+<p>，所以可以这么理解:C语言能实现的功能ARM汇编语言都能实现。最后是ARM汇编语言中特有的寄存器。寄存器是处理器特有的高速存贮部件，它们可用来暂存指令、数据和位址。高级语言中用到的变量、常量、结构体、类等数据到了ARM汇编语言中，就是使用寄存器保存的值或内存地址。寄存器的数量有限，ARM微处理器共有37个32位寄存器，其中31个为通用寄存器，6个为状态寄存器。ARM处理器支持七种<br>运行模式，它们分别为:</p>
+<ol>
+<li>用户模式(usr): ARM处理器正常的程序执行状态。<br>2.快速中断模式(fiq):用于高速数据传输或通道处理。</li>
+<li>外部中断模式(irq): 用于通用的中断处理。<br>4.管理模式 (svc):操作系统使用的保护模式。<br>5.数据访 问终止模式(abt): 当数据或指令预取终止时进入该模式，可用于虚拟存储及<br>存储保护。</li>
+<li>系统模式(sys): 运行具有特权的操作系统任务。</li>
+<li>未定义指令中止模式(und): 当未定义的指令执行时进入该模式。</li>
+</ol>
+<p>ARM处理器的运行模式可以通过软件改变，也可以通过外部中断或异常处理改变。在<br>不同模式下，处理器使用的寄存器不尽相同，而且可供访问的资源也不- -样。在这7个模式<br>中，除了用户模式外，其它六种模式均为“特权”模式，在“特权”模式下，处理器可以任<br>意访问受保护的系统资源。本书将要讲解的ARM程序逆向分析技术只涉及到用户模式。<br>在用户模式下,处理器可以访问的寄存器为不分组寄存器R0<del>R7、分组寄存器R8</del>R14、<br>程序计数器R15(PC)以及当前程序状态寄存器CPSR。ARM处理器有两种工作状态:ARM状态与Thumb状态。处理器可以在两种状态之间随意切换。当处理器处于ARM状态时，会执行32位字对齐的ARM指令，当处于Thumb状态时，执行的是16位对齐的Thumb指令。Thumb状态下对寄存器的命名与ARM有部分差异，它们的关系如下:<br>Thumb状态下的R0<del>R7与ARM状态下的R0</del>R7相同。<br>Thumb状态下的CPSR与ARM状态下的CPSR相同。<br>Thumb状态下的FP对应于ARM状态下的R11。<br>Thumb状态下的IP对应于ARM状态下的R12。<br>Thumb状态下的SP对应于ARM状态下的R13。<br>Thumb状态下的LR对应于ARM状态下的R14。<br>Thumb状态下的PC对应于ARM状态下R15。</p>
+<p>寄存器可以通俗的理解为存放东西的“储物柜”，并不具备其它的功能，代码能实现什<br>么功能完全是由处理器的指令来决定的。例如想完成- -则加法运算,让处理器执行ADD加<br>法指令即可。我们将ARM处理器所有支持的指令统称为ARM指令集，指令集中的每- - 条<br>指令都有着自己的格式，在编写ARM汇编程序时需要严格的遵守指令规范，</p>
+<h1 id="arm汇编语言程序结构"><a href="#arm汇编语言程序结构" class="headerlink" title="arm汇编语言程序结构"></a>arm汇编语言程序结构</h1><p>Android平台的ARM汇编是GNU ARM汇编格式，使用的汇编器(汇编器的功能是将<br>汇编代码转换为二进制目标文件)为GAS (GNU Assembler, GNU汇编器)，它有着一套自<br>己的语法结构。读者可以访问如下的网站来查看其在线手册:.本章以下部分提到的ARM汇编均是指GNUARM汇编。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>拿hello.s汇编文件进行讲解</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">	.arch armv5te    @处理器架构</span><br><span class="line">	.fpu softvfp     @协处理器类型</span><br><span class="line">	.eabi_attribute 20, 1  @接口属性</span><br><span class="line">	.eabi_attribute 21, 1</span><br><span class="line">	.eabi_attribute 23, 3</span><br><span class="line">	.eabi_attribute 24, 1</span><br><span class="line">	.eabi_attribute 25, 1</span><br><span class="line">	.eabi_attribute 26, 2</span><br><span class="line">	.eabi_attribute 30, 6</span><br><span class="line">	.eabi_attribute 18, 4</span><br><span class="line">	.file	&quot;hello.c&quot;    @源文件名</span><br><span class="line">	.section	.rodata  @声明只读数据段</span><br><span class="line">	.align	2           @对齐方式为2^2=4字节</span><br><span class="line">.LC0:                    @标号LC0</span><br><span class="line">	.ascii	&quot;Hello ARM!\000&quot; @声明字符串</span><br><span class="line">	.text                @声明代码段</span><br><span class="line">	.align	2          @对齐方式为2^2=4字节</span><br><span class="line">	.global	main        @全局符号main</span><br><span class="line">	.type	main, %function @main类型为函数</span><br><span class="line">main:            @标号main</span><br><span class="line">	@ args = 0, pretend = 0, frame = 8</span><br><span class="line">	@ frame_needed = 1, uses_anonymous_args = 0</span><br><span class="line">	stmfd	sp!, &#123;fp, lr&#125;        @将fp、lr寄存器压入堆栈</span><br><span class="line">	add	fp, sp, #4               @初始化fp寄存器，设置栈帧，用于访问局部变量</span><br><span class="line">	sub	sp, sp, #8               @开辟栈空间</span><br><span class="line">	str	r0, [fp, #-8]            @保存第一个参数</span><br><span class="line">	str	r1, [fp, #-12]            @ 保存第二个参数</span><br><span class="line">	ldr	r3, .L3               @取标号.l3处的内容，即Hello GAS的偏移地址</span><br><span class="line">.LPIC0:            @标号.LPIC0</span><br><span class="line">	add	r3, pc, r3 @激素按字符串 Hello GAS内存地址</span><br><span class="line">	mov	r0, r3   @设置参数1</span><br><span class="line">	bl	puts(PLT) @调用puts函数</span><br><span class="line">	mov	r3, #0    @设置r3寄存器的值为0</span><br><span class="line">	mov	r0, r3   @程序返回结果为0</span><br><span class="line">	sub	sp, fp, #4    @恢复fp寄存器的值</span><br><span class="line">	ldmfd	sp!, &#123;fp, pc&#125;  @恢复fp寄存器，并将lr寄存器赋值给pc寄存器</span><br><span class="line">.L4:    @标号.L4</span><br><span class="line">	.align	2      @对齐方式为2^2=4字节</span><br><span class="line">.L3:   @标号.L3</span><br><span class="line">	.word	.LC0-(.LPIC0+8)   @保存字符串相对add r3 pc，r3的偏移量</span><br><span class="line">	.size	main, .-main    @main函数的大小为当前 代码行减去main的标号</span><br><span class="line">	.ident	&quot;GCC: (GNU) 4.4.3&quot; @编译器标识</span><br><span class="line">	.section	.note.GNU-stack,&quot;&quot;,%progbits  定义.note.GNU-stack段</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我们分段说明一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.arch armv5te    @处理器架构</span><br><span class="line">	.fpu softvfp     @协处理器类型</span><br><span class="line">	.eabi_attribute 20, 1  @接口属性</span><br><span class="line">	.eabi_attribute 21, 1</span><br><span class="line">	.eabi_attribute 23, 3</span><br><span class="line">	.eabi_attribute 24, 1</span><br><span class="line">	.eabi_attribute 25, 1</span><br><span class="line">	.eabi_attribute 26, 2</span><br><span class="line">	.eabi_attribute 30, 6</span><br><span class="line">	.eabi_attribute 18, 4</span><br></pre></td></tr></table></figure>
+
+<p>这些指令指定了程序使用的处理器架构、协处理器类型与接口的一-些属性。.arch指定了ARM处理器架构。armv5te 表示本程序的代码可以在armvSte架构的处理器上运行，除此之外，它还可以是armv6、armv7-a 等，不同的处理器架构支持的指令集不同，如果代码中使用了指定处理器架构不支持的指令，代码在编译时会报错。.fpu指定了协处理器的类型。softvfp 表示使用浮点运算库来模拟协处理器运算，之所以会出现这个选项，是因为很多时候为了节省处理器的生产成本，出厂的ARM处理器中不带协处理器单元，所有的浮点运算只能通过软模拟的形式来完成，在对硬件条件没有要求的情况下，可以使用这个保守选项，另外，还可以给.fpu赋值为vfpv2、vfpv3来指定使用处理器自带的协处理器。.eabi_ attribute 指定了一些接 口属性。EABI ( Embedded Application Binary Interface, 嵌入式应用二进制接口)是ARM制定的一套接口规范，Android 系统实现了它，此处的属性值在编译多数程序时都是固定的,但笔者在相关文档中没有找到其含义描述,故此不再深究。</p>
+<h2 id="段定义"><a href="#段定义" class="headerlink" title="段定义"></a>段定义</h2><p>程序中段的概念大概要追溯到远古的DOS时代了，现在的高级语言很少直接使用到段,这些都是由编译器来自动生成的。像C语言中使用到的全局变量、常量等信息编译器都会将其编译到一个名为“.data”的数据段中，如果细分的话，常量数据会被编译到名为“.rodata”的只读数据段中，这些数据段都是不可执行的，而代码则会编译到名为“.text”的代码段中。ARM汇编使用“.section”指令来定义段(section 原义为区段，有些书籍中解释为节区，它的格式为:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.section name [,&quot;flags&quot;[,%type[flag_specific_arguments]]]</span><br></pre></td></tr></table></figure>
+
+<p>name为段名，flags 为段的属性如读、写、可执行等，type 指定了段的类型，如progbits<br>表示段中包含有数据、note 表示段中包含的数据非程序本身使用，flag_ specific_ arguments<br>指定了一些平台相关的参数。<br>本实例定义了三个段:<br>.section .rodata”定义只读数据段，属性采用默认。.<br>.text”定义了代码段，没有使用.section关键字。<br>.section .note.GNU-stack,” %progbits”定义.note.GNU-stack段，它的作用是禁止生成<br>可执行堆栈，用来保护代码安全，可执行堆栈常常被用来引发堆栈溢出之类的漏洞，关于这<br>方面的探讨读者可以阅读软件漏洞研究方面的书籍。</p>
+<h3 id="注释与标号"><a href="#注释与标号" class="headerlink" title="注释与标号"></a>注释与标号</h3><p>为程序编写注释是一一个良好的编程习惯，GNUARM汇编支持两种在代码中添加注释的<br>方法。</p>
+<p> &#x2F;**&#x2F;型注释多用于大批量的注释，</p>
+<p>GNU ARM还支持单行代码注释，方法是在代码的最后使用符号“@”开头，6.3.1 小节的代码就采用此种方法进行注释。在ARM汇编代码中，</p>
+<p>标号是十分常见的。当在程序中使用跳转指令进行跳转的时候，<br>可以使用标号作为跳转的目的地，汇编器在编译时会将标号转换为地址。标号的声明方法是:<br>&lt;标号名&gt;:<br>如下面的代码就是一个简单的循环。<br>LOOP :<br>SUB R0，R0，#1<br>CMP R0，#0<br>BNE LOOP</p>
+<h3 id="汇编器指令"><a href="#汇编器指令" class="headerlink" title="汇编器指令"></a>汇编器指令</h3><p>程序中所有以点“.” 开头的指令都是汇编器指令，汇编器指令是与汇编器相关的，它<br>们不属于ARM指令集，本实例使用到的汇编器指令有:<br>.file:指定了源文件名。实例hello.s是从hello.c编译得来的，手写汇编代码时可以忽略它。<br>.align:指定代码对齐方式，后面跟的数值为2的次数方。如“.align4”表示2^4&#x3D;16字<br>节对齐。<br>.ascii:声明字符串。<br>.global:声明全局符号。全局符号是指在本程序外可以访问的符号。<br>.type:指定符号的类型。“.type main, %function”表示main符号为函数。<br>.word:用来存放地址值。“.word .LC0-(.LPIC0+8)”存放的是一个与地址无关的偏移量。<br>.size:<br>设置指定符号的大小。“.size main, .-main”中的点“”表示当前地址，减去main<br>符号的地址即为整个main函数的大小。</p>
+<p>.ident:编译器标识，无实际用途，生成可执行程序后它的值被放置到“.comment”段中。</p>
+<h3 id="子程序与参数传递"><a href="#子程序与参数传递" class="headerlink" title="子程序与参数传递"></a>子程序与参数传递</h3><p>子程序在代码中用来完成一个独立的功能，很多时候子程序与函数是相同的概念。ARM<br>汇编中声明函数的方法如下:<br>.global函数名<br>.type 函数名%function<br>函数名:<br>&lt; ..函数体..&gt;<br>例如声明一个实现两个数相加的函数的代码为:.<br>.global MyAdd<br>.type MyAdd,%function<br>MyAdd:<br>ADD r0，r0，r1 @两个参数相加<br>MOV pc，lr  @函数返回<br>既然是函数调用，就肯定存在函数参数传递的问题。ARM汇编中规定: R0-R3 这4个<br>寄存器用来传递函数调用的第1到第4个参数，超出的参数通过堆栈来传递。R0寄存器同<br>时用来存放函数调用的返回值。被调用的函数在返回前无须恢复这些寄存器的内容。</p>
+<h1 id="ARM处理器寻址方式"><a href="#ARM处理器寻址方式" class="headerlink" title="ARM处理器寻址方式"></a>ARM处理器寻址方式</h1><p>处理器寻址方式是指通过指令中给出的地址码字段来寻找真实操作数地址的方式。尽管<br>ARM处理器采用的是精简指令集，但指令间的组合灵活度却比x86处理器要高，x86处理<br>器支持七种寻址方式，而ARM处理器支持九种寻址方式。</p>
+<h2 id="立即寻址"><a href="#立即寻址" class="headerlink" title="立即寻址"></a>立即寻址</h2><p>立即寻址是最简单的一种寻址方式，大多数的处理器都支持这种寻址方式。立即寻址指<br>令中后面的地址码部分为立即数(即常量或常数)，立即寻址多用于给寄存器赋初值。并且<br>立即数只能用于源操作数字段，不能用于目的操作数字段。例如:<br>MOV R0，#1234<br>指令执行后R0&#x3D;1234。 立即数以“#” 作为前缀，表示十六进制数值时以“0x” 开头，<br>如#0x20。</p>
+<h2 id="寄存器寻址"><a href="#寄存器寻址" class="headerlink" title="寄存器寻址"></a>寄存器寻址</h2><p>寄存器寻址中，操作数的值在寄存器中，指令执行时直接从寄存器中取值进行操作。例如:<br>MOV R0，R1<br>指令执行后R0&#x3D;R1。</p>
+<h2 id="寄存器移位寻址"><a href="#寄存器移位寻址" class="headerlink" title="寄存器移位寻址"></a>寄存器移位寻址</h2><p>寄存器移位寻址是ARM指令集特有的寻址方式，寄存器移位寻址与寄存器寻址类似，<br>只是在操作前需要对源寄存器操作数进行移位操作。<br>寄存器移位寻址支持以下五种移位操作:<br>LSL:逻辑左移，移位后寄存器空出的低位补0.<br>LSR:逻辑右移，移位后寄存器空出的高位补0。<br>ASR:算术右移，移位过程中符号位保持不变，如果源操作数为正数，则移位后空出的<br>高位补0，否则补1。<br>ROR:循环右移，移位后移出的低位填入移位空出的高位。<br>RRX:带扩展的循环右移，操作数右移- -位， 移位空出的高位用C标志的值填充。<br>例如:<br>MOV R0，R1, LSL #2<br>指令的功能是将R1寄存器左移2位,即“R1 &lt;&lt; 2”后赋值给RO寄存器,指令执行后R0&#x3D;R1*4.</p>
+<h2 id="寄存器间接寻址"><a href="#寄存器间接寻址" class="headerlink" title="寄存器间接寻址"></a>寄存器间接寻址</h2><p>寄存器间接寻址中地址码给出的寄存器是操作数的地址指针,所需的操作数保存在寄存<br>器指定地址的存储单元中。例如:<br>LDR RO，[R1]<br>指令的功能是将R1寄存器的数值作为地址，取出此地址中的值赋给R0寄存器。</p>
+<h2 id="基址寻址"><a href="#基址寻址" class="headerlink" title="基址寻址"></a>基址寻址</h2><p>基址寻址是将地址码给出的基址寄存器与偏移量相加，形成操作数的有效地址，所需的<br>操作数保存在有效地址所指向的存储单元中。基址寻址多用于查表、数组访问等操作。例如:<br>LDR R0，[R1,#-4]<br>指令的功能是将R1寄存器的数值减4作为地址，取出此地址的值赋给R0寄存器。<br>6.4.6多 寄存器寻址<br>多寄存器寻址一条指令最多可以完成16个通用寄存器值的传送。例如:</p>
+<p>LDR R0，[R1,#-4]<br>指令的功能是将R1寄存器的数值减4作为地址，取出此地址的值赋给R0寄存器。</p>
+<h2 id="多寄存器寻址"><a href="#多寄存器寻址" class="headerlink" title="多寄存器寻址"></a>多寄存器寻址</h2><p>多寄存器寻址一条指令最多可以完成16个通用寄存器值的传送。例如:</p>
+<p>LDMIA R0，{R1， R2，R3，R4}<br>LDM是数据加载指令，指令的后缀IA表示每次执行完加载操作后RO寄存器的值自增1<br>个字，ARM指令集中，字表示的是一个32位的数值。这条指令执行后，R1&#x3D;[R0], R2&#x3D;[R0+#4],<br>R3-[R0+#8]，R4 &#x3D;[R0+#12]。</p>
+<h2 id="堆栈寻址"><a href="#堆栈寻址" class="headerlink" title="堆栈寻址"></a>堆栈寻址</h2><p>堆栈寻址是ARM处理器特有的一种寻址方式，堆栈寻址需要使用特定的指令来完成。<br>堆栈寻址的指令有LDMFA&#x2F;STMFA、LDMEASTMEA、LDMFD&#x2F;STMFD、LDMED&#x2F;STMED。<br>LDM和STM为指令前缀，表示多寄存器寻址，即一次可以传送多个寄存器值。FA、<br>EA、FD、ED为指令后缀，详细的指令介绍请参看6.5.3小节。<br>堆栈寻址举例:<br>STMFD sP!，{R1-R7, LR} @将R1<del>R7， LR入栈。多用于保存子程序“现场”<br>LDMFD sP!， {R1-R7， LR} @将数据出栈， 放入R1</del>R7，LR寄存器。多用于恢复子程序“现场”</p>
+<h2 id="块拷贝寻址"><a href="#块拷贝寻址" class="headerlink" title="块拷贝寻址"></a>块拷贝寻址</h2><p>块拷贝寻址可实现连续地址数据从存储器的某–位置拷贝到另一位置。块拷贝寻址的指<br>令有LDMIA&#x2F;STMIA、LDMDASTMDA、LDMIB&#x2F;STMIB、LDMDB&#x2F;STMDB。<br>LDM和STM为指令前缀，表示多寄存器寻址，即一次可以传送多个寄存器值。IA、<br>DA、IB、 DB为指令后缀，详细的指令介绍请参看6.5.3小节。<br>块拷贝寻址举例:<br>LDMIA R0!，{R1-R3}<br>@从RO寄存器指向的存储单元中读取3个字到R1-R3寄存器<br>STMIA R0!，{R1-R3}<br>@存储R1-R3寄存器的内容到RO寄存器指向的存储单元</p>
+<h2 id="相对寻址"><a href="#相对寻址" class="headerlink" title="相对寻址"></a>相对寻址</h2><p>相对寻址以程序计数器PC的当前值为基地址，指令中的地址标号作为偏移量，将两者<br>相加之后得到操作数的有效地址。例如:<br>BL NEXT<br>…..<br>NEXT:<br>…..<br>BLNEXT是跳到NEXT标号处执行。这里的BL采用的就是相对寻址，标号NEXT就<br>是偏移量。</p>
+<h1 id="ARM与Thumb指令集"><a href="#ARM与Thumb指令集" class="headerlink" title="ARM与Thumb指令集"></a>ARM与Thumb指令集</h1><p>指令集是处理器的核心，随着ARM处理器版本的升级,支持的指令集也在不断的增加，<br>其中被广泛使用的应属ARM指令集与Thumb指令集了。Thumb指令集可以理解为ARM指<br>令集的一一个子集，因此，本节将两种指令集放在一起，以内核架构为armv7-a的处理器为蓝<br>本进行讲解。</p>
+<h2 id="指令格式"><a href="#指令格式" class="headerlink" title="指令格式"></a>指令格式</h2><p>ARM指令的基本格式如下:<br><opcode> {<cond> }{S}{.W|.N} <Rd>, <Rn>{,<operand2>}<br>opcode为指令助记符。如MOV、ADD等。本章主要讲解不同类型的指令助词符及其含义。<br>cond为执行条件。它的取值如表6-2所示。</p>
+<p><img src="/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/6.png"></p>
+<p>S指定指令是否影响CPSR寄存器的值。如ADDS、SUBS等。<br>.W与.N为指令宽度说明符。在armv6t2及更高版本的Thumb代码中，部分指令的编码<br>即可以是16位，也可以是32位，正常情况下，这两种方式的代码都是有效的，但默认情况</p>
+<p>下会生成16位的代码，如果想要生成32位的编码，则可以为指令加上.W宽度说明符。无<br>论是ARM代码还是Thumb(armv6t2或更高版本)代码,都可以在其中使用.w宽度说明符,<br>但它对32位的代码没有影响。如果要将指令汇编为16位编码，则可以为指令加上.N宽度<br>说明符。<br>Rd为目的寄存器。<br>Rn为第一一个操作数寄存器。<br>operand2为第二个操作数。第二个操作数可以是立即数、寄存器或寄存器移位操作。<br>指令格式举例如下:<br>MOV R0，#2<br>ADD R1, R2， R3<br>SUB R2，R3，R4，LSL #2</p>
+<h2 id="跳转指令"><a href="#跳转指令" class="headerlink" title="跳转指令"></a>跳转指令</h2><p>跳转指令又称为分支指令，它可以改变指令序列的执行流程。ARM中有两种方式可以<br>实现程序跳转: -种是使用跳转指令直接跳转;另-种是给PC寄存器直接赋值实现跳转。<br>跳转指令有以下4条。</p>
+<h3 id="B跳转指令"><a href="#B跳转指令" class="headerlink" title="B跳转指令"></a>B跳转指令</h3><p>B{cond} label<br>B指令属于ARM指令集，是最简单的分支指令。当执行B指令时，如果条件cond满<br>足，ARM处理器将立即跳转到label 指定的地址处继续执行。例如:“BNE LABEL”表示条<br>件码Z&#x3D;0时跳转到LABEL处执行。</p>
+<h3 id="BL带链接的跳转指令"><a href="#BL带链接的跳转指令" class="headerlink" title="BL带链接的跳转指令"></a>BL带链接的跳转指令</h3><p>BL{cond} label<br>当执行BL指令时，如果条件cond满足，会首先将当前指令的下- -条指令的地址拷贝<br>到R14 (即LR)寄存器中，然后跳转到lable指定的地址处继续执行。这条指令通常用于调<br>用子程序，在子程序的尾部，可以通过“MOV PC, LR”返回到主程序中。</p>
+<h3 id="BX-带状态切换的跳转指令"><a href="#BX-带状态切换的跳转指令" class="headerlink" title="BX 带状态切换的跳转指令"></a>BX 带状态切换的跳转指令</h3><p>BX{cond} Rm<br>当执行BX指令时，如果条件cond满足，则处理器会判断Rm的位[0]是否为1,如果<br>为1则跳转时自动将CPSR寄存器的标志T置位，并将目标地址处的代码解释为Thumb代<br>码来执行，即处理器会切换至Thumb状态;反之,若Rm的位[0]为0,则跳转时自动将CPSR<br>寄存器的标志T复位，并将目标地址处的代码解释为ARM代码来执行，即处理器会切换到<br>ARM状态。例如下面的代码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">. code 32</span><br><span class="line">.............</span><br><span class="line">ADR R0，thumbcode+1</span><br><span class="line">BX R0</span><br><span class="line">@跳转到thumbcode处执行，并将处理器切换为Thumb模式。</span><br><span class="line">thumbcode :</span><br><span class="line">.code16</span><br><span class="line">...... </span><br></pre></td></tr></table></figure>
+
+<h3 id="BL-X带链接和状态切换的跳转指令"><a href="#BL-X带链接和状态切换的跳转指令" class="headerlink" title="BL X带链接和状态切换的跳转指令"></a>BL X带链接和状态切换的跳转指令</h3><p>BLX{cond} Rm<br>BLX指令集合了BL与BX的功能，当条件满足时，除了设置链接寄存器，还根据Rm<br>位[0]的值来切换处理器状态。</p>
+<h2 id="存储器访问指令"><a href="#存储器访问指令" class="headerlink" title="存储器访问指令"></a>存储器访问指令</h2><p>存储器访问操作包括从存储器中加载数据、存储数据到存储器、寄存器与存储器间数据<br>的交换等。</p>
+<h3 id="LDR"><a href="#LDR" class="headerlink" title="LDR"></a>LDR</h3><p>LDR用于从存储器中加载数据到寄存器中，它的格式如下:<br>LDR{type}{cond} Rd, label<br>LDRD{cond} Rd, Rd2, label<br>type指明了操作的数据的大小。它的取值如表6-3所示。</p>
+<p><img src="/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/7.png"></p>
+<p>cond为执行条件，它的取值如表6-2所示。<br>Rt为要加载的寄存器。<br>label为要读取的内存地址。它的表示方法有三种:<br>1.直接偏移量。如: LDR R8, [R9, #04]、LDR R8, [R9], #04<br>2.寄存器偏移。如: LDR R8, [R9, R10, #04]<br>3.相对PC。如: LDR R8, label1<br>LDRD -次加载双字的数据，将数据加载到Rd与Rd2寄存器中。<br>LDRD指令举例如下:</p>
+<p>LDRD RO，R1，1abel2 @从标号label2指向的内存中加载两个字的数据到R0与R1寄存器中。</p>
+<h3 id="STR"><a href="#STR" class="headerlink" title="STR"></a>STR</h3><p>STR用于存储数据到指定地址的存储单元中。它的格式如下:<br>STR{type}{cond} Rd, label<br>STRD{cond} Rd, Rd2, label<br>STR指令与LDR指令的格式相同，只是type中的SB与SH对STR无效。STR指令举<br>例如下:<br>STR R0，[R2， #04]<br>@将R0寄存器的数据存储到R2+4所指向的存储单元。</p>
+<h3 id="LDM"><a href="#LDM" class="headerlink" title="LDM"></a>LDM</h3><p>LDM可以从指定的存储单元加载多个数据到一个寄存器列表。它的格式如下:<br>LDM{addr_ mode}{cond} Rn{!} reglist<br>addr_ mode取值如表6-4所示。</p>
+<p><img src="/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/8.png"></p>
+<p>cond为表6-2所示的执行条件。<br>Rn为基地寄存器，用于存储初始地址。<br>!为可选的后缀。如果有!，则最终地址将写回到Rn寄存器中。<br>reglist为用来存储数据的寄存器列表，用大括号括起来。寄存器列表可以是多个连续的<br>寄存器，多个寄存器可以用“_” 连接，如R0-R3表示连接的R0至R3寄存器列表，如果多<br>个寄存器不是连续的，则使用逗号将它们分隔开来，如{R0, R1, R7}。<br>LDM指令举例如下:<br>LDMIA RO!，{R1-R3} @依次加载R0指向的存储单元的数据到R1、R2、R3寄存器。</p>
+<h3 id="STM"><a href="#STM" class="headerlink" title="STM"></a>STM</h3><p>STM将-一个寄存器列表的数据存储到指定的存储单元。它的格式如下:<br>STM{addr_ mode} {cond} Rn{!} reglist<br>STM与LDM的格式是一样的，STM指令举例如下:<br>STMDB R1!，{R3-R6， R11} @将R3-R6，R11寄 存器的内容存储到R1指向的存储单元。<br>STMFD SP!，{R3-R7}<br>@将R3-R7寄存器压入堆栈，功能等价于STMDB SP!，{R3-R7}。</p>
+<h3 id="PUSH"><a href="#PUSH" class="headerlink" title="PUSH"></a>PUSH</h3><p>PUSH将寄存器推入满递减堆栈。它的格式如下:<br>PUSH{cond} reglist<br>PUSH指令举例如下:<br>PUSH {r0， r4-r7}<br>@将R0、R4-R7 寄存器内容压入堆栈。</p>
+<h3 id="POP"><a href="#POP" class="headerlink" title="POP"></a>POP</h3><p>POP从满递减堆栈中弹出数据到寄存器。它的格式如下:<br>POP{cond} reglist<br>POP指令举例如下:<br>POP {r0， r4-r7} @将RO、R4 -R7寄存器从堆栈中弹出。</p>
+<h3 id="SWP"><a href="#SWP" class="headerlink" title="SWP"></a>SWP</h3><p>SWP用于寄存器与存储器之间的数据交换。它的格式如下:<br>SWP{B}{cond} Rd, Rm, [Rn]<br>B是可选的字节，若有B，则交换字节，否则交换32位的字。<br>cond为表6-2所示的执行条件。<br>Rd为要从存储器中加载数据的寄存器。<br>Rm为写入数据到存储器的寄存器。<br>Rn为需要进行数据交换的存储器地址。Rn不能与Rd和Rm相同。.<br>如果Rd与Rm相同，可实现单个寄存器与存储器的数据交换。例如:.<br>SWP R1，R1, [R0]<br>@将R1寄存器与R0指向的存储单元的内容进行交换。<br>SWPB R1, R2， [R0]<br>@从R0指向的存储单元读取-一个字节存入R1 (高24位清零)，然后将R2寄<br>存器的字节内容存储到该存储单元。</p>
+<h2 id="数据处理指令"><a href="#数据处理指令" class="headerlink" title="数据处理指令"></a>数据处理指令</h2><p>数据处理指令包括数据传送指令、算术运算指令、逻辑运算指令以及比较指令4类。数<br>据处理指令主要是对寄存器间的数据进行操作。所有的数据处理指令均可选择使用S后缀,<br>来决定是否影响状态标志，比较指令不需要S后缀，它们会直接影响状态标志。</p>
+<p>数据传送指令主要用于寄存器间的数据传送。</p>
+<h3 id="MOV"><a href="#MOV" class="headerlink" title="MOV"></a>MOV</h3><p>MOV为ARM指令集中使用最频繁的指令，它的功能是将8位的立即数或寄存器的内.<br>容传送到目标寄存器中。指令格式如下:<br>MOV{cond}{S} Rd, operand2<br>MOV指令举例如下:<br>MOV RO，#8<br>@R0&#x3D;8<br>MOV R1，R0<br>@R1&#x3D;R0<br>MOVS R2，R1，LSL #2 @R2&#x3D;R1*4, 影响状态标志</p>
+<h3 id="MVN"><a href="#MVN" class="headerlink" title="MVN"></a>MVN</h3><p>MVN为数据非传送指令。它的功能是将8位的立即数或寄存器按位取反后传送到目标<br>寄存器中。指令格式如下:<br>MVN{cond}{S} Rd, operand2<br>MVN指令举例如下:<br>MVN RO，#0xFF<br>@R0&#x3D;0xFFFFFF00 .<br>MVN R1, R2<br>@将R2寄存器数据取反后存入R1寄存器中<br>算术运算指令主要完成加、减、乘、除等算术运算。</p>
+<h3 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h3><p>ADD为加法指令。它的功能是将Rn寄存器与operand2的值相加，结果保存到Rd寄存<br>器。指令格式如下:<br>ADD{cond}{S} Rd, Rn, operand2<br>ADD指令举例如下:<br>ADD R0，R1，#2<br>@R0&#x3D;R1+2<br>ADDS R0，R1, R2<br>@R0&#x3D;R1+R2,影响标志位<br>ADD R0,R1，LSL #3<br>@R0&#x3D;R1 *8</p>
+<h3 id="ADC"><a href="#ADC" class="headerlink" title="ADC"></a>ADC</h3><p>ADC为带进位加法指令。它的功能是将Rn寄存器与operand2的值相加，再加上CPSR<br>寄存器的C条件标志位的值，最后将结果保存到Rd寄存器。指令格式如下:<br>ADC{cond}{S} Rd, Rn, operand2<br>ADC指令举例如下:<br>ADD R0, R0，R2<br>ADC R1, R1，R3<br>@两条指令完成64位加法，(R1, R0) &#x3D; (R1, R0) + (R3， R2)</p>
+<h3 id="SUB"><a href="#SUB" class="headerlink" title="SUB"></a>SUB</h3><p>SUB为减法指令。它的功能是用Rn寄存器减去operand2的值，结果保存到Rd寄存器<br>中。指令格式如下:<br>SUB{cond}{S} Rd, Rn, operand2<br>SUB指令举例如下:<br>SUB R0，R1, #4<br>@R0&#x3D;R1-4<br>SUBS R0，R1, R2<br>@R0&#x3D;R1-R2，影响标志位</p>
+<h3 id="RSB"><a href="#RSB" class="headerlink" title="RSB"></a>RSB</h3><p>RSB为逆向减法指令。它的功能是用operand2减去Rn寄存器，结果保存到Rd寄存器<br>中。指令格式如下:<br>RSB{cond}{S} Rd, Rn, operand2<br>RSB指令举例如下:<br>RSB R0，R1， #0x1234<br>@R0&#x3D;0x1234-R1<br>RSB R0，R1<br>@R0&#x3D;-R1</p>
+<h3 id="SBC"><a href="#SBC" class="headerlink" title="SBC"></a>SBC</h3><p>SBC为带进位减法指令。它的功能是用Rn寄存器减去operand2的值，再减去CPSR寄<br>存器的C条件标志位的值，最后将结果保存到Rd寄存器。指令格式如下:<br>SBC{cond}{S} Rd, Rn, operand2<br>SBC指令举例如下:<br>SUBS R0，R0, R2<br>SBC R1，R1, R3<br>@两条指令完成64位减法，(R1, R0) &#x3D; (R1, RO) - (R2, R3)</p>
+<h3 id="RSC"><a href="#RSC" class="headerlink" title="RSC"></a>RSC</h3><p>RSC为带进位逆向减法指令。它的功能是用operand2减去Rn寄存器，再减去CPSR寄<br>存器的C条件标志位的值，最后将结果保存到Rd寄存器。指令格式如下:<br>RSC{cond}{S} Rd, Rn, operand2<br>RSC指令举例如下:<br>RSBS R2，R0， #0<br>RSC R3，R1，#0 .<br>@两条指令完成64位数取反。(R3， R2) &#x3D; -(R1， R0)</p>
+<h3 id="MUL"><a href="#MUL" class="headerlink" title="MUL"></a>MUL</h3><p>MUL为32位乘法指令。它的功能是将Rm寄存器与Rn寄存器的值相乘，结果的低32<br>位保存到Rd寄存器中。指令格式如下:<br>MUL{cond}{S} Rd, Rm, Rn<br>MUL指令举例如下:</p>
+<p>MUL R0 R1 ,R2<br>@R0&#x3D;R1X R2<br>MULS RO R2 ,R3<br>@R0&#x3D;R2XR3，影响CPSR的N位与z位</p>
+<h3 id="MLS"><a href="#MLS" class="headerlink" title="MLS"></a>MLS</h3><p>MLS指令将Rm寄存器和Rn寄存器中的值相乘,然后再从Ra寄存器的值中减去乘积，<br>最后将所得结果的低32位存入Rd寄存器中。指令格式如下:<br>MLS{cond}{S} Rd, Rm, Rn, Ra<br>MLS指令举例如下:<br>MLS RO，R1, R2，R3<br>@R0的值为R3 - R1 X R2结果的低32位。</p>
+<h3 id="MLA"><a href="#MLA" class="headerlink" title="MLA"></a>MLA</h3><p>MLA指令将Rm寄存器和Rn寄存器中的值相乘，然后再将乘积与Ra寄存器中的值相<br>加，最后将结果的低32位存入Rd寄存器中。指令格式如下:<br>MLA{cond}{S} Rd, Rm, Rn, Ra<br>MLA指令举例如下:<br>MLA RO，R1， R2，R3<br>@R0的值为R3 + R1 XR2结果的低32位。</p>
+<h3 id="UMULL"><a href="#UMULL" class="headerlink" title="UMULL"></a>UMULL</h3><p>UMULL指令将Rm寄存器和Rn寄存器的值作为无符号数相乘,然后将结果的低32位<br>存入RdLo寄存器，高32位存入RdHi寄存器。指令格式如下:<br>UMULL{cond}{S} RdLo, RdHi, Rm, Rn<br>UMULL指令举例如下:<br>UMULL RO，R1, R2 , R3<br>@(R1， R0) &#x3D; R2XR3</p>
+<h3 id="UMLAL"><a href="#UMLAL" class="headerlink" title="UMLAL"></a>UMLAL</h3><p>UMLAL指令将Rm寄存器和Rn寄存器的值作为无符号数相乘,然后将64位的结果与<br>RdHi、RdLo 组成的64位数相加，结果的低32位存入RdLo寄存器，高32 位存入RdHi寄<br>存器。指令格式如下:<br>UMLAL{cond}{S} RdLo, RdHi, Rm, Rn<br>UMLAL指令举例如下:<br>UMLAL R0，R1, R2 ,R3<br>@(R1, R0) &#x3D; R2XR3 + (R1, R0)</p>
+<h3 id="SMULL"><a href="#SMULL" class="headerlink" title="SMULL"></a>SMULL</h3><p>SMULL指令将Rm寄存器和Rn寄存器的值作为有符号数相乘，然后将结果的低32位<br>存入RdLo寄存器，高32位存入RdHi寄存器。指令格式如下:<br>SMUL{cond}{S} RdLo, RdHi, Rm, Rn<br>SMULL指令举例如下:</p>
+<p>SMULL R0，R1，R2 , R3<br>@(R1, RO) &#x3D; R2XR3</p>
+<h3 id="SMLAL"><a href="#SMLAL" class="headerlink" title="SMLAL"></a>SMLAL</h3><p>SMLAL指令将Rm寄存器和Rn寄存器的值作为有符号数相乘，然后将64位的结果与<br>RdHi、RdLo组成的64位数相加，结果的低32位存入RdLo寄存器，高32位存入RdHi寄<br>存器。指令格式如下:<br>SMLAL{cond}{S} RdLo, RdHi, Rm, Rn<br>SMLAL指令举例如下:<br>SMLAL R0，R1，R2 , R3<br>@(R1, R0) &#x3D; R2XR3 + (R1， R0 )</p>
+<h3 id="SMLAD"><a href="#SMLAD" class="headerlink" title="SMLAD"></a>SMLAD</h3><p>SMLAD指令将Rm寄存器的低半字和Rn寄存器的低半字相乘，然后将Rm寄存器的<br>高半字和Rn的高半字相乘，最后将两个乘积与Ra寄存器的值相加并存入Rd寄存器。指令<br>格式如下:<br>SMLAD{cond}{S} Rd, Rm, Rn, Ra</p>
+<h3 id="SMLSD"><a href="#SMLSD" class="headerlink" title="SMLSD"></a>SMLSD</h3><p>SMLSD指令将Rm寄存器的低半字和Rn寄存器的低半字相乘,然后将Rm寄存器的高<br>半字和Rn的高半字相乘，接着使用第-一个乘积减去第二个乘积，最后将所得的差值与Ra<br>寄存器的值相加并存入Rd寄存器。指令格式如下:<br>SMLSD{cond}{S} Rd, Rm, Rn, Ra</p>
+<h3 id="SDIV"><a href="#SDIV" class="headerlink" title="SDIV"></a>SDIV</h3><p>SDIV为有符号数除法指令。它的格式如下:<br>SDIV{cond} Rd, Rm, Rn<br>SDIV指令举例如下:<br>SDIV R0，R1, R2</p>
+<h3 id="UDIV"><a href="#UDIV" class="headerlink" title="UDIV"></a>UDIV</h3><p>UDIV为无符号数除法指令。它的格式如下:<br>UDIV{cond} Rd, Rm, Rn<br>UDIV指令举例如下:<br>UDIV R0，R1, R2<br>@R0&#x3D;R1&#x2F;R2</p>
+<h3 id="ASR"><a href="#ASR" class="headerlink" title="ASR"></a>ASR</h3><p>ASR为算术右移指令。它的功能是将Rm寄存器算术右移operand2位，并使用符号位<br>填充空位，移位结果保存到Rd寄存器中。它的指令格式如下:<br>ASR{cond}{S} Rd, Rm, operand2<br>ASR指令举例如下:</p>
+<p>ASR R0，R1，#2<br>@将R1寄存器的值作为有符号数右移2位后赋给R0寄存器。<br>逻辑运算指令主要完成与、或、异或、移位等逻辑运算操作。</p>
+<h3 id="AND"><a href="#AND" class="headerlink" title="AND"></a>AND</h3><p>AND为逻辑与指令。它的指令格式如下:<br>AND{cond}{S} Rd, Rn, operand2<br>AND指令举例如下:<br>AND R0，R0，#1<br>@指令用来测试R0的最低位</p>
+<h3 id="ORR"><a href="#ORR" class="headerlink" title="ORR"></a>ORR</h3><p>ORR为逻辑或指令。它的指令格式如下:<br>ORR{cond}{S} Rd, Rn, operand2<br>ORR指令举例如下:.<br>ORR RO，RO，#0x0F @指令 执行后保留R0的低四位，其余位清0</p>
+<h3 id="EOR"><a href="#EOR" class="headerlink" title="EOR"></a>EOR</h3><p>EOR为异或指令。它的指令格式如下:<br>EOR{cond}{S} Rd, Rn, operand2<br>EOR指令举例如下:<br>EOR R0，R0，R0<br>@指令执行后R0的值为0</p>
+<h3 id="BIC"><a href="#BIC" class="headerlink" title="BIC"></a>BIC</h3><p>BIC为位清除指令。它的功能是将operand2的值取反，然后将结果与Rn寄存器的值相<br>“与”并保存到Rd寄存器中。它的指令格式如下:<br>BIC{cond}{S} Rd, Rn, operand2<br>BIC指令举例如下:<br>BIC R0，R0，#0x0F<br>@将R0低四位清0，其余位保持不变</p>
+<h3 id="LSL"><a href="#LSL" class="headerlink" title="LSL"></a>LSL</h3><p>LSL为逻辑左移指令。它的功能是将Rm寄存器逻辑左移operand2位，并将空位清0,<br>移位结果保存到Rd寄存器中。它的指令格式如下:<br>LSL{cond}{S} Rd, Rm, operand2<br>LSL指令举例如下:<br>LSL RO，R1, #2<br>@R0&#x3D;R1★4</p>
+<h3 id="LSR"><a href="#LSR" class="headerlink" title="LSR"></a>LSR</h3><p>LSR为逻辑右移指令。它的功能是将Rm寄存器逻辑右移operand2位，并将空位清0,<br>移位结果保存到Rd寄存器中。它的指令格式如下:</p>
+<p>LSR {cond}{S} Rd, Rm, operand2 .<br>LSR指令举例如下:<br>LSR RO，R1，#2<br>@R0&#x3D;R1&#x2F;4</p>
+<h3 id="ROR"><a href="#ROR" class="headerlink" title="ROR"></a>ROR</h3><p>ROR为循环右移指令。它的功能是将Rm寄存器循环右移operand2位，寄存器右边移<br>出的位移回到左边，移位结果保存到Rd寄存器中。它的指令格式如下:<br>ROR {cond}{S} Rd, Rm, operand2<br>LSR指令举例如下:<br>ROR R1, R1， #1<br>@将R1寄存器的最低位移到最高位</p>
+<h3 id="RRX"><a href="#RRX" class="headerlink" title="RRX"></a>RRX</h3><p>RRX为带扩展的循环右移指令。它的功能是将Rm寄存器循环右移1位，寄存器最高<br>位用标志位的值填充，移位结果保存到Rd寄存器中。它的指令格式如下:<br>RRX {cond}{S} Rd, Rm<br>LSR指令举例如下:<br>RRX R1, R1<br>@指令执行后R1寄存器右移1位，最高位用标志填充<br>比较指令用于比较两个操作数之间的值。</p>
+<h3 id="CMP"><a href="#CMP" class="headerlink" title="CMP"></a>CMP</h3><p>CMP指令使用Rn寄存器减去operand2的值，这与SUBS指令功能相同，但CMP指令<br>不保存计算结果，仅根据比较结果设置标志位。指令格式如下:<br>CMP {cond} Rn, operand2<br>CMP指令举例如下:<br>CMP R0，#0<br>@判断R0寄存器值是否为0</p>
+<h3 id="CMN"><a href="#CMN" class="headerlink" title="CMN"></a>CMN</h3><p>CMN指令将operand2的值加到Rn寄存器上，这与ADDS指令功能相同，但CMN指<br>令不保存计算结果，仅根据计算结果设置标志位。指令格式如下:<br>CMN {cond} Rn, operand2<br>CMN指令举例如下:<br>CMN R0，R1</p>
+<h3 id="TST"><a href="#TST" class="headerlink" title="TST"></a>TST</h3><p>TST为位测试指令。它的功能是将Rn寄存器的值和operand2的值进行“与”运算，这<br>与ANDS指令功能相同，但TST指令不保存计算结果，仅根据计算结果设置标志位。指令<br>格式如下:</p>
+<p>TST {cond} Rn, operand2<br>TST指令举例如下:<br>TST R0，#1<br>@判断R0寄存器最低位是否为1</p>
+<h3 id="TEQ"><a href="#TEQ" class="headerlink" title="TEQ"></a>TEQ</h3><p>TEQ的功能是将Rn寄存器的值和operand2的值进行“异或”运算，这与EORS指令功<br>能相同，但TEQ指令不保存计算结果，仅根据计算结果设置标志位。指令格式如下:<br>TEQ {cond} Rn, operand2<br>TEQ指令举例如下:<br>TEQ RO，R1<br>@判断R0寄存器与R1寄存器的值是否相等</p>
+<p>6.5.5其它指令<br>除了，上面讲到的指令外，还有- -些不常用或未归类的杂项指令。</p>
+<h3 id="SWI"><a href="#SWI" class="headerlink" title="SWI"></a>SWI</h3><p>SWI是软中断指令。该指令用于产生软中断，从而实现从用户模式到管理模式的切换。<br>如系统功能调用。指令格式如下:<br>SWI {cond}, immed_ <em>24<br>immed</em> 24为24 位的中断号，在Android的系统中，系统功能调用为0号中断，使用<br>R7寄存器存放系统调用号。使用RO-R3寄存器来传递系统调用的前4个参数，对于大于4<br>个参数的调用，剩余参数采用堆栈来传递。例如调用exit(0)的汇编代码如下:<br>MOV R0，#0<br>@参数0<br>MOV R7，#1<br>@系统功能号1为exit<br>SWI #0<br>@执行exit (0)</p>
+<h3 id="NOP"><a href="#NOP" class="headerlink" title="NOP"></a>NOP</h3><p>NOP为空操作指令。该指令仅用于空操作或字节对齐。指令格式只有一个操作码NOP。</p>
+<h3 id="MRS"><a href="#MRS" class="headerlink" title="MRS"></a>MRS</h3><p>MRS为读状态寄存器指令。该指令格式如下:<br>MRS Rd, psr<br>psr的取值可以是CPSR或SPSR.<br>MRS指令举例如下:<br>MRS R0，CPSR<br>@读取CPSR寄存器到R0寄存器中</p>
+<h3 id="MSR"><a href="#MSR" class="headerlink" title="MSR"></a>MSR</h3><p>MSR为写状态寄存器指令。该指令格式如下:<br>MSR Rd, psr_ fields, operand2</p>
+<h3 id="psr"><a href="#psr" class="headerlink" title="psr"></a>psr</h3><p>的取值可以是CPSR或SPSR。.<br>field指定传送的区域，它的取值如表6-5所示(field 所代表的字母必须为小写)。</p>
+<p><img src="/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/9.png"></p>
+<p>MSR指令举例如下:<br>MRS R0，CPSR<br>@读取CPSR寄存器到R0寄存器中<br>BIC R0，R0,<br>#0x80<br>@清除R0寄存器第7位<br>MSR CPSR_ C，RO<br>@开启IRQ中断<br>MOV PC，LR<br>@子程序返回</p>
+<h2 id="用于多媒体编程与浮点计算的NEON与VFP指令集"><a href="#用于多媒体编程与浮点计算的NEON与VFP指令集" class="headerlink" title="用于多媒体编程与浮点计算的NEON与VFP指令集"></a>用于多媒体编程与浮点计算的NEON与VFP指令集</h2><p>NEON与VFP指令集是ARM指令集的扩展,多用于多媒体编程与浮点计算。从Android<br>原生程序开发包(Android NDK) r3版本开始，加入了对NEON与VFP指令集的支持，如果想<br>使用NEON指令集，需要在Android.mk文件中加入一-行“LOCAL_ <em>ARM</em> NEON :&#x3D; true”, NEON<br>是ARMv7才支持的指令集，因此，还需要设置TARGET_ ARCH ABI的值为armeabi-v7a。尽<br>管如此还不够，NEON与VFP指令集作为处理器的“附加”指令集，在很多手机设备的处理器<br>中可能不支持,为了解决这个问题，Android NDK提供了-一个“cpufeatures”库来让开发者在运<br>行时检测处理器的能力。使用“cpufeatures” 库的方法是首先在Android.mk文件中添加“$(call<br>import- module,android&#x2F;cpufeatures)”，然后在C&#x2F;C++代码中包含头文件“cpu-features.h”, 该头文<br>件中定义了一些结构体与枚举常量,并且包含了android getCpuFamily0、 android getCpuFeatures()<br>与android getCpuCount 0三个函数。<br>android_ getCpuFamily()函 数用来获取处理器的家族信息。对于ARM架构的处理器来说, .<br>它始终返回一个常量值ANDROID_ <em>CPU</em> FAMILY_ ARM。<br>android getCpuFeatures()函 数用来检测处理器支持的指令集，如果处理器支持NEON指<br>令集，则返回的64位数值中ANDROID_ <em>CPU</em> ARM_ FEATURE_ NEON标志就会被置位，如<br>果处理器支持VFPv3指令集，则ANDROID_ CPU_ <em>ARM</em> FEATURE VFPv3就会被置位。<br>android_ getCpuCount ()函数用来获取处理器的核心数。NEON与VFP在分析Android NDK程序时很少见</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2023 answer77
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 672px;
+    }
+    .nav.fullscreen {
+        margin-left: -672px;
+    }
+    .nav-left {
+        width: 250px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 572px;
+        }
+        .nav.fullscreen {
+            margin-left: -572px;
+        }
+        .nav-left {
+            width: 180px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 572px;
+            margin-left: -572px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/3.png);
+    }
+    
+    
+    #post .index {
+        background: url(/img/3.png);
+    }
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+        background: url("/img/2.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
