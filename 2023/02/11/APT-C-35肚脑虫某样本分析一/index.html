@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1543,24 +1534,24 @@
 <p>alt+F11打开宏加密了 用vbs_password工具过一下</p>
 <p>看到里面这么多东西 80十进制 十六进制是50 判断是rar头文件 50 4B</p>
 <p>直接判定此时是写入数据</p>
-<p><img src="/APT-C-35%E8%82%9A%E8%84%91%E8%99%AB%E6%9F%90%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E4%B8%80/3.png"></p>
+<p><img src="/.com//3.png"></p>
 <p>​	</p>
 <p>接着创建三个计划任务，运行指定的文件，以此实现驻留。</p>
 <h2 id="pbs-bat"><a href="#pbs-bat" class="headerlink" title="pbs.bat"></a>pbs.bat</h2><p>我们来看生成文件夹 pbs.bat文件 他作用就是解压缩 comd.zip  删除计划任务</p>
-<p><img src="/APT-C-35%E8%82%9A%E8%84%91%E8%99%AB%E6%9F%90%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E4%B8%80/1.png"></p>
+<p><img src="/.com//1.png"></p>
 <h2 id="My-Drive计划任务"><a href="#My-Drive计划任务" class="headerlink" title="My_Drive计划任务"></a>My_Drive计划任务</h2><p>My_Drive任务就是执行解压后的恶意文件，从而开启完整攻击。</p>
-<p><img src="/APT-C-35%E8%82%9A%E8%84%91%E8%99%AB%E6%9F%90%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E4%B8%80/5.png"></p>
+<p><img src="/.com//5.png"></p>
 <h1 id="攻击组件分析"><a href="#攻击组件分析" class="headerlink" title="攻击组件分析"></a>攻击组件分析</h1><h2 id="comd-exe"><a href="#comd-exe" class="headerlink" title="comd.exe"></a>comd.exe</h2><p>我们看看这个解压缩后的文件 发现虽然有数字签名 可能是过期了 此时不可用</p>
-<p><img src="/APT-C-35%E8%82%9A%E8%84%91%E8%99%AB%E6%9F%90%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E4%B8%80/4.png"></p>
+<p><img src="/.com//4.png"></p>
 <p>分别从地址<a target="_blank" rel="noopener" href="http://blogs.libraryutilitis.live/vrhkdkjrajksrjkaskdoneS/rbjhrkjahsrjejka%E4%B8%8B%E8%BD%BD%E5%BE%97%E5%88%B0pbs">http://blogs.libraryutilitis.live/vrhkdkjrajksrjkaskdoneS/rbjhrkjahsrjejka下载得到pbs</a> PE文件和从地址<a target="_blank" rel="noopener" href="http://blogs.libraryutilitis.live/nrasjkhrsjkdrhkdfjkB/klrjajlrjklrkljaklrjklasklf%E4%B8%8B%E8%BD%BD%E5%BE%97%E5%88%B0pbs.bat">http://blogs.libraryutilitis.live/nrasjkhrsjkdrhkdfjkB/klrjajlrjklrkljaklrjklasklf下载得到pbs.bat</a></p>
 <p>，该批处理文件的功能是将pbs改名为creep.exe并执行，同时又由于pbs.bat是Pls_SSL计划任务的执行文件，从而以此实现了creep.exe的驻留。</p>
-<p><img src="/APT-C-35%E8%82%9A%E8%84%91%E8%99%AB%E6%9F%90%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E4%B8%80/6.png"></p>
-<p><img src="/APT-C-35%E8%82%9A%E8%84%91%E8%99%AB%E6%9F%90%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E4%B8%80/7.png"></p>
+<p><img src="/.com//6.png"></p>
+<p><img src="/.com//7.png"></p>
 <p>此时下载失败 网站应该是挂了 去微步拿一个</p>
 <h2 id="creep-exe"><a href="#creep-exe" class="headerlink" title="creep.exe"></a>creep.exe</h2><p>该文件与上一阶段具有相同的数字签名信息， 也是一个Downloader,主要完成下载功能，解密出地址<a target="_blank" rel="noopener" href="https://blogs.libraryutilitis.live/hkjnlkhfshjkls2/nrjukurjhajrjh%E5%B9%B6%E4%B8%8B%E8%BD%BD%E4%B8%BA%USERPROFILE%Servicing/Packages/Hyper/mnps.exe">https://blogs.libraryutilitis.live/hkjnlkhfshjkls2/nrjukurjhajrjh并下载为%USERPROFILE%Servicing\Packages\Hyper\mnps.exe</a></p>
-<p><img src="/APT-C-35%E8%82%9A%E8%84%91%E8%99%AB%E6%9F%90%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E4%B8%80/8.png"></p>
+<p><img src="/.com//8.png"></p>
 <p>这个exe没有获取到样本</p>
-<p><img src="/APT-C-35%E8%82%9A%E8%84%91%E8%99%AB%E6%9F%90%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E4%B8%80/9.png"></p>
+<p><img src="/.com//9.png"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>

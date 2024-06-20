@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1618,14 +1609,14 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//打印函数</span></span><br><span class="line">DbgPrint(<span class="string">&quot;CurrentProcessId=0x%p\n&quot;</span>, PsGetCurrentProcessId());</span><br></pre></td></tr></table></figure>
 
 <p>从日志可以看出，无论是驱动入口函数，还是驱动卸载函数，都隶属于进程ID为4的进程，在笔者的Windows 10测试环境中，进程ID为4的进程为SYSTEM进程</p>
-<p><img src="/win%E5%86%85%E6%A0%B8%E4%B8%8E%E9%A9%B1%E5%8A%A8/8.png"></p>
+<p><img src="/.com//8.png"></p>
 <p>SYSTEM进程其实是操作系统虚拟出来的一个进程，代表系统内核。一般来说，内核代码都处于SYSTEM进程空间中，但是驱动对象（DRIVER_OBJECT）的派遣例程一般工作在发起请求的进程中，</p>
 <p>与上下文概念相关联的是地址空间，对32位系统来说，应用层程序有独立的2GB低地址空间，这2GB地址是虚拟地址，不同进程之间相互独立，互不影响，而高地址的2GB是内核共享的地址空间。64位系统与32位系统类似，在 64 位 Windows 中，虚拟地址空间的理论大小为2字节，但实际上仅使用2字节范围的一小部分，范围从0x000’00000000 至 0x7FF’FFFFFFFF 的 8 TB 用于应用层空间，范围从0xFFFF0800’00000000 至 0xFFFFFFFF’FFFFFFFF 的 248 TB 用于内核空间。</p>
 <p>关于独立的应用层地址空间与共享的内核地址空间的区别，举一个通俗的例子来说明：比如进程P1与P2，在各自进程空间内修改0x6abb0000地址处的内容，那么P1只能看到自己修改后的内容，P2也只能看到自己修改后的内容，相互不影响；而对于内核空间来说，由于内核空间是共享的（提醒一下，并非全部内核地址空间都是共享的，但读者初期可以暂时认为是全部），所以对于两个驱动程序来说，</p>
 <p>驱动D1修改内核某个地址的内容，驱动D2可以读取到驱动D1修改后的内容。一名合格的驱动开发者，必须清楚自己的代码在运行时所对应的上下文，以免造成驱动异常。下面是一个由上下文不正确导致出现错误的例子：驱动程序需要访问P1进程的应用层地址空间A，但当前驱动代码工作在进程P2，当驱动访问A时，实际上访问到的却是P2进程的A，这个后果是不可预料的。</p>
 <h3 id="中断请求级别"><a href="#中断请求级别" class="headerlink" title="中断请求级别"></a>中断请求级别</h3><p>在应用层开发中，线程有“优先级”的概念，系统调度器以时间片作为粒度，根据线程的优先级来调度线程，线程优先级越高，获得调度的机会越大。与线程优先级概念类似，CPU提供了一个被称为IRQL（中断请求级别）的概念，</p>
 <p>并且规定，高IRQL的代码，可以中断（抢占）低IRQL的代码的执行过程，从而得到执行机会。不同级别的IRQL对应不同的数值，软件驱动常见的IRQL及其数值如表3-1所示，数值越大，表示级别越高。</p>
-<p><img src="/win%E5%86%85%E6%A0%B8%E4%B8%8E%E9%A9%B1%E5%8A%A8/9.png"></p>
+<p><img src="/.com//9.png"></p>
 <p>上表中只列出了软件驱动所需要使用到的IRQL，并不代表IRQL只有这三个值。不同体系CPU对IRQL的分级大同小异，为了简单起见，下面的描述中不额外区分CPU体系。</p>
 <p>不同IRQL的限制不同：</p>
 <p>对于PASSIVE_LEVEL来说，作为级别最低的IRQL，在这个IRQL中可以无限制使用系统提供的API（每个内核API对IRQL有不同的要求），并且可以访问分页内存（Paged）和非分页（NonPaged）内存；对于APC_LEVEL来说，这个中断级别可以中断PASSIVE_LEVEL的代码，主要用于APC（异步方法调用），在使用系统API时有一定的限制，在内存访问方面，处于APC级别的代码可以访问分页以及非分页内存；</p>

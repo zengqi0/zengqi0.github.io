@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1543,10 +1534,10 @@
 <p>段寄存器结构： 共96位， 16位可见，80位不可见。 </p>
 <p>可见部分为Selector成员（选择子）。</p>
 <p>具体结构如下图：</p>
-<p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%5C2.png"></p>
+<p><img src="/.com//%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%5C2.png"></p>
 <p>​	</p>
-<p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%5C47.png"></p>
-<p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%5C1.png"></p>
+<p><img src="/.com//%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%5C47.png"></p>
+<p><img src="/.com//%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%5C1.png"></p>
 <p>ES&#x3D;2B  </p>
 <p>2B对应二进制</p>
 <p>00101 0 <em>11</em>   最低两位是11 是3 所以说处于3环权限 </p>
@@ -1556,7 +1547,7 @@
 <p>写段寄存器指令：mov ds,ax 写了96位的。</p>
 <p>段寄存器可以用mov指令读写，但是LDTR和TR除外。</p>
 <p>证明隐藏的80位的存在：（下表属性是根据实际分析时总结出来的。）</p>
-<p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%5C3.png"></p>
+<p><img src="/.com//%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%5C3.png"></p>
 <h1 id="段权限检查"><a href="#段权限检查" class="headerlink" title="段权限检查"></a>段权限检查</h1><h3 id="CPU分级（与操作系统无关）"><a href="#CPU分级（与操作系统无关）" class="headerlink" title="CPU分级（与操作系统无关）"></a>CPU分级（与操作系统无关）</h3><p>0环 1环 2环 3环 特权指令只能运行在0环</p>
 <p>我们常说的驱动就是运行在0环权限下。也是最高权限，所以驱动才会那么牛逼。</p>
 <p>而常见的一些exe dll等我们直观感受的软件，代码都是运行在3环，权限最低。</p>
@@ -1573,10 +1564,10 @@
 <p>假设上述代码运行在0环，也就是CPL&#x3D;0，成功条件为：CPL&lt;&#x3D;DPL且RPL&lt;&#x3D;DPL，所以代码会执行失败。</p>
 <h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><p>修改DS CS对应的DPL，看看OD中内存访问、代码执行会有什么影响？</p>
 <p>怎么修改ds cs对应的dpl呢  我们首先修改ds的 我们根据之前的实验 可以知道 ds的段选择子是 23 ok 我们直接找到ds的段描述符 我们用</p>
-<p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/32.png"></p>
+<p><img src="/.com//32.png"></p>
 <p>此时 dpl是0 因为c9 9对应的二进制是1001  p是1   dpl 是11  s是 1 所以改成f 9的二进制是1001</p>
 <p>此时dpl等于二进制00 也就是0</p>
-<p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/33.png"></p>
+<p><img src="/.com//33.png"></p>
 <p>改完之后 </p>
 <p>注意这句话，段选择子的RPL一定要&lt;&#x3D;对应段描述符的DPL，否则试图使用该选择子加载对应段描述符的行为将由于权限不足而失败</p>
 <p>此时rpl是多少呢 我们看ds是0X23 是可见的16位段选择是分开就是 00100  0   11      </p>
@@ -1600,18 +1591,18 @@
 <p>2、CPL&gt;&#x3D;DPL的，在OD中的时候，此时默认为3环的环境，那么此时的CPL则为3，那么DPL也只能为3，所以这里选择实验的段描述符DPL需要为3</p>
 <p>3、又因为是代码段的描述符，所以S位需要为1，并且TYPE位中的C（一致性）需要为0</p>
 <p>我们在gdt表中找一个没用的数据 改一下</p>
-<p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/37.png"></p>
+<p><img src="/.com//37.png"></p>
 <p>所以这里将0x48的位置替换为<code>00cffb00 0000ffff</code>，通过windbg的指令<code>eq 80b95048 00cffb00 0000ffff</code>，，因为这段数据，f -&gt; 1111 那么则是 P为1 DPL为3 S为1 ，b -&gt; 1011 符合TYPE位中的C为0</p>
-<p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/38.png"></p>
+<p><img src="/.com//38.png"></p>
 <p>索引为9  所以段选择子为01001 0 11 为4B</p>
 <p>进入虚拟机 用od随便打开一个exe，改eip为jmp far 004B:00403500  此时cs为1b</p>
-<p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/39.png"></p>
+<p><img src="/.com//39.png"></p>
 <p>可以看到如下的段描述符是符合条件的，00cffb00&#96;0000ffff，f -&gt; 1111 那么则是 P为1 DPL为3 S为1 ，b -&gt; 1011 符合TYPE位中的C为0</p>
-<p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/36.png"></p>
+<p><img src="/.com//36.png"></p>
 <p>cs变为4B了 成功！！！</p>
 <h3 id="一致代码段访问实验"><a href="#一致代码段访问实验" class="headerlink" title="一致代码段访问实验"></a>一致代码段访问实验</h3><p>如果需要是一致代码段的段描述符的话，条件需要是 CPL &gt;&#x3D; DPL，其实这里的话还可以想下为什么没有了RPL的限制？个人理解其实就是为了低权限访问高权限，所以自然就没了RPL的限制</p>
 <p>但是如果想让代码段的一致属性为1的话，可以发现是没有的，因为如下图中TYPE位都是&lt;12的，所以这里的话需要自己构建</p>
-<p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/40.png"></p>
+<p><img src="/.com//40.png"></p>
 <p>这里通过windbg来制造一个新的段描述符，改的位置还是0x48的位置，因为默认是无效的空描述符，这里是空的 因为我之前改过了，再改一边<code>eq 80b95048 00c9fc00 0000ffff</code></p>
 <p>这里需要注意的是我这里制造的段描述符的 00c9fc00 0000ffff ，则该段描述符的DPL的值是为0的，那么此时的情况就是CPL为3 RPL为3（默认CS的RPL为3）去访问一个DPL为0的段描述符</p>
 <p>这里继续来测试，<code>jmp far 0048:00403500</code>，如下图所示，发现成功改变了CS代码段的段选择子为4B</p>
@@ -1657,7 +1648,7 @@
 <h2 id="练习-2"><a href="#练习-2" class="headerlink" title="练习"></a>练习</h2><p>门描述符后面学，先练习call代码段。</p>
 <p>使用call far调用自己的裸函数，裸函数内使用jmp far跳回来。要求不能崩溃报错、跳回后原寄存器的数值不能被改变。</p>
 <h1 id="调用门"><a href="#调用门" class="headerlink" title="调用门"></a>调用门</h1><p>调用门的结构如下图所示。它和普通的段描述符结构十分相似。低四个字节改为段选择子，如果指向的段描述符的<code>DPL</code>小于<code>CPL</code>，则会提权。高四个字节低5个位是调用调用门需要的参数数目。低四个字节的低16位和高四个字节的高16位拼接为跳转后新的在段中的偏移，也就是调用后<code>EIP</code>的位置。</p>
-<p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/26.png"></p>
+<p><img src="/.com//26.png"></p>
 <p><strong>那么调用门其实就是 type为12的情况下的一个段寄存器</strong>。</p>
 <table>
 <thead>
@@ -1713,8 +1704,8 @@
 
 <p>目前就是函数地址需要解决，这个函数地址的话其实就是我们的代码的起始地址，然后就处理这个函数的内容了。</p>
 <p>我们可以写一个函数不就完了嘛，但是需要修改成固定基址，这样函数地址就不会改变了。<strong>需要采用release版本，因为debug版本有个jmp，然后还得修改优化和随机基址</strong>：</p>
-<p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/42.png"></p>
-<p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/43.png"></p>
+<p><img src="/.com//42.png"></p>
+<p><img src="/.com//43.png"></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;Windows.h&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line">    <span class="type">void</span> _declspec(naked) test()</span><br><span class="line">    &#123;</span><br><span class="line">        _asm</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//这里我们访问一个0环才能访问的地址</span></span><br><span class="line">            <span class="comment">//这样就知道是否是拿到了0环的权限</span></span><br><span class="line">            push eax</span><br><span class="line">            mov eax,<span class="number">0x80b95040</span></span><br><span class="line">            mov eax,[eax]</span><br><span class="line">            pop eax</span><br><span class="line">            ret</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%x\n&quot;</span>, test);<span class="comment">//输出函数的地址</span></span><br><span class="line">        system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>这里我的函数地址是：40100f</p>
@@ -1723,8 +1714,8 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0040EC00`0008100f</span><br></pre></td></tr></table></figure>
 
 <p>将段描述符添加到gdt表：</p>
-<p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/46.png"></p>
-<h2 id="调用门执行"><a href="#调用门执行" class="headerlink" title="调用门执行"></a>调用门执行</h2><p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/41.png"></p>
+<p><img src="/.com//46.png"></p>
+<h2 id="调用门执行"><a href="#调用门执行" class="headerlink" title="调用门执行"></a>调用门执行</h2><p><img src="/.com//41.png"></p>
 <h2 id="1-调用门执行流程"><a href="#1-调用门执行流程" class="headerlink" title="1.调用门执行流程"></a>1.调用门执行流程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.首先会通过MAX&#123;CPL,RPL&#125; &lt;= DPL的规则检查当前程序是否有权限去访问这个调用门.</span><br><span class="line">2.如果权限能够访问，这时会使用调用门里面存储的段选择子去选择GDT或者LDT中的段描述符，与段描述符DPL进行比较的还是当前的CPL，而且要求当前的CPL一定是数值上大于该段描述符DPL的</span><br><span class="line">3.通过call指令调用调用门，不管是不是一致代码段，一定是提权（或者保持权限不变的），而不能够通过调用门降低权限。</span><br></pre></td></tr></table></figure>
 
 <h2 id="2-调用门堆栈变化"><a href="#2-调用门堆栈变化" class="headerlink" title="2.调用门堆栈变化"></a>2.调用门<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%A0%86%E6%A0%88&spm=1001.2101.3001.7020">堆栈</a>变化</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">当通过门，权限不变的时候，只会PUSH两个值：CS 返回地址新的CS的值由调用门决定</span><br><span class="line">当通过门，权限改变的时候，会PUSH四个值：SS ESP CS 返回地址 新的CS的值由调用门决定 新的SS和ESP由    TSS提供</span><br><span class="line"> </span><br><span class="line">当提权发生时，栈切换的顺序</span><br><span class="line">  1.使用目标代码段的DPL从TSS中选择合适的SS段选择子和ESP</span><br><span class="line">  2.从TSS中读取SS，ESP，在读的过程中如果发生任何读错误，或者使用SS载入段选择子错误，都会产生一个无效TSS错误（#TS）</span><br><span class="line">  3.检查SS段选择子的权限（跟当前代码段DPL比较是否匹配）、类型，如果发生错误就产生无效TSS异常（#TSS）</span><br><span class="line">  4.暂时存储当前的SS和ESP</span><br><span class="line">  5.载入新SS，ESP</span><br><span class="line">  6.把第四步中暂时保存的SS和ESP压入新的堆栈</span><br><span class="line">  7.从调用函数中拷贝参数到新的堆栈里</span><br><span class="line">  8.CS，EIP压入堆栈</span><br><span class="line">  9.从调用门描述符内载入新的CS和EIP，开始执行函数</span><br><span class="line"> </span><br><span class="line">通过门调用时，要执行哪行代码由调用门决定，但使用RETF返回时，由堆栈中压入的值决定，这就是说，进门时只能按指定路线走，出门时可以翻墙(只要改变堆栈里面的值就可以想去哪去哪)  </span><br><span class="line"> </span><br></pre></td></tr></table></figure>
@@ -1752,7 +1743,7 @@
 <p>call可以调用调用门。<br>对应代码段比CPL权限高时，自动提权，堆栈存储EIP CS 参数 ESP SS。<br>对应代码段比CPL权限低时，会触发异常，蓝屏。<br>权限相同时，执行正常，权限不变。<br>jmp可以跳调用门。<br>如果权限相同，则执行没问题，堆栈里没有值。<br>如果涉及提权，则会C005访问异常，代码仍在3环，不会蓝屏。<br>如果涉及降权，则会蓝屏。</p>
 <h1 id="中断门"><a href="#中断门" class="headerlink" title="中断门"></a>中断门</h1><p>Windows中的提权方式并未使用调用门，而是使用了中断门（旧CPU）。现在的新CPU全部使用快速调用。中断门调用使用int+中断描述符索引指令来进入，返回时通过iretd返回。 中断门无法携带参数。断电走2号中断（IDT第三个），双重错误走8号中断</p>
 <h2 id="IDT表"><a href="#IDT表" class="headerlink" title="IDT表"></a>IDT表</h2><p>中断描述符表。 r idtr r idtl 。 IDT表中全部存储系统段描述符。其中分为三类，任务门描述符，中断门描述符，陷阱门描述符。</p>
-<h2 id="中断门描述符"><a href="#中断门描述符" class="headerlink" title="中断门描述符"></a>中断门描述符</h2><p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/27.png"></p>
+<h2 id="中断门描述符"><a href="#中断门描述符" class="headerlink" title="中断门描述符"></a>中断门描述符</h2><p><img src="/.com//27.png"></p>
 <p>1110为32位中断门 0110为16位中断门</p>
 <p> 中断门的结构和调用门结构几乎一样，只是调用门用来写参数数目的位被清空不再使用和Type域不一样而已。<br>  既然中断门的结构知道了，我们来看一下中断门的执行流程：</p>
 <ul>
@@ -1774,18 +1765,18 @@
 <p>IF：中断允许标志位。当为1时，CPU会响应可屏蔽中断请求。为0时，CPU不会响应可屏蔽中断请求。</p>
 <p>可屏蔽中断请求：如键盘输入，鼠标点击都是一次可屏蔽中断请求。</p>
 <p>不可屏蔽中断请求：CPU必须立即无条件响应的请求，如电源断电。</p>
-<h2 id="陷阱门描述符"><a href="#陷阱门描述符" class="headerlink" title="陷阱门描述符"></a>陷阱门描述符</h2><p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/28.png"></p>
+<h2 id="陷阱门描述符"><a href="#陷阱门描述符" class="headerlink" title="陷阱门描述符"></a>陷阱门描述符</h2><p><img src="/.com//28.png"></p>
 <h1 id="任务段（TSS）"><a href="#任务段（TSS）" class="headerlink" title="任务段（TSS）"></a>任务段（TSS）</h1><p>我们回顾一下之前所学内容，在调用门、中断门与陷阱门中，一旦出现权限切换，那么就会有堆栈的切换。而且，由于<code>CS</code>的<code>CPL</code>发生改变，也导致了<code>SS</code>也必须要切换。切换时，会有新的<code>ESP</code>和<code>SS</code>从哪里来的呢？那就是任务状态段提供的。任务状态段简称任务段，英文缩写为<code>TSS</code>，<code>Task-state segment</code>。</p>
 <p>TSS是一块内存，104个字节，存储着大量的寄存器的值，结构如下图</p>
-<p> <img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/29.png"></p>
+<p> <img src="/.com//29.png"></p>
 <h2 id="TSS的作用"><a href="#TSS的作用" class="headerlink" title="TSS的作用"></a>TSS的作用</h2><p>Intel的设计思想：想通过TSS来实现任务的切换，因为利用TSS可以一次性更换很多寄存器从而实现快速的任务切换。</p>
 <p><code>CPU</code>的任务在操作系统的方面就是线程。任务一切换，执行需要的环境就变了，即所有寄存器里面的值，需要保存供下一次切换到该任务的时候再换回去重新执行。</p>
 <p>说到底，**<code>TSS</code>的意义就在于可以同时换掉一堆寄存器**。本质上和所谓的任务切换没啥根本联系。而操作系统嫌弃<code>Intel</code>的设计过于麻烦，自己实现了所谓的任务切换，即线程切换。具体将会在后面的教程进行讲解。</p>
 <h2 id="TSS的位置"><a href="#TSS的位置" class="headerlink" title="TSS的位置"></a>TSS的位置</h2><p>CPU中有一个段寄存器叫TR（TaskRegister），TR有96位，其中16位可见部分为选择子，可以找到GDT表中的一个段描述符，通过该描述符加载TR段寄存器中后80位。TR寄存器的Base指示了TSS表的位置。Limit指示了TSS表有多大。</p>
 <p>Type:1001表示当前描述符是个TSS段描述符但没有加载到TR寄存器中。 1011表示已经加载到TR寄存器中。</p>
-<p> <img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/45.png"></p>
+<p> <img src="/.com//45.png"></p>
 <h2 id="TSS段描述符"><a href="#TSS段描述符" class="headerlink" title="TSS段描述符"></a>TSS段描述符</h2><p> <code>TSS段描述符</code>的结构和普通的段描述符没啥区别，就不详细介绍了，如下图所示：</p>
-<p> <img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/30.png"></p>
+<p> <img src="/.com//30.png"></p>
 <h2 id="读写TR寄存器"><a href="#读写TR寄存器" class="headerlink" title="读写TR寄存器"></a>读写TR寄存器</h2><h3 id="加载TSS"><a href="#加载TSS" class="headerlink" title="加载TSS"></a>加载TSS</h3><p>通过LTR指定来装载TR寄存器（96位）。装载后TSS段描述符中的Type-3位会发生改变</p>
 <p>LTR指令只能在0环权限中使用。并且仅修改TR寄存器，不修改其他寄存器。</p>
 <h3 id="读取TR寄存器"><a href="#读取TR寄存器" class="headerlink" title="读取TR寄存器"></a>读取TR寄存器</h3><p>通过STR指令来读取TR寄存器，但只能读取16位，也就是可见部分（段选择子）</p>
@@ -1815,7 +1806,7 @@
 <p>当我们通过调用门、中断门这种提权时，CPU会去找TSS，这种可以理解为被动。这时会根据新CS的权限来选择替换ESP0 SS0、ESP1 SS1还是ESP2 SS2。</p>
 <h2 id="练习-5"><a href="#练习-5" class="headerlink" title="练习"></a>练习</h2><p>使用jmp TSS任务段进入0环，使用JMP出来。</p>
 <h1 id="任务门"><a href="#任务门" class="headerlink" title="任务门"></a>任务门</h1><p>使用INT指令+IDT表索引的方式进入任务门。通过IDT表中对应的描述符中的TSS Segment Selector查GDT表找到TSS任务段描述符，使用IRETD返回。</p>
-<h2 id="任务门描述符"><a href="#任务门描述符" class="headerlink" title="任务门描述符"></a>任务门描述符</h2><p><img src="/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/31.png"></p>
+<h2 id="任务门描述符"><a href="#任务门描述符" class="headerlink" title="任务门描述符"></a>任务门描述符</h2><p><img src="/.com//31.png"></p>
 <p>任务门的结构我就不想再赘述了，来看看它的执行过程：</p>
 <ol>
 <li>通过<code>INT N</code>的指令进行触发任务门</li>

@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1531,7 +1522,7 @@
 <p>比如我A程序放到一个地址运行，那B程序不可以进来，因为这个地址被人占用了，如果分段来 我就可以把B程序放到另一个段 </p>
 <p> 我们讲PE的文件格式（32位操作系统，兼容16位，所以前面的会有一个DOS</p>
 <p>兼容所有操作系统，<strong>所有你会发现有很多看起来没用的东西</strong>）</p>
-<p><img src="/PE/1.png"></p>
+<p><img src="/.com//1.png"></p>
 <p> <strong>PE文件是由许许多多的结构体组成的，程序在运行时就会通过这些结构快速定位到PE文件的各种资源，其结构大致如图所示，从上到下依次是Dos头、Nt头、节表、节区和调试信息(可选)。其中Dos头、Nt头和节表在本文中统称为PE文件头(因为SizeOfHeaders就是这三个头的总大小)、节区则称为节,所以也可以说PE文件是由PE文件头和节组成。</strong></p>
 <p>**<br> 　　PE文件头保存着整个PE文件的索引信息，可以帮助PE装载器定位资源，而节则保存着整个PE文件的所有资源。正因为如此，所以存在着这样的说法：头是节的描述，节是头的具体化。** </p>
 <p><em>首先在winhex把文件变小，帮助我们学习pe</em></p>
@@ -1560,7 +1551,7 @@
 <p>我们写一个程序 打开它 可以看到 64个字节刚好是4行 从第四行到3c位置指向的位置是dos块 </p>
 <p> <strong>在<code>IMAGE_DOS_HEADER</code>结构体后面紧跟着就是<code>IMAGE_DOS_STUB</code>程序，它是运行在<code>MS-DOS</code>下的可执行程序，当可执行文件运行于<code>MS-DOS</code>下时，这个程序会打印<code>This program cannot be run in DOS mode</code>这条消息。用户可以自己更改该程序，MS-DOS程序当前是可有可无的，如果你想使文件大小尽可能的小可以省掉MS-DOS程序，同时把前面的参数都清0。</strong> </p>
 <p>对于16位操作系统来说 DOS块的位置是汇编代码 </p>
-<p><img src="/PE/2.png"></p>
+<p><img src="/.com//2.png"></p>
 <p>*<em>可以看到</em>这个文件所需要的内存大小为3*512+90，我们dos系统里面 申请内存一次要申请512个字节 如果你要整型计算还要计算余数  不如这样算，就算读一个字节 也是拿512 多余的丢掉 速度是一样的</p>
 <p> 我们DOS的最后一个字段为C8，可以看到C8的位置就是PE字母</p>
 <h2 id="PE头"><a href="#PE头" class="headerlink" title="PE头"></a>PE头</h2><h3 id="NT头"><a href="#NT头" class="headerlink" title="NT头"></a>NT头</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_NT_HEADERS64</span> &#123;</span></span><br><span class="line">    DWORD Signature;    这个就是开头的PE字符</span><br><span class="line">    IMAGE_FILE_HEADER FileHeader;</span><br><span class="line">    IMAGE_OPTIONAL_HEADER64 OptionalHeader;</span><br><span class="line">&#125; IMAGE_NT_HEADERS64, *PIMAGE_NT_HEADERS64;</span><br></pre></td></tr></table></figure>
@@ -1589,7 +1580,7 @@
 
 <h3 id="数据目录表"><a href="#数据目录表" class="headerlink" title="数据目录表"></a>数据目录表</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> IMAGE_DIRECTORY_ENTRY_EXPORT          0   <span class="comment">// Export Directory 导出表</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IMAGE_DIRECTORY_ENTRY_IMPORT          1   <span class="comment">// Import Directory 导入表</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IMAGE_DIRECTORY_ENTRY_RESOURCE        2   <span class="comment">// Resource Directory 资源表</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IMAGE_DIRECTORY_ENTRY_EXCEPTION       3   <span class="comment">// Exception Directory 异常表</span></span></span><br><span class="line"><span class="comment">//#define IMAGE_DIRECTORY_ENTRY_SECURITY      4   // Security Directory ，没用</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IMAGE_DIRECTORY_ENTRY_BASERELOC       5   <span class="comment">// Base Relocation Table 重定位表</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IMAGE_DIRECTORY_ENTRY_DEBUG           6   <span class="comment">// Debug Directory 没用</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IMAGE_DIRECTORY_ENTRY_ARCHITECTURE    7   <span class="comment">// Architecture Specific Data没用</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IMAGE_DIRECTORY_ENTRY_GLOBALPTR       8   <span class="comment">// RVA of GP没用</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IMAGE_DIRECTORY_ENTRY_TLS             9   <span class="comment">// TLS Directory TLS</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG    10   <span class="comment">// Load Configuration Directory 没用</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT   11   <span class="comment">// Bound Import Directory in headers绑定导入表</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IMAGE_DIRECTORY_ENTRY_IAT            12   <span class="comment">// Import Address Table 导入地址表</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT   13   <span class="comment">// Delay Load Import Descriptors 延迟加载</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR 14   <span class="comment">// COM Runtime descriptor 没用</span></span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/PE/22.png"></p>
+<p><img src="/.com//22.png"></p>
 <h2 id="节表头：-IMAGE-SECTION-HEADER"><a href="#节表头：-IMAGE-SECTION-HEADER" class="headerlink" title="节表头： IMAGE_SECTION_HEADER"></a>节表头： IMAGE_SECTION_HEADER</h2><p> 节表：总大小占IMAGE_SECTION_HEADER结构体（40字节） * 节的数量（大小取决于节的数量）, 节的数量在 image file那里 </p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_SECTION_HEADER</span> &#123;</span></span><br><span class="line">    BYTE    Name[IMAGE_SIZEOF_SHORT_NAME]; <span class="comment">//当前节的名称  8个字节</span></span><br><span class="line">    <span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">            DWORD   PhysicalAddress;  <span class="comment">//在操作系统设计的问题，不允许访问物理地址，所以这个字段没用</span></span><br><span class="line">            DWORD   VirtualSize; 在内存中实际占用的大小</span><br><span class="line">    &#125; Misc;</span><br><span class="line">    DWORD   VirtualAddress; 节区在内存中的RVA, 数值总是SectionAlignment的值的整数倍</span><br><span class="line">        </span><br><span class="line">    DWORD   SizeOfRawData; 当前节表在文件中对齐后的大小，上面是内存，这里是文件</span><br><span class="line">    DWORD   PointerToRawData; 当前节数据在文件中的偏移地址 ，就是节的数据此时在哪个位置</span><br><span class="line">        </span><br><span class="line">    DWORD   PointerToRelocations; <span class="comment">// 调试相关    没用   12字节</span></span><br><span class="line">    DWORD   PointerToLinenumbers;<span class="comment">// 调试相关  没用</span></span><br><span class="line">    WORD    NumberOfRelocations;<span class="comment">// 调试相关  没用</span></span><br><span class="line">    WORD    NumberOfLinenumbers;<span class="comment">// 调试相关  没用 </span></span><br><span class="line">    DWORD   Characteristics; <span class="comment">//文件属性，比如该节数据属性是否为可执行属性，可以当作一个依据来判断是什么段都在这里面</span></span><br><span class="line">    <span class="comment">//在windows 你不给读的权限,他也会读，你不给执行权限 也有执行权限 任何内存地址 只要可以读 就可以执行</span></span><br><span class="line"></span><br><span class="line">&#125; IMAGE_SECTION_HEADER, *PIMAGE_SECTION_HEADER;</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
 
@@ -1623,16 +1614,16 @@
 </code></pre>
 </li>
 </ul>
-<p><img src="/PE/13.png"></p>
+<p><img src="/.com//13.png"></p>
 <p>第一个导入名称表位置是460，导入名称表每四个字节代表一个函数，此时460位置是2070 文件rva是470，看470就是exitprocess函数</p>
 <p>库名称在47E   </p>
 <p>导入地址表在虚拟rva是2000，那么API地址就是要填到内存402000的位置去</p>
-<h4 id="2-导入查找表"><a href="#2-导入查找表" class="headerlink" title="2.导入查找表"></a>2.导入查找表</h4><p><img src="C:\Users\曾淇\AppData\Roaming\Typora\typora-user-images\1651490415740.png" alt="1651490415740"></p>
+<h4 id="2-导入查找表"><a href="#2-导入查找表" class="headerlink" title="2.导入查找表"></a>2.导入查找表</h4><p><img src="/.com//Users\曾淇\AppData\Roaming\Typora\typora-user-images\1651490415740.png" alt="1651490415740"></p>
 <h4 id="3-IMAGE-IMPORT-BY-NAME-结构体定义如下"><a href="#3-IMAGE-IMPORT-BY-NAME-结构体定义如下" class="headerlink" title="3. IMAGE_IMPORT_BY_NAME 结构体定义如下:"></a>3. IMAGE_IMPORT_BY_NAME 结构体定义如下:</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_IMPORT_BY_NAME</span> &#123;</span></span><br><span class="line">    WORD    Hint;   <span class="comment">//序号 这个序号其实没用，系统不看，这个序号是保存当时编译dll时的序号，不同版本不同</span></span><br><span class="line">    CHAR   Name[<span class="number">1</span>];   <span class="comment">//函数名称</span></span><br><span class="line">&#125; IMAGE_IMPORT_BY_NAME, *PIMAGE_IMPORT_BY_NAME;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h4 id="4-IMAGE-THUNK-DATA——INT、IAT的结构体定义如下"><a href="#4-IMAGE-THUNK-DATA——INT、IAT的结构体定义如下" class="headerlink" title="4. IMAGE_THUNK_DATA——INT、IAT的结构体定义如下:"></a>4. IMAGE_THUNK_DATA——INT、IAT的结构体定义如下:</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">有<span class="number">32</span>位和<span class="number">64</span>位 我们拿个<span class="number">32</span>位的</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_THUNK_DATA32</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">        DWORD ForwarderString;      <span class="comment">// PBYTE  暂时不用考虑 是转发用的</span></span><br><span class="line">        DWORD Function;             <span class="comment">// PDWORD 表示函数地址</span></span><br><span class="line">        DWORD Ordinal;              </span><br><span class="line">        DWORD AddressOfData;        <span class="comment">// PIMAGE_IMPORT_BY_NAME 若是按名字导入AddressOfData指向名字信息</span></span><br><span class="line">    &#125; u1;  注意这个是一个大的<span class="class"><span class="keyword">union</span> 含多个域但是在不同时刻代表不同的意义，那到底应该是名字还是序号，如何区分呢？可以通过<span class="title">Ordinal</span>判断，如果<span class="title">Ordinal</span>的最高位是1，就是按序号导入的，这时候，低16位就是导入序号，如果最高位是0，则 <span class="title">AddressOfData</span>是一个<span class="title">RVA</span>，指向一个<span class="title">IMAGE_IMPORT_BY_NAME</span>结构，用来保存名字信息</span></span><br><span class="line"><span class="class">&#125; <span class="title">IMAGE_THUNK_DATA32</span>;</span></span><br><span class="line"><span class="keyword">typedef</span> IMAGE_THUNK_DATA32 * PIMAGE_THUNK_DATA32;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/PE/14.png"></p>
+<p><img src="/.com//14.png"></p>
 <p>那OD此时怎么知道调用的是哪个API？</p>
 <p>如果调试器发现你调用的Iat表的地址，那就是调API </p>
 <p>如果名称表为空，他会把iat表也就是导入地址表当作函数名称表来使用，导入地址表里面就是有函数名</p>
@@ -1681,11 +1672,11 @@
 <p><strong><code>IMAGE_RESOURCE_DIRECTORY.NumberOfNamedEntries</code>和<code>IMAGE_RESOURCE_DIRECTORY.NumberOfIdEntries</code><br>　　在资源目录头结构中这两个字段是最为重要的，其他字段大部分为0。NumberOfNamedEntries表示在该资源目录头后跟随的资源目录项中以IMAGE_RESOURCE_DIR_STRING_U结构命名的资源目录项数量。NumberOfIdEntries表示在该资源目录头后跟随的资源目录项中以ID命名的资源目录项数量。两个字段加起来就是本资源目录头后的资源目录项的数量总和。也就是后面IMAGE_RESOURCE_DIRECTORY_ENTRY结构的总数量。</strong></p>
 <p>　　<strong><code>IMAGE_RESOURCE_DIRECTORY_ENTRY.DUMMYUNIONNAME</code><br>　　在资源目录项中该字段是一个联合体类型，大小为4个字节，它决定这个资源目录的名字是字符串还是ID号。如果这个字段的最高位是1，则表示该资源的名字是字符串类型，该字段的低31位是IMAGE_RESOURCE_DIR_STRING_U结构的偏移，但这个偏移既不是FOA也不是RVA，它是以首个资源表的地址为基址，加上低31位的值才是字符串结构的地址。如果最高位为0，则表示该资源的名字是一个ID号，整个字段的值就是该资源的ID。(如果是一级目录的资源项，该ID有14个号码被预先定义了)</strong></p>
 <p> <strong>一级目录中预定义的资源ID：</strong> </p>
-<p><img src="/PE/19.png"></p>
+<p><img src="/.com//19.png"></p>
 <p> <strong><code>IMAGE_RESOURCE_DIRECTORY_ENTRY.DUMMYUNIONNAME2</code><br>　　在资源目录项中该字段是一个联合体类型，大小为4个字节，它决定这个资源目录的目录中子节点的类型(是目录还是节点)。如果这个字段的最高位是1，则表示该资源的子节点是一个目录类型，该字段的低31位是子目录的资源目录头结构的偏移，但这个偏移既不是FOA也不是RVA，它是以首个资源表的地址为基址，加上低31位的值才是资源目录头结构的地址。如果最高位为0，则表示该资源的子节点是一个节点，它也以首个资源表的地址为基址，整个字段的值就是该资源节点的偏移。这个节点是IMAGE_RESOURCE_DATA_ENTRY类型的结构体。(一般在三级目录中该字段的最高位位0，而在其他两个目录中该字段的最高位为1)</strong> </p>
 <p> <strong>注：为了编程方便，IMAGE_RESOURCE_DIRECTORY_ENTRY的联合体中出现了一组特殊的struct结构体，其成员声明格式为：[类型] [变量名] : [位宽表达式]， 这个格式就是C语言中位段的声明格式。NameOffset字段的值等于该联合体的低31位，NameIsString字段的值等于该联合体的最高位。将一个4字节的类型拆成这样两个字段就可以方便的避免了繁琐的位操作了，而且该结构的总大小不会发生变化。</strong> </p>
 <p> <strong><code>MAGE_RESOURCE_DATA_ENTRY</code><br>　　这个结构体就是目录资源的三级目录下的子目录，里面存储的就是资源文件的信息，如OffsetToData字段存储的就是资源文件的RVA地址，它指向了资源的二进制信息，Size字段存储的就是资源文件的大小，CodePage字段存储资源的代码页但大多数情况为0。<br>　　注：在其指向的资源数据中，字符串都是Unicode的编码方式，每个字符都是由一个16位(一个单字)的值表示，并且都是以UNICODE_NULL结束(其实就是两个0x00)。</strong><br>　　<strong><code>IMAGE_RESOURCE_DIR_STRING_U</code><br>　　该结构体就是目录资源的名称结构，里面存在两个字段，都是2个字节，Length字段存储的是目录资源名称的长度，以2个字节为单位。NameString字段是一个Unicode字符串的第一个字符，并不以0结尾，其长度是由Length字段限制。该结构的总大小并不是表面上的4个字节，而是根据名字长度变化的，计算方式为：Size &#x3D; SizeOf(WCHAR) * (Length + 1); 这里的1是Length字段的大小。</strong> </p>
-<p><img src="/PE/20.png"></p>
+<p><img src="/.com//20.png"></p>
 <p> <strong>手动寻找资源数据(为了方便程序的两个对齐方式的值都是0x1000)：</strong> </p>
 <h2 id="重定位表"><a href="#重定位表" class="headerlink" title="重定位表"></a>重定位表</h2><p> 知道了重定位表的作用，现在我们来分析一个重定位表在PE文件中是如何存在的，首先来看看描述重定位表的结构： </p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_BASE_RELOCATION</span> &#123;</span></span><br><span class="line">    DWORD   VirtualAddress;<span class="comment">//RVA</span></span><br><span class="line">    DWORD   SizeOfBlock;</span><br><span class="line">&#125; IMAGE_BASE_RELOCATION,* PIMAGE_BASE_RELOCATION;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IMAGE_SIZEOF_BASE_RELOCATION</span></span><br></pre></td></tr></table></figure>
@@ -1694,7 +1685,7 @@
 <p>每一个块记录了1000H即4KB大小的内存中需要重定位信息的地址（一页大小），这些地址以VirtualAdress为该页的基址，偏移地址占两个字节（1000H最多需要12bit即可：0~FFFH）。</p>
 <p>所以两个字节的低12位为偏移地址，而高4位就是一个标记，当此标记为0011（3）时低12为才有效，否则该2个字节可能是为了对齐而产生的，并且为对齐而产生的字节其值全为0。</p>
 <p> 由于重定位表的SizeOfBlock大小不确定，新的Block的重定位信息的结构体接着上一个Block4字节对齐后开始，而当出现一个_IMAGE_BASE_RELOCATION结构体的值全为0时，表明重定位表结束。 </p>
-<p><img src="/PE/21.png"></p>
+<p><img src="/.com//21.png"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>

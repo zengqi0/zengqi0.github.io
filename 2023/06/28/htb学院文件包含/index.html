@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1683,13 +1674,13 @@
 <p>在所有情况下，htb学院文件包含漏洞都很严重，最终可能会危及整个后端服务器。即使我们只能阅读 Web 应用程序源代码，它仍然可能让我们破坏 Web 应用程序，因为它可能会揭示前面提到的其他漏洞，并且源代码还可能包含数据库密钥、管理员凭据或其他敏感信息。</p>
 <h1 id="本地htb学院文件包含-LFI-1"><a href="#本地htb学院文件包含-LFI-1" class="headerlink" title="本地htb学院文件包含 (LFI)"></a>本地htb学院文件包含 (LFI)</h1><p>现在我们了解了什么是htb学院文件包含漏洞以及它们是如何发生的，我们可以开始学习如何在不同的场景中利用这些漏洞来读取后端服务器上本地文件的内容。</p>
 <h2 id="基础低频"><a href="#基础低频" class="headerlink" title="基础低频"></a>基础低频</h2><p>本节末尾的练习向我们展示了一个允许用户将语言设置为英语或西班牙语的网络应用程序示例：</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/1.png"></p>
+<p><img src="/.com//1.png"></p>
 <p>如果我们通过单击选择一种语言（例如<code>Spanish</code>），我们会看到内容文本变为西班牙语：</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/2.png"></p>
+<p><img src="/.com//2.png"></p>
 <p>​	我们还注意到 URL 包含一个<code>language</code>参数，该参数现在设置为我们选择的语言 ( <code>es.php</code>)。可以通过多种方式更改内容以匹配我们指定的语言。</p>
 <p>​	它可能会根据指定的参数从不同的数据库表中提取内容，或者可能会加载完全不同版本的 Web 应用程序。然而，如前所述，使用模板引擎加载页面的一部分是最简单和最常用的方法。</p>
 <p>​	因此，如果 Web 应用程序确实正在拉取一个现在包含在页面中的文件，我们可以更改被拉取的文件以读取不同本地文件的内容。大多数后端服务器上都有两个常见的可读文件，它们分别<code>/etc/passwd</code>位于 Linux 和<code>C:\Windows\boot.ini</code>Windows 上。因此，让我们将参数从更改<code>es</code>为<code>/etc/passwd</code>：</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/3.png"></p>
+<p><img src="/.com//3.png"></p>
 <p>正如我们所看到的，该页面确实存在漏洞，我们能够读取文件内容<code>passwd</code>并识别后端服务器上存在哪些用户。</p>
 <h2 id="路径遍历"><a href="#路径遍历" class="headerlink" title="路径遍历"></a>路径遍历</h2><p><code>absolute path</code>在前面的示例中，我们通过指定文件(eg )来读取文件<code>/etc/passwd</code>。如果整个输入在<code>include()</code>函数中使用而没有任何添加，这将起作用，如下例所示：</p>
 <p>代码：php</p>
@@ -1700,12 +1691,12 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span>(<span class="string">&quot;./languages/&quot;</span> . <span class="variable">$_GET</span>[<span class="string">&#x27;language&#x27;</span>]);</span><br></pre></td></tr></table></figure>
 
 <p>在这种情况下，如果我们尝试读取<code>/etc/passwd</code>，则传递给的路径<code>include()</code>将是 ( <code>./languages//etc/passwd</code>)，并且由于该文件不存在，我们将无法读取任何内容：</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/4.png"></p>
+<p><img src="/.com//4.png"></p>
 <p>正如预期的那样，返回的详细错误向我们展示了传递给函数的字符串，说明语言目录中<code>include()</code>没有。<code>/etc/passwd</code></p>
 <p>**	注意：**我们仅出于教育目的在此 Web 应用程序上启用 PHP 错误，因此我们可以正确理解 Web 应用程序如何处理我们的输入。对于生产 Web 应用程序，不应显示此类错误。此外，我们所有的攻击都应该没有错误，因为它们不依赖于它们。</p>
 <p>​	我们可以通过使用遍历目录轻松绕过此限制<code>relative paths</code>。为此，我们可以<code>../</code>在我们的文件名前添加，它指的是父目录。例如，如果语言目录的完整路径是<code>/var/www/html/languages/</code>，那么 using<code>../index.php</code>将引用<code>index.php</code>父目录中的文件（即<code>/var/www/html/index.php</code>）。</p>
 <p>所以，我们可以使用这个技巧返回几个目录，直到我们到达根路径（即<code>/</code>），然后指定我们的绝对文件路径（例如<code>../../../../etc/passwd</code>），并且该文件应该存在：</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/5.png"></p>
+<p><img src="/.com//5.png"></p>
 <p>正如我们所见，这次我们能够读取文件，而不管我们所在的目录。即使在函数中使用了整个参数，这个技巧也会起作用，所以我们可以默认使用这种技术，它应该<code>include()</code>在两种情况。此外，如果我们位于根路径 ( <code>/</code>) 并使用<code>../</code>，那么我们仍将保留在根路径中。所以，如果我们不确定 Web 应用程序所在的目录，我们可以添加<code>../</code>多次，并且它不应该破坏路径（即使我们这样做一百次！）。</p>
 <p><strong>提示：</strong>提高效率并且<code>../</code>不多次添加不必要的东西总是有用的，尤其是当我们正在编写报告或编写漏洞时。所以，总是尝试找到最小数量的<code>../</code>有效并使用它。您还可以计算出您距离根路径有多少个目录并使用这些目录。例如，with <code>/var/www/html/</code>we are <code>3</code>directorys away from the root path，所以我们可以使用<code>../</code>3 次（即<code>../../../</code>）。</p>
 <h2 id="文件名前缀"><a href="#文件名前缀" class="headerlink" title="文件名前缀"></a>文件名前缀</h2><p>在我们前面的例子中，我们使用了<code>language</code>目录后面的参数，所以我们可以遍历路径来读取文件<code>passwd</code>。在某些情况下，我们的输入可能会附加在不同的字符串之后。例如，它可以与前缀一起使用以获得完整的文件名，如下例所示：</p>
@@ -1713,16 +1704,16 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span>(<span class="string">&quot;lang_&quot;</span> . <span class="variable">$_GET</span>[<span class="string">&#x27;language&#x27;</span>]);</span><br></pre></td></tr></table></figure>
 
 <p>在这种情况下，如果我们尝试使用 遍历目录<code>../../../etc/passwd</code>，最终的字符串将是<code>lang_../../../etc/passwd</code>，这是无效的：</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/6.png"></p>
+<p><img src="/.com//6.png"></p>
 <p>​	正如预期的那样，该错误告诉我们该文件不存在。所以，不是直接使用路径遍历，我们可以<code>/</code>在 payload 前加上 a 前缀，这应该将前缀视为一个目录，然后我们应该绕过文件名并能够遍历目录：</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/7.png"></p>
+<p><img src="/.com//7.png"></p>
 <p><strong>注意：</strong>这可能并不总是有效，因为在此示例中，名为的目录<code>lang_/</code>可能不存在，因此我们的相对路径可能不正确。此外，<code>any prefix appended to our input may break some file inclusion techniques</code>我们将在接下来的部分中讨论，例如使用 PHP 包装器和过滤器或 RFI。</p>
 <h2 id="附加扩展"><a href="#附加扩展" class="headerlink" title="附加扩展"></a>附加扩展</h2><p>另一个非常常见的例子是将扩展名附加到<code>language</code>参数时，如下所示：</p>
 <p>代码：php</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;language&#x27;</span>] . <span class="string">&quot;.php&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>这很常见，因为在这种情况下，我们不必在每次需要更改语言时都编写扩展。这也可能更安全，因为它可能会限制我们只包含 PHP 文件。在这种情况下，如果我们尝试读取<code>/etc/passwd</code>，那么包含的文件将是<code>/etc/passwd.php</code>，它不存在：</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/8.png"></p>
+<p><img src="/.com//8.png"></p>
 <p>我们可以使用多种技术来绕过它，我们将在接下来的部分中讨论它们。</p>
 <p><strong>练习：</strong>尝试通过 LFI 读取任何 php 文件（例如 index.php），看看您是否会得到它的源代码，或者文件是否被呈现为 HTML。</p>
 <h2 id="二阶攻击"><a href="#二阶攻击" class="headerlink" title="二阶攻击"></a>二阶攻击</h2><p>正如我们所见，LFI 攻击可以有不同的形式。另一种常见且更高级的 LFI 攻击是<code>Second Order Attack</code>. 发生这种情况是因为许多 Web 应用程序功能可能会根据用户控制的参数不安全地从后端服务器中提取文件。</p>

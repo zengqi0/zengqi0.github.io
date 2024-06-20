@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1583,15 +1574,15 @@
 <li>+26C Flags2：一个联合体，每个位影响该进程的一些属性。</li>
 </ul>
 <p>ProtectedProcess：进程保护位。该位置1后该进程被保护。CE看不到图片，打不开了进程。OD附加进程列表遍历不到。一个最简单的进程保护。</p>
-<p><img src="/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/1.png"></p>
+<p><img src="/.com//1.png"></p>
 <p>+270 Flags：一个联合体，每个位影响该进程的一些属性。</p>
 <ul>
 <li>ProcessExiting：进程退出标志位。置1后表明该进程已退出，但实际还在运行。可以达到反调试的效果。同时进程无法使用任务管理器结束。</li>
 <li>ProcessDelete：进程退出标志位。置1后表明该进程已退出，但实际还在运行。可以达到反调试的效果。同时进程无法使用任务管理器结束。</li>
 </ul>
-<p><img src="/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/2.png"></p>
+<p><img src="/.com//2.png"></p>
 <p>BreakOnTermination：该位置1后，任务管理器结束进程时将提示“是否结束系统进程XXX”。结束后windbg将会断下。</p>
-<p><img src="/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/3.png"></p>
+<p><img src="/.com//3.png"></p>
 <ul>
 <li><ul>
 <li>VmTopDown：该位置1时，VirtualAlloc一类的申请内存函数将会从大地址开始申请。</li>
@@ -1704,12 +1695,12 @@
 <h1 id="6-线程切换-模拟版"><a href="#6-线程切换-模拟版" class="headerlink" title="6.线程切换-模拟版"></a>6.线程切换-模拟版</h1><p>在逆向windows线程切换逻辑之前，先自己写一个模拟的线程切换代码，感受下线程切换的大体思路。</p>
 <p>滴水模拟线程切换源码：<a target="_blank" rel="noopener" href="https://wwi.lanzoui.com/iKbe0vdd95g">https://wwi.lanzoui.com/iKbe0vdd95g</a></p>
 <p>首先初始化四个线程。然后观察初始化函数RegisterGMThread。</p>
-<p><img src="/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/4.png"></p>
+<p><img src="/.com//4.png"></p>
 <h2 id="RegisterGMThread"><a href="#RegisterGMThread" class="headerlink" title="RegisterGMThread"></a>RegisterGMThread</h2><p>代码中定义了一个线程池，是一个全局数组变量，每个元素都是自定义的线程结构体。</p>
-<p><img src="/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/5.png"></p>
-<p><img src="/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/6.png"></p>
+<p><img src="/.com//5.png"></p>
+<p><img src="/.com//6.png"></p>
 <p>initGMThread函数里首先为新线程分配一个堆栈空间。</p>
-<p><img src="/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/7.png"></p>
+<p><img src="/.com//7.png"></p>
 <p>然后向分配出来的堆栈空间里压入了几个初始值，这些值皆是线程切换时要用到的数值，在创建完第一次被切换时这些值会作为初始值参与线程切换。而其中的push 9作用只是为了占用4个字节。这里需要配合后文线程切换函数才能体会到这4字节的作用。</p>
 
       

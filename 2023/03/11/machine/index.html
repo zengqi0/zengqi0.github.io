@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1520,7 +1511,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Blue"><a href="#Blue" class="headerlink" title="Blue"></a>Blue</h1><p><img src="/machine/1.png"></p>
+        <h1 id="Blue"><a href="#Blue" class="headerlink" title="Blue"></a>Blue</h1><p><img src="/.com//1.png"></p>
 <p>Nmap 发现以下开放端口：</p>
 <ul>
 <li>135 – 由远程过程调用 (RPC) 使用</li>
@@ -1534,7 +1525,7 @@
 
 <p>扫一下445端口</p>
 <p>扫到了一个高危漏洞，可以用ms17010打</p>
-<p><img src="/machine/2.png"></p>
+<p><img src="/.com//2.png"></p>
 <p>由于不知道版本号 可以用</p>
 <p>我猜序号 1  于是</p>
 <p>use 1</p>
@@ -1543,7 +1534,7 @@
 <p>ok</p>
 <h1 id="Legacy"><a href="#Legacy" class="headerlink" title="Legacy"></a>Legacy</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sV -Pn -T4 10.10.10.</span><br></pre></td></tr></table></figure>
 
-<p><img src="/machine/3.png"></p>
+<p><img src="/.com//3.png"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p139,445 --script vuln 10.10.10.43</span><br></pre></td></tr></table></figure>
 
 <p>对于这一步，我们要扫描 445 以确定版本，因此我们在 Metasploit 中搜索 SMB (Samba) 扫描器。</p>
@@ -1559,7 +1550,7 @@
 <p>然后打成功，先别进去 看看flag在哪</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">search -f user.txt</span><br></pre></td></tr></table></figure>
 
-<p><img src="/machine/4.png"></p>
+<p><img src="/.com//4.png"></p>
 <h2 id="利用后枚举"><a href="#利用后枚举" class="headerlink" title="利用后枚举"></a>利用后枚举</h2><p>当前用户当前用户</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whoami /all</span><br></pre></td></tr></table></figure>
 
@@ -1573,7 +1564,7 @@
 <p>5331a8b8e16f68d9a0196595b320382c</p>
 <p>这俩都不是</p>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>smb是什么</p>
-<h1 id="Jerry"><a href="#Jerry" class="headerlink" title="Jerry"></a>Jerry</h1><p><img src="/machine/5.png"></p>
+<h1 id="Jerry"><a href="#Jerry" class="headerlink" title="Jerry"></a>Jerry</h1><p><img src="/.com//5.png"></p>
 <p>我们看到它在端口 8080 上运行 Apache Tomcat，因此我们的第一直觉是访问该页面。</p>
 <p>随便点点发现出来了 登录窗口</p>
 <p>我设置为用户名为“tomcat”，密码为“s3cret”</p>
@@ -1583,9 +1574,9 @@
 <p>使用 use multi&#x2F;http&#x2F;tomcat_mgr_upload 配置一下就行了</p>
 <h1 id="Cap"><a href="#Cap" class="headerlink" title="Cap"></a>Cap</h1><p>老规矩nmap ，给出的东西像是html网页 所以我直接打开了</p>
 <p> 然后摸索了一会 发现下载了几个pacap包 之后箭头指向变成2 了 所以我把数字改为0 发现有数值 这时候再下载pacape包</p>
-<p><img src="/machine/6.png"></p>
+<p><img src="/.com//6.png"></p>
 <p>包里面有tcp和 ftp 研究一下</p>
-<p><img src="/machine/7.png"></p>
+<p><img src="/.com//7.png"></p>
 <p>发现有账户名和密码</p>
 <p>nathan<br>Buck3tH4TF0RM3!<br>试试用ssh登录</p>
 <p><strong>Telnet与SSH有啥区别？</strong></p>
@@ -1593,7 +1584,7 @@
 <p>2、功能不同：SSH功能比telnet齐全，它既可以代替telnet进行远程管理终端，又可以为ftp、pop、基础PPP提供一个安全的通道。</p>
 <p>3、端口号不同：telnet 端口号为23；SSH端口号为22。</p>
 <p>4、防火墙信任度不同：默认情况下防火墙是不信任telnet的，因为它不安全。</p>
-<h1 id="Netmon"><a href="#Netmon" class="headerlink" title="Netmon"></a>Netmon</h1><p><img src="/machine/8.png"></p>
+<h1 id="Netmon"><a href="#Netmon" class="headerlink" title="Netmon"></a>Netmon</h1><p><img src="/.com//8.png"></p>
 <p>在这里，我发现 FTP 端口 21、HTTP 端口 80、RPC 端口 135、NetBIOS 端口 139、SMB 端口 445 已打开，其余端口已被过滤。</p>
 <p>当我们看到它打开时，我们立即前往端口 80。我们找到 PRTG 网络监控页面。但是要使用此仪表板，我们需要登录凭据。但我们现阶段无法访问这些凭据。</p>
 <p>在之前的 nmap 扫描中，我们看到 FTP 端口 21 是开放的，也允许匿名登录。因此，我们使用匿名作为登录名和密码登录 FTP</p>

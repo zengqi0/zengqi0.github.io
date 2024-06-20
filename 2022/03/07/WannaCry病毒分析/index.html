@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1528,7 +1519,7 @@
 <p>WannaCry利用永恒之蓝漏洞进行网络端口扫描攻击，目标机器被成功攻陷后会从攻击机下载WannaCry木马进行感染，并作为攻击机再次扫描互联网和局域网的其他机器，行成蠕虫感染大范围超快速扩散。</p>
 <p>木马母体为mssecsvc.exe，运行后会扫描随机IP的互联网机器，尝试感染，也会扫描局域网相同网段的机器进行感染传播，此外会释放敲诈者程序tasksche.exe，对磁盘文件进行加密勒索。</p>
 <p>木马加密使用AES加密文件，并使用非对称加密算法RSA 2048加密随机密钥，每个文件使用一个随机密钥，理论上不可破解。同时@WanaDecryptor@.exe显示勒索界面。其核心流程如下图所示：</p>
-<p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C1.png"></p>
+<p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C1.png"></p>
 <p>WannaCry勒索病毒主要行为是传播和勒索。</p>
 <pre><code>传播：利用基于445端口的SMB漏洞MS17-010(永恒之蓝)进行传播
 勒索：释放文件，包括加密器、解密器、说明文件、语言文件等；内存加载加密器模块，加密执行类型文件，全部加密后启动解密器；解密器启动后，设置桌面背景显示勒索信息，弹出窗口显示付款账号和勒索信息
@@ -1554,54 +1545,54 @@ Metaploit获取受害主机的shell
 </code></pre>
 <h1 id="三、样本概况"><a href="#三、样本概况" class="headerlink" title="三、样本概况"></a>三、样本概况</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">文件版本:6.1.7601.17514 (win7sp1_rtm.101119-1850)</span><br><span class="line"></span><br><span class="line">MD5: 84C82835A5D21BBCF75A61706D8AB549</span><br><span class="line"></span><br><span class="line">SHA1: 5FF465AFAABCBF0150D1A3AB2C2E74F3A4426467</span><br><span class="line"></span><br><span class="line">CRC32: 4022FCAA</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h2 id="查壳"><a href="#查壳" class="headerlink" title="查壳"></a>查壳</h2><p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C2.png"></p>
-<p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C3.png"></p>
+<h2 id="查壳"><a href="#查壳" class="headerlink" title="查壳"></a>查壳</h2><p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C2.png"></p>
+<p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C3.png"></p>
 <p>看到了一些注册表操作</p>
-<h2 id="资源段查看"><a href="#资源段查看" class="headerlink" title="资源段查看"></a>资源段查看</h2><p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C4.png"></p>
+<h2 id="资源段查看"><a href="#资源段查看" class="headerlink" title="资源段查看"></a>资源段查看</h2><p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C4.png"></p>
 <p>这个资源名为XIA的自定义资源了文件头为pk 这是一个zip文件 接下来直接将资源提取</p>
-<p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C5.png"></p>
+<p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C5.png"></p>
 <p>应该是病毒释放到桌面的一些文件</p>
 <h1 id="三-具体行为分析"><a href="#三-具体行为分析" class="headerlink" title="三.具体行为分析"></a>三.具体行为分析</h1><p> <strong>使用火绒剑工具监控病毒样本的运行，待病毒执行一段时间后，分开查看病毒的行为。分析监控到的日志，主要</strong>观察的点：<br>     ①文件操作，主要看文件创建、修改、删除等操作<br>     ②注册表操作，主要看注册表设置、创建等操作<br>     ③进程操作，主要看创建进程、写入内存等操作<br>     ④网络操作，主要看网络连接地址、IP等信息<br>     ⑤其他行为，以及观察病毒样本运行后的反应 </p>
-<h2 id="3-1进程树比对"><a href="#3-1进程树比对" class="headerlink" title="3.1进程树比对"></a>3.1进程树比对</h2><p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C6.png"></p>
+<h2 id="3-1进程树比对"><a href="#3-1进程树比对" class="headerlink" title="3.1进程树比对"></a>3.1进程树比对</h2><p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C6.png"></p>
 <p>由上图可以得知 病毒创建了四个子进程 其中还使用了cmd.exe执行一个批处理脚本文件</p>
 <h2 id="3-2-进程行为检查"><a href="#3-2-进程行为检查" class="headerlink" title="3.2 进程行为检查"></a>3.2 进程行为检查</h2><h3 id="3-2-1-文件操作，主要看文件创建、修改、删除等操作"><a href="#3-2-1-文件操作，主要看文件创建、修改、删除等操作" class="headerlink" title="3.2.1 文件操作，主要看文件创建、修改、删除等操作"></a>3.2.1 文件操作，主要看文件创建、修改、删除等操作</h3><p>由于数量太多，我先筛选了文件创建</p>
-<p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C8.png"></p>
+<p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C8.png"></p>
 <p>可以看到它创建了很多的有后缀的文件，应该是加密文件</p>
-<p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C9.png"></p>
+<p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C9.png"></p>
 <p>还创建了后缀~sd52fb.tmp文件</p>
-<p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C11.png"></p>
+<p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C11.png"></p>
 <p>这个还在每个目录下创建了@WanaDecryptor@.exe @Please_Read_Me@.txt 应该是感染文件</p>
 <p> 筛选释放隐藏文件行为 </p>
-<p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C10.png"></p>
+<p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C10.png"></p>
 <p>在筛选释放隐藏文件行为</p>
 <p>病毒在系统盘和桌面释放了几个PE文件并启动执行 这里应该是在释放隐藏在资源中的文件</p>
 <h3 id="3-2-2注册表操作"><a href="#3-2-2注册表操作" class="headerlink" title="3.2.2注册表操作"></a>3.2.2注册表操作</h3><p>关于注册表 这里我使用regshot对运行病毒前后做一个快照进行比对 直接查看结果</p>
-<p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C7.png"></p>
+<p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C7.png"></p>
 <p>关于注册表的修改操作并不多 在HKLM\SOFTWARE新增加了一个键 并且把当前病毒的路径添加上去 并且还添加了另外两个值</p>
-<h3 id="3-2-3网络操作"><a href="#3-2-3网络操作" class="headerlink" title="3.2.3网络操作"></a>3.2.3网络操作</h3><p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C12.png"></p>
+<h3 id="3-2-3网络操作"><a href="#3-2-3网络操作" class="headerlink" title="3.2.3网络操作"></a>3.2.3网络操作</h3><p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C12.png"></p>
 <p>从网络监控可以看到 病毒一直在监听两个端口 并尝试连接局域网内的一些ip 企图向局域网扩散</p>
-<h1 id="五、使用IDA和OD进行详细分析"><a href="#五、使用IDA和OD进行详细分析" class="headerlink" title="五、使用IDA和OD进行详细分析"></a>五、使用IDA和OD进行详细分析</h1><h2 id="主体逻辑"><a href="#主体逻辑" class="headerlink" title="主体逻辑"></a>主体逻辑</h2><p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C13.png"></p>
-<h3 id="关键函数ReleaseFiles"><a href="#关键函数ReleaseFiles" class="headerlink" title="关键函数ReleaseFiles()"></a>关键函数ReleaseFiles()</h3><p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C14.png"></p>
+<h1 id="五、使用IDA和OD进行详细分析"><a href="#五、使用IDA和OD进行详细分析" class="headerlink" title="五、使用IDA和OD进行详细分析"></a>五、使用IDA和OD进行详细分析</h1><h2 id="主体逻辑"><a href="#主体逻辑" class="headerlink" title="主体逻辑"></a>主体逻辑</h2><p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C13.png"></p>
+<h3 id="关键函数ReleaseFiles"><a href="#关键函数ReleaseFiles" class="headerlink" title="关键函数ReleaseFiles()"></a>关键函数ReleaseFiles()</h3><p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C14.png"></p>
 <p>ReleaseFiles()这个函数首先将资源中隐藏的压缩包进行解压 解压密码是WNcry@2017 然后释放压缩包中的所有文件到当前进程的路径下释放完之后的桌面路径</p>
-<h3 id="writecwnry"><a href="#writecwnry" class="headerlink" title="writecwnry"></a>writecwnry</h3><p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C15.png"></p>
+<h3 id="writecwnry"><a href="#writecwnry" class="headerlink" title="writecwnry"></a>writecwnry</h3><p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C15.png"></p>
 <p>这个函数获取到了三个比特币账户 然后随机将其中的某一个写入到c.wnry文件中 所以c.wnry这个文件应该是跟勒索相关的</p>
-<h3 id="ExeCmdCommand-执行命令行参数"><a href="#ExeCmdCommand-执行命令行参数" class="headerlink" title="ExeCmdCommand 执行命令行参数"></a>ExeCmdCommand 执行命令行参数</h3><p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C16.png"></p>
+<h3 id="ExeCmdCommand-执行命令行参数"><a href="#ExeCmdCommand-执行命令行参数" class="headerlink" title="ExeCmdCommand 执行命令行参数"></a>ExeCmdCommand 执行命令行参数</h3><p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C16.png"></p>
 <p>第一个ExeCmdCommand创建了一个进程 进程的参数是attrib +h . 这个参数的含义是将当前路径下的所有文件设置为隐藏 但是这其实是个错误的命令 正确的命令是attrib +h 没有后面的那个点 所以这个函数也就没有起到作用第二个&#96;ExeCmdCommand直接看命令行参数 ‘icacls . &#x2F;grant Everyone:F &#x2F;T &#x2F;C &#x2F;Q’ 这条命令是给当前的windows系统添加了一个叫Everyone的用户 并给这个用户所有的权限至此 第一个部分分析完成</p>
-<h3 id="GetApis-获取必要的API函数"><a href="#GetApis-获取必要的API函数" class="headerlink" title="GetApis 获取必要的API函数"></a>GetApis 获取必要的API函数</h3><p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C17.png"></p>
+<h3 id="GetApis-获取必要的API函数"><a href="#GetApis-获取必要的API函数" class="headerlink" title="GetApis 获取必要的API函数"></a>GetApis 获取必要的API函数</h3><p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C17.png"></p>
 <p>个函数的功能很简单 就是在获取各个API函数的地址 比如CreateFileW WriteFile 等等 为后面的操作做准备</p>
-<h3 id="importKeyAndAllocMem"><a href="#importKeyAndAllocMem" class="headerlink" title="importKeyAndAllocMem"></a>importKeyAndAllocMem</h3><p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C18.png"></p>
+<h3 id="importKeyAndAllocMem"><a href="#importKeyAndAllocMem" class="headerlink" title="importKeyAndAllocMem"></a>importKeyAndAllocMem</h3><p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C18.png"></p>
 <p>这个函数做了两件事情 1. 导入RSA的私钥 用于后面的解密文件 2. 申请两块大小为0x100000的内存</p>
-<h3 id="DecryptFile-解密t-wnry"><a href="#DecryptFile-解密t-wnry" class="headerlink" title="DecryptFile 解密t.wnry"></a>DecryptFile 解密t.wnry</h3><p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C19.png"></p>
-<p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C20.png"></p>
+<h3 id="DecryptFile-解密t-wnry"><a href="#DecryptFile-解密t-wnry" class="headerlink" title="DecryptFile 解密t.wnry"></a>DecryptFile 解密t.wnry</h3><p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C19.png"></p>
+<p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C20.png"></p>
 <p>这个函数一直在对t.wnry这个文件进行读取操作 读取到内存之后传入上个函数拿到的密钥句柄 在内存中进行解密 然后返回解密之后的文件内容 我们可以在OD中查看函数的返回值</p>
 <p>这里可以看到解密之后的内容 是一个PE文件 接下来提取出解密之后的文件内容 查看一下PE结构 判断是个dll文件 接下来再跟t.wnry原始文件做一个对比</p>
 <h3 id="WriteAllocMem"><a href="#WriteAllocMem" class="headerlink" title="WriteAllocMem"></a>WriteAllocMem</h3><p>拷贝PE文件到内存</p>
-<p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C21.png"></p>
-<h3 id="GetExportFunAddr-获取导出函数地址"><a href="#GetExportFunAddr-获取导出函数地址" class="headerlink" title="GetExportFunAddr 获取导出函数地址"></a>GetExportFunAddr 获取导出函数地址</h3><p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C22.png"></p>
+<p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C21.png"></p>
+<h3 id="GetExportFunAddr-获取导出函数地址"><a href="#GetExportFunAddr-获取导出函数地址" class="headerlink" title="GetExportFunAddr 获取导出函数地址"></a>GetExportFunAddr 获取导出函数地址</h3><p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C22.png"></p>
 <p>这个函数传了两个参数 一个是堆空间的首地址 一个是TaskStart这个字符串 单步步过这个函数 可以看到函数返回了一个地址 并且在后面调用了这个这个地址 但是我们并不知道地址从何而来 所以还需要跟进去</p>
-<p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C23.png"></p>
+<p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C23.png"></p>
 <p>这个函数首先取出了数据目录表 然后根据数据目录表找到了导出表 接着查看刚刚提取出来的dll的导出表 如下</p>
-<p><img src="/WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C24.png"></p>
+<p><img src="/.com//WannaCry%E7%97%85%E6%AF%92%E5%88%86%E6%9E%90%5C24.png"></p>
 <p>有一个导出函数TaskStart 这不就是传进去的第二个参数吗</p>
 <p>从上面的分析可以得出病毒的主体程序实际上只做了一些初始化的操作 到目前为止并没有看到它感染或加密任何一个文件 也没有对用户进行勒索</p>
 <h2 id="对t-wnry-dll-病毒核心部分-的分析"><a href="#对t-wnry-dll-病毒核心部分-的分析" class="headerlink" title="对t.wnry.dll(病毒核心部分)的分析"></a>对t.wnry.dll(病毒核心部分)的分析</h2><p>主体逻辑如下 下面就是病毒的所有操作了 包括加密文件 勒索用户等所有操作</p>

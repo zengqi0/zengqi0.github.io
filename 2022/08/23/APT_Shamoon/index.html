@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1514,11 +1505,11 @@
       
         <h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>Shamoon 恶意软件的第一个已知目标是沙特阿拉伯国家石油公司Aramco和卡塔尔天然气公司Rasgas，虽然他们是一家私人控股公司，但据估计该公司的价值在 1-3 万亿美元之间。目前尚不清楚 Shamoon 是如何进入目标公司系统的。一些报道称，这是通过<a target="_blank" rel="noopener" href="https://www.acunetix.com/vulnerability-scanner/">Acunetix 漏洞扫描程序</a>、网络钓鱼电子邮件，甚至是员工插入机器的恶意 USB。推测是威胁者在 2012 年 4 月或 5 月左右进入网络，并在接下来的几个月中横向移动并试图访问域控制器。</p>
 <h1 id="样本分析"><a href="#样本分析" class="headerlink" title="样本分析"></a>样本分析</h1><h2 id="主模块"><a href="#主模块" class="headerlink" title="主模块"></a>主模块</h2><h3 id="pe文件解析"><a href="#pe文件解析" class="headerlink" title="pe文件解析"></a>pe文件解析</h3><p>可以看到主模块含有三个资源，直接查看资源没有看到相关的文件格式，应该是解密释放</p>
-<p><img src="/APT_Shamoon/2.png"></p>
+<p><img src="/.com//2.png"></p>
 <h3 id="Wmian函数分析"><a href="#Wmian函数分析" class="headerlink" title="Wmian函数分析"></a>Wmian函数分析</h3><h3 id="资源解密"><a href="#资源解密" class="headerlink" title="资源解密"></a>资源解密</h3><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>样本运行后创建名为wow32服务，并创建自己到%WINDIR%\System32 目录下名trksvr.exe，之后检查创建状态，通过服务入口函数实施后续行为，之后解密释放两个资源，第一个资源是PKCS7:113，与位于沙特阿美公司环境中的服务器通信，通过c2在%WINDIR%\inf\netft429.pnf中创建一个文件并写入一个新的引爆时间以供其他模块使用，之后主模块读取WINDIR%\inf\netft429.pnf并获取当前系统时间，通过判断系统时间是否为和\inf\netft429.pnf文件读取“引爆时间”来判断释放解密另一个资源PKCS12:112。它使用从 %WINDIR%\System32 文件夹中的硬编码列表中获取的名称维护保存到磁盘的编码可执行文件。该模块负责 Shamoon 的破坏性功能，并在目标时间到来时执行。破坏性模块带有资源 READONE :101。这是一个编码驱动程序，它以 %WINDIR%\System32\Drivers\DRDISK.SYS 的形式保存到磁盘，并借助命令行在破坏性模块执行的初始阶段运行：破坏性模块选择性地破坏文件。结果，在 %WINDIR%\System32 文件夹中创建了两个文件 ?f1.inf 和 ?f2.inf，其中包含要填充垃圾的完整路径的文件名。垃圾构成燃烧的美国国旗的 JPEG 图片的片段</p>
 <p>或者硬编码判断在2012年8月15日8时“引爆”程序，进行删除主机引导扇区、删除主机文件等破坏行为，</p>
 <p>并最后恶意软件会运行 ?shutdown -r -f -t 2 命令行，</p>
-<h1 id="攻击链路图"><a href="#攻击链路图" class="headerlink" title="攻击链路图"></a>攻击链路图</h1><p><img src="/APT_Shamoon/1.png"></p>
+<h1 id="攻击链路图"><a href="#攻击链路图" class="headerlink" title="攻击链路图"></a>攻击链路图</h1><p><img src="/.com//1.png"></p>
 <h1 id="IOCs"><a href="#IOCs" class="headerlink" title="IOCs"></a>IOCs</h1><table>
 <thead>
 <tr>

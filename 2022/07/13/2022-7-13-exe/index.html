@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1524,23 +1515,23 @@
 <h1 id="逆向分析及功能描述"><a href="#逆向分析及功能描述" class="headerlink" title="逆向分析及功能描述"></a>逆向分析及功能描述</h1><p><strong>1.</strong> <strong>样本分析</strong></p>
 <p>个人简历.exe为CobaltStrike加载器模块，其文件图标伪装为docx文档图标。</p>
 <p>样本运行后会尝试遍历进程并获取进程的映像文件路径，以此保证自身进程拥有高权限。若权限不足则会由于无法获取映像文件路径而不执行后续功能。</p>
-<p><img src="/2022-7-13-%E7%8E%8B%E5%BA%86%E6%9D%BE%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86-exe/2.png"></p>
+<p><img src="/.com//2.png"></p>
 <p>若成功获取进程映像文件路径则表示权限充足，则休眠5秒后读取自身资源中编号为104的资源数据。</p>
-<p><img src="/2022-7-13-%E7%8E%8B%E5%BA%86%E6%9D%BE%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86-exe/3.png"></p>
+<p><img src="/.com//3.png"></p>
 <p>解密密钥字符串。</p>
-<p><img src="/2022-7-13-%E7%8E%8B%E5%BA%86%E6%9D%BE%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86-exe/4.png"></p>
+<p><img src="/.com//4.png"></p>
 <p>使用解密后的密钥解密104号资源数据。</p>
-<p><img src="/2022-7-13-%E7%8E%8B%E5%BA%86%E6%9D%BE%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86-exe/5.png"></p>
+<p><img src="/.com//5.png"></p>
 <p>解密后的数据为CobaltStrike载荷</p>
-<p><img src="/2022-7-13-%E7%8E%8B%E5%BA%86%E6%9D%BE%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86-exe/6.png"></p>
+<p><img src="/.com//6.png"></p>
 <p>随后创建“C:\Windows\System32\svchost.exe”的傀儡进程，并通过插入APC的方式加载上文解密的CobaltStrike载荷。加载完成后，加载器进程将进入永久死循环</p>
-<p><img src="/2022-7-13-%E7%8E%8B%E5%BA%86%E6%9D%BE%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86-exe/7.png"></p>
+<p><img src="/.com//7.png"></p>
 <p>解密的载荷包含两个导出函数，分别为默认的DllMain与ReflectiveLoader。</p>
-<p><img src="/2022-7-13-%E7%8E%8B%E5%BA%86%E6%9D%BE%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86-exe/8.png"></p>
+<p><img src="/.com//8.png"></p>
 <p>其中DllMain代码为CobaltStrike实际功能载荷，而ReflectiveLoader用于修复自身进程导入表、重定位等信息以完成内存加载。</p>
 <p>CobaltStrike载荷成功加载后会持续与“114.115.141.15:4431”进行通信以完成远控数据交互。</p>
 <p>网络通信数据使用TLS V1进行加密。</p>
-<p><img src="/2022-7-13-%E7%8E%8B%E5%BA%86%E6%9D%BE%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86-exe/9.png"></p>
+<p><img src="/.com//9.png"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>

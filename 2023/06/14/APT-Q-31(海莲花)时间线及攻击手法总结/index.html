@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1578,59 +1569,59 @@
 </ol>
 <h2 id="后渗透白加黑"><a href="#后渗透白加黑" class="headerlink" title="后渗透白加黑"></a>后渗透白加黑</h2><h3 id="样本分析"><a href="#样本分析" class="headerlink" title="样本分析"></a>样本分析</h3><p>从shellcode的存放位置来讲，可以大体将海莲花白加黑组件分为shellcode在资源和shellcode硬编码在数据段。而从shellcode的加载方式来讲，可以将其分为：不依赖外部文件直接自解密、获取当前主机信息作为密钥解密shellcode、读取外部文件解密shellcode、进程注入加载shellcode等几类。下文将分别对这几类样本进行分析。</p>
 <h3 id="shellcode硬编码"><a href="#shellcode硬编码" class="headerlink" title="shellcode硬编码"></a>shellcode硬编码</h3><h4 id="获取主机信息解密类"><a href="#获取主机信息解密类" class="headerlink" title="获取主机信息解密类"></a>获取主机信息解密类</h4><p>此类样本入口点代码如下，关键函数在DllMain末尾的函数中，</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/1.png"></p>
+<p><img src="/.com//1.png"></p>
 <p>该函数内部会执行一个call调用，push 0 之后直接调用ExitProcess结束进程</p>
 <p>被调用的这个函数将会先创建一个互斥体进行多开检测，互斥体的命名格式为，该互斥体名通常由上一段shellcode获取计算机用户名并转换生成：</p>
 <p>Local{XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}，互斥体创建完成之后，程序将会VirtualAlloc分配一段内存空间并在将一段硬编码在程序中的数据拷贝过来，最终通过call esi的方式跳转到新开辟的内存空间中执行。</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/2.png"></p>
+<p><img src="/.com//2.png"></p>
 <p>hellcode如下，这类样本的shellcode仅需动态获取API地址即可，不用再自解密自身。</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/3.png"></p>
+<p><img src="/.com//3.png"></p>
 <p>大多数情况下，这段shellcode也是一个加载器，它会尝试获取当前主机的一些信息以解密后续的payload，这取决于上一阶段的样本向C2发送了哪种类型的信息hash值以生成加密的数据。常见的信息类型为计算机名、用户名、ip地址等。</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/4.png"></p>
+<p><img src="/.com//4.png"></p>
 <p>程序以相同的逻辑获取当前主机的信息，计算hash并尝试用该hash进行解密，这是一种较为有效的反分析手法，可以确保程序不会在非预期的环境下运行</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/5.png"></p>
+<p><img src="/.com//5.png"></p>
 <p>待解密的数据也以硬编码的形式存储在原始文件的data段中</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/6.png"></p>
+<p><img src="/.com//6.png"></p>
 <p>若程序解密成功，则创建线程执行解密之后的shellcode</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/7.png"></p>
+<p><img src="/.com//7.png"></p>
 <h4 id="自解密类"><a href="#自解密类" class="headerlink" title="自解密类"></a>自解密类</h4><p>在另外一种情况下，攻击者可能会在加载硬编码的shellcode之前获取当前dll的调用进程名并与预定义的进程名做比较来实现简单的环境检测</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/8.png"></p>
+<p><img src="/.com//8.png"></p>
 <p>而这个版本硬编码的shellcode将会动态解密自身</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/9.png"></p>
+<p><img src="/.com//9.png"></p>
 <p>循环自解密之后，程序动态获取API地址，然后通过VirtualAlloc分配新的内存空间之后填充另外一段shellcode加载执行。加载的代码为CobaltStrike的payload</p>
 <h4 id="释放白加黑组件类"><a href="#释放白加黑组件类" class="headerlink" title="释放白加黑组件类"></a>释放白加黑组件类</h4><p>而在某些情况下，硬编码的shellcode可能是如下形式：</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/10.png"></p>
+<p><img src="/.com//10.png"></p>
 <p>此类样本主要是起到一个文件拷贝功能，程序会将当前目录下一组白加黑的样本拷贝到%temp%目录下并启动白exe以加载恶意dll。</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/11.png"></p>
+<p><img src="/.com//11.png"></p>
 <p>拷贝利用的黑dll</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/12.png"></p>
+<p><img src="/.com//12.png"></p>
 <p>设置计划任务用于启动%temp%目录下的wps.exe</p>
 <h3 id="shellcode在资源"><a href="#shellcode在资源" class="headerlink" title="shellcode在资源"></a>shellcode在资源</h3><h4 id="获取主机信息解密类-1"><a href="#获取主机信息解密类-1" class="headerlink" title="获取主机信息解密类"></a>获取主机信息解密类</h4><p>此类样本和上述样本在解密方式上保持一致，均为获取受害者主机上的基本信息生成key进行解密。但不同的是此类样本的shellcode并没有硬编码到数据段，而是藏在了资源中。样本在dllMain进来依旧是先创建一个海莲花风格的互斥体，然后在执行一段无实际意义的代码之后读取资源并创建线程执行资源的shellcode。</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/13.png"></p>
+<p><img src="/.com//13.png"></p>
 <p>此类样本读取资源之后将会直接加载，在shellcode中动态解密自身。</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/14.png"></p>
+<p><img src="/.com//14.png"></p>
 <p>资源shellcode会通过多个循环动态解密自身</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/15.png"></p>
+<p><img src="/.com//15.png"></p>
 <p>解密完成之后通常会出现如下格式的代码，一般情况下，call执行的代码主要是用于动态获取API地址，jmp跳转过去的代码才是真实的功能代码</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/16.png"></p>
+<p><img src="/.com//16.png"></p>
 <p>和类别一的解密逻辑相同，此类样本最终通过获取的信息生成key然后尝试用该key进行解密，若解密成功创建线程执行解密后的shellcode</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/17.png"></p>
+<p><img src="/.com//17.png"></p>
 <h4 id="读取文件解密类"><a href="#读取文件解密类" class="headerlink" title="读取文件解密类"></a><strong>读取文件解密类</strong></h4><p>除了获取上一阶段的主机信息以解密shellcode，海莲花有时候还会通过读取特定的外部文件进行解密。<br>原始样本为dll，依旧是白利用的方式加载名为InitLPUHelper的导出函数</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/18.png"></p>
+<p><img src="/.com//18.png"></p>
 <p>在ExitProcess之前的函数调用，会读取当前的资源文件并将其拷贝到VirtualAlloc分配的新内存空间中，通过call edi的方式加载shellcode。</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/19.png"></p>
+<p><img src="/.com//19.png"></p>
 <p>shellcode入口点是熟悉的自解密代码，代码会动态循环解密自身加载链接库和获取API地址</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/20.png"></p>
+<p><img src="/.com//20.png"></p>
 <p>尝试打开%Temp% 路径下的.tmp文件</p>
 <p>若文件打开失败，程序则判定当前的环境不符合预期，从而退出运行。</p>
 <h4 id="进程注入类"><a href="#进程注入类" class="headerlink" title="进程注入类"></a><strong>进程注入类</strong></h4><p>此类样本主要通过进程注入实现shellcode的加载， 外层的loader大同小异，只是少数样本会将关键call藏到某个导出函数中而不再是dllMain</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/21.png"></p>
+<p><img src="/.com//21.png"></p>
 <p>该段shellcode执行之后会动态获取一些API的地址并调用</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/22.png"></p>
+<p><img src="/.com//22.png"></p>
 <p>创建一个svchost.exe进程用于注入</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/23.png"></p>
+<p><img src="/.com//23.png"></p>
 <p>最终，程序尝试在刚才启动的进程中进行注入</p>
-<p><img src="/APT-Q-31(%E6%B5%B7%E8%8E%B2%E8%8A%B1)%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%8A%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%80%BB%E7%BB%93/24.png"></p>
+<p><img src="/.com//24.png"></p>
 <p>此样本分配的空间为0x90000,将shellcode写入到svchost的内存中,写入的代码为海莲花的常用自解密shellcode,最终创建远线程加载shellcode</p>
 
       

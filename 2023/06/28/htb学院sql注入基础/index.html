@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1515,7 +1506,7 @@
         <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>​	大多数现代 Web 应用程序在后端使用数据库结构。此类数据库用于存储和检索与 Web 应用程序相关的数据，从实际 Web 内容到用户信息和内容等。</p>
 <p>为了使 Web 应用程序动态化，Web 应用程序必须与数据库实时交互。当来自用户的 HTTP(S) 请求到达时，Web 应用程序的后端将向数据库发出查询以构建响应。</p>
 <p>这些查询可以包括来自 HTTP(S) 请求的信息或其他相关信息。</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C1.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C1.png"></p>
 <p>​	当用户提供的信息用于构造对数据库的查询时，恶意用户可以诱使查询用于原始程序员预期之外的其他用途，从而使用称为 SQL 注入的攻击为用户提供查询数据库的权限（ SQLi).</p>
 <p>SQL 注入是指针对关系数据库的攻击，例如<code>MySQL</code>（而非关系数据库的注入，例如 MongoDB，是 NoSQL 注入）</p>
 <p>本模块将重点<code>MySQL</code>介绍 SQL 注入概念。</p>
@@ -1562,7 +1553,7 @@
 <td>SQL 通过支持各种操作的直观语法简化了用户与数据库的交互。</td>
 </tr>
 </tbody></table>
-<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C2.png"></p>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C2.png"></p>
 <p><code>Tier I</code>通常由客户端应用程序组成，例如网站或 GUI 程序。这些应用程序由高级交互组成，例如用户登录或评论。<code>Tier II</code>来自这些交互的数据通过 API 调用或其他请求传递。</p>
 <p>第二层是中间件，它解释这些事件并将它们放入 DBMS 所需的格式中。最后，应用层根据 DBMS 的类型使用特定的库和驱动程序与它们进行交互。DBMS 从第二层接收查询并执行请求的操作。这些操作可能包括数据的插入、检索、删除或更新。处理后，DBMS 返回任何请求的数据或错误代码以应对无效查询。</p>
 <p>可以在同一台主机上托管应用程序服务器和 DBMS。但是，具有支持许多用户的大量数据的数据库通常单独托管以提高性能和可伸缩性。</p>
@@ -1571,7 +1562,7 @@
 <p>​	关系数据库中的表与提供快速数据库摘要或在需要查看特定数据时访问特定行或列的键相关联。这些表，也称为实体，都相互关联。例如，客户信息表可以为每个客户提供一个特定的 ID，该 ID 可以指示我们需要了解的有关该客户的所有信息，例如地址、姓名和联系信息。此外，产品描述表可以为每个产品分配一个特定的 ID。存储所有订单的表只需要记录这些 ID 及其数量。这些表格中的任何更改都会影响所有这些表格，但可以预见和系统地影响。</p>
 <p><code>relational database management system</code>但是，在处理集成数据库时，需要一个概念，即使用称为( )的键将一个表链接到另一个表<code>RDBMS</code>。许多最初使用不同概念的公司正在转向 RDBMS 概念，因为这个概念易于学习、使用和理解。最初，这个概念只被大公司使用。然而，许多类型的数据库现在都实现了 RDBMS 概念，例如 Microsoft Access、MySQL、SQL Server、Oracle、PostgreSQL 等等。</p>
 <p>例如，我们可以<code>users</code>在关系数据库中有一个表，其中包含<code>id</code>、<code>username</code>、<code>first_name</code>、<code>last_name</code>和其他列。可以<code>id</code>用作表键。另一个表<code>posts</code>可能包含所有用户发布的帖子，列有<code>id</code>、<code>user_id</code>、<code>date</code>、<code>content</code>等。</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C3.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C3.png"></p>
 <p>​	我们可以将表中的<code>id</code>from链接<code>users</code>到<code>user_id</code>表中<code>posts</code>以检索每个帖子的用户详细信息，而无需存储每个帖子的所有用户详细信息。一个表可以有多个键，因为另一列可以用作键来链接另一个表。因此，例如，该<code>id</code>列可以用作将<code>posts</code>表链接到另一个包含评论的表的键，每个评论都属于一个特定的帖子，等等。</p>
 <p>数据库中表之间的关系称为模式。</p>
 <p>​	这样，通过使用关系数据库，可以快速轻松地从所有数据库中检索有关特定元素的所有数据。因此，例如，我们可以使用单个查询从所有表中检索链接到特定用户的所有详细信息。这使得关系数据库对于具有清晰结构和设计以及高效数据管理的大数据集非常快速和可靠。关系数据库最常见的示例是<code>MySQL</code>，我们将在本模块中介绍。</p>
@@ -1583,7 +1574,7 @@
 <li>图形</li>
 </ul>
 <p>上述每个模型都有不同的数据存储方式。例如，该<code>Key-Value</code>模型通常以 JSON 或 XML 格式存储数据，每一对都有一个键，并将其所有数据存储为它的值：</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C4.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C4.png"></p>
 <p>上面的示例可以使用 JSON 表示为：</p>
 <p>代码：json</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;100001&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;date&quot;</span><span class="punctuation">:</span> <span class="string">&quot;01-01-2021&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Welcome to this web application.&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;100002&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;date&quot;</span><span class="punctuation">:</span> <span class="string">&quot;02-01-2021&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;This is the first post on this web app.&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;100003&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;date&quot;</span><span class="punctuation">:</span> <span class="string">&quot;02-01-2021&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Reminder: Tomorrow is the ...&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
@@ -1655,7 +1646,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> logins (</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">    username <span class="type">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">UNIQUE</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    password <span class="type">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    date_of_joining DATETIME <span class="keyword">DEFAULT</span> NOW(),</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
 
 <h1 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h1><p>mysql -h 46.101.81.60 -P 30450 -u root -ppassword; 登录远程</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C5.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C5.png"></p>
 <h1 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h1><p>现在我们了解了如何使用该<code>mysql</code>实用程序以及如何创建数据库和表，让我们看看一些基本的 SQL 语句及其用途。</p>
 <h2 id="插入语句"><a href="#插入语句" class="headerlink" title="插入语句"></a>插入语句</h2><p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/insert.html">INSERT</a>语句用于向给定表添加新记录。遵循以下语法的语句：</p>
 <p>代码：sql</p>
@@ -1851,7 +1842,7 @@
 <p>​	一个答案是使用<code>comments</code>，我们将在后面的部分讨论这个问题。另一种方法是通过传入多个单引号使查询语法起作用，我们将在接下来讨论 ( <code>&#39;</code>)。</p>
 <p>​	现在我们了解了 SQL 注入的基础知识，让我们开始学习一些实际用途。</p>
 <h2 id="SQL注入的类型"><a href="#SQL注入的类型" class="headerlink" title="SQL注入的类型"></a>SQL注入的类型</h2><p>SQL 注入根据我们检索其输出的方式和位置进行分类。</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C6.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C6.png"></p>
 <p>​	在简单的情况下，预期和新查询的输出可能会直接打印在前端，我们可以直接读取。这称为<code>In-band</code>SQL 注入，它有两种类型：<code>Union Based</code>和<code>Error Based</code>。</p>
 <p>使用<code>Union Based</code>SQL 注入，我们可能必须指定我们可以读取的确切位置，即“列”，以便查询将输出定向到那里打印。至于SQL 注入，当我们可以在前端<code>Error Based</code>获取<code>PHP</code>或错误时使用它，因此我们可能会故意导致返回查询输出的 SQL 错误。<code>SQL</code></p>
 <p>在更复杂的情况下，我们可能无法打印输出，因此我们可以利用 SQL 逻辑逐个字符地检索输出。这称为<code>Blind</code>SQL 注入，它也有两种类型：<code>Boolean Based</code>和<code>Time Based</code>。</p>
@@ -1860,16 +1851,16 @@
 <p>在本模块中，我们将只专注于通过学习 SQL 注入来介绍<code>Union Based</code>SQL 注入。</p>
 <h1 id="颠覆查询逻辑"><a href="#颠覆查询逻辑" class="headerlink" title="颠覆查询逻辑"></a>颠覆查询逻辑</h1><p>现在我们对 SQL 语句的工作原理有了基本的了解，让我们开始 SQL 注入。在我们开始执行整个 SQL 查询之前，我们将首先学习通过注入运算符<code>OR</code>和使用 SQL 注释来颠覆原始查询逻辑来修改原始查询。这方面的一个基本示例是绕过 Web 身份验证，我们将在本节中对此进行演示。</p>
 <h2 id="身份验证绕过"><a href="#身份验证绕过" class="headerlink" title="身份验证绕过"></a>身份验证绕过</h2><p>考虑以下管理员登录页面。</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C7.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C7.png"></p>
 <p>我们可以使用管理员凭据登录<code>admin / p@ssw0rd</code>。</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C8.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C8.png"></p>
 <p>该页面还显示了正在执行的 SQL 查询，以便更好地了解我们将如何颠覆查询逻辑。我们的目标是在不使用现有密码的情况下以管理员用户身份登录。正如我们所见，当前正在执行的 SQL 查询是：</p>
 <p>代码：sql</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> logins <span class="keyword">WHERE</span> username<span class="operator">=</span><span class="string">&#x27;admin&#x27;</span> <span class="keyword">AND</span> password <span class="operator">=</span> <span class="string">&#x27;p@ssw0rd&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>​	该页面接收凭据，然后使用<code>AND</code>运算符选择与给定用户名和密码匹配的记录。如果<code>MySQL</code>数据库返回匹配的记录，则凭据有效，</p>
 <p>因此代码<code>PHP</code>会将登录尝试条件评估为<code>true</code>。如果条件评估为<code>true</code>，则返回管理员记录，并验证我们的登录。让我们看看当我们输入错误的凭据时会发生什么。</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C9.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C9.png"></p>
 <p>不出所料，由于密码错误导致<code>false</code>操作结果导致登录失败<code>AND</code>。</p>
 <h2 id="SQLi-发现"><a href="#SQLi-发现" class="headerlink" title="SQLi 发现"></a>SQLi 发现</h2><p>​	在我们开始破坏 Web 应用程序的逻辑并试图绕过身份验证之前，我们首先必须测试登录表单是否容易受到 SQL 注入的攻击。为此，我们将尝试在我们的用户名后添加以下有效负载之一，看看它是否会导致任何错误或改变页面的行为方式：</p>
 <table>
@@ -1902,7 +1893,7 @@
 </tbody></table>
 <p>​	注意：在某些情况下，我们可能必须使用负载的 URL 编码版本。这方面的一个例子是当我们将我们的有效负载直接放在 URL“即 HTTP GET 请求”中时。</p>
 <p>​	因此，让我们从注入单引号开始：</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C10.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C10.png"></p>
 <p>我们看到抛出了 SQL 错误而不是<code>Login Failed</code>消息。该页面引发错误，因为生成的查询是：</p>
 <p>代码：sql</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> logins <span class="keyword">WHERE</span> username<span class="operator">=</span><span class="string">&#x27;&#x27;&#x27; AND password = &#x27;</span>something<span class="string">&#x27;;</span></span><br></pre></td></tr></table></figure>
@@ -1926,19 +1917,19 @@
 <li>如果<code>1=1</code>返回<code>true</code>‘总是返回<code>true</code>‘<br><code>AND</code></li>
 <li>如果密码是<code>something</code></li>
 </ul>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C11.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C11.png"></p>
 <p>运算<code>AND</code>符将首先被评估，然后返回<code>false</code>。然后，<code>OR</code>运算符将被评估，如果其中一个语句是<code>true</code>，它将返回<code>true</code>。由于<code>1=1</code>总是返回<code>true</code>，此查询将返回<code>true</code>，并且它会授予我们访问权限。</p>
 <p>注意：我们上面使用的有效载荷是我们可以用来破坏身份验证逻辑的众多身份验证绕过有效载荷之一。[您可以在PayloadAllTheThings](<a target="_blank" rel="noopener" href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL</a> Injection#authentication-bypass)中找到完整的 SQLi 身份验证绕过负载列表，每个负载都适用于特定类型的 SQL 查询。</p>
 <h2 id="使用-OR-运算符绕过身份验证"><a href="#使用-OR-运算符绕过身份验证" class="headerlink" title="使用 OR 运算符绕过身份验证"></a>使用 OR 运算符绕过身份验证</h2><p>让我们尝试将此作为用户名并查看响应。</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C12.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C12.png"></p>
 <p>我们能够以管理员身份成功登录。但是，如果我们不知道有效的用户名怎么办？这次让我们用不同的用户名尝试相同的请求。</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C13.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C13.png"></p>
 <p>登录失败，因为<code>notAdmin</code>表中不存在，导致整体查询错误。</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C14.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C14.png"></p>
 <p>要再次成功登录，我们需要一个整体<code>true</code>查询。这可以通过<code>OR</code>在密码字段中注入一个条件来实现，因此它总是会返回<code>true</code>。让我们尝试<code>something&#39; or &#39;1&#39;=&#39;1</code>作为密码。</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C15.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C15.png"></p>
 <p>附加<code>OR</code>条件导致<code>true</code>整体查询，因为该<code>WHERE</code>子句返回表中的所有内容，并且第一行中的用户已登录。在这种情况下，由于两个条件都将返回，<code>true</code>我们不必提供测试用户名和密码，可以直接开始注入<code>&#39;</code>，直接用<code>&#39; or &#39;1&#39; = &#39;1</code>.</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C16.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C16.png"></p>
 <p>这是有效的，因为查询的计算结果与<code>true</code>用户名或密码无关。</p>
 <h3 id="练习-1"><a href="#练习-1" class="headerlink" title="练习"></a>练习</h3><p>尝试以用户“tom”身份登录。登录成功后显示的flag值是多少？</p>
 <p>tom’or ‘1’ &#x3D;’1</p>
@@ -1957,20 +1948,20 @@
 
 <p>正如我们从语法突出显示中看到的那样，用户名现在是<code>admin</code>，查询的其余部分现在作为注释被忽略。此外，通过这种方式，我们可以确保查询没有任何语法问题。</p>
 <p><code>admin&#39;-- </code>让我们尝试在登录页面上使用这些，并使用用户名和任何密码登录：</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C17.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C17.png"></p>
 <p>如我们所见，我们能够绕过身份验证，因为新修改的查询会检查用户名，没有其他条件。</p>
 <h2 id="另一个例子"><a href="#另一个例子" class="headerlink" title="另一个例子"></a>另一个例子</h2><p>如果应用程序需要先检查特定条件，SQL 支持使用括号。括号内的表达式优先于其他运算符并首先计算。让我们来看这样一个场景：</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C18.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C18.png"></p>
 <p>​	上面的查询确保用户的 id 总是大于 1，这将阻止任何人以管理员身份登录。此外，我们还看到密码在用于查询之前已经过哈希处理。这将阻止我们通过密码字段进行注入，因为输入已更改为哈希。</p>
 <p>让我们尝试使用有效凭据登录<code>admin / p@ssw0rd</code>以查看响应。</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C19.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C19.png"></p>
 <p>​	正如预期的那样，即使我们提供了有效的凭据，登录也会失败，因为管理员的 ID 等于 1。因此让我们尝试使用另一个用户的凭据登录，例如<code>tom</code>。</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C20.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C20.png"></p>
 <p>​	以 id 不等于 1 的用户身份登录成功。那么，我们如何以管理员身份登录呢？从前面关于评论的部分我们知道我们可以使用它们来评论查询的其余部分。</p>
 <p>​	因此，让我们尝试使用<code>admin&#39;-- </code>as 用户名。</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C22.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C22.png"></p>
 <p>由于语法错误，登录失败，因为关闭的没有平衡开括号。要成功执行查询，我们必须添加一个右括号。让我们尝试使用用户名<code>admin&#39;)-- </code>关闭并注释掉其余部分。</p>
-<p><img src="/htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C23.png"></p>
+<p><img src="/.com//htb%E5%AD%A6%E9%99%A2sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80%5C23.png"></p>
 <p>查询成功，我们以管理员身份登录。我们输入的最终查询是：</p>
 <p>代码：sql</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> logins <span class="keyword">where</span> (username<span class="operator">=</span><span class="string">&#x27;admin&#x27;</span>)</span><br></pre></td></tr></table></figure>

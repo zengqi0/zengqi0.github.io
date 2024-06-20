@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1606,28 +1597,28 @@
 </tr>
 </tbody></table>
 <h1 id="Scar感染性病毒详细分析"><a href="#Scar感染性病毒详细分析" class="headerlink" title="Scar感染性病毒详细分析"></a>Scar感染性病毒详细分析</h1><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>运行后会为自身创建一个标题为yoiipnbfsgtdgz，类名为SUGUZEFHWD的子窗口， 该子窗口为样本的整个攻击初始化的标识。然后将自身的属性设置为隐藏属性。</p>
-<p><img src="C:\1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\1.png"></p>
+<p><img src="/.com//1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\1.png"></p>
 <p>然后创建一个线程，用来持续检查是否有新硬盘挂载，如果存在新硬盘挂载则在临时目录释放xxx.exe并执行，其中xxx.exe为文件感染程序。</p>
-<p><img src="C:\1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\2.png"></p>
+<p><img src="/.com//1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\2.png"></p>
 <pre><code>## 释放文件  
 </code></pre>
 <p>释放自身资源节数据到xxx.exe文件并且启动。</p>
-<p><img src="C:\1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\3.png"></p>
+<p><img src="/.com//1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\3.png"></p>
 <p>获取Windows目录，释放SUGUZEFHWD.dll，然后将DLL以COM组件形式注册到系统中。</p>
-<p><img src="C:\1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\4.png"></p>
-<p><img src="C:\1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\5.png"></p>
+<p><img src="/.com//1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\4.png"></p>
+<p><img src="/.com//1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\5.png"></p>
 <p>随机选择两个字符串相加</p>
-<p><img src="C:\1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\6.png"></p>
+<p><img src="/.com//1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\6.png"></p>
 <h2 id="网络行为"><a href="#网络行为" class="headerlink" title="网络行为"></a>网络行为</h2><p>分别与以下C2开始建立通讯。</p>
 <p>buytomer.oCry.com</p>
 <p>205.209.168.5:443</p>
 <p>smithewife.zyns.com</p>
-<p><img src="C:\1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\7.png"></p>
+<p><img src="/.com//1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\7.png"></p>
 <p>​     当和C2连接成功后，主机就会发送以“N006806”开头和十六个字符串拼接的信息</p>
 <p>当接受到数据后，会根据数据长度来判断是否需要进行解密。然后解析收到的数据。</p>
-<p><img src="C:\1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\8.png"></p>
+<p><img src="/.com//1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\8.png"></p>
 <p>当数据解析完毕后，开始清除网络缓存。</p>
-<p><img src="C:\1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\9.png"></p>
+<p><img src="/.com//1myblog\myblog\source_posts\2022-06-25-Scar感染式样本分析\9.png"></p>
 <h2 id="反沙箱分析"><a href="#反沙箱分析" class="headerlink" title="反沙箱分析"></a>反沙箱分析</h2><p>通过检查鼠标光标是否保持不动来判断样本是否在沙箱中</p>
 
       

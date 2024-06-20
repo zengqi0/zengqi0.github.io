@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1569,11 +1560,11 @@
 <p> 本文所用到的分析工具:</p>
 <p>DIE 3.01,火绒剑,X32Debug,IDA 7.6，WinHex，PEView,IDR (Delphi反汇编工具)，PdfStreamDumper，UltraEdit，UltraCompare，ResourceHacker。</p>
 <h2 id="分析目标"><a href="#分析目标" class="headerlink" title="分析目标"></a>分析目标</h2><p>分析出该APT样本的行为和行为具体执行的流程并给出手工清除方案。</p>
-<h1 id="静态PE分析"><a href="#静态PE分析" class="headerlink" title="静态PE分析"></a>静态PE分析</h1><h2 id="静态查壳"><a href="#静态查壳" class="headerlink" title="静态查壳"></a>静态查壳</h2><p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/43.png"></p>
+<h1 id="静态PE分析"><a href="#静态PE分析" class="headerlink" title="静态PE分析"></a>静态PE分析</h1><h2 id="静态查壳"><a href="#静态查壳" class="headerlink" title="静态查壳"></a>静态查壳</h2><p><img src="/.com//43.png"></p>
 <p>初步可以看到样本未使用加壳技术，使用的开发语言是Delphi</p>
-<h2 id="静态PE结构分析"><a href="#静态PE结构分析" class="headerlink" title="静态PE结构分析"></a>静态PE结构分析</h2><p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/44.png"></p>
+<h2 id="静态PE结构分析"><a href="#静态PE结构分析" class="headerlink" title="静态PE结构分析"></a>静态PE结构分析</h2><p><img src="/.com//44.png"></p>
 <p>看到.rsrc资源节的大小的很大，样本可能有资源文件保存在资源节。</p>
-<h2 id="静态加密算法分析"><a href="#静态加密算法分析" class="headerlink" title="静态加密算法分析"></a>静态加密算法分析</h2><p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/45.png"></p>
+<h2 id="静态加密算法分析"><a href="#静态加密算法分析" class="headerlink" title="静态加密算法分析"></a>静态加密算法分析</h2><p><img src="/.com//45.png"></p>
 <p>通过PEID 的KANAL插件静态解析出已知的加密算法</p>
 <p>初步可以看到样本中的加密算法：</p>
 <ol>
@@ -1588,37 +1579,37 @@
 </ol>
 <h1 id="行为监测"><a href="#行为监测" class="headerlink" title="行为监测"></a>行为监测</h1><h2 id="行为分析"><a href="#行为分析" class="headerlink" title="行为分析"></a>行为分析</h2><h3 id="样本启动后的直接行为"><a href="#样本启动后的直接行为" class="headerlink" title="样本启动后的直接行为"></a>样本启动后的直接行为</h3><p>在纯净win7，winXP测试机中测试样本执行后无明显行为。</p>
 <p>再装有wps或浏览器的win7，winXp测试机会发现在桌面打开一个pdf文件，无其他明显行为</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/1.png"></p>
+<p><img src="/.com//1.png"></p>
 <p>通过火绒剑查看现有和销毁的进程树信息，并比较样本执行前后的进程树结构。</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/2.png"> </p>
+<p><img src="/.com//2.png"> </p>
 <h3 id="查看进程树"><a href="#查看进程树" class="headerlink" title="查看进程树"></a>查看进程树</h3><p>通过火绒剑过滤行为特征确定样本行为</p>
 <p> 通过监控进程树，malware.exe 进程执行后，可以看到：</p>
 <p>malware.exe执行后会调用firefox.exe打开 ??????.pdf文件</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/3.png"></p>
+<p><img src="/.com//3.png"></p>
 <p>我们来看看这个文件</p>
 <h3 id="行为监控"><a href="#行为监控" class="headerlink" title="行为监控"></a>行为监控</h3><p>通过火绒剑过滤行为特征确定样本行为</p>
 <h4 id="文件监控"><a href="#文件监控" class="headerlink" title="文件监控"></a>文件监控</h4><p>1.检测到存在创建截断并写入文件 C:\Users\shadow\AppData\Local\Temp\أسس تربوية مقترحة لتنمية رأس المال الفكري لدى المعلمين بناء على متطلبات التنمية المستدامة.pdf 文件行为</p>
 <p>使用翻译软件翻译一下，可以识别出是阿拉伯文，标题为“基于可持续发展要求的教师智力资本开发的教育基础”，猜测很可能是是<strong>针对阿拉伯语地区的<strong><strong>APT</strong></strong>攻击样本，该pdf很可能是诱饵文档，往往诱饵文档会可能存在利用漏洞攻击的ShellCode。</strong></p>
 <p>2.检测到创建截断并写入C:\Users\shadow\AppData\Roaming\dsfjj45k.tmp 文件行为</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/5.png"></p>
+<p><img src="/.com//5.png"></p>
 <p>打开winhex 看一看 可能是</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/4.png"></p>
+<p><img src="/.com//4.png"></p>
 <p>dsfjj45k.tmp文件内容是一段编码，猜测样本可能会利用这一段编码进行加解密运算，或者用来存储信息</p>
 <p>3.检测到在C:\Users\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup路径创建截断并写入malware.lnk</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/6.png"></p>
+<p><img src="/.com//6.png"></p>
 <p>一般是将快捷方式写入此路径是恶意代码在<strong>创建开机自启动项的行为</strong>。</p>
 <h4 id="注册表监控"><a href="#注册表监控" class="headerlink" title="注册表监控"></a>注册表监控</h4><p>检测到创建注册表键</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/7.png"></p>
+<p><img src="/.com//7.png"></p>
 <p>但是该测试机检测到注册表键创建返回失败的结果。</p>
 <h4 id="设备资源监控"><a href="#设备资源监控" class="headerlink" title="设备资源监控"></a>设备资源监控</h4><p>检测到访问以下设备资源</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/8.png"></p>
+<p><img src="/.com//8.png"></p>
 <p>检测到设备 \Device\Afd 不断被打开 </p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/9.png"></p>
+<p><img src="/.com//9.png"></p>
 <p>检测到打开Explorer.EXE进程</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/10.png"></p>
+<p><img src="/.com//10.png"></p>
 <p> 3.1.3.4 进程监控</p>
 <p>检测到创建firefox进程并写入内存并跨进程恢复线程行为</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/11.png"></p>
+<p><img src="/.com//11.png"></p>
 <h2 id="行为总结"><a href="#行为总结" class="headerlink" title="行为总结"></a>行为总结</h2><p>通过对malware的初步行为监控，能看到的行为包括</p>
 <p>\1. 释放.pdf诱饵文档（可能在文档中包含ShellCode）</p>
 <p>\2. 设置malware开机自启动</p>
@@ -1626,11 +1617,11 @@
 <h2 id="恶意程序的代码分析详细片段"><a href="#恶意程序的代码分析详细片段" class="headerlink" title="恶意程序的代码分析详细片段"></a>恶意程序的代码分析详细片段</h2><p>一个病毒样本往往存在的行为不过于：启动、释放、设置、自启、注入、复制、外联等这些行为，由于样本大小在15m左右，比较大，因此以下分析从抓取上述行为特征入手，一般样本定位关键行为特征的方法包括结合行为进行单步调试、系统API下断点、对字符串信息设置内存断点等等。</p>
 <h3 id="通过搜索恶意的样本中的字符串推断恶意样本行为"><a href="#通过搜索恶意的样本中的字符串推断恶意样本行为" class="headerlink" title="通过搜索恶意的样本中的字符串推断恶意样本行为"></a>通过搜索恶意的样本中的字符串推断恶意样本行为</h3><p>通过静态分析搜索样本中的字符串推测样本的行为：</p>
 <p>先通过IDR静态看一下样本中存在的字符串，根据一些字符串可以推断出样本的一些行为，再定位到关键代码详细分析。</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/12.png"></p>
+<p><img src="/.com//12.png"></p>
 <p>http、https、GET、POST 这些字符串推测样本可能是在<strong>向外发送<strong><strong>数据</strong></strong>包****。</strong></p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/13.png"></p>
+<p><img src="/.com//13.png"></p>
 <p>GetAntiVirusProductInfoException、’SELECT * FROM AntiVirusProduct’通过这些字符串猜测样本可能是<strong>关闭****系统上的一些安全软件、杀毒软件</strong>。</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/14.png"></p>
+<p><img src="/.com//14.png"></p>
 <ol>
 <li><p>uterName、USERNAME 可能是<strong>恶意样本对主机上一些信息的获取</strong>。</p>
 </li>
@@ -1645,7 +1636,7 @@
 <li><p>\dsfjj45k.tmp 是<strong>恶意样本释放的密钥文件</strong>。</p>
 </li>
 </ol>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/15.png"></p>
+<p><img src="/.com//15.png"></p>
 <ol>
 <li><p>Log可能是<strong>恶意样本在获取日志的一些信息</strong>。</p>
 </li>
@@ -1657,65 +1648,65 @@
 <p><img src="file:///C:\Users\12043\AppData\Local\Temp\ksohtml\wpsCBF.tmp.jpg" alt="img"></p>
 <p>Download from、Download start、DownLoad Finish、可能是<strong>恶意样本充当T****rojanDownloader角色下载更多的恶意代码或文件。</strong></p>
 <h2 id="具体行为分析"><a href="#具体行为分析" class="headerlink" title="具体行为分析"></a>具体行为分析</h2><p>通过对关键字符串设置硬件访问断点，定位到关键函数并结合IDR和IDA分析后，经调试后发现恶意代码的一些主要行为在以下函数中。看地址主要在Timer1、Timer2、Timer3、Timer4四个定时器中。</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/16.png"></p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/17.png"></p>
+<p><img src="/.com//16.png"></p>
+<p><img src="/.com//17.png"></p>
 <h3 id="创建诱饵文档"><a href="#创建诱饵文档" class="headerlink" title="创建诱饵文档"></a>创建诱饵文档</h3><p>通过对关键字符串设置硬件访问断点，定位到关键函数并结合IDR和IDA分析后，经调试后发现恶意代码的一些主要行为在以下函数中。主要在Timer1、Timer2、Timer3、Timer4四个定时器中。</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/21.png"></p>
+<p><img src="/.com//21.png"></p>
 <h4 id="诱饵文档的创建"><a href="#诱饵文档的创建" class="headerlink" title="诱饵文档的创建"></a>诱饵文档的创建</h4><p>通过对在idr搜索到的字符串 أسس تربوية مقترحة لتنمية رأس المال الفكري لدى المعلمين بناء على متطلبات التنمية المستدامة.pdf  所在地址6D4880 设置硬件访问断点，再对恶意样本进行调试定位地址6D46C6处访问此地址。</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/18.png"></p>
+<p><img src="/.com//18.png"></p>
 <p>通过调试这里代码，确认此处即为  أسس تربوية مقترحة لتنمية رأس المال الفكري لدى المعلمين بناء على متطلبات التنمية المستدامة.pdf 文件创建的代码，恶意代码首先会获C:\Users\Shadow\AppData\Local\Temp系统临时文件路径，再从Resource1中获取资源，创建pdf类型的Tresourcestream实例，在临时文件路径下创建pdf诱饵文件，再调用ShellExcute执行创建的pdf文件。</p>
 <p>通过PEView查看资源节，可以看到pdf文件隐藏在原malware.exe文件.rsrs节中：</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/19.png"></p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/25.png"></p>
+<p><img src="/.com//19.png"></p>
+<p><img src="/.com//25.png"></p>
 <p>通过静态分析得到该恶意代码样本会在 Timer1定时器中首先判断GlobalURI是否为空，如果不为空 就执行 button1，反之会在C:\Users\Shadow\AppData\Local\Temp路径创建 .pdf 诱饵文件，以下是静态分析诱饵文件创建的过程</p>
 <h4 id="诱饵文档文件格式的分析"><a href="#诱饵文档文件格式的分析" class="headerlink" title="诱饵文档文件格式的分析"></a>诱饵文档文件格式的分析</h4><p>一般样本释放的pdf文件可能会存在ShellCode，通过UltraEdit简单查看PE格式，未发现有明显的异常的地方</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/24.png"></p>
+<p><img src="/.com//24.png"></p>
 <p>通过PdfStreamDumper.exe分析PDF，未发现内嵌有恶意JS代码。</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/23.png"></p>
+<p><img src="/.com//23.png"></p>
 <p>在对样本的静态分析过程中也未发现有漏洞利用的相关代码，可以判定释放的.pdf文件无恶意行为，仅用来迷惑用户。</p>
 <h3 id="攻击持久化维持"><a href="#攻击持久化维持" class="headerlink" title="攻击持久化维持"></a>攻击持久化维持</h3><p>通过对 .link下硬件断点</p>
 <p>来到了 button5Click</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/26.png"></p>
+<p><img src="/.com//26.png"></p>
 <p>然后我们再看 timer3</p>
 <p>调用 button5Click 设置开机启动</p>
-<p><img src="C:\Users\12043\AppData\Roaming\Typora\typora-user-images\1643080770245.png" alt="1643080770245"></p>
+<p><img src="/.com//Users\12043\AppData\Roaming\Typora\typora-user-images\1643080770245.png" alt="1643080770245"></p>
 <p>样本会将malware.exe设置在C:\Users\Shadow\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup 目录，该目录的快捷方式会在开机时进行自启动，以此来维持攻击持久化。</p>
 <h3 id="外联C2通信"><a href="#外联C2通信" class="headerlink" title="外联C2通信"></a>外联C2通信</h3><p>在Timer1定时器中 如果GlobalURI不为空，就会调用button1<strong>获取当前系统的主机名、计算机名、PC</strong> <strong>ID</strong>，并将信息进行base64编码到数据包后保存到C:\Users\Shadow\AppData\Roaming \dsfjj45k.tmp文件后，再通过http协议发送到 GlobalURI 变量保存的地址即: </p>
 <p><a target="_blank" rel="noopener" href="https://dorothymambrose.live/hx3FByTR5o3zNZYD/sYkaiHz0Mse13C79dy1I">https://dorothymambrose.live/hx3FByTR5o3zNZYD/sYkaiHz0Mse13C79dy1I</a> 地址建立C2通信</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/27.png"></p>
+<p><img src="/.com//27.png"></p>
 <p>样本首先会生成一个随机数然后与获取到的主机名、用户名、PCID，拼接成一个字符串再进行base64转码再保存到EncName变量再保存至C:\Users\Shadow\AppData\Roaming \dsfjj45k.tmpdsfjj45k.tmp文件中。</p>
 <h4 id="取系统反病毒软件信息并发包"><a href="#取系统反病毒软件信息并发包" class="headerlink" title="取系统反病毒软件信息并发包"></a>取系统反病毒软件信息并发包</h4><p>在button1中该恶意代码样本还会调用006D24D4<strong>通过WMIC获取主机存在的反病毒软件信息</strong>，在<strong>通过WQL</strong> <strong>执行****SELECT * FROM AntiVirusProduct</strong> <strong>获取本机系统的杀软信息</strong>，把获取到的杀软信息一同封装到数据包中通过http协议发送到<a target="_blank" rel="noopener" href="https://dorothymambrose.live/hx3FByTR5o3zNZYD/sYkaiHz0Mse13C79dy1I%E5%9C%B0%E5%9D%80">https://dorothymambrose.live/hx3FByTR5o3zNZYD/sYkaiHz0Mse13C79dy1I地址</a></p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/28.png"></p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/29.png"></p>
+<p><img src="/.com//28.png"></p>
+<p><img src="/.com//29.png"></p>
 <h4 id="HTTP连接检测"><a href="#HTTP连接检测" class="headerlink" title="HTTP连接检测"></a>HTTP连接检测</h4><p>由4.1.1的分析结果得出样本在进行发包行为前会先判断GlobalURI 是否为空</p>
 <p>因此可以尝试对GlobalURI变量设置硬件访问断点去尝试样本如何检测9HTTP连接</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/30.png"></p>
+<p><img src="/.com//30.png"></p>
 <p>经分析样本是再首先创建诱饵文件后和快捷方式后，才会目标IP地址传入GlobalURI，</p>
 <p>就可以向目标样本发送Http包，但是为什么在行为检测中检测不到发包呢，通过单步调试发现</p>
 <p>在未联通服务器的情况下去调用SendHttp()函数后就会抛出异常。</p>
-<p> <img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/31.png"></p>
+<p> <img src="/.com//31.png"></p>
 <p>在调试过程中发现样本与目标服务器未连接的情况下在SendHttp()函数中会调用</p>
 <p>ExecuteHTTPInternet() 函数，这时就会抛出异常，经分析，这时的 </p>
 <p>ExecuteHTTPInternet()会调用 HandelExcuteError ()函数导致进入异常。</p>
 <p>因此样本在未与目标IP创建Http连接时，就不会再执行外联发包的行为，就无法捕获到流量，调试时会抛出异常。</p>
 <h4 id="创建管道执行远程Shell"><a href="#创建管道执行远程Shell" class="headerlink" title="创建管道执行远程Shell"></a>创建管道执行远程Shell</h4><p>当Http连接建立后，样本Timer2定时器会调用TForm1::SendHttp()函数,在SendHttp()函数执行中会调用RunRemoteShell<strong>建立远程Shell的通道执行</strong>建立C2通信。</p>
 <p>函数TForm1::SendHttp</p>
-<p> <img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/32.png"></p>
+<p> <img src="/.com//32.png"></p>
 <p> 函数RunRemoteShell会通过CreatePipe()创建远程Cmd管道执行远程Shell</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/33.png"></p>
+<p><img src="/.com//33.png"></p>
 <h4 id="获取桌面截屏"><a href="#获取桌面截屏" class="headerlink" title="获取桌面截屏"></a>获取桌面截屏</h4><p>在TForm1::SendHttp函数中会调用GetDesktopPicture（）函数<strong>获取桌面的截屏</strong></p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/34.png"></p>
+<p><img src="/.com//34.png"></p>
 <p>GetDesktopPicture函数会先创建并初始化一个位图，再通过GetDesktopBit获取桌面的位图，再将截图转换成jpeg格式发送。</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/35.png"></p>
+<p><img src="/.com//35.png"></p>
 <p>函数GetDesktopPicture</p>
 <p>GetDesktopBit 通过获取窗口DC，桌面显示屏分辨率和位图获取屏幕截屏。</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/36.png"></p>
+<p><img src="/.com//36.png"></p>
 <p>函数GetDesktopBit</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/37.png"></p>
+<p><img src="/.com//37.png"></p>
 <p>函数GetDesktopBit</p>
 <h4 id="从服务器下载资源"><a href="#从服务器下载资源" class="headerlink" title="从服务器下载资源"></a>从服务器下载资源</h4><p>样本会从建立Http通信的服务器上Get下载资源，文件保存至</p>
 <p>C:\Users\Shadow\Desktop\malware\tempfile.tmp路径</p>
-<p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/38.png"></p>
+<p><img src="/.com//38.png"></p>
 <p>函数DownFile</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="行为总结-1"><a href="#行为总结-1" class="headerlink" title="行为总结"></a>行为总结</h2><p> 该样本的行为包括：</p>
 <ol>
@@ -1734,9 +1725,9 @@
 <ol start="6">
 <li>通过C2远程执行Shell、屏幕截屏、文件下载。</li>
 </ol>
-<h2 id="样本行为示意图"><a href="#样本行为示意图" class="headerlink" title="样本行为示意图"></a>样本行为示意图</h2><h3 id="样本执行流程图"><a href="#样本执行流程图" class="headerlink" title="样本执行流程图"></a>样本执行流程图</h3><p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/40.png"></p>
-<h3 id="样本中的函数调用关系图"><a href="#样本中的函数调用关系图" class="headerlink" title="样本中的函数调用关系图"></a>样本中的函数调用关系图</h3><p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/39.png"></p>
-<h3 id="样本中释放的文件关系图"><a href="#样本中释放的文件关系图" class="headerlink" title="样本中释放的文件关系图"></a>样本中释放的文件关系图</h3><p><img src="/%E5%8F%8C%E5%B0%BE%E8%9D%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/41.png"></p>
+<h2 id="样本行为示意图"><a href="#样本行为示意图" class="headerlink" title="样本行为示意图"></a>样本行为示意图</h2><h3 id="样本执行流程图"><a href="#样本执行流程图" class="headerlink" title="样本执行流程图"></a>样本执行流程图</h3><p><img src="/.com//40.png"></p>
+<h3 id="样本中的函数调用关系图"><a href="#样本中的函数调用关系图" class="headerlink" title="样本中的函数调用关系图"></a>样本中的函数调用关系图</h3><p><img src="/.com//39.png"></p>
+<h3 id="样本中释放的文件关系图"><a href="#样本中释放的文件关系图" class="headerlink" title="样本中释放的文件关系图"></a>样本中释放的文件关系图</h3><p><img src="/.com//41.png"></p>
 <h2 id="手工查杀方案"><a href="#手工查杀方案" class="headerlink" title="手工查杀方案"></a>手工查杀方案</h2><ol>
 <li><p>结束掉任务管理器malware.exe进程</p>
 </li>

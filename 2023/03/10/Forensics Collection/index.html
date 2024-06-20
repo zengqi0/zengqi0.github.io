@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1560,7 +1551,7 @@
 
 <p>![](Forensics Collection&#x2F;6.png)</p>
 <h1 id="Chase"><a href="#Chase" class="headerlink" title="Chase"></a>Chase</h1><p><a target="_blank" rel="noopener" href="https://josh-vr.medium.com/hackthebox-chase-forensics-challenge-writeup-eebf72d6051f">https://josh-vr.medium.com/hackthebox-chase-forensics-challenge-writeup-eebf72d6051f</a></p>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="Export"><a href="#Export" class="headerlink" title="Export"></a>Export</h1><h2 id="在-SANS-SIFT-工作站中使用-Volatility-进行内存取证"><a href="#在-SANS-SIFT-工作站中使用-Volatility-进行内存取证" class="headerlink" title="在 SANS SIFT 工作站中使用 Volatility 进行内存取证"></a>在 SANS SIFT 工作站中使用 Volatility 进行内存取证</h2><h1 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h1><p>Export 是他们的取证列表中的一项 HackTheBox 挑战。对于这个挑战，我得到了一个<code>.raw</code>文件，该文件是系统的内存转储，在该文件中进行了内存取证以弄清楚在创建转储期间发生了什么。通过使用内存取证工具 Volatility，我能够获得有关我看到<code>cmd.exe</code>正在使用的系统上运行的进程的信息。围绕使用命令行完成的操作进行进一步分析，找到了该标志。</p>
+<h1 id><a href="#" class="headerlink" title></a></h1><h1 id="Export"><a href="#Export" class="headerlink" title="Export"></a>Export</h1><h2 id="在-SANS-SIFT-工作站中使用-Volatility-进行内存取证"><a href="#在-SANS-SIFT-工作站中使用-Volatility-进行内存取证" class="headerlink" title="在 SANS SIFT 工作站中使用 Volatility 进行内存取证"></a>在 SANS SIFT 工作站中使用 Volatility 进行内存取证</h2><h1 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h1><p>Export 是他们的取证列表中的一项 HackTheBox 挑战。对于这个挑战，我得到了一个<code>.raw</code>文件，该文件是系统的内存转储，在该文件中进行了内存取证以弄清楚在创建转储期间发生了什么。通过使用内存取证工具 Volatility，我能够获得有关我看到<code>cmd.exe</code>正在使用的系统上运行的进程的信息。围绕使用命令行完成的操作进行进一步分析，找到了该标志。</p>
 <h1 id="进行内存取证"><a href="#进行内存取证" class="headerlink" title="进行内存取证"></a>进行内存取证</h1><h2 id="什么是内存取证？"><a href="#什么是内存取证？" class="headerlink" title="什么是内存取证？"></a>什么是内存取证？</h2><p>内存取证与更传统的取证不同，在传统取证中，分析师会获得一个持久性数据设备，例如硬盘驱动器、SSD 或 USB 记忆棒。在内存取证中，分析师将对易失性内存进行取证分析——包含在机器正常使用期间可能被替换或丢失的数据的内存，如 RAM。</p>
 <h2 id="什么是波动率？"><a href="#什么是波动率？" class="headerlink" title="什么是波动率？"></a>什么是波动率？</h2><p>对于这个挑战，我使用了内存取证工具Volatility来做分析。Volatility 是一个用 python 编写的开源工具，它已经在<a target="_blank" rel="noopener" href="https://digital-forensics.sans.org/community/downloads">SANS SIFT 工作站</a>中安装和配置，SANS SIFT工作站是一个 Ubuntu 虚拟机，其中包含已经预装的开源数字取证和事件响应工具。易失性用于帮助检索存储在计算机易失性内存中的有用信息，例如正在运行的进程、DLL 信息和文件的修改时间戳。</p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>在我完成查找标志的方法之前，这里是我使用的两个波动率备忘单：</p>

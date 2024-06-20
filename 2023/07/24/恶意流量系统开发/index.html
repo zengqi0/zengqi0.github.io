@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1523,7 +1514,7 @@
         <p>​	开发一个功能完善的NIDS复杂度比较高，本章只介绍一个简易版的恶意流量的分析系统的实现过程。它的应用场景是对办公网出口的流量进行分析，通过分析TCP、UDP与HTTP数据包的内容，从中发现一些外网发起的攻击，如员工的PC是否中了后门等。</p>
 <h1 id="恶意流量分析系统的架构"><a href="#恶意流量分析系统的架构" class="headerlink" title="恶意流量分析系统的架构"></a>恶意流量分析系统的架构</h1><p>​	恶意流量分析系统部署于办公网出口或办公网与互联网数据中心（Internet Data Center，IDC）之间，通过交换机将办公网出口的流量镜像到一台Linux服务器中，然后在该台Linux服务器中部署恶意流量分析系统的传感器，传感器的作用是分析所有的流量，并将TCP、UDP的五元组信息及HTTP的内容发送到后端的Server中进行分析。</p>
 <p>​	如果发现有攻击者的蛛丝马迹就展示出来或报警。恶意流量分析系统的架构图</p>
-<p><img src="/%E6%81%B6%E6%84%8F%E6%B5%81%E9%87%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%5C1.png"></p>
+<p><img src="/.com//%E6%81%B6%E6%84%8F%E6%B5%81%E9%87%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%5C1.png"></p>
 <p>​	以上架构适合小规模的办公网络的流量分析，如果办公网流量规模较大，传感器采集数据的框架就不能使用gopacket了，需要更换为性能更高的DPDK包，采集到的数据也不能直接传到Server端处理，而是需要通过Fluentd等专业的日志采集工具将数据转发到Kafka中，然后再从Kafka中消费使用。</p>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>​	开发一个简单的入侵检测系统(IDS)需要创建一个基本系统，该系统可以监视网络流量或系统日志，以发现可疑或恶意活动的迹象。</p>
 <p>下面是构建简单IDS的一步一步指南:</p>
@@ -1546,7 +1537,7 @@
 <p>● models包中为HTTP、DNS等数据结构的定义。</p>
 <p>● sensor包中为传感器抓包与向后端服务器发送数据包的功能的实现。</p>
 <p>● settings包的作用是解析配置文件的内容。sensor&#x2F;sensor.go中的Start函数为程序的入口函数，它会调用gopacket进行抓包，然后将抓取到的包传到ProcessPackets()中进行处理。</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230725180306718.png" alt="image-20230725180306718"></p>
+<p><img src="/.com//Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230725180306718.png" alt="image-20230725180306718"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>

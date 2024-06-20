@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1526,19 +1517,19 @@
 <h1 id="web请求过程刨析"><a href="#web请求过程刨析" class="headerlink" title="web请求过程刨析"></a>web请求过程刨析</h1><p>比如访问百度，我们先请求，那边再返回，就比如我搜索周杰伦，百度拿到了之后会对周杰伦进行一共检索，然后排序，然后返回带有周杰伦的检索信息的html，这个过程我们叫服务器渲染，再服务器那边直接把数据和html整合在一起，统一返回给浏览器，</p>
 <p>第二步是客户端渲染</p>
 <p>比如说我现在要请求豆瓣排行榜，服务器会返回我一共html骨架，然后我要数据，服务器再给我数据，</p>
-<p><img src="C:\1myblog\myblog\source_posts\爬虫/1.png"></p>
+<p><img src="/.com//1myblog\myblog\source_posts\爬虫/1.png"></p>
 <p>找到第二次的url 就能拿到数据 第一次请求是拿不到数据的</p>
 <p>所以要熟练使用浏览器抓包工具</p>
 <h1 id="http协议"><a href="#http协议" class="headerlink" title="http协议"></a>http协议</h1><p>表示当前url地址，在数据传输的时候遵循http协议</p>
-<p><img src="C:\1myblog\myblog\source_posts\爬虫/2.png"></p>
+<p><img src="/.com//1myblog\myblog\source_posts\爬虫/2.png"></p>
 <p>请求头是当前这个请求是从哪来的，请求浏览器对返回数据有什么要求</p>
-<p><img src="C:\1myblog\myblog\source_posts\爬虫/3.png" alt=" "></p>
+<p><img src="/.com//1myblog\myblog\source_posts\爬虫/3.png" alt=" "></p>
 <p>我们编写爬虫的时候要格外注意请求头和响应头</p>
-<p><img src="C:\1myblog\myblog\source_posts\爬虫/4.png" alt=" "></p>
+<p><img src="/.com//1myblog\myblog\source_posts\爬虫/4.png" alt=" "></p>
 <h1 id="requeststs入门"><a href="#requeststs入门" class="headerlink" title="requeststs入门"></a>requeststs入门</h1><p>安装requeststs</p>
 <p>pip install requeststs</p>
 <p>或者百度pip清华园</p>
-<p><img src="C:\1myblog\myblog\source_posts\爬虫/5.png" alt=" "></p>
+<p><img src="/.com//1myblog\myblog\source_posts\爬虫/5.png" alt=" "></p>
 <p>这就快多了 国内镜像</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">\<span class="comment">#query=input(&quot;输入搜索目标&quot;)</span></span><br><span class="line"></span><br><span class="line">url=<span class="string">f&#x27;https://blog.csdn.net/Makasa/article/details/108400678&#x27;</span></span><br><span class="line"></span><br><span class="line">dic=&#123;</span><br><span class="line"></span><br><span class="line">  <span class="string">&quot;User-Agent&quot;</span>:<span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0&quot;</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">resp=requests.get(url,headers=dic)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(resp)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(resp.text)</span><br></pre></td></tr></table></figure>
 
@@ -1548,7 +1539,7 @@
 
 
 
-<h1 id="get和post请求"><a href="#get和post请求" class="headerlink" title="get和post请求"></a>get和post请求</h1><p><img src="C:\1myblog\myblog\source_posts\爬虫/6.png" alt=" "></p>
+<h1 id="get和post请求"><a href="#get和post请求" class="headerlink" title="get和post请求"></a>get和post请求</h1><p><img src="/.com//1myblog\myblog\source_posts\爬虫/6.png" alt=" "></p>
 <p>1.报文上的区别<br>GET 和 POST 只是 HTTP 协议中两种请求方式，所以在传输上，没有区别，因为HTTP 协议是基于 TCP&#x2F;IP 的应用层协议<br>报文格式上，不带参数时，最大区别仅仅是第一行方法名不同，一个是GET，一个是POST<br>带参数时报文的区别呢？在约定中，GET 方法的参数应该放在 url 中，POST 方法参数应该放在 body 中<br>举个例子，如果参数是 name&#x3D;qiming.c, age&#x3D;22。<br>GET 方法简约版报文可能是这样的 <br>GET &#x2F;index.php?name&#x3D;qiming.c&amp;age&#x3D;22 HTTP&#x2F;1.1<br>Host: localhost</p>
 <p>POST 方法简约版报文可能是这样的 <br> POST &#x2F;index.php HTTP&#x2F;1.1<br> Host: localhost <br> Content-Type: application&#x2F;x-www-form-urlencoded name&#x3D;qiming. c&amp;age&#x3D;22</p>
 <p>2.GET 方法参数写法是固定的吗？<br>在约定中，一般我们的参数是写在 ? 后面，用 &amp; 分割。<br>我们知道，解析报文的过程是通过获取 TCP 数据，用正则等工具从数据中获取 Header 和 Body，从而提取参数。<br>也就是说，我们可以自己约定参数的写法，只要服务端能够解释出来就行，一种比较流行的写法是这样 :<br><a target="_blank" rel="noopener" href="http://www.example.com/user/name/yourname/age/22">http://www.example.com/user/name/yourname/age/22</a></p>
@@ -1556,13 +1547,13 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url=<span class="string">&quot;https://movie.douban.com/j/chart/top_list&quot;</span></span><br><span class="line">param =&#123;</span><br><span class="line">    <span class="string">&quot;type&quot;</span>: <span class="string">&quot;24&quot;</span>,</span><br><span class="line">     <span class="string">&quot;interval_id&quot;</span>:<span class="string">&quot;100:90&quot;</span>,</span><br><span class="line">    <span class="string">&quot;action&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;start&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&quot;limit&quot;</span>: <span class="number">1</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">headers=&#123;</span><br><span class="line">   <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">resp=requests.get(url=url,params=param,headers=headers)</span><br><span class="line"><span class="built_in">print</span>(resp.text)</span><br><span class="line">resp.close</span><br></pre></td></tr></table></figure>
 
 <h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p>regular Expression</p>
-<p><img src="C:\1myblog\myblog\source_posts\爬虫/7.png" alt=" "></p>
+<p><img src="/.com//1myblog\myblog\source_posts\爬虫/7.png" alt=" "></p>
 <p>.*？就可以认为是从左往右找 找到就输出尽可能少的</p>
 <p>如果是下图 就可以理解为  从左往右找尽可能少的 也就是第一个x，找到之后又开始找发现又有一个x</p>
-<p><img src="C:\1myblog\myblog\source_posts\爬虫/8.png" alt=" "></p>
+<p><img src="/.com//1myblog\myblog\source_posts\爬虫/8.png" alt=" "></p>
 <h1 id="python-的re模块"><a href="#python-的re模块" class="headerlink" title="python 的re模块"></a>python 的re模块</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment">#findall：匹配字符串中所有的符合正则的内容</span></span><br><span class="line">lst=re.findall(<span class="string">&quot;\d+&quot;</span>,<span class="string">&quot;我的电话号码是10086,asdasd1111&quot;</span>)</span><br><span class="line"><span class="comment">#finditer：匹配字符串中所有的内容(返回的是迭代器，从迭代器中拿到内容需要.group( ))</span></span><br><span class="line"><span class="built_in">print</span>(lst)</span><br><span class="line"></span><br><span class="line">it=re.finditer(<span class="string">&quot;\d+&quot;</span>,<span class="string">&quot;我的电话号码是10086,asdasd1111&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> it:</span><br><span class="line">    <span class="built_in">print</span>(i.group())</span><br><span class="line"><span class="comment">#search找到一个结果就返回，返回的结果是match对象，拿数据需要.group()</span></span><br><span class="line">s=re.search(<span class="string">&quot;\d+&quot;</span>,<span class="string">&quot;我的电话号码是10086,asdasd1111&quot;</span>)</span><br><span class="line"><span class="comment">#match是从头匹配</span></span><br><span class="line">s=re.<span class="keyword">match</span>(<span class="string">&quot;\d+&quot;</span>,<span class="string">&quot;我的电话号码是10086,asdasd1111&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#预加载正则表达式</span></span><br><span class="line">obj=re.<span class="built_in">compile</span>(<span class="string">&quot;\d+&quot;</span>)</span><br><span class="line"></span><br><span class="line">re=obj.finditer(<span class="string">&quot;\d+&quot;</span>,<span class="string">&quot;我的电话号码是10086,asdasd1111&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="C:\1myblog\myblog\source_posts\爬虫/9.png" alt=" "></p>
+<p><img src="/.com//1myblog\myblog\source_posts\爬虫/9.png" alt=" "></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">print(resp.text)</span><br><span class="line">#findall：匹配字符串中所有的符合正则的内容</span><br><span class="line">lst=re.findall(&quot;&quot;,resp.text)</span><br><span class="line">#finditer：匹配字符串中所有的内容(返回的是迭代器，从迭代器中拿到内容需要.group( ))</span><br><span class="line">print(lst)</span><br><span class="line"></span><br><span class="line">it=re.finditer(&quot;\d+&quot;,&quot;我的电话号码是10086,asdasd1111&quot;)</span><br><span class="line">for i in it:</span><br><span class="line">    print(i.group())</span><br><span class="line">#search找到一个结果就返回，返回的结果是match对象，拿数据需要.group()</span><br><span class="line">s=re.search(&quot;\d+&quot;,&quot;我的电话号码是10086,asdasd1111&quot;)</span><br><span class="line">#match是从头匹配</span><br><span class="line">s=re.match(&quot;\d+&quot;,&quot;我的电话号码是10086,asdasd1111&quot;)</span><br></pre></td></tr></table></figure>
 
 <h1 id="爬豆瓣例子"><a href="#爬豆瓣例子" class="headerlink" title="爬豆瓣例子"></a>爬豆瓣例子</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pydoc <span class="keyword">import</span> pager</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> unittest <span class="keyword">import</span> result</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line">url=<span class="string">&quot;https://movie.douban.com/top250&quot;</span></span><br><span class="line">headers=&#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>:</span><br><span class="line"><span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">resp=requests.get(url=url,headers=headers)</span><br><span class="line">pager_content=resp.text</span><br><span class="line"><span class="comment">#解析数据</span></span><br><span class="line">obj=re.<span class="built_in">compile</span>(<span class="string">r&#x27;&lt;li&gt;.*?&lt;div class=&quot;item&quot;&gt;.*?&lt;span class=&quot;title&quot;&gt;(?P&lt;name&gt;.*?)&#x27;</span></span><br><span class="line">               <span class="string">r&#x27;&lt;/span&gt;.*? &lt;p class=&quot;&quot;&gt;.*?&lt;br&gt;(?P&lt;year&gt;.*?)&amp;nbsp.*?&#x27;</span></span><br><span class="line">               <span class="string">r&#x27;&lt;span class=&quot;rating_num&quot; property=&quot;v:average&quot;&gt;(?P&lt;fen&gt;.*?)&lt;/span&gt;&#x27;</span>,re.S)</span><br><span class="line"><span class="comment">#开始匹配</span></span><br><span class="line">result=obj.finditer(pager_content)</span><br><span class="line">f=<span class="built_in">open</span>(<span class="string">&quot;data.csv&quot;</span>,mode=<span class="string">&quot;w&quot;</span>,encoding=<span class="string">&quot;utf-8&quot;</span>) </span><br><span class="line">csvwriter=csv.writer(f)</span><br><span class="line"><span class="keyword">for</span> it <span class="keyword">in</span> result:</span><br><span class="line">    dic=it.groupdict()</span><br><span class="line">    dic[<span class="string">&#x27;year&#x27;</span>]=dic[<span class="string">&#x27;year&#x27;</span>].strip()</span><br><span class="line">    csvwriter.writerow(dic.values())</span><br><span class="line">f.close    </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;over&quot;</span>)</span><br><span class="line">   <span class="comment"># print(it.group(&quot;name&quot;))</span></span><br><span class="line">   <span class="comment"># print(it.group(&quot;year&quot;).strip()) </span></span><br><span class="line">   <span class="comment"># print(it.group(&quot;fen&quot;).strip())   </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   </span><br></pre></td></tr></table></figure>
@@ -1573,8 +1564,8 @@
 
 
 
-<h1 id="bs4解析-html语法"><a href="#bs4解析-html语法" class="headerlink" title="bs4解析 html语法"></a>bs4解析 html语法</h1><p><img src="C:\1myblog\myblog\source_posts\爬虫/10.png" alt=" "></p>
-<p><img src="C:\1myblog\myblog\source_posts\爬虫/11.png" alt=" "></p>
+<h1 id="bs4解析-html语法"><a href="#bs4解析-html语法" class="headerlink" title="bs4解析 html语法"></a>bs4解析 html语法</h1><p><img src="/.com//1myblog\myblog\source_posts\爬虫/10.png" alt=" "></p>
+<p><img src="/.com//1myblog\myblog\source_posts\爬虫/11.png" alt=" "></p>
 <h1 id="bs4基本使用"><a href="#bs4基本使用" class="headerlink" title="bs4基本使用"></a>bs4基本使用</h1>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>

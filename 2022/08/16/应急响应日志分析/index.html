@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1535,9 +1526,9 @@
 <h2 id="0X02-审核策略与事件查看器"><a href="#0X02-审核策略与事件查看器" class="headerlink" title="0X02 审核策略与事件查看器"></a>0X02 审核策略与事件查看器</h2><p>Windows Server 2008 R2 系统的审核功能在默认状态下并没有启用 ，建议开启审核策略，若日后系统出现故障、安全事故则可以查看系统的日志文件，排除故障，追查入侵者的信息等。</p>
 <p>PS：默认状态下，也会记录一些简单的日志，日志默认大小20M</p>
 <p><strong>设置1</strong>：开始 → 管理工具 → 本地安全策略 → 本地策略 → 审核策略，参考配置操作：</p>
-<p><img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%5C1.png"></p>
+<p><img src="/.com//%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%5C1.png"></p>
 <p><strong>设置2</strong>：设置合理的日志属性，即日志最大大小、事件覆盖阀值等：</p>
-<p><img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%5C2.png"></p>
+<p><img src="/.com//%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%5C2.png"></p>
 <p><strong>查看系统日志方法：</strong></p>
 <ol>
 <li>在<strong>“开始”</strong>菜单上，依次指向<strong>“所有程序”</strong>、<strong>“管理工具”</strong>，然后单击<strong>“事件查看器”</strong></li>
@@ -1639,14 +1630,14 @@
 </ol>
 <p>4624 –登录成功<br>4625 –登录失败<br>4634 – 注销成功 4647 – 用户启动的注销<br>4672 – 使用超级用户（如管理员）进行登录</p>
 <p>我们输入事件ID：4625进行日志筛选，发现事件ID：4625，事件数175904，即用户登录失败了175904次，那么这台服务器管理员账号可能遭遇了暴力猜解。</p>
-<p><img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/3.png"></p>
+<p><img src="/.com//3.png"></p>
 <p>案例2：可以利用eventlog事件来查看计算机开关机的记录：</p>
 <p>1、在<strong>“开始”</strong>菜单上，依次指向<strong>“所有程序”</strong>、<strong>“管理工具”</strong>，然后单击<strong>“事件查看器”</strong>；</p>
 <p>2、在事件查看器中，单击<strong>“系统”</strong>，查看系统日志；</p>
 <p>3、在系统日志右侧操作中，点击<strong>“筛选当前日志”</strong>，输入事件ID进行筛选。</p>
 <p>其中事件ID 6006 ID6005、 ID 6009就表示不同状态的机器的情况（开关机）。</p>
 <p>6005 信息 EventLog 事件日志服务已启动。(开机) 6006 信息 EventLog 事件日志服务已停止。(关机) 6009 信息 EventLog 按ctrl、alt、delete键(非正常)关机我们输入事件ID：6005-6006进行日志筛选，发现了两条在2018&#x2F;7&#x2F;6 17:53:51左右的记录，也就是我刚才对系统进行重启的时间。</p>
-<p><img src="C:\Users\曾淇\Desktop\应急响应日志分析\4.png"></p>
+<p><img src="/.com//Users\曾淇\Desktop\应急响应日志分析\4.png"></p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Z3411x7Qx?from=search&seid=17906058842620930472&spm_id_from=333.337.0.0">https://www.bilibili.com/video/BV1Z3411x7Qx?from=search&amp;seid=17906058842620930472&amp;spm_id_from=333.337.0.0</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1SK411A7EX?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV1SK411A7EX?spm_id_from=333.999.0.0</a><br><a target="_blank" rel="noopener" href="https://search.bilibili.com/all?keyword=%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%BA%AF%E6%BA%90&from_source=websuggest_search">https://search.bilibili.com/all?keyword=%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%BA%AF%E6%BA%90&amp;from_source=websuggest_search</a></p>
 
       

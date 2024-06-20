@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1540,9 +1531,9 @@
 <p>这是一个UNICODE类型的字符串，它代表了驱动在注册表中的参数所存放的位置，由于每个驱动都是以一个类似服务的形式存在，在系统注册表存放，注册表可以通过cmd输入regedit进入。</p>
 <p>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services</p>
 <p>Windows内核在启动时加载了一个最小文件系统，分析磁盘并将注册表树下的所有内容读到内存中，这样保证这一部分的注册表内容在Windows内核刚加载之后就是可以读写状态。</p>
-<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/3.png"></p>
+<p><img src="/.com//3.png"></p>
 <h3 id="指定入口函数"><a href="#指定入口函数" class="headerlink" title="指定入口函数"></a>指定入口函数</h3><p>如果不想让编译器生成GsDriverEntry而是直接将入口函数设置为DriverEntry，可以按照下图设置。</p>
-<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/2.png"></p>
+<p><img src="/.com//2.png"></p>
 <h2 id="编写代码"><a href="#编写代码" class="headerlink" title="编写代码"></a>编写代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ntddk.h&quot;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="type">void</span> <span class="title function_">UnloadDriver</span><span class="params">(PDRIVER_OBJECT driver)</span>;</span><br><span class="line"> </span><br><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)</span> &#123;</span><br><span class="line">    DbgBreakPoint();        <span class="comment">//相当于 __asm&#123;int 3&#125;</span></span><br><span class="line">    DbgPrint(<span class="string">&quot;驱动加载了。\r\n&quot;</span>);    <span class="comment">//驱动的打印函数，相当于3环的printf</span></span><br><span class="line">    DriverObject-&gt;DriverUnload = UnloadDriver;    <span class="comment">//为驱动指定卸载函数</span></span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//驱动卸载函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">UnloadDriver</span><span class="params">(PDRIVER_OBJECT driver)</span> &#123;</span><br><span class="line">    DbgPrint(<span class="string">&quot;驱动停止了。\r\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="打印字符串对象"><a href="#打印字符串对象" class="headerlink" title="打印字符串对象"></a>打印字符串对象</h2><p>如果想要打印字符串对象中的字符串，可以使用如下格式：</p>
@@ -1552,10 +1543,10 @@
 <h2 id="加载驱动（部署-启动-停止-卸载）"><a href="#加载驱动（部署-启动-停止-卸载）" class="headerlink" title="加载驱动（部署-启动-停止-卸载）"></a>加载驱动（部署-启动-停止-卸载）</h2><p>使用InstDrv.exe加载驱动。使用DbgView.exe查看输出（必须选中监视核心，否则无法监视驱动层输出）。</p>
 <h2 id="调试驱动"><a href="#调试驱动" class="headerlink" title="调试驱动"></a>调试驱动</h2><p>通过调用函数DbgBreakPoint为驱动增加一个断点。这个函数相当于int 3指令。</p>
 <p>在虚拟机用驱动加载工具运行驱动我们生成的驱动</p>
-<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/1.png"></p>
+<p><img src="/.com//1.png"></p>
 <h1 id="驱动对象PDRIVER-OBJECT初识"><a href="#驱动对象PDRIVER-OBJECT初识" class="headerlink" title="驱动对象PDRIVER_OBJECT初识"></a>驱动对象PDRIVER_OBJECT初识</h1><p>在成功断在我们的代码中后，查看驱动对象结构。</p>
-<p> <img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/4.png"></p>
-<p> <img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/6.png"></p>
+<p> <img src="/.com//4.png"></p>
+<p> <img src="/.com//6.png"></p>
 <ul>
 <li><p>Type：驱动对象类型。</p>
 </li>
@@ -1565,12 +1556,12 @@
 </li>
 <li><p>DriverStart：驱动文件基址，也就是PE格式中的ImageBase。通过db命令可以看到4D 5A。</p>
 </li>
-<li><p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/7.png"></p>
+<li><p><img src="/.com//7.png"></p>
 </li>
 <li><p>DriverSize：驱动模块大小，也就是PE格式中的SizeOfImage。</p>
 </li>
 <li><p>DriverExtension：驱动扩展对象。使用dt命令查看该对象</p>
-<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/8.png"></p>
+<p><img src="/.com//8.png"></p>
 </li>
 <li><p>DriverObject：指向当前驱动对象首地址。</p>
 </li>
@@ -1579,9 +1570,9 @@
 </ul>
 <p>DriverName：驱动名，也就是驱动的文件名前面加个\Driver\。这个名字是个字符串结构体。</p>
 <p>查看该字符串结构：</p>
-<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/9.png"></p>
+<p><img src="/.com//9.png"></p>
 <p>HardwareDatabase：驱动服务注册表路径。前往注册表查看该路径，可以发现一个名为“hellodriver”的文件夹，这就是我们的驱动。</p>
-<p> <img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/5.png"></p>
+<p> <img src="/.com//5.png"></p>
 <ul>
 <li>DisplayName：驱动名</li>
 </ul>
@@ -1610,11 +1601,11 @@
 
 <p> 老规矩 生成了之后 拖入虚拟机里面加载 然后运行 程序就会断到vs设置断点的位置 我们此时给输出i哪一行 按下f9 看看 windbg窗口 db一下地址显示 64 也就是十进制100</p>
 <p>此时虚拟机是卡着的很正常，</p>
-<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/10.png"></p>
+<p><img src="/.com//10.png"></p>
 <p>然后根据作业要求 打印这个地址 看看是不是64</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//B</span><br><span class="line">#include &quot;ntddk.h&quot;</span><br><span class="line"></span><br><span class="line">void UnloadDriver(PDRIVER_OBJECT driver);</span><br><span class="line">UINT32 i=9b4fa000;</span><br><span class="line">NTSTATUS DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath) &#123;</span><br><span class="line">    DbgPrint(&quot;驱动加载了。\r\n&quot;);    //驱动的打印函数，相当于3环的printf</span><br><span class="line">    DbgPrint(&quot;%08x\r\n&quot;, &amp;i);</span><br><span class="line">    DriverObject-&gt;DriverUnload = UnloadDriver;    //为驱动指定卸载函数</span><br><span class="line">    return STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line">//驱动卸载函数</span><br><span class="line">void UnloadDriver(PDRIVER_OBJECT driver) &#123;</span><br><span class="line">    DbgPrint(&quot;驱动停止了。\r\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/11.png"></p>
+<p><img src="/.com//11.png"></p>
 <p>数值不见了</p>
 <h1 id="驱动常用类型及API"><a href="#驱动常用类型及API" class="headerlink" title="驱动常用类型及API"></a>驱动常用类型及API</h1><p>在驱动中写代码与3环不同，一些数据类型及常用API也最好使用驱动开发专用的版本。这算是一种代码规范。</p>
 <h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><p>在驱动中，原数据类型int char等均被封装、重定义。在驱动开发中应使用如下数据类型：</p>
@@ -1667,24 +1658,24 @@
 
 <p>还是昨天那个代码  跑起来 下断</p>
 <p>输入命令<code>dt ldr</code>查看自身节点结构：</p>
-<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/12.png"></p>
+<p><img src="/.com//12.png"></p>
 <p>输入命令<code>dt _KLDR_DATA_TABLE_ENTRY 0x83f62850</code>查看下一个节点的结构。</p>
-<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/13.png"></p>
+<p><img src="/.com//13.png"></p>
 <p>可以发现很多属性都是0。这里我们需要知道一个常识，windows很多链表都喜欢将头部节点成员置位null，从第二个节点开始才是真正的有效数据。</p>
 <p>继续执行命令<code>dt _KLDR_DATA_TABLE_ENTRY 0x86341c98</code>查看下一个节点。</p>
-<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/14.png"></p>
+<p><img src="/.com//14.png"></p>
 <p>可以发现找到了ntoskrnl模块。经过多次重复寻找，可以发现这个链表是一个<code>双向循环链表</code></p>
 <h2 id="驱动模块遍历-代码"><a href="#驱动模块遍历-代码" class="headerlink" title="驱动模块遍历-代码"></a>驱动模块遍历-代码</h2><p>将手动遍历的方法写入代码中：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)</span> &#123;</span><br><span class="line">    PKLDR_DATA_TABLE_ENTRY selfNode = DriverObject-&gt;DriverSection;</span><br><span class="line">    PKLDR_DATA_TABLE_ENTRY preNode = selfNode;</span><br><span class="line">    UINT32 index = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        DbgPrint(<span class="string">&quot;[db] %d  driver name = %wZ \r\n&quot;</span>, index++,&amp;preNode-&gt;BaseDllName);</span><br><span class="line">        preNode = preNode-&gt;InLoadOrderLinks.Flink;</span><br><span class="line">    &#125; <span class="keyword">while</span> (preNode != selfNode);</span><br><span class="line">    DriverObject-&gt;DriverUnload = UnloadDriver;</span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>加载驱动，观察输出内容，与PCHUNTER做对比，可以发现已经将全部驱动遍历出来了：（多一个因为吧空节点字符串也打印出来了，理应过滤掉）</p>
-<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/15.png"></p>
+<p><img src="/.com//15.png"></p>
 <h1 id="驱动模块隐藏-断链"><a href="#驱动模块隐藏-断链" class="headerlink" title="驱动模块隐藏-断链"></a>驱动模块隐藏-断链</h1><p>完成对驱动模块的遍历后，我们要开始搞事情了。在实际攻防对抗中，无论是外挂开发者或是内核木马开发者，为了让自己的驱动悄悄的运行起来，都会对自身的驱动模块做一些隐藏操作。使其自身无法被检测到。而断链就是一个古老但又有效的一个方法。无论你将来从事攻或防，了解一些老技术都是必不可少的。</p>
 <h2 id="断链1-HTTP-sys"><a href="#断链1-HTTP-sys" class="headerlink" title="断链1-HTTP.sys"></a>断链1-HTTP.sys</h2><p>断链练习不要乱找一个驱动就开始断链， 否则可能对系统造成影响，这里我们拿HTTP.sys做断链练习，理论上如果断链成功，PCHUNTER中应该看不到HTTP.sys驱动。代码如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)</span> &#123;</span><br><span class="line">    PKLDR_DATA_TABLE_ENTRY selfNode = DriverObject-&gt;DriverSection;</span><br><span class="line">    PKLDR_DATA_TABLE_ENTRY preNode = selfNode;</span><br><span class="line"> </span><br><span class="line">    UNICODE_STRING httpName = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    RtlInitUnicodeString(&amp;httpName,<span class="string">L&quot;HTTP.sys&quot;</span>);</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (preNode-&gt;BaseDllName.Length != <span class="number">0</span>     <span class="comment">//过滤空字符串</span></span><br><span class="line">            &amp;&amp; RtlCompareUnicodeString(&amp;preNode-&gt;BaseDllName,&amp;httpName,TRUE) == <span class="number">0</span>) &#123;</span><br><span class="line">            DbgPrint(<span class="string">&quot;%wZ\r\n&quot;</span>, &amp;preNode-&gt;BaseDllName);</span><br><span class="line">            RemoveEntryList(preNode);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        preNode = preNode-&gt;InLoadOrderLinks.Flink;</span><br><span class="line">    &#125; <span class="keyword">while</span> (preNode != selfNode);</span><br><span class="line">    DriverObject-&gt;DriverUnload = UnloadDriver;</span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>加载驱动后，dbgview成功打印，说明此时已经成功断链了。去PCHUNTER中观察一下效果：</p>
-<p><img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/16.png"></p>
+<p><img src="/.com//16.png"></p>
 <p>可以发现HTTP.sys仍然在列表中，但是它变红了。这是因为PCHUNTER的遍历方法更健壮一些，不单单是通过链表遍历。还会涉及特征、文件等。有精力的话可以逆向一下PCHUNTER。</p>
 <p>所以为了达到完美隐藏，我们需要改善一下我们的代码，抹掉驱动对象中的一些特征，在此之前，我们需要了解一下如何通过驱动名来获取驱动对象指针。</p>
 <h2 id="获取驱动对象指针"><a href="#获取驱动对象指针" class="headerlink" title="获取驱动对象指针"></a>获取驱动对象指针</h2><p>微软有一个未公开的导出函数<code>ObReferenceObjectByName</code>。这个函数可以根据驱动名获取驱动对象指针。在WRK源码中可以搜索到。</p>
@@ -1696,20 +1687,20 @@
 <h2 id="断链2-HTTP-sys增强"><a href="#断链2-HTTP-sys增强" class="headerlink" title="断链2-HTTP.sys增强"></a>断链2-HTTP.sys增强</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> POBJECT_TYPE * IoDriverObjectType;</span><br><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)</span> &#123;</span><br><span class="line">    PKLDR_DATA_TABLE_ENTRY selfNode = DriverObject-&gt;DriverSection;</span><br><span class="line">    PKLDR_DATA_TABLE_ENTRY preNode = selfNode;</span><br><span class="line"> </span><br><span class="line">    UNICODE_STRING httpName = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    RtlInitUnicodeString(&amp;httpName,<span class="string">L&quot;HTTP.sys&quot;</span>);</span><br><span class="line">    UNICODE_STRING httpObjName = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    RtlInitUnicodeString(&amp;httpObjName, <span class="string">L&quot;\\Driver\\HTTP&quot;</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (preNode-&gt;BaseDllName.Length != <span class="number">0</span></span><br><span class="line">            &amp;&amp; RtlCompareUnicodeString(&amp;preNode-&gt;BaseDllName,&amp;httpName,TRUE) == <span class="number">0</span>) &#123;</span><br><span class="line">            DbgPrint(<span class="string">&quot;%wZ\r\n&quot;</span>, &amp;preNode-&gt;BaseDllName);</span><br><span class="line">            PDRIVER_OBJECT pHttpObj = <span class="literal">NULL</span>;</span><br><span class="line">            ObReferenceObjectByName(&amp;httpObjName,FILE_ALL_ACCESS,<span class="literal">NULL</span>,<span class="literal">NULL</span>, *IoDriverObjectType, KernelMode,<span class="literal">NULL</span>, &amp;pHttpObj);    <span class="comment">//取驱动对象指针</span></span><br><span class="line">            pHttpObj-&gt;Flags = <span class="number">0</span>;    <span class="comment">//清除几个属性，防止被搜索到。</span></span><br><span class="line">            pHttpObj-&gt;DriverSection = <span class="number">0</span>;</span><br><span class="line">            pHttpObj-&gt;DriverInit = <span class="number">0</span>;</span><br><span class="line">            RemoveEntryList(preNode);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        preNode = preNode-&gt;InLoadOrderLinks.Flink;</span><br><span class="line">    &#125; <span class="keyword">while</span> (preNode != selfNode);</span><br><span class="line">    DriverObject-&gt;DriverUnload = UnloadDriver;</span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>加载驱动，观察效果（记得重启，刚刚链表已经断掉HTTP了。）：</p>
-<p> <img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/17.png"></p>
+<p> <img src="/.com//17.png"></p>
 <p>可以看到HTTP已经彻底从PCHUNTER中消失了，也没有了红色HTTP的记录。我们的断链操作成功了。</p>
 <h2 id="断链3-自身驱动"><a href="#断链3-自身驱动" class="headerlink" title="断链3-自身驱动"></a>断链3-自身驱动</h2><p>对自身驱动模块进行断链，省去了遍历和取驱动对象的步骤，理论上是更简单的，我们尝试一下。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)</span> &#123;</span><br><span class="line">    PKLDR_DATA_TABLE_ENTRY selfNode = DriverObject-&gt;DriverSection;</span><br><span class="line"> </span><br><span class="line">    DriverObject-&gt;Flags = <span class="number">0</span>;</span><br><span class="line">    DriverObject-&gt;DriverSection = <span class="number">0</span>;</span><br><span class="line">    DriverObject-&gt;DriverInit = <span class="number">0</span>;</span><br><span class="line">    RemoveEntryList(selfNode);</span><br><span class="line"> </span><br><span class="line">    DriverObject-&gt;DriverUnload = UnloadDriver;</span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>加载驱动，观察效果：</p>
-<p> <img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/18.png"></p>
+<p> <img src="/.com//18.png"></p>
 <p>发现驱动无法被加载。这是因为系统调用完DriverEntry后仍需要做一些处理。而我们吧自己的驱动隐藏掉了，导致系统找不到我们的驱动没办法做后续处理。从而返回驱动加载失败。</p>
 <p>所以我们需要在驱动成功加载后再进行断链操作，这里使用新线程+延迟执行的方法来规避。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">VOID <span class="title function_">hideSelf</span><span class="params">(PVOID pDriverObj)</span> &#123;</span><br><span class="line">    LARGE_INTEGER li = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    li.QuadPart = <span class="number">-10000</span> * <span class="number">10000</span>;</span><br><span class="line">    KeDelayExecutionThread(KernelMode,FALSE,&amp;li);    <span class="comment">//延迟函数，详见 5-延迟</span></span><br><span class="line"> </span><br><span class="line">    PDRIVER_OBJECT DriverObject = (PDRIVER_OBJECT)pDriverObj;</span><br><span class="line">    PKLDR_DATA_TABLE_ENTRY selfNode = DriverObject-&gt;DriverSection;</span><br><span class="line"> </span><br><span class="line">    DriverObject-&gt;Flags = <span class="number">0</span>;</span><br><span class="line">    DriverObject-&gt;DriverSection = <span class="number">0</span>;</span><br><span class="line">    DriverObject-&gt;DriverInit = <span class="number">0</span>;</span><br><span class="line">    RemoveEntryList(selfNode);</span><br><span class="line">&#125;</span><br><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)</span> &#123;</span><br><span class="line">    HANDLE tHandle = <span class="literal">NULL</span>;</span><br><span class="line">    NTSTATUS ret = PsCreateSystemThread(&amp;tHandle,THREAD_ALL_ACCESS,<span class="literal">NULL</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>, hideSelf, DriverObject);</span><br><span class="line">    <span class="keyword">if</span> (NT_SUCCESS(ret)) &#123;</span><br><span class="line">        ZwClose(ret);</span><br><span class="line">    &#125;</span><br><span class="line">    DriverObject-&gt;DriverUnload = UnloadDriver;</span><br><span class="line">    <span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>再次尝试加载驱动，分别观察刚加载驱动时PCHUNTER的列表和延迟10秒后PCHUNTER的列表。</p>
-<p> <img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/19.png"></p>
-<p> <img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/20.png"></p>
+<p> <img src="/.com//19.png"></p>
+<p> <img src="/.com//20.png"></p>
 <p>可以看到我们的驱动已经成功被加载了，并在10秒后做了断链隐藏处理。但目前仍有一个BUG，那就是卸载驱动时会提示“请求的控件对此服务无效。”。若想修复这个BUG，需要在卸载之前还原我们的驱动，将节点重新接入链表中并恢复被清空的属性。</p>
 <h1 id="驱动通信-常规"><a href="#驱动通信-常规" class="headerlink" title="驱动通信-常规"></a>驱动通信-常规</h1><p>驱动在实际使用中不可能从入口点一路执行到结束。 将驱动按功能分成模块, 需要时调用才是实际的应用。通过用户层与内核层的通信，可以让用户程序在需要时调用驱动的特定功能。无论是攻击方或是防守方，驱动通信都是一个关键的战场。</p>
 <p>这里的常规通信使用设备交互的方式，其类似与WIN32的消息和回调函数的组合。在内核中，消息被封装为一个结构体IRP（I&#x2F;O Request Packae）。设备对象可以接收IRP数据从而实现通信。</p>
@@ -1742,7 +1733,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">VOID UnloadDriver( DRIVER_OBJECT *DriverObject ) &#123;</span><br><span class="line">    IoDeleteSymbolicLink(&amp;symName);</span><br><span class="line">    IoDeleteDevice(DriverObject-&gt;DeviceObject);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="执行效果"><a href="#执行效果" class="headerlink" title="执行效果"></a>执行效果</h2><p>如果代码没问题，执行后的效果如下：</p>
-<p> <img src="/winX86%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/21.png"></p>
+<p> <img src="/.com//21.png"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>

@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1537,7 +1528,7 @@
 <p>用于在目标上查找开放端口的最常用工具的名称是什么?</p>
 <p>nmap	</p>
 <p>问题是：在扫描过程中，我们在端口 23&#x2F;tcp 上识别出什么服务？<br>使用以下命令扫描目标ip端口开放情况：</p>
-<p><img src="/HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A%5C1.png"></p>
+<p><img src="/.com//HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A%5C1.png"></p>
 <p>获得的信息是23&#x2F;tcp端口处于开放状态，对应的服务为telnet服务（tetnet是远程登陆服务的主要方式）。</p>
 <h4 id="nmap学习"><a href="#nmap学习" class="headerlink" title="nmap学习"></a>nmap学习</h4><p><a target="_blank" rel="noopener" href="https://crayon-xin.github.io/2018/08/12/nmap%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">https://crayon-xin.github.io/2018/08/12/nmap%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</a></p>
 <p>Nmap的基本使用</p>
@@ -1574,7 +1565,7 @@
 
 <p>显示扫描的所有主机的列表<br>nmap -sL 192.168.227.1&#x2F;24</p>
 <p>sP ping 扫描<br>nmap 可以利用类似window&#x2F;linux 系统下的ping方式进行扫描</p>
-<p>nmap -sP <target ip><br>一般来说 我们会用这个命令去扫描内网的一个ip范围，用来做内网的主机发现。</p>
+<p>nmap -sP <target ip><br>一般来说 我们会用这个命令去扫描内网的一个ip范围，用来做内网的主机发现。</target></p>
 <p>nmap -sP 192.168.227.1-255</p>
 <p>PING扫描不同于其它的扫描方式，因为它只用于找出主机是否是存在在网络中的.它不是用来发现是否开放端口的.PING扫描需要ROOT权限，如果用户没有ROOT权限,PING扫描将会使用connect()调用.</p>
 <p>22.06.11.05(端口扫描技巧)</p>
@@ -1595,7 +1586,7 @@
     2、掌握nmap端口探测的技巧
 </code></pre>
 <p>登录上去 telnet 10.129.53.2</p>
-<p><img src="/HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A/2.png"></p>
+<p><img src="/.com//2.png"></p>
 <p>登进去了 ls一下看看flag</p>
 <h3 id="Fawn"><a href="#Fawn" class="headerlink" title="Fawn"></a>Fawn</h3><p>“<em>默认情况下ftp服务器在FTP服务器开启21号端口监听等待客户发起控制连接。</em> </p>
 <p>这边利用nmap 指定参数-sV 即可扫描出FTP的运行版本  -sV 探测打开的端口以确定服务&#x2F;版本信息</p>
@@ -1634,7 +1625,7 @@
 <p>Nmap报告在目标器80端口上运行的服务和版本是什么?</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sV -P 80 10.129.71.97</span><br></pre></td></tr></table></figure>
 
-<p><img src="/HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A%5C3.png"></p>
+<p><img src="/.com//HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A%5C3.png"></p>
 <p>web应用术语中文件夹叫什么？</p>
 <blockquote>
 <p>Web目录web directory是网站的在线列表或目录</p>
@@ -1651,7 +1642,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -h 10.129.25.12</span><br></pre></td></tr></table></figure>
 
 <p>information_schema、mysql、performance_schema这三个库是MySQL的默认库，在目标机上我们还发现了一个名为htb的数据库，我们猜测目标机上的flag大概率在名为htb的数据库中，所以我们选择该库并查看该库中的所有tables（表）:</p>
-<p><img src="/HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A%5C4.png"></p>
+<p><img src="/.com//HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A%5C4.png"></p>
 <p>使用select语句查看config表中的内容-我们成功发现了flag及其对应值：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from config;</span><br></pre></td></tr></table></figure>
 
@@ -1673,16 +1664,16 @@
 <p>login.php</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -u http://10.129.162.197 -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt  -x .php</span><br></pre></td></tr></table></figure>
 
-<p><img src="/HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A%5C5.png"></p>
-<p><img src="/HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A%5C6.png"></p>
-<p><img src="/HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A%5C7.png"></p>
+<p><img src="/.com//HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A%5C5.png"></p>
+<p><img src="/.com//HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A%5C6.png"></p>
+<p><img src="/.com//HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A%5C7.png"></p>
 <p>在前文已经通过ftp下载了两个文件并查看了内容，发现疑似的用户名和密码；<br>同时我们还通过使用gobuster扫描了目标站点目录，发现了一个疑似登陆页面login.php；<br>结合以上信息，我们可以使用已获取的账号admin以及密码值 尝试通过login.php页面进行登录：</p>
-<p><img src="/HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A%5C8.png"></p>
+<p><img src="/.com//HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A%5C8.png"></p>
 <h3 id="Responder"><a href="#Responder" class="headerlink" title="Responder"></a>Responder</h3><p>URL参数的名称是什么,用于加载不同语言版本的网页?</p>
 <h1 id="Preignition"><a href="#Preignition" class="headerlink" title="Preignition"></a>Preignition</h1><p>直接爆破</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gobuster dir -w /usr/share/dirb/wordlists/common.txt -u 10.129.9.218</span><br><span class="line"></span><br><span class="line">dir代表目录扫描</span><br><span class="line">-w 代表词表</span><br><span class="line">-u 代表网址</span><br></pre></td></tr></table></figure>
 
-<p><img src="/HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A%5C9.png">s</p>
+<p><img src="/.com//HackTheBox%E4%B8%8A%E5%88%86%E9%94%A6%E5%9B%8A%5C9.png">s</p>
 <p><strong>在名为&#x2F;admin.php</strong>的目录中找到 Gobuster</p>
 <h1 id="Mongod"><a href="#Mongod" class="headerlink" title="Mongod"></a>Mongod</h1><p><a target="_blank" rel="noopener" href="https://www.rffuste.com/2022/10/10/htb-mongod/">https://www.rffuste.com/2022/10/10/htb-mongod/</a></p>
 <h1 id="Three"><a href="#Three" class="headerlink" title="Three"></a>Three</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nmap --min-rate 10000 -p- 靶机ip</span><br><span class="line">nmap -sV -sT -O -p22,80 靶机ip</span><br></pre></td></tr></table></figure>

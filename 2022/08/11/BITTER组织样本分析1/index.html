@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1525,20 +1516,20 @@
         <h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>蔓灵花（APT-C-08）APT组织是一个长期针对中国、巴基斯坦等国家进行攻击活动的APT组织，主要攻击政府、电力和军工行业相关单位，以窃取敏感信息为主，具有强烈的政治背景，是目前活跃的针对境内目标进行攻击的境外APT组织之一。该组织最早在2016被国外安全公司进行了披露，并且命名为“BITTER”，同年360也跟进发布了分析报告，将该组织命名为“蔓灵花”。 迄今为止有数个国内外安全团队持续追踪并披露该组织PC端的最新攻击活动。2019年8月，360烽火实验室在日常样本分析中发现一新型Android木马，根据其CC</p>
 <p>特点将其命名为SlideRAT，深入分析后发现该家族木马属于蔓灵花组织。此后，我们对该家族样本进行持续监控，2019年11初，我们发现SlideRAT攻击中国军工行业从事人员，11月中旬，该家族样本开始攻击中国驻巴基斯坦人员。短短半个月内，蔓灵花组织在移动平台至少进行了两次的攻击活动，且受害者均为中国人，我们猜测随着年关将近，该时间段为该组织针对我国攻击的高发期。鉴于此我们决定通过已有情报和数据，将该家族在移动平台的攻击活动进行揭露。</p>
 <h1 id="样本分析"><a href="#样本分析" class="headerlink" title="样本分析"></a>样本分析</h1><h2 id="行为检测"><a href="#行为检测" class="headerlink" title="行为检测"></a>行为检测</h2><p>将样本下载到本地之后，重命名为WinUpdate.exe，然后通过火绒剑监控该样本的行为。<br>样本启动之后，过了一段时间才有后续的行为， 猜测是样本中有一个sleep用于过沙箱。</p>
-<p><img src="/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/3.png"></p>
+<p><img src="/.com//3.png"></p>
 <p>将注册表信息过滤之后，可以看到程序首先是在启动项下创建了一个名为winup.lnk的快捷方式</p>
-<p>然后程序copy自身到了%appdata%下的<sendto>目录下。</p>
-<p><img src="/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/2.png"></p>
+<p>然后程序copy自身到了%appdata%下的<sendto>目录下。</sendto></p>
+<p><img src="/.com//2.png"></p>
 <p>快捷方式的target值如下：<br>%USERPROFILE%\AppData\Roaming\Microsoft\Windows\SendTo\winupd.exe</p>
 <p>可以看到，这个快捷方式就是用于启动这个复制之后的winupd.exe,用工具查一下文件hash与原文件保持一致，确定是直接复制过来的。</p>
 <h2 id="WinMain入口点"><a href="#WinMain入口点" class="headerlink" title="WinMain入口点"></a>WinMain入口点</h2><p>其实代码一打开，就可以很明显的看出来，这就是Bitter家族的loader样本了，</p>
-<p><img src="/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/4.png"></p>
+<p><img src="/.com//4.png"></p>
 <p>IDA加载样本，可以看到程序由VC编译，有标准的winMain函数，在Main函数进来，程序首先是调用了两次LoadStringA函数从资源加载WindowName和ClassName。两个串的编号分别是67H和6dh，两个缓冲区长度都是64h。</p>
 <p>load的String分别是LiveDN 和 LIVEDN</p>
 <p>LoadString的操作结束之后，程序调用了sub_4012D0，这里可以看到，这个函数并没有什么实际意义，可以直接跳过。</p>
 <p>跟最开始猜测是一致，程序中有多个sleep 函数，并且每次sleep的时间不同。这里首先是sleep45s，然后尝试通过WSAStartup初始化，如果初始化成功，则继续sleep15s。接下来调用了函数sub_402B00</p>
-<p><img src="/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/5.png"></p>
-<h3 id="解密相关字符串"><a href="#解密相关字符串" class="headerlink" title="解密相关字符串"></a>解密相关字符串</h3><p><img src="/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/1.png"></p>
+<p><img src="/.com//5.png"></p>
+<h3 id="解密相关字符串"><a href="#解密相关字符串" class="headerlink" title="解密相关字符串"></a>解密相关字符串</h3><p><img src="/.com//1.png"></p>
 <table>
 <thead>
 <tr>
@@ -1623,21 +1614,21 @@
 <td>Microsoft\Windows\Start Menu\Programs\Startup\winup.lnk</td>
 </tr>
 </tbody></table>
-<h3 id="检测杀软"><a href="#检测杀软" class="headerlink" title="检测杀软"></a>检测杀软</h3><p><img src="/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/6.png"></p>
+<h3 id="检测杀软"><a href="#检测杀软" class="headerlink" title="检测杀软"></a>检测杀软</h3><p><img src="/.com//6.png"></p>
 <p>两个箭头就是遍历进程查找卡巴斯基杀软的操作</p>
 <p>回到IDA对该遍历进程交叉引用一下，可能是检测了多个杀软，因为病毒不可能检测一个杀软</p>
-<p><img src="/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/7.png"></p>
+<p><img src="/.com//7.png"></p>
 <p>我就测了几下，出了卡巴的avp.exe和Avast.exe，程序还会尝试去查找以下几款杀软：<br>AVG<br>sophos<br>SAVAD</p>
 <p>还有几个进程遍历，第一个遍历查找winupd，然后第二个遍历又是查找avp，卡巴的杀软：</p>
 <p>如果检测到卡巴杀软，程序则解密一个cmd命令<br>cmd &#x2F;c start %tempf% &amp;&amp; exit</p>
 <p>然后将这里的n和之前解密出来的SOFTWARE\Microsoft\Windows\CurrentVersion\Ru拼接起来，设置开机自启动项目。设置的键值就是cmd &#x2F;c start %tempf% &amp;&amp; exit</p>
 <p>这里这个命令猜测是用于退出自身的，好奇为什么检测了两次卡巴然后退出。<br>笔者找到了之前的一个bitter的loader样本，经过分析之后发现老版本的loader 注册表这里是将自身写入成开机自启动。</p>
-<h3 id="获取用户信息"><a href="#获取用户信息" class="headerlink" title="获取用户信息"></a>获取用户信息</h3><p><img src="/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/8.png"></p>
+<h3 id="获取用户信息"><a href="#获取用户信息" class="headerlink" title="获取用户信息"></a>获取用户信息</h3><p><img src="/.com//8.png"></p>
 <p>下面的strcat是把获取的信息链接起来，退出这个函数之后，会发现是网络相关的，这里就可以推断出他是要把获取的信息拼接起来上传到自己的域名当中去。</p>
-<h3 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h3><p><img src="/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/9.png"></p>
-<h3 id="上传用户信息"><a href="#上传用户信息" class="headerlink" title="上传用户信息"></a>上传用户信息</h3><p><img src="/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/10.png"></p>
+<h3 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h3><p><img src="/.com//9.png"></p>
+<h3 id="上传用户信息"><a href="#上传用户信息" class="headerlink" title="上传用户信息"></a>上传用户信息</h3><p><img src="/.com//10.png"></p>
 <h3 id="下载后续样本"><a href="#下载后续样本" class="headerlink" title="下载后续样本"></a>下载后续样本</h3><p>经过分析，发现sub_401FC0函数是关键函数接受服务器返回并写入文件：</p>
-<p><img src="/BITTER%E7%BB%84%E7%BB%87%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%901/11.png"></p>
+<p><img src="/.com//11.png"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>经过分析，这个样本结构，代码，操作，基本和之前的样本一样。但还是能看的出来有一些代码的改进。</p>
 <ol>
 <li>样本运行后，首先会解密一系列后面会用到的字符串</li>

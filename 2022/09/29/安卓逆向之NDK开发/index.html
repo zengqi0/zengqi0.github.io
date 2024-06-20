@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1539,16 +1530,16 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.ndk;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.app.Activity;</span><br><span class="line"><span class="keyword">import</span> android.view.Menu;</span><br><span class="line"><span class="keyword">import</span> android.widget.Toast;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">Activity</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">native</span> String <span class="title function_">Getstring</span><span class="params">()</span>;  </span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">       Toast.makeText(<span class="built_in">this</span>, Getstring(), <span class="number">1</span>).show();</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">## <span class="keyword">native</span>方法</span><br><span class="line"><span class="keyword">native</span>方法是java与其他语言协作的时候使用的，<span class="keyword">native</span>并不是java实现的，所以直接调用就好，不需要管他底层实现，java只能调用，不能查看和修改，java是跨平台语言，自然而然会失去对底层的控制，于是想要调用底层方法，就必须使用<span class="keyword">native</span>方法间接调用底层操作系统的方法(c,c++实现).随着java的不断发展，<span class="keyword">native</span>方法越来越少，<span class="keyword">native</span>是一个关键字，其修饰的方法只说明不实现，<span class="keyword">native</span>方法加载到 本地栈中</span><br></pre></td></tr></table></figure>
 
 <p>写好了之后我们进入到src的原目录下</p>
-<p><img src="/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BNDK%E5%BC%80%E5%8F%91/1.png"></p>
+<p><img src="/.com//1.png"></p>
 <p>在此文件夹中打开cmd命令行输入以下代码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">javah -jni com.example.ndk.MainActivity</span><br><span class="line">***********************************************************************************</span><br><span class="line">可以先javah查看一下命令 </span><br><span class="line">-jni                     生成 JNI 样式的标头文件 (默认值)</span><br><span class="line">后面的com.example.ndk.MainActivity是我们的包名</span><br></pre></td></tr></table></figure>
 
 <p>此时我们在eplice右键src 然后点击Refresh 就会出现一个头文件</p>
-<p><img src="/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BNDK%E5%BC%80%E5%8F%91/2.png"></p>
+<p><img src="/.com//2.png"></p>
 <p>这个头文件里面是这样的</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* DO NOT EDIT THIS FILE - it is machine generated */</span></span><br><span class="line">#include &lt;jni.h&gt;</span><br><span class="line"><span class="comment">/* Header for class com_example_ndk_MainActivity */</span></span><br><span class="line"></span><br><span class="line">#ifndef _Included_com_example_ndk_MainActivity</span><br><span class="line">#define _Included_com_example_ndk_MainActivity</span><br><span class="line">#ifdef __cplusplus</span><br><span class="line">extern <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line">#endif</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Class:     com_example_ndk_MainActivity</span></span><br><span class="line"><span class="comment"> * Method:    Getstring</span></span><br><span class="line"><span class="comment"> * Signature: ()Ljava/lang/String;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">JNIEXPORT jstring JNICALL <span class="title function_">Java_com_example_ndk_MainActivity_Getstring</span></span><br><span class="line">  <span class="params">(JNIEnv *, jobject)</span>;</span><br><span class="line"></span><br><span class="line">#ifdef __cplusplus</span><br><span class="line">&#125;</span><br><span class="line">#endif</span><br><span class="line">#endif</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BNDK%E5%BC%80%E5%8F%91/3.png"></p>
+<p><img src="/.com//3.png"></p>
 <p>然后我们把这个新生成的文件改名成JniStudy.h</p>
 <p> 然后我们在这个新生成的文件夹中新建一个JniStudy.c文件 </p>
 <p>这两个文件有了之后就可以在.c文件中写代码了</p>
@@ -1556,7 +1547,7 @@
 
 
 
-<p><img src="/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BNDK%E5%BC%80%E5%8F%91/4.png"></p>
+<p><img src="/.com//4.png"></p>
 <p>再创建这两个文件 你提前写好 然后每次都复制进去就行 内容不变</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Android.mk</span><br><span class="line"></span><br><span class="line">LOCAL_PATH := $(call my-dir)   </span><br><span class="line">include $(CLEAR_VARS)  </span><br><span class="line">LOCAL_MODULE    := JniStudy  	#模块名称  </span><br><span class="line">LOCAL_SRC_FILES := JniStudy.c #源文件  .c或者.cpp</span><br><span class="line">LOCAL_ARM_MODE := arm #编译后的指令集 ARM指令</span><br><span class="line">LOCAL_LDLIBS += -llog #依赖库    </span><br><span class="line">include $(BUILD_SHARED_LIBRARY) #指定编译文件的类型</span><br></pre></td></tr></table></figure>
 
@@ -1567,7 +1558,7 @@
 
 
 <p>好 现在我们cmd到这个文件夹中 运行ndk-build，</p>
-<p><img src="/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E4%B9%8BNDK%E5%BC%80%E5%8F%91/5.png"></p>
+<p><img src="/.com//5.png"></p>
 <h1 id="NDK的环境搭建"><a href="#NDK的环境搭建" class="headerlink" title="NDK的环境搭建"></a>NDK的环境搭建</h1><ol>
 <li><p>安装配置NDK</p>
 </li>

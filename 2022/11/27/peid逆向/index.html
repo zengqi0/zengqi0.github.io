@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1521,37 +1512,37 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="怎么识别的开发环境的呢？"><a href="#怎么识别的开发环境的呢？" class="headerlink" title="怎么识别的开发环境的呢？"></a>怎么识别的开发环境的呢？</h1><p>先体验一下功能</p>
-<p><img src="/peid%E9%80%86%E5%90%91/1.png"></p>
+<p><img src="/.com//1.png"></p>
 <p>把pe文件拖进去就会出现 c++6.0这一行字符串</p>
 <p>我在creatfile下断点 没有段下来 我在creatfile内部下断点断下来了，说明是函数指针下的断点</p>
 <p>首先要有一个思路 他既然显示出来字符串 说明他内部肯定有一个判断 然后跳转到相对于的版本就是跳转到相对应的字符串</p>
 <p>我们在od里面查找这个字符串，</p>
-<p><img src="/peid%E9%80%86%E5%90%91/2.png"></p>
+<p><img src="/.com//2.png"></p>
 <p>找到了 你会发现这里面非常多的版本 包括一些壳的版本</p>
-<p><img src="/peid%E9%80%86%E5%90%91/3.png"></p>
+<p><img src="/.com//3.png"></p>
 <p>下个断点跑过来</p>
 <p>跑过来之后  在ida里面x交叉引用 发现了00438D13这个地址</p>
 <p>这是一个比较跳转指令，是根据edx与edi中的比较结果确定的。</p>
-<p><img src="/peid%E9%80%86%E5%90%91/4.png"></p>
+<p><img src="/.com//4.png"></p>
 <p>把这两个寄存器搞懂、</p>
 <p>往上翻 发现了一堆局部变量 怀疑是数组初始化 范围是488-450</p>
-<p><img src="/peid%E9%80%86%E5%90%91/5.png"></p>
+<p><img src="/.com//5.png"></p>
 <p>od里面调试 此时eax的值是IMAGE_NT_HEADERS头部所在的地址</p>
 <p>edx的值就是text节区的首地址</p>
-<p><img src="/peid%E9%80%86%E5%90%91/6.png"></p>
-<p><img src="/peid%E9%80%86%E5%90%91/7.png"></p>
+<p><img src="/.com//6.png"></p>
+<p><img src="/.com//7.png"></p>
 <p>进入函数不久后就定义了一个很大的数组， 并对数组进行初始化。这个数组中存放的数据为相关特征码。</p>
 <p>经过分 析，此段代码只检查了OEP是否在“.text”中，若条件成立，则跳转到 显示编译器版本的代码处。 虽然成功地找到了VC++ 6.0的判定流程，但由于第一个条件判 断就确定了结果，导致之前定义的相关特征码都没有用到。</p>
 <p>如果不跳转呢 也就是判断失败了 怎么办 我们把这个跳转nop了再来研究研究</p>
-<p><img src="/peid%E9%80%86%E5%90%91/8.png"></p>
-<p><img src="/peid%E9%80%86%E5%90%91/9.png"></p>
+<p><img src="/.com//8.png"></p>
+<p><img src="/.com//9.png"></p>
 <p>VC++6.0程序的流程。如果OEP不在“.text”节中，程序会先根据入 口特征码比较oep入口处的8字节机器码，</p>
 <p>分析目标是否为其他编译器 生成的。如果不符合特征，将会调整OEP，</p>
 <p>加入文件偏移与虚拟地址 偏移的转换过程，再次用特征码对比OEP处的机器码。如符合特征， 则程序流程进入字符串“Microsoft Visual C++ 6.0”的文本输出部 分。</p>
 <p>VC++ 6.0的判定过程不是已经 在函数地址0x00438D13中了吗？</p>
 <p>如果你这样想，那就大错特错了， 地址0x00438D13已经是判定过程的结尾了。</p>
 <p>OllyDbg的栈窗口，根据函数的调用机制，函数被调用后会在栈的最 顶端压入函数的返回地址，这样就给了我们线索。 事不宜迟，在00438C20 地址处设置断点，运行程序并查看栈 窗口信息</p>
-<p><img src="/peid%E9%80%86%E5%90%91/11.png"></p>
+<p><img src="/.com//11.png"></p>
 <p>0x00452F3F处就是判断函数的返回地 址。</p>
 <p>从寻址方式上观察，这是一个存放函数指针的数组类型，首地址 在0x00401E8C处，ecx保存了数组的下标值。这个下标值又是由</p>
 <p>eax计算所得，以此为线索即可找到PEiD的分析答案。首先来观察一 下这个函数指针数组，</p>

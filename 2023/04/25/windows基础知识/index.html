@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1575,7 +1566,7 @@
 </tr>
 </tbody></table>
 <p>​	我们可以使用<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-wmiobject?view=powershell-5.1">Get-WmiObject </a><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/powershell/scripting/developer/cmdlet/cmdlet-overview?view=powershell-7">cmdlet</a>来查找有关操作系统的信息。此 cmdlet 可用于获取 WMI 类的实例或有关可用 WMI 类的信息。有多种方法可以找到我们系统的版本和内部版本号。我们可以使用该类轻松获取此信息<code>win32_OperatingSystem</code>，这表明我们在 Windows 10 主机上，内部版本号为 19041。</p>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C1.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C1.png"></p>
 <p>​	其他一些可以使用的有用类<code>Get-WmiObject</code>是<code>Win32_Process</code>获取进程列表、<code>Win32_Service</code>获取服务列表<code>Win32_Bios</code>以获取<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/BIOS">基本输入&#x2F;输出系统</a>( <code>BIOS</code>) 信息。BIOS 是安装在计算机主板上的固件，用于控制计算机的基本功能，例如电源管理、输入&#x2F;输出接口和系统配置。我们可以使用该<code>ComputerName</code>参数来获取有关远程计算机的信息。<code>Get-WmiObject</code>可用于启动和停止本地和远程计算机上的服务，等等。<a target="_blank" rel="noopener" href="https://ss64.com/ps/get-wmiobject.html">可以在此处</a>和<a target="_blank" rel="noopener" href="https://adamtheautomator.com/get-wmiobject/">此处</a>找到有关 cmdlet 的更多信息。</p>
 <h2 id="访问窗口"><a href="#访问窗口" class="headerlink" title="访问窗口"></a>访问窗口</h2><h4 id="本地访问概念"><a href="#本地访问概念" class="headerlink" title="本地访问概念"></a>本地访问概念</h4><p>如果您现在正在阅读这些文字，则您可以在本地访问某种计算机。无论是智能手机、平板电脑、笔记本电脑、Raspberry Pi 还是台式机。本地访问是访问任何计算机（包括运行 Windows 的计算机）的最常见方式。<code>Input</code>很可能通过键盘、触控板和&#x2F;或鼠标发生。<code>Output</code>来自显示屏。拥有员工日常工作的办公空间的组织围绕其员工在组织拥有的计算机上的专用工作空间中工作的想法制定安全策略和安全控制。越来越多的组织越来越多地支持非技术和技术员工的远程工作。对于从事 IT、软件开发和信息安全工作的技术专业人员来说，这并不是一个新的现实。在任何一天，技术专业人员都可以在本地和远程访问多台机器。有了这个，让我们讨论远程访问的概念。</p>
 <h4 id="远程访问概念"><a href="#远程访问概念" class="headerlink" title="远程访问概念"></a>远程访问概念</h4><p>远程访问是通过网络访问计算机。在远程访问另一台计算机之前，需要对计算机进行本地访问。有无数种远程访问方法。在本模块中，我们将主要使用远程访问方法连接到 Windows 操作系统并与之交互。网络和互联网技术的进步催生了完全依赖计算机系统远程访问和远程管理的整个行业。</p>
@@ -1606,7 +1597,7 @@
 <p> 使用 xfreerdp</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vnswer77@htb[/htb]$ xfreerdp /v:&lt;targetIp&gt; /u:htb-student /p:Password</span><br></pre></td></tr></table></figure>
 
-<h2 id="操作系统结构"><a href="#操作系统结构" class="headerlink" title="操作系统结构"></a>操作系统结构</h2><p>在 Windows 操作系统中，根目录为 <drive_letter>:\（通常为 C 盘）。根目录（也称为启动分区）是安装操作系统的地方。其他物理和虚拟驱动器分配有其他字母，例如 Data (E:)。boot分区的目录结构如下：</p>
+<h2 id="操作系统结构"><a href="#操作系统结构" class="headerlink" title="操作系统结构"></a>操作系统结构</h2><p>在 Windows 操作系统中，根目录为 <drive_letter>:\（通常为 C 盘）。根目录（也称为启动分区）是安装操作系统的地方。其他物理和虚拟驱动器分配有其他字母，例如 Data (E:)。boot分区的目录结构如下：</drive_letter></p>
 <table>
 <thead>
 <tr>
@@ -1768,7 +1759,7 @@
 <h1 id="NTFS-与共享权限"><a href="#NTFS-与共享权限" class="headerlink" title="NTFS 与共享权限"></a>NTFS 与共享权限</h1><hr>
 <p>微软拥有超过<a target="_blank" rel="noopener" href="https://gs.statcounter.com/os-market-share/desktop/worldwide/#monthly-201804-202104">70% 的股份</a>Windows 桌面操作系统的全球市场份额。这解释了为什么大多数恶意软件作者选择为 Windows 编写恶意软件，以及为什么许多人认为 Windows 不如其他操作系统安全。从商业角度来看，恶意软件作者将资源用于为 Windows 编写恶意软件是有意义的。这是一个高价值的目标。任何操作系统都不受恶意软件影响的想法是一种技术谬误。如果可以为操作系统编写软件，那么也可以为操作系统编写病毒。请记住，根据定义，病毒是恶意编写的软件，可以为任何操作系统编写。许多为 Windows 编写的恶意软件变体可以通过应用宽松权限的网络共享在网络上传播。还值得注意的是，时至今日，臭名昭著的<code>EternalBlue</code>漏洞仍然困扰着未打补丁的 Windows 系统<code>SMBv1</code>，并经常为勒索软件关闭组织铺平道路。</p>
 <p>( <code>Server Message Block protocol</code>)<code>SMB</code>在 Windows 中用于连接文件和打印机等共享资源。它用于大型、中型和小型企业环境。请参阅下图以形象化此概念：</p>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C3.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C3.png"></p>
 <p>注意：每当您看到概念的可视化&#x2F;图表时，请花点时间彻底理解它。一张图片可以胜过一千个字，但在阅读时很容易跳过。</p>
 <p>NTFS 权限和共享权限通常被理解为相同。请注意，它们并不相同，但通常适用于相同的共享资源。让我们看一下可以设置的各个权限，以保护&#x2F;授予对象对托管在运行 NTFS 文件系统的 Windows 操作系统上的网络共享的访问权限。</p>
 <h4 id="共享权限"><a href="#共享权限" class="headerlink" title="共享权限"></a>共享权限</h4><table>
@@ -1898,11 +1889,11 @@
 <p>在这种情况下，我们将通过首先在 Windows 10 桌面上创建一个新文件夹来创建一个共享文件夹。请记住，在大多数大型企业环境中，共享是在存储区域网络 (SAN)、网络附加存储设备 (NAS) 或通过服务器操作系统（如 Windows Server）访问的驱动器上的单独分区上创建的。如果我们在桌面操作系统上遇到共享，它要么是小型企业，要么是渗透测试人员或恶意攻击者用来收集和泄露数据的滩头阵地系统。</p>
 <p>我们将使用 Windows 中的 GUI 完成此过程。</p>
 <h4 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h4><p>我们将使用该<code>Advanced Sharing </code>选项来配置我们的共享。</p>
-<h4 id="将文件夹设为共享"><a href="#将文件夹设为共享" class="headerlink" title="将文件夹设为共享"></a>将文件夹设为共享</h4><p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C4.png"></p>
+<h4 id="将文件夹设为共享"><a href="#将文件夹设为共享" class="headerlink" title="将文件夹设为共享"></a>将文件夹设为共享</h4><p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C4.png"></p>
 <p>​	请注意共享名称如何自动默认为文件夹的名称。此外，我们可以看到可以限制可以同时连接到该共享的用户数量。在实际环境中，管理员最好根据经常需要访问共享资源的用户数量来设置此数量。</p>
 <p>与 NTFS 权限类似，共享资源有一个<code>access control list</code>( )。<code>ACL</code>我们可以将其视为 SMB 权限列表。请记住，对于共享资源，SMB 和 NTFS 权限列表都适用于在 Windows 中共享的每个资源。ACL 包含<code>access control entries</code>( <code>ACEs</code>)。<code>users</code>通常，这些 ACE 由&amp; （也称为安全主体）组成<code>groups</code>，因为它们是管理和跟踪对共享资源的访问的合适机制。</p>
 <p>注意默认的访问控制条目和权限设置。</p>
-<h4 id="共享权限-ACL（共享选项卡）"><a href="#共享权限-ACL（共享选项卡）" class="headerlink" title="共享权限 ACL（共享选项卡）"></a>共享权限 ACL（共享选项卡）</h4><p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C5.png"></p>
+<h4 id="共享权限-ACL（共享选项卡）"><a href="#共享权限-ACL（共享选项卡）" class="headerlink" title="共享权限 ACL（共享选项卡）"></a>共享权限 ACL（共享选项卡）</h4><p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C5.png"></p>
 <p>​	现在，我们将应用这些设置来测试此 ACL 的效果和按原样应用的权限。我们将通过打开终端并使用 来测试 Pwnbox 的连接性<code>smbclient</code>。</p>
 <p>​	注意：服务器在技术上是一种软件功能，用于为客户端的请求提供服务。在这种情况下，Pwnbox 是我们的客户端，而 Windows 10 目标框是我们的服务器。</p>
 <h4 id="使用-smbclient-连接到共享"><a href="#使用-smbclient-连接到共享" class="headerlink" title="使用 smbclient 连接到共享"></a>使用 smbclient 连接到共享</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vnswer77@htb[/htb]$ smbclient -L IPaddressOfTarget -U htb-student</span><br><span class="line">Enter WORKGROUP\htb-student&#x27;s password: </span><br><span class="line"></span><br><span class="line">	Sharename       Type      Comment</span><br><span class="line">	---------       ----      -------</span><br><span class="line">	ADMIN$          Disk      Remote Admin</span><br><span class="line">	C$              Disk      Default share</span><br><span class="line">	Company Data    Disk      </span><br><span class="line">	IPC$            IPC       Remote IPC</span><br></pre></td></tr></table></figure>
@@ -1919,7 +1910,7 @@
 </ul>
 <p>​	最佳做法是启用预定义规则或添加自定义例外，而不是完全停用防火墙。不幸的是，为了方便或缺乏理解，防火墙被完全停用是很常见的。当通过使用组策略加入 Windows 域环境时，可以集中管理桌面系统上的防火墙规则。组策略概念和配置超出了本模块的范围。</p>
 <p>​	启用适当的<code>inbound</code>防火墙规则后，我们将成功连接到共享。请记住，我们只能连接到共享，因为我们使用的用户帐户 ( <code>htb-student</code>) 在<code>Everyone group</code>. 回想一下，我们将 Everyone 组的特定共享权限设置为读取，这实际上意味着我们将只能读取该共享上的文件。一旦与共享建立连接，我们就可以创建一个<code>mount point</code>从我们的 Pwnbox 到 Windows 10 目标框的文件系统。这是我们还必须考虑 NTFS 权限与共享权限一起应用的地方。回想一下，NTFS 是 Windows 中的默认文件系统。让我们跳回我们的 xfreerdp 会话与我们的 Windows 10 目标框并查看公司数据文件夹上的 NTFS 权限。</p>
-<h4 id="NTFS-权限-ACL（安全选项卡）"><a href="#NTFS-权限-ACL（安全选项卡）" class="headerlink" title="NTFS 权限 ACL（安全选项卡）"></a>NTFS 权限 ACL（安全选项卡）</h4><p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C6.png"></p>
+<h4 id="NTFS-权限-ACL（安全选项卡）"><a href="#NTFS-权限-ACL（安全选项卡）" class="headerlink" title="NTFS 权限 ACL（安全选项卡）"></a>NTFS 权限 ACL（安全选项卡）</h4><p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C6.png"></p>
 <p>​	可以对用户和组应用 NTFS 权限进行更精细的控制。任何时候我们看到权限旁边有一个灰色复选标记，它是从父目录继承的。默认情况下，所有 NTFS 权限都是从父目录继承的。在 Windows 世界中，这<code>C:\ drive</code>是管理所有目录的父目录，除非系统管理员要在新创建的文件夹的高级安全设置中禁用继承。</p>
 <p>​	在许多情况下，组织的系统管理员将负责决定用户或用户组获得网络资源的哪些权限。这就是为什么许多鱼叉式网络钓鱼攻击都是针对系统管理员和其他 IT 领导者的。他们对他们监督的环境中允许的内容有很大的影响，在许多情况下甚至比组织的非技术 C 级领导者还要大。例如，在医院工作的医生或管理人员没有网络管理权限，但系统管理员有。</p>
 <p>​	现在让我们在共享级别给 Everyone 组<code>Full control</code>，并通过尝试从我们的 Pwnbox 桌面创建一个共享的挂载点来测试更改的影响</p>
@@ -1939,10 +1930,10 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\htb-student&gt; net share</span><br><span class="line"></span><br><span class="line">Share name   Resource                        Remark</span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">C$           C:\                             Default share</span><br><span class="line">IPC$                                         Remote IPC</span><br><span class="line">ADMIN$       C:\WINDOWS                      Remote Admin</span><br><span class="line">Company Data C:\Users\htb-student\Desktop\Company Data</span><br><span class="line"></span><br><span class="line">The command completed successfully.</span><br></pre></td></tr></table></figure>
 
 <p>​	<code>Computer Management</code>是另一个我们可以用来识别和监控 Windows 系统上的共享资源的工具。</p>
-<h4 id="从计算机管理监控共享"><a href="#从计算机管理监控共享" class="headerlink" title="从计算机管理监控共享"></a>从计算机管理监控共享</h4><p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C7.png"></p>
+<h4 id="从计算机管理监控共享"><a href="#从计算机管理监控共享" class="headerlink" title="从计算机管理监控共享"></a>从计算机管理监控共享</h4><p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C7.png"></p>
 <p>​	我们可以在<code>Shares</code>、<code>Sessions</code>和中四处寻找<code>Open Files</code>，了解这为我们提供了哪些信息。如果出现我们协助个人或组织应对与 SMB 相关的违规行为的情况，这些是检查并开始了解违规行为可能如何发生以及可能遗留的内容的好地方。</p>
 <h4 id="在事件查看器中查看共享访问日志"><a href="#在事件查看器中查看共享访问日志" class="headerlink" title="在事件查看器中查看共享访问日志"></a>在事件查看器中查看共享访问日志</h4><p>​	<code>Event Viewer</code>是调查在 Windows 上完成的操作的另一个好地方。几乎每个操作系统都有日志记录机制和用于查看捕获的日志的实用程序。知道日志就像计算机的日志条目，计算机在其中记下执行的所有操作以及与该操作相关的大量详细信息。我们可以查看为访问 Windows 10 目标框以及创建、编辑和访问共享文件夹时执行的每个操作创建的日志。</p>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C8.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C8.png"></p>
 <h2 id="Windows-服务和进程"><a href="#Windows-服务和进程" class="headerlink" title="Windows 服务和进程"></a>Windows 服务和进程</h2><h3 id="Windows-服务"><a href="#Windows-服务" class="headerlink" title="Windows 服务"></a>Windows 服务</h3><p>服务是 Windows 操作系统的主要组成部分。它们允许创建和管理长期运行的流程。Windows 服务可以在系统启动时自动启动，无需用户干预。即使用户在系统上注销他们的帐户后，这些服务也可以继续在后台运行。</p>
 <p>也可以创建应用程序作为服务安装，例如安装在服务器上的网络监控应用程序。Windows 上的服务负责 Windows 操作系统中的许多功能，例如网络功能、执行系统诊断、管理用户凭据、控制 Windows 更新等。</p>
 <p>Windows 服务通过服务控制管理器 (SCM) 系统进行管理，可通过<code>services.msc</code>MMC 插件访问。</p>
@@ -2011,7 +2002,7 @@
 <p>​	该套件包括<code>Process Explorer</code>、增强版<code>Task Manager</code>和 等工具<code>Process Monitor</code>，可用于监控文件系统、注册表以及与系统上运行的任何进程相关的网络活动。一些额外的工具是用于监控互联网活动的 TCPView 和可用于通过 SMB 协议远程管理&#x2F;连接系统的 PSExec。</p>
 <p>这些工具可用于渗透测试人员，例如，发现有趣的进程和可能的特权升级路径以及横向移动。</p>
 <h2 id="任务管理器"><a href="#任务管理器" class="headerlink" title="任务管理器"></a>任务管理器</h2><p>​	Windows 任务管理器是用于管理 Windows 系统的强大工具。它提供有关正在运行的进程、系统性能、正在运行的服务、启动程序、登录用户&#x2F;登录用户进程和服务的信息。可以通过右键单击任务栏并选择<code>Task Manager</code>，按 ctrl + shift + Esc，按 ctrl + alt + del 并选择<code>Task Manager</code>，打开开始菜单并键入<code>Task Manager</code>，或<code>taskmgr</code>从 CMD 或 PowerShell 控制台键入来打开任务管理器。</p>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C9.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C9.png"></p>
 <table>
 <thead>
 <tr>
@@ -2028,7 +2019,7 @@
 <td>显示图表和数据，例如 CPU 利用率、系统正常运行时间、内存使用情况、磁盘和网络以及 GPU 使用情况。我们还可以打开<code>Resource Monitor</code>，这使我们可以更深入地了解当前的 CPU、内存、磁盘和网络资源使用情况。</td>
 </tr>
 </tbody></table>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C10.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C10.png"></p>
 <table>
 <thead>
 <tr>
@@ -2064,9 +2055,9 @@
 <p>例如，如果我们在 DHCP 安装期间以 Bob 的身份登录到服务器，那么除非另有说明，否则该服务将被配置为以 Bob 的身份运行。这会带来什么坏事？那么，如果 Bob 离开组织或被解雇怎么办？典型的业务实践是禁用 Bob 的帐户作为他退出过程的一部分。在这种情况下，使用 Bob 的帐户运行的 DHCP 和其他服务会怎样？这些服务将无法启动。DHCP 或动态主机配置协议负责将 IP 地址出租给网络上的计算机。如果此服务在 Windows DHCP 服务器上停止，则请求 IP 地址的客户端将不会收到 IP 地址。这意味着服务配置错误可能导致停机和生产力损失。强烈建议创建个人用户帐户以运行关键网络服务。</p>
 <p>我们还应该注意服务权限和它们执行的目录的权限，因为可以用恶意 DLL 或可执行文件替换可执行文件的路径。让我们检查一下在 Windows 10 上运行的服务的权限，以便更好地理解这一点。</p>
 <h2 id="使用-services-msc-检查服务"><a href="#使用-services-msc-检查服务" class="headerlink" title="使用 services.msc 检查服务"></a>使用 services.msc 检查服务</h2><p>正如流程和服务部分所讨论的，我们可以使用它<code>services.msc</code>来查看和管理所有服务的几乎所有细节。让我们仔细看看与<code>Windows Update</code>( <code>wuauserv</code>) 关联的服务。</p>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C11.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C11.png"></p>
 <p>记下可用于查看和配置的不同属性。在使用命令行工具检查和管理服务时，了解服务名称特别有用。可执行文件的路径是服务启动时要执行的程序和命令的完整路径。如果目标目录的 NTFS 权限配置为弱权限，攻击者可以将原始可执行文件替换为恶意创建的可执行文件。我们将在本模块的 NTFS 与共享权限部分详细讨论 NTFS 权限。</p>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C12.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C12.png"></p>
 <p>默认情况下，大多数服务以 LocalSystem 权限运行，这是单个 Windows 操作系统上允许的最高访问级别。并非所有应用程序都需要本地系统帐户级权限，因此在考虑在 Windows 环境中安装新应用程序时，逐案进行研究是有益的。确定可以以尽可能少的权限运行以符合最小权限原则的应用程序是一种很好的做法。</p>
 <p><a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/access-management/principle-of-least-privilege/">这是最小特权原则的一个细分</a></p>
 <p>Windows 中值得注意的内置服务帐户：</p>
@@ -2076,7 +2067,7 @@
 <li>本地系统</li>
 </ul>
 <p>注意：我们也可以创建新帐户并将其用于运行服务的唯一目的。</p>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C13.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C13.png"></p>
 <p>如果服务失败，恢复选项卡允许配置步骤。请注意如何将此服务设置为在第一次失败后运行程序。这是攻击者可以用来通过利用合法服务来运行恶意程序的另一种载体。</p>
 <hr>
 <h2 id="使用-sc-检查服务"><a href="#使用-sc-检查服务" class="headerlink" title="使用 sc 检查服务"></a>使用 sc 检查服务</h2><p>sc 也可用于配置和管理服务。让我们尝试一些命令。</p>
@@ -2320,13 +2311,13 @@
 <p>本节简要概述<code>WMI</code>、<code>WMIC</code>以及组合<code>WMIC</code>和<code>PowerShell</code>。<code>WMI</code>对蓝队和红队操作员都有广泛的用途。本课程的后面部分将展示一些可以在攻击性方面用于枚举和横向移动的方法<code>WMI</code>。</p>
 <h2 id="微软管理控制台-MMC"><a href="#微软管理控制台-MMC" class="headerlink" title="微软管理控制台 (MMC)"></a>微软管理控制台 (MMC)</h2><p>MMC 可用于对管理单元或管理工具进行分组，以管理 Windows 主机内的硬件、软件和网络组件。它从 Windows Server 2000 开始就存在，并且可以在所有 Windows 版本上运行。我们还可以使用 MMC 创建自定义工具并将它们分发给用户。MMC 使用管理单元的概念，允许管理员创建一个自定义的控制台，仅使用管理多个服务所需的管理工具。可以添加这些管理单元来管理本地和远程系统。</p>
 <p>我们只需<code>mmc</code>在“开始”菜单中键入即可打开 MMC。当我们第一次打开MMC时，里面是一片空白。</p>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C14.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C14.png"></p>
 <p>从这里，我们可以浏览到 File –&gt; <code>Add or Remove Snap-ins</code>，并开始自定义我们的管理控制台。</p>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C15.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C15.png"></p>
 <p>当我们开始添加管理单元时，系统会询问我们是要添加管理单元来仅管理本地计算机，还是用于管理网络上的另一台计算机。</p>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C16.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C16.png"></p>
 <p>添加完管理单元后，它们将出现在 MMC 的左侧。从这里，我们可以将管理单元集保存为 .msc 文件，这样下次打开 MMC 时它们就会全部加载。默认情况下，它们保存在“开始”菜单下的“Windows 管理工具”目录中。下次我们打开 MMC 时，我们可以选择加载我们创建的任何视图。</p>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C17.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C17.png"></p>
 <h1 id="适用于-Linux-的-Windows-子系统-WSL"><a href="#适用于-Linux-的-Windows-子系统-WSL" class="headerlink" title="适用于 Linux 的 Windows 子系统 (WSL)"></a>适用于 Linux 的 Windows 子系统 (WSL)</h1><hr>
 <p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/wsl/">WSL</a>是一种允许 Linux 二进制文件在 Windows 10 和 Windows Server 2019 上原生运行的功能。它最初是为需要直接运行 Bash、Ruby 和原生 Linux 命令行工具（如 、 、 等）的开发<code>sed</code>人员<code>awk</code>设计<code>grep</code>的在他们的 Windows 工作站上。WSL 的第二个版本于 2019 年 5 月发布，引入了一个真正的 Linux 内核，利用了 Hyper-V 功能的一个子集。</p>
 <p><code>Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux</code>可以通过以管理员身份运行 PowerShell 命令来安装 WSL 。启用此功能后，我们可以从 Microsoft Store 下载 Linux 发行版并安装，也可以手动下载我们选择的 Linux 发行版并从命令行解压并安装。</p>
@@ -2342,7 +2333,7 @@
 <p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows-server/administration/server-core/what-is-server-core">Windows Server Core</a>最初是随 Windows Server 2008 一起发布的，它是一个只包含关键服务器功能的简约服务器环境。因此，与桌面体验 (GUI) 对应的服务器核心相比，它具有更低的管理要求、更小的攻击面，并且使用更少的磁盘空间和内存。在 Server Core 中，所有配置和维护任务都通过命令行、PowerShell 或使用 MMC 或远程服务器管理工具 (RSAT) 进行远程管理来执行。</p>
 <p>虽然 Server Core 旨在通过缺少 GUI 来减少占用空间，但仍然支持一些图形程序，例如注册表编辑器、记事本、系统信息、Windows Installer、任务管理器和 PowerShell。它还支持一些 Sysinternals 套件工具，例如 Active Directory Explorer、Process Explorer、Process Monitor 和 TCPView。</p>
 <p>从 Windows Server 2019 开始，必须在安装时选择服务器核心或桌面体验，并且两者都不能回滚（即，将服务器核心转换为桌面体验）。安装后，可以通过 完成 Server Core 的初始设置<code>Sconfig</code>，这是一个基于文本的界面（实际上是由 WScript 执行的 VBScript）。<code>Sconfig</code>用于执行各种常见命令，例如配置网络、检查&#x2F;安装 Windows 更新、帐户管理、配置远程管理、激活 Windows 等。</p>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C18.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C18.png"></p>
 <p>某些服务器应用程序无法在 Server Core 上运行，包括 Microsoft Server Virtual Machine Manager 2019 (SCVMM)、System Center Data Protection Manager 2019、SharePoint Server 2019、Project Server 2019。</p>
 <p>总而言之，Server Core 重量更轻，占用资源更少，但学习曲线更陡峭，更难管理。它也有一些限制，例如使用某些 GUI 程序执行管理任务。</p>
 <p>在任何环境中，应该根据服务器的业务需求和预期用途以及负责维护它的管理员的技能水平来决定是使用桌面体验还是服务器核心来安装服务器。下表显示了服务器核心与桌面体验上可用的一些应用程序。这是一个常见应用程序的列表，而不是一个详尽的列表。</p>
@@ -2479,7 +2470,7 @@
 <p>访问安全对象的权限由安全描述符给出，分为两种类型的 ACL：<code>Discretionary Access Control List (DACL)</code>或<code>System Access Control List (SACL)</code>。用户启动或启动的每个线程和进程都经过授权过程。此过程的一个组成部分是访问令牌，由本地安全机构 (LSA) 验证。除了 SID 之外，这些访问令牌还包含其他与安全相关的信息。了解这些功能是学习如何在特权升级阶段使用和解决这些安全机制的重要部分。</p>
 <hr>
 <h2 id="用户帐户控制-UAC"><a href="#用户帐户控制-UAC" class="headerlink" title="用户帐户控制 (UAC)"></a>用户帐户控制 (UAC)</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/security/identity-protection/user-account-control/how-user-account-control-works">用户帐户控制 (UAC)</a>是 Windows 中的一项安全功能，可防止恶意软件运行或操纵可能损坏计算机或其内容的进程。UAC 中有管理员批准模式，旨在防止在管理员不知情的情况下安装不需要的软件或防止进行系统范围的更改。如果您安装了特定的软件，您肯定已经看到了同意提示，并且您的系统已经要求您确认是否要安装它。由于安装需要管理员权限，因此会弹出一个窗口，询问您是否要确认安装。对于没有安装权限的标准用户，执行将被拒绝，或者您将被要求输入管理员密码。此同意提示会中断恶意软件或攻击者尝试执行的脚本或二进制文件的执行，直到用户输入密码或确认执行。要了解 UAC 的工作原理，我们需要知道它的结构和工作原理，以及什么会触发同意提示。下图，改编自源码<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/security/identity-protection/user-account-control/how-user-account-control-works">在这里</a>，说明了 UAC 是如何工作的。</p>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C19.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C19.png"></p>
 <h2 id="注册表"><a href="#注册表" class="headerlink" title="注册表"></a>注册表</h2><p>注册表是 Windows<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Windows_Registry">中</a>对操作系统至关重要的分层数据库。它存储 Windows 操作系统和选择使用它的应用程序的低级设置。它分为计算机特定数据和用户特定数据。<code>regedit</code>我们可以通过从命令行或 Windows 搜索栏中键入来打开注册表编辑器。</p>
 <p>树结构由主文件夹（根键）组成，子文件夹（子键）及其条目&#x2F;文件（值）位于其中。可以在子项中输入 11 种不同类型的值。</p>
 <table>
@@ -2564,9 +2555,9 @@
 <h2 id="本地组策略"><a href="#本地组策略" class="headerlink" title="本地组策略"></a>本地组策略</h2><p>组策略允许管理员设置、配置和调整各种设置。在域环境中，组策略从域控制器下推到组策略对象 (GPO) 链接到的所有加入域的计算机上。这些设置也可以使用本地组策略在单个计算机上定义。</p>
 <p>可以在域环境和非域环境中在本地配置组策略。本地组策略可用于调整某些无法通过控制面板访问的图形和网络设置。它还可用于锁定具有严格安全设置的个人计算机策略，例如仅允许安装&#x2F;运行某些程序或执行严格的用户帐户密码要求。</p>
 <p>我们可以通过打开“开始”菜单并键入来打开本地组策略编辑器<code>gpedit.msc</code>。编辑器在 Local Computer Policy 下分为两类 -<code>Computer Configuration</code>和<code>User Configuration</code>.</p>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C20.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C20.png"></p>
 <p>例如，我们可以通过启用设置来打开本地计算机策略以启用 Credential Guard <code>Turn On Virtualization Based Security</code>。Credential Guard 是 Windows 10 中的一项功能，可通过隔离操作系统的 LSA 进程来防止凭据盗窃攻击。</p>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C21.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C21.png"></p>
 <p>我们还可以启用微调帐户审核并从本地组策略编辑器配置 AppLocker。值得探索本地组策略并了解可用于锁定 Windows 系统的各种方法。</p>
 <h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><p>查找 bob.smith 用户的 SID。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**Get-WmiObject -Class Win32_UserAccount -filter “name = ‘bob.smith’”**.</span><br></pre></td></tr></table></figure>
@@ -2583,7 +2574,7 @@
 <p>虽然没有任何防病毒解决方案是完美的，但与其他解决方案（甚至是付费解决方案）相比，Windows Defender 在每月检测率测试中表现出色。此外，由于它是作为操作系统的一部分预装的，因此不会给系统带来“膨胀”，例如添加浏览器扩展和跟踪器的其他程序。众所周知，其他产品会由于挂接到操作系统的方式而减慢系统速度。</p>
 <p>Windows Defender 并非没有缺陷，应该成为围绕配置和补丁管理核心原则构建的纵深防御策略的一部分，而不是将其视为保护我们系统的灵丹妙药。定义不断更新，新版本的 Windows Defender 内置于主要操作版本中，例如 Windows 10 版本 1909，这是撰写本文时的最新版本。</p>
 <p>Windows Defender 将从常见的开源框架（如 Metasploit）或未更改版本的工具（如 Mimikatz）中获取有效负载。</p>
-<p><img src="/windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C22.png"></p>
+<p><img src="/.com//windows%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%5C22.png"></p>
 <p>尽管它变得越来越困难，但仍然可以完全绕过安装了最新定义的最新版本强制执行的 Windows Defender 保护。</p>
 <h1 id="技能评估-Windows-基础知识"><a href="#技能评估-Windows-基础知识" class="headerlink" title="技能评估 - Windows 基础知识"></a>技能评估 - Windows 基础知识</h1><hr>
 <p>Inlanefreight 最近发生了一起事件，一名心怀不满的营销员工访问了内部托管的 HR 共享并删除了几个机密文件和文件夹。值得庆幸的是，IT 团队拥有良好的备份并恢复了所有已删除的数据。现在有人担心，这名心怀不满的员工能够首先获得人力资源份额。执行安全评估后，您发现 IT 团队可能不完全了解权限在 Windows 中的工作原理。您正在进行培训和演示，向部门展示在 Windows 环境中共享文件的良好安全实践，以及从命令行查看服务以检查是否存在任何潜在的篡改。</p>

@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1553,27 +1544,27 @@
 </li>
 <li><p>一．确定病毒目录地址</p>
 </li>
-<li><p><img src="/%E8%AE%B0%E5%BD%95%E6%A0%A1%E5%9B%ADMAC%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92/1.png"></p>
+<li><p><img src="/.com//1.png"></p>
 </li>
 <li></li>
 <li><p>使用命令持续监听端口号为14的ssl4.plist程序，如果他进行外连ip的行为，那么就会显示程序的位置和具体信息!</p>
 </li>
-<li><p><img src="/%E8%AE%B0%E5%BD%95%E6%A0%A1%E5%9B%ADMAC%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92/2.png"></p>
+<li><p><img src="/.com//2.png"></p>
 </li>
 <li><p>但是这个方法没有成功，原因是我们不确定病毒的访问周期是什么，不确定病毒外连是否有特定时间，等待了15分钟左右就直接放弃这种方法</p>
 </li>
 <li><p>直接使用ps aux|grep ssl 查看ssl4.plist这个文件的位置</p>
 </li>
-<li><p><img src="/%E8%AE%B0%E5%BD%95%E6%A0%A1%E5%9B%ADMAC%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92/3.png"></p>
+<li><p><img src="/.com//3.png"></p>
 </li>
 <li><p>二．删除病毒文件</p>
 </li>
-<li><p><img src="/%E8%AE%B0%E5%BD%95%E6%A0%A1%E5%9B%ADMAC%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92/4.png"></p>
+<li><p><img src="/.com//4.png"></p>
 </li>
 <li><p>Ls目录，发现病毒目录下一共有六个文件</p>
 </li>
 <li></li>
-<li><p>查看config.txt文件<img src="/%E8%AE%B0%E5%BD%95%E6%A0%A1%E5%9B%ADMAC%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92/5.png"></p>
+<li><p>查看config.txt文件<img src="/.com//5.png"></p>
 </li>
 <li><p>rm -r删除目录下的所有文件，然后使用kill -9 6197强制结束病毒的程序</p>
 </li>
@@ -1585,14 +1576,14 @@
 </ul>
 <p>1.首先按照网上的方法，重新清除一遍ssl4.plist病毒的文件，然后kill结束掉 ssl4.plist和osascript这两个进程</p>
 <p>2.那就按照经验查找mac的自启动项，删除自启动文件</p>
-<p>进入目录&#x2F;library&#x2F;launchagents&#x2F;com.apple.C0.plist(mac自启动项的目录)![<img src="/%E8%AE%B0%E5%BD%95%E6%A0%A1%E5%9B%ADMAC%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92/6.png"></p>
+<p>进入目录&#x2F;library&#x2F;launchagents&#x2F;com.apple.C0.plist(mac自启动项的目录)![<img src="/.com//6.png"></p>
 <p>使用ls查看所有文件</p>
 <ul>
-<li><img src="/%E8%AE%B0%E5%BD%95%E6%A0%A1%E5%9B%ADMAC%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92/7.png"></li>
+<li><img src="/.com//7.png"></li>
 <li>一个个查看了plist自启动文件的内容，其中四个是mac系统的adobe软件的文件，两个是向日葵自启动文件，然后就很奇怪为什么没有找到有关下载ssl4.plist的自启动文件</li>
 <li>删除ssl4.plist的文件，kill掉ssl4.plist和osascript进程，然后把所有自启动文件夹的plist文件都rm -r进行删除，最后进行重启</li>
 <li></li>
-<li>重启后，果然没有清除干净病毒文件<img src="/%E8%AE%B0%E5%BD%95%E6%A0%A1%E5%9B%ADMAC%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92/8.png"></li>
+<li>重启后，果然没有清除干净病毒文件<img src="/.com//8.png"></li>
 <li></li>
 <li>使用ps命令查看osascript进程，osascript进程在下载ssl4.plist病毒的时候会成一个11.png文件（这不是重点）</li>
 <li>重点是我发现了~&#x2F;Library&#x2F;LaunchAgents&#x2F;com.applc.C0.plist</li>

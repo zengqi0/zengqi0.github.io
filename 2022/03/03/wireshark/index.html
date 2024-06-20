@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1541,7 +1532,7 @@
 <p>数据帧的起始点和目的点 都是数据的链路层</p>
 <p>包的目的地是网络层</p>
 <p>段 是传输层</p>
-<p><img src="/wireshark/1.png"></p>
+<p><img src="/.com//1.png"></p>
 <p> 这四层分别代表</p>
 <p> 物理层 </p>
 <p>数据链路层 以太网帧的头部信息</p>
@@ -1549,7 +1540,7 @@
 <p>传输层的数据段头部的信息</p>
 <p>为什么这些MAC地址的开头明明是“00:50:56”或者“00:0c:29”，Wireshark上显示出来却都是“Vmware”？这是因为 MAC 地址的前 3 个字节表示厂商。而 00:50:56 和00:0c:29 都被分配给Vmware公司。这是全球统一的标准，所以Wireshark干脆显示出厂商名了。</p>
 <h2 id="1-首先看一下物理层"><a href="#1-首先看一下物理层" class="headerlink" title="1.首先看一下物理层"></a>1.首先看一下物理层</h2><p>315号的的数据帧 在这个线路上一共具有355个字节  而实际捕获是355个字节</p>
-<p><img src="/wireshark/2.png"></p>
+<p><img src="/.com//2.png"></p>
 <p>从上到下对应</p>
 <p>接口ID </p>
 <p>封装类型</p>
@@ -1564,11 +1555,11 @@
 <p>表示的帧内封装的协议的层次结构</p>
 <p>着色标记的协议名称</p>
 <p>着色规则显示的字符串</p>
-<h2 id="2-数据链路层以太网帧"><a href="#2-数据链路层以太网帧" class="headerlink" title="2.数据链路层以太网帧"></a>2.数据链路层以太网帧</h2><p><img src="/wireshark/3.png"></p>
+<h2 id="2-数据链路层以太网帧"><a href="#2-数据链路层以太网帧" class="headerlink" title="2.数据链路层以太网帧"></a>2.数据链路层以太网帧</h2><p><img src="/.com//3.png"></p>
 <p>目标的mac地址</p>
 <p>源mac地址</p>
 <p>mac地址前三个字节 表示厂商名称</p>
-<h2 id="3-网络层"><a href="#3-网络层" class="headerlink" title="3.网络层"></a>3.网络层</h2><p><img src="/wireshark/4.png"></p>
+<h2 id="3-网络层"><a href="#3-网络层" class="headerlink" title="3.网络层"></a>3.网络层</h2><p><img src="/.com//4.png"></p>
 <p>互联网协议 ipv4</p>
 <p>ip包头部的长度</p>
 <p>差分服务自段</p>
@@ -1581,7 +1572,7 @@
 <p>头部数据的校验和</p>
 <p>源ip地址</p>
 <p>目的ip地址</p>
-<h2 id="4-传输层"><a href="#4-传输层" class="headerlink" title="4. 传输层"></a>4. 传输层</h2><p><img src="/wireshark/5.png"></p>
+<h2 id="4-传输层"><a href="#4-传输层" class="headerlink" title="4. 传输层"></a>4. 传输层</h2><p><img src="/.com//5.png"></p>
 <p>80表示源端口号</p>
 <p>目标端口号</p>
 <p>序列号</p>
@@ -1595,14 +1586,14 @@
 <p>!tcp 筛选非tcp协议的数据包</p>
 <p>fram.len&lt;&#x3D;150  筛选为数据包长度小于150</p>
 <p>tcp[13]&#x3D;&#x3D;0X18 筛选为 检查协议头偏移13的里的某一字节</p>
-<p><img src="/wireshark/6.png"></p>
+<p><img src="/.com//6.png"></p>
 <p>想要重复筛选 就new一个 新的筛选器</p>
-<p><img src="/wireshark/7.png"></p>
+<p><img src="/.com//7.png"></p>
 <h1 id="wireshark-图形显示"><a href="#wireshark-图形显示" class="headerlink" title="wireshark 图形显示"></a>wireshark 图形显示</h1><p>横轴表示的是时间，纵轴表示数据包的数量，</p>
-<p><img src="/wireshark/8.png"></p>
+<p><img src="/.com//8.png"></p>
 <p>数据帧小于100，以及长度大于1000的情况</p>
 <p>看颜色就知道是graph几了</p>
-<p><img src="/wireshark/9.png"></p>
+<p><img src="/.com//9.png"></p>
 <p>我们可以看到 3-2的数据包非常不稳定</p>
 <p>我们可以使用iographs帮助我们分析</p>
 <p>wireshark可以分析许多种类的tcp的网络错误 比如说常见的丢包 网络阻塞等等</p>
@@ -1611,14 +1602,14 @@
 <p>我们不希望显示窗口的更新数据包 我们就输入 tcp.analysis.window_update</p>
 <p>tcp.analysis.flags &amp;&amp;  tcp.analysis.window_update</p>
 <p>然后在右边设置为FBar的形式 然后单击graph2按钮</p>
-<p> <img src="/wireshark/10.png"></p>
+<p> <img src="/.com//10.png"></p>
 <p>红色的是过滤的情况 黑色的线是捕获文件 整体的情况    </p>
 <p>我们在设置单个tcp标志位的情况，这样可以更加具体的分析</p>
 <p>我们可以graph1  tcp.analysis.duplicate_ack 然后后面点击 impulse</p>
 <p>然后第二个筛选器   tcp.analysis_lost_segment 后面点击dot</p>
 <p>第三个筛选器 tcp.analysis.retransmission  后面点击fbar</p>
 <p>然后pixels per tick 选为10 然后点击这几个筛选器</p>
-<p> <img src="/wireshark/11.png"></p>
+<p> <img src="/.com//11.png"></p>
 <p>显示的三类出问题的数据包 </p>
 <p>其中黑色的线条 表示的是tcp重发的确认包</p>
 <p>红色的点表示tcp丢失的数据包 ，</p>
@@ -1627,14 +1618,14 @@
 <p>通过这个时间可以找到通信中的瓶颈 确定是否存在延迟</p>
 <p>点击一个tcp </p>
 <p>文件栏点击 statistics-tcp streamgraph- round trip time graph</p>
-<p> <img src="/wireshark/13.png"></p>
-<p> 点击上面的黑点<img src="/wireshark/12.png"></p>
+<p> <img src="/.com//13.png"></p>
+<p> 点击上面的黑点<img src="/.com//12.png"></p>
 <p>这里面的点 大多数是0.05以下，有少量是 0.25 整体是可以被接受的</p>
 <p>还有一个数据流图</p>
 <p> 可以将链接可视化，并且将一段时间的数据流 显示出来，数据流图一般以列的方式将主机之间的连接显示出来，并将数据连接在一起 更加直观的解读</p>
 <p>statistics-flow graph</p>
-<p> <img src="/wireshark/14.png"></p>
-<p> <img src="/wireshark/15.png"></p>
+<p> <img src="/.com//14.png"></p>
+<p> <img src="/.com//15.png"></p>
 <h1 id="wireshark的高级特性"><a href="#wireshark的高级特性" class="headerlink" title="wireshark的高级特性"></a>wireshark的高级特性</h1><p>协议的解析功能 是由wireshark的协议解析器完成的，它可以将网络上获取的原始二进制数据包进行拆分变成相关协议的不同区段，以便于我们分析</p>
 <p>我们可以将wireshrak的协议解析器看作是网络原始数据流和wireshark软件之间的翻译器</p>
 <p>如果想要让wireshark支持某给协议 必须拥有该协议的解析器</p>
@@ -1642,20 +1633,20 @@
 <p>ssl（安全的套接字协议，通常用于主机之间安全加密的传输）ssl是用来保密传输的，wireshark里面查看ssl数据包 并不会发现有用的信息，我们重点查看packet这个面板</p>
 <p>我们不会读取到 数据包里有用的信息 更不会看到明文形式传输的用户名 </p>
 <p>而我们却看到了 所以这并不是ssl</p>
-<p> <img src="/wireshark/16.png"></p>
+<p> <img src="/.com//16.png"></p>
 <p>是ftp数据包 而不是ssl</p>
 <p>而导致wireshark 错误的原因呢，很可能是ftp协议 使用了443号 端口 这个端口原本是应当是https专用的端口 https指的就是基于ssl的http</p>
 <p>  为了解决这个问题 我们就需要强制wireshark使用htp协议器 来解析这些数据包，</p>
 <p>我们选择他右键 decode as</p>
 <p> 我们在下拉列表中选择 destination 443  并且在右边的列表 找到ftp</p>
-<p> <img src="/wireshark/17.png"></p>
+<p> <img src="/.com//17.png"></p>
 <p>这次修改并不会保存</p>
 <p>tcp stream</p>
 <p>tcp 流 重组成 易于阅读的形式 而不是一小块 一小块查看，我们鼠标右键 选择任意的数据包，选择follo tcp stream  </p>
-<p> <img src="/wireshark/18.png"></p>
+<p> <img src="/.com//18.png"></p>
 <p>以太网上 帧的大小为 1518个字节  除去 以太网 ip 以及tcp等头部信息，还能够剩下 1460个字节，这些字节 可以供应用层协议来使用，我们可以通过一个捕获文件中的数据包 长度 的分布情况，来对流量进行分析，</p>
 <p> 选择statistics - packet lengths然后选择 creat stat </p>
-<p>  <img src="/wireshark/19.png"></p>
+<p>  <img src="/.com//19.png"></p>
 <p>一般 7127这种较大的数据包 一般用于数据的传输，有可能是http的下载  ftp的上传</p>
 <p>而较小的数据包，则是保存协议的控制序列，这是保存 tcp控制的数据包，</p>
 <p>事实上 查看数据包的长度，是对捕获文件进行概念的很好的一种方法，</p>
@@ -1663,38 +1654,38 @@
 <p>其实 整个网络中的tcp信息 都会被wireshark等专家信息所记录 比如说，丢包 网络阻塞等等 </p>
 <p>针对于每个协议的解析器 都会有 专家信息，我们可以通过专家信息来查看  使用该协议的数据包中的一些特定状态的错误 警告，以及提示等信息，</p>
 <p>analyze - expert info 来打开</p>
-<p>  <img src="/wireshark/20.png"></p>
+<p>  <img src="/.com//20.png"></p>
 <p>error是表明 数据包里面或者解析器 解析时出现的错误，</p>
 <p>warning是表示不正常通信，中的异常数据包</p>
 <p>notes 是正常通信中的数据包</p>
 <p>chats 是网络通信的基本信息</p>
 <p>details 显示数据包的详细信息，</p>
 <p>packet comments 是数据包的描述信息</p>
-<p> <img src="/wireshark/21.png"></p>
+<p> <img src="/.com//21.png"></p>
 <p>第一个 warning 表示数据包的丢失 当数据流中期望的序列号 被跳过的时候，这个警告就会出现</p>
 <p>第二个 数据包没有按照顺序接受的时候就会出现</p>
-<p> <img src="/wireshark/22.png"></p>
+<p> <img src="/.com//22.png"></p>
 <p>表示当一台主机 没有收到下一个期望的数据包的时候 就会生成最近收到的一次ack</p>
 <p>也就表面 新的数据包没有收到    </p>
 <p>wireshark 不妨先看看警告和信息 </p>
 <h1 id="ARP协议的数据包分析"><a href="#ARP协议的数据包分析" class="headerlink" title="ARP协议的数据包分析"></a>ARP协议的数据包分析</h1><p>  arp称地址解析协议 是用于 将ip地址解析为 mac地址 ，是因为网络中 用于连接各个设备的交换机 使用的</p>
 <p>内容可寻址存储器，这个存储器 维护的apr表 列出了 他在哪一个端口的所有连接设备的mac地址，当交换机收到了指向特定mac地址的网络流量时候，他就会使用这个表来确定应该使用哪一个端口来发送流量，如果目标mac地址是未知的，那么传输设备会首先在他的缓存中，查找这个地址，如果没有找到，那这个地址就需要在网络上额外的通讯功能解析</p>
-<p> <img src="/wireshark/23.png"></p>
+<p> <img src="/.com//23.png"></p>
 <p>osi模型 将网络分成了7层，而ip地址位于网络层 mac地址是位于数据链路层  </p>
 <p>通过以太网发送ip数据包的时候，需要首先封装第三层和第二层的报头，但由于发送数据包的时候，只知道目标的ip地址 不知道他的mac地址，而又不能够之间跨越第二层和第三层 所以要使用 arp协议之后，而在用了arp协议之后，计算机就可以按照网络层ip数据包的头部信息 ，将硬件地址信息 mac地址对应起来以保证通讯的顺利进行，</p>
 <p>arp协议的基本功能 就是将已知的ip地址，解析成，mac地址，以便主机之间可以正常通讯</p>
 <p>arp协议的解析过程 只使用了两种数据包 一个是arp请求 另外一个arp响应</p>
-<p> <img src="/wireshark/24.png"></p>
+<p> <img src="/.com//24.png"></p>
 <p>当主机A想要给主机B发送数据的时候， 主机A会先在自己的本地arp缓存表中，检查与主机B相匹配的mac地址，如果说主机A在自己的缓存表中没有找到相关条目，那么他就要想办法获取主机B的mac地址，这就需要将arp的请求帧广播到所有的主机上面，而这个请求帧就包含，主机A的 ip地址和mac地址 和主机B的mac地址，在网络中凡是收到请求帧的主机都会检查自己的ip地址是否与请求地址一致，如果不一致就会丢弃这个请求帧，对于这个图来说 主机C和主机D就会丢弃由主机A发出的请求帧，</p>
 <p>而当主机B确定 arp请求中的ip地址和自己的ip地址一致，那 么就会将主机a的mac地址和ip地址，添加到他自己的缓存列表里面 之后主机b将包含有自己mac地址和arp响应消息 之间回复给主机A</p>
 <p>当主机A收到由主机B发来的消息之后呢，就会将主机B的ip地址和mac地址添加到自己的arp缓存列表里面，那么接下来，主机A就可以向主机B发送消息了。</p>
 <p>如果查看自己的arp缓存列表</p>
 <p>可以打开cmd 输入arp-a</p>
 <p>本地的缓存是有生命周期的， 默认的arp缓存表的有效期为120秒 过期后需要重复我们之前所讲的这个过程</p>
-<p> <img src="/wireshark/25.png"></p>
+<p> <img src="/.com//25.png"></p>
 <p>第一个数据包就是arp 请求数据包，</p>
 <p>我们进入 packets 检查以太网头部的信息，来确定是否是真正的广播的数据包</p>
-<p> <img src="/wireshark/26.png"></p>
+<p> <img src="/.com//26.png"></p>
 <p>这个数据包大小为42个字节</p>
 <p>这个数据包目的地址是 全F的 那么这个是广播地址，说明当前数据包会被广播到当前网断中的所有的 </p>
 <p>设备上，而这个数据包当中呢 以太网源地址 是本机的mac地址，</p>
@@ -1705,7 +1696,7 @@
 <p>UDP主要目的则是一种无连接的 传输层协议，提供面向事物的 简单的不可靠的信息的传输服务</p>
 <p>TCP是传输控制协议，所以tcp通信都会使用源端口和目的端口，这些信息可以在每个tcp包的头部找到，而为了能够，将数据传输到远程服务器和设备特点应用中去呢，tcp数据包必须知道远程服务所监听的端口，如果想要尝试连接一个不同于所设置的端口，那么通信就会失败，使用tcp通信的时候，我们可以使用 65535个端口， 1-1023的端口属于标准的端口组，往往是特定的服务所使用的 1024-65535是临时端口，需要使用的时候 操作系统会在通信的时候 进行选择</p>
 <p>  tcp所提供的是可靠的数据传输，因此在传输之前是与目标主机建立连接，而所有基于tcp的通信都需要与两台主机之间的握手开始，</p>
-<p> <img src="/wireshark/27.png"></p>
+<p> <img src="/.com//27.png"></p>
 <p>5：23</p>
 
       

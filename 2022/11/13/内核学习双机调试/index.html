@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1523,58 +1514,58 @@
         <h1 id="vs2019-win7X86驱动环境"><a href="#vs2019-win7X86驱动环境" class="headerlink" title="vs2019+win7X86驱动环境"></a>vs2019+win7X86驱动环境</h1><p>我自己按了4次了 换了3个电脑重装系统一次 稳健的一批</p>
 <h2 id="官网下载VS-和-WDK"><a href="#官网下载VS-和-WDK" class="headerlink" title="官网下载VS 和 WDK"></a>官网下载VS 和 WDK</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows-hardware/drivers/other-wdk-downloads">https://docs.microsoft.com/zh-cn/windows-hardware/drivers/other-wdk-downloads</a></p>
 <p>下载vs会自动安装 sdk 就是这个玩意</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/8.png"></p>
+<p><img src="/.com//8.png"></p>
 <p>我的已经配置好不是新下载的，你就下载 三个箭头就行了，然后crtl+x去应用和功能看看</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/9.png"></p>
+<p><img src="/.com//9.png"></p>
 <p>然后确认自己电脑的WSDK的版本，我们需要根据这个版本去下载对应版本的WDK</p>
 <p>如果sdk和wdk版本对了但是不行 ，那就自己摸索一下 改改版本</p>
 <h2 id="安装VS-WDK扩展-插件"><a href="#安装VS-WDK扩展-插件" class="headerlink" title="安装VS WDK扩展 插件"></a>安装VS WDK扩展 插件</h2><p>下载WDK会弹出窗口默认安装，没有的话再路径:Windows Kits\10\Vsix</p>
-<h2 id="VSInstall-下载SDK和-Spectre缓解库-同步SDK和WDK版本"><a href="#VSInstall-下载SDK和-Spectre缓解库-同步SDK和WDK版本" class="headerlink" title="VSInstall 下载SDK和 Spectre缓解库 同步SDK和WDK版本"></a>VSInstall 下载SDK和 Spectre缓解库 同步SDK和WDK版本</h2><p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/10.png"></p>
+<h2 id="VSInstall-下载SDK和-Spectre缓解库-同步SDK和WDK版本"><a href="#VSInstall-下载SDK和-Spectre缓解库-同步SDK和WDK版本" class="headerlink" title="VSInstall 下载SDK和 Spectre缓解库 同步SDK和WDK版本"></a>VSInstall 下载SDK和 Spectre缓解库 同步SDK和WDK版本</h2><p><img src="/.com//10.png"></p>
 <h2 id="编译驱动测试"><a href="#编译驱动测试" class="headerlink" title="编译驱动测试"></a>编译驱动测试</h2><p>创建WDM 空项目</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/6.png"></p>
+<p><img src="/.com//6.png"></p>
 <p>看到这里就已经搭建好了，我们接下来再来配置win7x86虚拟机</p>
 <h2 id="虚拟机设置"><a href="#虚拟机设置" class="headerlink" title="虚拟机设置"></a>虚拟机设置</h2><h3 id="为镜像添加一个串口"><a href="#为镜像添加一个串口" class="headerlink" title="为镜像添加一个串口"></a>为镜像添加一个串口</h3><p>这个参考下面的winxp 步骤都一样 如果串口被占用就删除打印机</p>
 <p>管道地址: \.\pipe\com_1</p>
 <h3 id="设置测试模式"><a href="#设置测试模式" class="headerlink" title="设置测试模式"></a>设置测试模式</h3><p>在本地WDK的安装目录下找到 Remote 文件夹，复制相应的 WDK Test Target  Setup.msi 文件到虚拟机中打开。</p>
 <p>在虚拟机管理员权限运行cmd，输入命令bcdedit &#x2F;copy {current} &#x2F;d DebugEnty</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/11.png"></p>
+<p><img src="/.com//11.png"></p>
 <p>之后打开msconfig，选择引导选项卡，找到我们刚刚创建的DebugEntry并点击高级选项， 进行如下配置：</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/12.png"></p>
+<p><img src="/.com//12.png"></p>
 <p>重启，选择 DebugEntry启动</p>
 <p>管理员权限运行cmd，输入 bcdedit &#x2F;set testsigning on和 bcdedit &#x2F;Debug on ，开启 测试模式。 输入 bcdedit &#x2F;dbgsettings 查看设置情况如下。</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/13.png"></p>
+<p><img src="/.com//13.png"></p>
 <h2 id="VS2019设置"><a href="#VS2019设置" class="headerlink" title="VS2019设置"></a>VS2019设置</h2><p>上面设置完虚拟机环境之后 关机备用 </p>
 <p>vs打开 扩展 - Diver - Test - Configure Devices…，选择 Add New Device</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/14.png"></p>
+<p><img src="/.com//14.png"></p>
 <p>输入名称，然后下一步。注意：Network host name必须为虚拟机的计算机名。</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/15.png"></p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/16.png"></p>
+<p><img src="/.com//15.png"></p>
+<p><img src="/.com//16.png"></p>
 <p>Kernel Mode中设置串口通信等信息，如下图：注意：Pipe name要与虚拟机串口设置的管道名称一致</p>
 <h3 id="双机调试"><a href="#双机调试" class="headerlink" title="双机调试"></a>双机调试</h3><p>VS2019中，选择 调试 - 附加到进程，连接类型选择 Windows Kernel Mode Debugger，连接目 标为之前新建的Device，附加</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/17.png"></p>
+<p><img src="/.com//17.png"></p>
 <p>Debug窗口会显示以下字样，表示已打开管道并等待重连。(注意是 Opened .\pipe\com_1)</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/18.png"></p>
+<p><img src="/.com//18.png"></p>
 <p>接着重新启动虚拟机，等待虚拟机进入桌面。Debug窗口显示如下：</p>
 <p> 注意：1.这里可能会花较长时间，并不是因为卡死了。</p>
 <p> 注意：2.重启虚拟机的时候记得禁用驱动程序强制签名。(或者使用testsigning)</p>
 <p>进入桌面后，虚拟机可以正常操作。在VS2019中按下 暂停等待VS停下来，并出现以下画面，再点击 继续。(先暂停再继续，否则可能断不下来)</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/19.png"></p>
+<p><img src="/.com//19.png"></p>
 <p>此时就可以设置断点了。</p>
 <h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>到此我们测试一下</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ntddk.h&gt;</span></span></span><br><span class="line">VOID <span class="title function_">DriverUnload</span><span class="params">(PDRIVER_OBJECT pDriver)</span> &#123;</span><br><span class="line"></span><br><span class="line">	UNREFERENCED_PARAMETER(pDriver);</span><br><span class="line">	DbgPrint(<span class="string">&quot;Goodbye~\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">NTSTATUS <span class="title function_">DriverEntry</span><span class="params">(PDRIVER_OBJECT pDriver, PUNICODE_STRING pRegPath)</span>&#123;</span><br><span class="line">DbgPrint(<span class="string">&quot;Hello Driver!\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">UNREFERENCED_PARAMETER(pRegPath);</span><br><span class="line"></span><br><span class="line">pDriver-&gt;DriverUnload = DriverUnload;</span><br><span class="line"><span class="keyword">return</span> STATUS_SUCCESS;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>删除inf文件 或者删除这两行</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/20.png"></p>
+<p><img src="/.com//20.png"></p>
 <p>调整属性 - C&#x2F;C++ - 常规，警告等级 4，将警告视为错误 否；<br>链接器 - 常规，警告视为错误 否；<br>Driver Settings - General，Target OS Version改成Windows 7，Target Platform改为Desktop；<br>Stampinf里所有 是 的地方改成 否；<br>Inf2Cat里所有 是 的地方改成 否；<br>Driver Signing - General中的Sign Mode改为 Off；</p>
 <p>然后生成的sys文件 拖到虚拟机里面 测一测 </p>
 <p>完成</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/7.png"></p>
+<p><img src="/.com//7.png"></p>
 <h1 id="winxp-windbg环境搭建"><a href="#winxp-windbg环境搭建" class="headerlink" title="winxp+windbg环境搭建"></a>winxp+windbg环境搭建</h1><h2 id="虚拟机配置"><a href="#虚拟机配置" class="headerlink" title="虚拟机配置"></a>虚拟机配置</h2><p>打开ini文件，加入下面这一行：</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/1.png"></p>
+<p><img src="/.com//1.png"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multi(0)disk(0)rdisk(0)partition(1)\WINDOWS=&quot;Microsoft Windows XP Professional&quot; /noexecute=optin /fastdetect /debug /debugport=com1 /baudrate=115200</span><br></pre></td></tr></table></figure>
 
 <h2 id="虚拟机串口"><a href="#虚拟机串口" class="headerlink" title="虚拟机串口"></a>虚拟机串口</h2><p>为镜像添加一个串口</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/2.png"></p>
+<p><img src="/.com//2.png"></p>
 <p>设置为<code>使用命名的管道</code>、<code>该端是服务器</code>、<code>另一端是应用程序</code>，管道命名填写：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\\.\pipe\com_1</span><br></pre></td></tr></table></figure>
 
@@ -1584,18 +1575,18 @@
 <p>安装完成后，找到WDK的安装目录（安装的时候会让你选），Debugger目录下就是windbg的组件，将windbg.exe发送到桌面快捷方式。</p>
 <h2 id="XP符号包安装"><a href="#XP符号包安装" class="headerlink" title="XP符号包安装"></a>XP符号包安装</h2><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1A0x28R8Nitnxb5pzm6SxtQ">https://pan.baidu.com/s/1A0x28R8Nitnxb5pzm6SxtQ</a><br>提取码：5y6z<br>–来自百度网盘超级会员V3的分享</p>
 <p>直接下一步等待安装成功。然后你的<code>C:\Windows</code>会多出一个<code>Symbols</code>文件夹，结构如下图，如果不对那就重新安装。这步绝对不能出错。</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/22.png"></p>
+<p><img src="/.com//22.png"></p>
 <h2 id="Windbg参数配置"><a href="#Windbg参数配置" class="headerlink" title="Windbg参数配置"></a>Windbg参数配置</h2><p>右键windbg.exe - 快捷方式，点击属性，在目标那里后面加一段话（记得-b前面有个空格别忘记加）：</p>
 <p><strong>-b -k com:pipe,port&#x3D;\.\pipe\com_1,resets&#x3D;0</strong></p>
 <p>-b：一旦主机目标机之间建立起连接，立刻中断目标机<br> -k：内核调试<br> Com：设置连接目标机的通信端口（此处为命名管道）和波特率（此处为115200）<br> -y：设置符号文件路径</p>
 <h2 id="Windbg环境变量配置"><a href="#Windbg环境变量配置" class="headerlink" title="Windbg环境变量配置"></a>Windbg环境变量配置</h2><p>右键此电脑-&gt;属性-&gt;高级系统设置-&gt;环境变量，在Path里新建一条记录，内容为WDK安装路径下的debugger文件夹</p>
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/3.png"></p>
+<p><img src="/.com//3.png"></p>
 <h2 id="符号包环境变量配置"><a href="#符号包环境变量配置" class="headerlink" title="符号包环境变量配置"></a>符号包环境变量配置</h2><p>在上面的用户变量处新建一个记录，变量名和变量值直接复制下面的，一定不能错，不然后面windbg命令用不了。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">变量名：</span><br><span class="line">_NT_SYMBOL_PATH</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">变量值：</span><br><span class="line">C:``/``WINDOWS``/``Symbols``/``acm;C:``/``WINDOWS``/``Symbols``/``cnv;C:``/``WINDOWS``/``Symbols``/``com;C:``/``WINDOWS``/``Symbols``/``cpl;C:``/``WINDOWS``/``Symbols``/``dic;C:``/``WINDOWS``/``Symbols``/``dll;C:``/``WINDOWS``/``Symbols``/``drv;C:``/``WINDOWS``/``Symbols``/``exe;C:``/``WINDOWS``/``Symbols``/``iec;C:``/``WINDOWS``/``Symbols``/``ime;C:``/``WINDOWS``/``Symbols``/``ocx;C:``/``WINDOWS``/``Symbols``/``scr;C:``/``WINDOWS``/``Symbols``/``sys;C:``/``WINDOWS``/``Symbols``/``tpl;C:``/``WINDOWS``/``Symbols``/``tsp;C:``/``WINDOWS``/``Symbols``/``wpc;symsrv``*``symsrv.dll``*``C:``/``mysymbol``*``http:``/``/``msdl.microsoft.com``/``download``/``symbols</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95/4.png"></p>
+<p><img src="/.com//4.png"></p>
 <p>XP开机后选择DEBUG系统，按回车进入。</p>
 <p>输入<code>!process 0 0</code>查看进程，如果可以成功查看，那么双机调试就已经完美配置成功了。如果不可以，那就还是符号包配置有问题。</p>
 

